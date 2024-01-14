@@ -93,7 +93,8 @@ To deploy the package, enter the command:
 - **Mikey Nichols** -- _Product Owner_ - [mnichols08](https://github.com/mnichols08)
 - **Stacy Riley** -- _Developer_ - [Stacy-Riley](https://github.com/Stacy-Riley)
 - **Tazneem** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
-- **Will Burroughs** -- _Developer_ - [willcburroughs](https://github.com/willcburroughs)
+- **Will Burroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCburroughs)
+
 
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
