@@ -95,6 +95,7 @@ To deploy the package, enter the command:
 - **Tazneem** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
 - **Will Burroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCburroughs)
 
+
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
 ## Acknowledgments
