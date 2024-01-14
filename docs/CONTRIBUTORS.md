@@ -2,3 +2,4 @@
 - [emmettpenn](https://github.com/egpennington)
 - [Mikey Nichols](https://github.com/mnichols08)
 - [stacy-riley](https://github.com/stacy-riley)
+- [WillCBurroughs](https://github.com/WillCBurroughs)
