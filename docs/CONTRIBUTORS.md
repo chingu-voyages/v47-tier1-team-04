@@ -5,3 +5,4 @@
 - [Mikey Nichols](https://github.com/mnichols08)
 - [stacy-riley](https://github.com/stacy-riley)
 - [taswakil](https://github.com/taswakil)
+- [Amanda-Libby](https://github.com/Amanda-Libby)
