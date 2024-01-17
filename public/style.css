@@ -23,6 +23,8 @@ h1 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Nav Bar */
@@ -52,6 +54,30 @@ nav a {
 /* Main */
 main {
     padding: 20px;
+}
+
+/* calendar */
+.daily-activities,
+.monthly-calendar {
+    width: 48%;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
 
 /* Footer */
