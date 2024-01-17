@@ -99,7 +99,7 @@ To deploy the package, enter the command:
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
 ## Acknowledgments
-Shout out to [Klesta](klezi10), our wonderful Voyage Guide.
+Shout out to [Klesta](https://github.com/klezi10), our wonderful Voyage Guide.
 
 ## About Chingu
 
