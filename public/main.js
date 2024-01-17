@@ -1,1 +1,1 @@
-console.log("hello worldly peeps"),document.body.innerHTML="\n    <h1>Hello</h1>\n    <h2>here i am here</h2>\n    <p>Name here</p>\n    ";
+console.log("hello worldly peeps"),document.body.innerHTML="\n    <h1>Hello</h1>\n    <h2>here i am here</h2>\n    <p>Day2Day Tracking App</p>\n    <ul>\n        <li>Monthly</li>\n        <li>Daily</li>\n        <li>Today</li>\n    </ul>        \n    ";
