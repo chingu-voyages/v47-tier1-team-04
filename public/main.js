@@ -1,0 +1,1 @@
+console.log("hello worldly peeps"),document.body.innerHTML="\n    <h1>Hello</h1>\n    <h2>here i am here</h2>\n    <p>Name here</p>\n    ";
