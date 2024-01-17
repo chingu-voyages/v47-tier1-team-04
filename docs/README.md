@@ -87,18 +87,19 @@ To deploy the package, enter the command:
 
 - **Amanda Libbey** -- _Developer_ - [Amanda-Libbey](https://github.com/Amanda-Libbey)
 - **Chingu Voyages** - _Initial work_ - [chingu-voyages](https://github.com/chingu-voyages)
-- **Emmett Pennington** -- _Developer_ - [egpennington](https://github.com/egpennington)
-- **Jayanti Neu** -- _Developer_ - [jayanti-neu](https://github.com/jayanti-neu)
+- **egpennington (애멧)** -- _Developer_ - [egpennington](https://github.com/egpennington)
+- **jayanti-neu** -- _Developer_ - [jayanti-neu](https://github.com/jayanti-neu)
 - **Jim Medlock** - _Initial work_ - [jmedlock](https://github.com/jdmedlock)
 - **Mikey Nichols** -- _Product Owner_ - [mnichols08](https://github.com/mnichols08)
 - **Stacy Riley** -- _Developer_ - [Stacy-Riley](https://github.com/Stacy-Riley)
-- **Tazneem** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
-- **Will Burroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCburroughs)
+- **taswakil** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
+- **WillBurroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCBurroughs)
 
 
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
 ## Acknowledgments
+Shout out to [Klesta](klezi10), our wonderful Voyage Guide.
 
 ## About Chingu
 
