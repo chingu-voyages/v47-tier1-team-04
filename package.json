@@ -1,0 +1,34 @@
+{
+    "name": "v47-tier1-team-04",
+    "version": "1.0.0",
+    "description": "chingu voyage 47 day2day task app",
+    "main": "index.js",
+    "directories": {
+      "doc": "docs"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/chingu-voyages/v47-tier1-team-04.git"
+    },
+    "keywords": [
+      "chingu",
+      "voyage-47",
+      "day-tracker",
+      "monthly-tracker",
+      "task-tracker",
+      "html",
+      "css",
+      "javascript"
+    ],
+    "author": "Emmett (애멧)",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/chingu-voyages/v47-tier1-team-04/issues"
+    },
+    "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme"
+  }
+  
+  
