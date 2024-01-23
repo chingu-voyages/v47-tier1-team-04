@@ -1,0 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+body {
+    background: peru;
+    border: 1px solid red;
+}
