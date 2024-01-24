@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-* {
-    margin: 0;
-}
-
 .copyright {
     color: white;
     font-size: 50px;
