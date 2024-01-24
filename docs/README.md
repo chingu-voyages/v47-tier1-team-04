@@ -39,9 +39,9 @@ TBD
 - [Repository](https://github.com/chingu-voyages/v47-tier1-team-04)
 - [Documentation](https://chingu-voyages.github.io/v47-tier1-team-04/)
 - [Live Site URL](https://v47-tier1-team-04.netlify.app/)
-- [Development (Code on Deck) URL](https://v47-tier1-team-04-dev.netlify.app/)
-- [Beta Testing](https://v47-tier1-team-04-beta.netlify.app/)
-- [Alpha Testing](https://v47-tier1-team-04-alpha.netlify.app/)
+- [Development URL](https://v47-tier1-team-04-dev.netlify.app/)
+- [Beta Testing URL](https://v47-tier1-team-04-beta.netlify.app/)
+- [Alpha Testing URL](https://v47-tier1-team-04-alpha.netlify.app/)
 
 ## General Instructions
 
