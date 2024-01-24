@@ -43,26 +43,6 @@ TBD
 - [Beta Testing](https://v47-tier1-team-04-beta.netlify.app/)
 - [Alpha Testing](https://v47-tier1-team-04-alpha.netlify.app/)
 
-#### `documentation`
- Houses all of the documentation for the project primarily the `docs` folder. 
- - A deployment of `documentation` can be found on GitHub Pages at 
-
-#### `production`
- The production branch is where we push code that has passed all quality checks and is in production working to the public.
- - A deployment of `production` is found on Netlify at [https://v47-tier1-team-04.netlify.app/](https://v47-tier1-team-04.netlify.app/).
- - Requires 3 approvals to merge pull request into
-#### `development`
- This branch is a representation of the code that is on deck to be deployed the following week. It has passed all quality checks but is awaiting all changes from the rest of the Sprint objectives to move forward into `production`.
- - A deployment of `development` is found on Netlify at [https://v47-tier1-team-04-dev.netlify.app/](https://v47-tier1-team-04-dev.netlify.app/).
- - Requires 2 approvals to merge pull request into
-#### `beta`
- This branch represents code that has passed through the `alpha` stage of testing. Thorough testing of the application should be occurring while the code is within this branch. This should happen before a pull request is made into `development`.
- - A deployment of `beta` is found on Netlify at [https://v47-tier1-team-04-beta.netlify.app/](https://v47-tier1-team-04-beta.netlify.app/).
- - Requires 1 approvals to merge pull request into
-#### `alpha`
- The default branch for our repository. This branch is where code will be taken to be tested against all other code. All proposed code should enter this staging area first to be compared against other code. This staging area is a filter for catching merge conflicts and to spot bugs that may arise from resolution.
- - A deployment of `alpha` is found on Netlify at [https://v47-tier1-team-04-alpha.netlify.app/](https://v47-tier1-team-04-alpha.netlify.app/).
-
 ## General Instructions
 
 ### Built with
