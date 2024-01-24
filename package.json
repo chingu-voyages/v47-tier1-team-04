@@ -1,0 +1,40 @@
+{
+  "name": "v47-tier1-team-04",
+  "version": "1.0.0",
+  "description": "A task app created by a group of individuals brought together by Chingu for a six-week \"Voyage\". A day2day task app.",
+  "main": "./public/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v47-tier1-team-04.git"
+  },
+  "keywords": [
+    "collaboration",
+    "task-manager",
+    "hackathon",
+    "crud",
+    "vanilla",
+    "new",
+    "entry-level",
+    "good-first-issue",
+    "chingu",
+    "voyage-47",
+    "day-tracker",
+    "monthly-tracker",
+    "task-tracker",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Amanda Libbey, Jayanti Neu, Stacy Riley, Tasmine Wakil, Mikey Nichols, Will Burroughs, Emmett Pennington",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v47-tier1-team-04/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme"
+}
