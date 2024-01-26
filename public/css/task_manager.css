@@ -1,0 +1,137 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Montserrat;
+}
+
+body {
+    border: 2px solid forestgreen;
+    margin: 20px auto;
+    padding: 20px;  
+    width: 80%;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    display: flex;
+    border: 2px solid blue;
+}
+
+
+/* aside container */
+
+.aside-container {
+    flex: 1;
+    border: 2px solid yellow;
+    padding: 20px;
+}
+
+.aside-container .profile {
+    border: 2px solid black;
+    width: 100px;
+    border-radius: 50%;
+    height: 100px;
+    margin:20px auto;
+}
+
+.aside-container .task-overview {
+    border: 2px solid brown;
+}
+
+.aside-container .task-overview ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.aside-container .task-overview ul li {
+    padding: 5px 0px;
+}
+
+.aside-container .task-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* sub container */
+
+.sub-container {
+    flex: 2;
+    border: 2px solid red;
+}
+
+/* sub container - header */
+.sub-container > header {
+    border: 2px solid red;
+}
+
+.sub-container > header #period ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.sub-container > header #period ul li {
+    border: 2px solid black;
+    flex: 1;
+    text-align: center;
+}
+
+.sub-container > header .settings {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sub-container > header .settings div {
+    border: 2px solid green;
+    flex: 1;
+    text-align: center;
+} 
+
+/* sub container - main */
+.sub-container main {
+    border: 2px solid blue;
+}
+
+.sub-container main .current_date {
+    margin-bottom: 20px;
+}
+
+
+
+.sub-container main .task {
+    border: 5px solid yellow;
+}
+
+.card-lists {
+    border: 2px solid red;
+}
+
+/* task - card */
+.task .card {
+    display: flex;
+    border: 2px solid green;
+    padding: 20px;
+}
+
+.card .radio-check {
+    border: 2px solid darkcyan;
+    flex: 1;
+}
+.card .content {
+    border: 2px solid pink;
+    /* width: 100%; */
+    flex: 5;
+}
+
+
+.card .content .card-title {
+    border: 2px solid red;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
