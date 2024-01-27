@@ -13,6 +13,14 @@
       content="Amanda Libbey, Jayanti Neu, Stacy Riley, Tasmine Wakil, Mikey Nichols, Will Burroughs, Emmett Pennington"
     />
     <title>v47-tier1-team-04 Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script src="./js/script.js" defer></script>
   </head>
@@ -132,21 +140,143 @@
         </form>
       </section>
     </main>
+    <div class="container">
+      <aside class="aside">
+          <div class="avatar-area">
+              <div class="avatar btn">
+                  <img src="./img/Friendly Ones Avatar and Backdrop.png" alt="avatar pict">
+              </div>
+              <div class="gear-icon">
+                  <img src="./img/solar_settings-linear.svg" alt="gear icon">
+              </div>
+          </div>            
+
+          <h2>My Daily Checklist</h2>
+              <div class="catagory">
+                  <div class="activity">
+                      <h3 id="category-name-el">Category Name <i class="fa-solid fa-circle-chevron-down"></i></h3>
+                      <ul>
+                          <li>Projects</li>
+                          <li>Blog Posts</li>
+                      </ul>
+                  </div>
+
+                  <div class="activity">
+                      <h3>Studying <i class="fa-solid fa-circle-chevron-down"></i></h3>
+                      <ul>
+                          <li>Mongo DB</li>
+                          <li>Blog Posts</li> 
+                      </ul>
+                  </div>
+                  
+                  <div class="activity">
+                      <h3>Daily Task Project <i class="fa-solid fa-circle-chevron-down"></i></h3>
+                      <ul>
+                          <li>Backlog</li>
+                          <li>Coding</li>
+                      </ul>
+                  </div>
+
+                  <div class="activity">
+                      <h3>Chingu <i class="fa-solid fa-circle-chevron-down"></i></h3>
+                      <ul>
+                          <li>Voyage</li>
+                          <li>Pair Programming</li>
+                          <li>Physical Exercise</li>
+                      </ul>
+                  </div> 
+              </div>
+          </aside>
+
+      <nav class="navbar">
+          <div class="navbar-top">
+              <div id="date" class="date">Today:</div>
+              <div class="btn-undo">
+                  <button class="btn undo">
+                      <img src="img/ci_undo.svg" alt="undo button">
+                      undo
+                  </button>
+                  <button class="btn undo">
+                      <img src="img/ci_redo.svg" alt="redo button">
+                      undo
+                  </button>
+                  <a href="#" class="btn btn-save">Save</a>
+              </div>
+          </div>
+          
+          <div class="navbtn">
+              <a href="#" class="btn-day">Today</a>
+              <a href="#" class="btn-month">Month</a>
+              <a href="#" class="btn-year">Year</a>      
+          </div>
+      </nav>   
+      <content class="content">
+          <div class="content-search">
+              <div class="priority">
+                  <a href="#" class="btn btn-lite btn-blue">Low</a>
+                  <a href="#" class="btn btn-lite btn-orange">Med</a>
+                  <a href="#" class="btn btn-lite btn-red">High</a>
+
+                  <div class="search">
+                      <input type="text" placeholder="">
+                      <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
+                  </div>
+              </div>               
+          </div>
+          <div class="content-activity">
+              <h2 class="activity-name">Routine Activities</h2>
+              <div class="content-main">
+                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse">
+                  <div class="content-inner">
+                      <div class="content-task">
+                          <h3>Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+                      </div>
+                      <div class="content-description">
+                          <p>Update recipes project backlog</p>
+                          <div class="content-description-edit">
+                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                          </div>                            
+                      </div>                        
+                  </div>
+
+              </div>               
+          </div>
+
+          <div class="content-activity">
+              <h2 class="activity-name">Chingu</h2>
+              <div class="content-main">
+                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse">
+                  <div class="content-inner">
+                      <div class="content-task">
+                          <h3>Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
+                      </div>
+                      <div class="content-description">
+                          <p>Create the UI/UX design for the daily task project</p>
+                          <div class="content-description-edit">
+                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                          </div>                            
+                      </div>                        
+                  </div>
+
+              </div>               
+          </div>          
+      </content>
+
     <footer>
-      <div class="container-row">
+      <div class="footer-left">
         <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
           <p class="copyright">© Chingu Team 04 Github</p>
         </a>
-        <a href="https://www.chingu.io/">
-          <div class="container-row-right">
-            <p class="copyright">Chingu</p>
-            <img
-              class="chingu-logo"              
-              src="./img/chingo-house-logo.png"
-            />
-          </div>
-        </a>
       </div>
+      
+      <a href="https://www.chingu.io" class="footer-right">          
+          <p class="copyright">Chingu</p>
+          <img class="chingu-logo" src="./img/chingo-logo.png"
+            />
+      </a>            
     </footer>
+
   </body>
 </html>

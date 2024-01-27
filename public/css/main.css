@@ -1,9 +1,366 @@
+:root {
+    --main-color: #f4f4f4;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: var(--main-color);
+}
+
+.container {       
+    display: grid;
+    grid-template-areas:
+      'aside nav nav'
+      'aside content content'
+      'aside content content'
+      'footer footer footer';
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 120px 2fr 70px;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* grid assignment */
+aside { 
+    grid-area: aside; 
+    border-radius: 30px;
+}
+nav { 
+    grid-area: nav;
+    border-radius: 30px;
+}
+content { 
+    grid-area: content;
+    border-radius: 30px; 
+}
+footer { 
+    grid-area: footer; 
+    border-radius: 30px;
+}
+  
+aside, content, footer {
+    /* background: steelblue; */
+    background: var(--main-color);
+    color: #fff;
+}
+
+.aside {
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    color: #333;
+    position: relative;
+    height: 100%;
+}
+
+.avatar-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    background: tan;
+    border-radius: 50%;
+    margin: 0 auto;
+    /* flex: 1; */
+}
+
+.gear-icon {
+    height: 20px;
+    width: auto;
+    margin-right: 10px;
+    position: absolute;
+    right: 15px;
+}
+
+.gear-icon:hover {
+    opacity: 0.65;
+}
+
+.catagory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.activity {
+    margin-top: 20px;
+}
+
+.activity-name {
+    margin-left: 80px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.activity h3 {
+    margin-bottom: 25px;
+    font-weight: 400;
+    border: 1px solid #f3f3f3;
+    box-shadow: 1px 1px 2px #333;
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.activity h3:hover {
+    opacity: 0.65;;
+}
+
+.activity li {
+    margin-bottom: 5px;
+}
+  
+  /* utilities */
+li { 
+    list-style: none;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+.right {
+    align-self: right;
+}
+
+/* buttons */ 
+.btn-save {
+    background: linear-gradient(to bottom right, #9746C9, #00D2FF);
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+} 
+.btn-day,
+.btn-month,
+.btn-year {
+    background: #fff;
+    color: #8F8F8F;
+    border: 1px solid #8F8F8F;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    width: 300px;
+    height: 50px;
+    padding-top: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-day:hover,
+.btn-month:hover,
+.btn-year:hover {
+    color: #9746C9;
+    background: rgba(151, 70, 201, 0.08);
+    border: 1px solid #9746C9;
+}
+
+.btn:hover {
+    opacity: 0.65;
+}
+  
+.btn-lite {
+    background: #333;
+    width: 120px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 500;
+    border-radius: 30px;
+    padding: 10px 0px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-blue {
+    color: #02A4FF;
+    border: 1px solid #02A4FF;
+    background: #DCF2FF;
+}
+
+.btn-orange {
+    color: #FF7B02;
+    border: 1px solid #FF7B02;
+    background: #FFEEDD;
+}
+
+.btn-red {
+    color: #FF0202;
+    border: 1px solid #FF0202;
+    background: #FFE0E0;
+}
+
+.btn-undo {
+    display: flex;
+}
+
+.undo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+    margin-right: 20px;
+}
+
+/* navbar */  
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.date {
+    color: #333;
+    font-size: 35px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+  
+.navbtn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 60px;
+    margin: 0 20px;
+}
+
+/* Content */
+.content {
+    color: #333;
+}
+.content-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.priority {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+  
+.search {
+    position: relative;
+    margin-right: 15px;
+    color: #8F8F8F;
+}
+  
+.search input {
+    padding: 5px 15px;
+    width: 600px;
+    height: 60px;
+    font-size: 25px;
+    border-radius: 30px;
+    border: 1px solid #8F8F8F;
+}
+  
+.search-icon {
+    color: #8F8F8F;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search input:hover {
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.content-main {
+    display: flex;
+    padding: 10px;
+}
+
+.ellipse:hover {
+    opacity: 0.65;
+}
+
+.content-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 180px;
+    margin-left: 20px;
+    background: #fff;
+    border: rgba(0, 0, 0, 0.54);
+    border-radius: 30px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.54);
+}
+
+.content-inner:hover,
+.content-inner:active {
+    border: 1px solid #333;
+}
+
+.content-task {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    font-size: 25px;
+}
+
+.content-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+}
+
+.content-description-edit {    
+    padding: 0 15px;
+}
+
+.icon-edit {
+    margin-left: 20px;
+}
+
+.icon-edit:hover {
+    opacity: 0.65;
+    height: 2.5rem;
+}
+
+/* Footer */
 .copyright {
     color: white;
     font-size: 50px;
@@ -22,24 +379,30 @@
 }
 
 footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #000;
+    opacity: 0.5;
     width: 100%;
+    padding: 5px 20px;
     position: relative;
     top: 1400px;
-    height: 120px;
-    padding: 15px;
+}
+
+.footer-right {
+    display: flex;
 }
 
 .chingu-logo {
     height: 100px;
-    margin-left: 10px;
 }
 
 .chingu-logo:hover {
     opacity: 0.7;
 }
 
-.container-row {
+/* .container-row {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -49,4 +412,5 @@ footer {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-}
+    margin-right: -200px;
+} */
