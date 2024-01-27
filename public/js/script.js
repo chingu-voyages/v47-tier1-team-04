@@ -7,3 +7,13 @@ function updateDate() {
 }
 
 updateDate();
+
+// Hamburger Menu Display on Mobile
+document.addEventListener('DOMContentLoaded', function () {
+    const menuBtn = document.querySelector('.menu-btn');
+    const asideEl = document.getElementById('aside-el');
+
+    menuBtn.addEventListener('click', function () {
+        asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
+    });
+})
