@@ -1,0 +1,156 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Montserrat;
+}
+
+body {
+    margin: 20px auto;
+    padding: 20px;  
+    width: 80%;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    display: flex;
+    border: 2px solid black;
+}
+
+
+/* aside container */
+.aside-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.aside-container .profile {
+    border: 2px solid black;
+    width: 100px;
+    border-radius: 50%;
+    height: 100px;
+    margin:20px auto;
+}
+
+.aside-container .task-overview {
+    margin-top: 10px;
+}
+
+.aside-container .task-overview ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.aside-container .task-overview ul li {
+    padding: 5px 0px;
+}
+
+.aside-container .task-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* sub container */
+.sub-container {
+    flex: 2;
+    border-left: 2px solid black;
+}
+
+/* sub container - header */
+.sub-container > header #period ul{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.sub-container > header #period ul li {
+    border: 2px solid black;
+    flex: 1;
+    text-align: center;
+}
+
+.sub-container > header .settings {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.sub-container > header .settings div {
+    flex: 1;
+    text-align: center;
+} 
+
+.settings .priority {
+    border: 2px solid black;
+}
+
+.sub-container main .current_date {
+    margin-bottom: 20px;
+}
+
+.task header {
+    display: flex;
+    padding-left: 20px;
+}
+.task header div:first-child {
+    flex: 1;
+}
+
+.task header .task-type {
+    flex: 5;
+}
+
+
+/* task - card */
+.task .card {
+    display: flex;
+    padding: 20px;
+}
+
+.card .radio-check {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .content {
+    background-color: gray;
+    flex: 5;
+    display: flex;
+}
+
+.card .content .card-title {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+}
+
+
+.card-title span {
+    margin: 10px;
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    padding: 5px;
+}
+.info {
+    flex: 6;
+
+}
+.card-options{
+    flex:1;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid red;
+    
+}

@@ -24,7 +24,7 @@ Chingu brings together a number of individuals with a goal to develop a web appl
 The Minimum Viable Product of this application should allow a user to create a task and assign it a date, priority, frequency, and track its' completion. Once a task is created, the user should be able to also delete that task or update it. A dataset is given to the team to work with initially. It should parse the data and provide an interface which allows the user to sort by category, activity type, and individual tasks.
 
 #### Example Image
-![Example daily task productivity tool](../assets/daily_productivity_sample_ui.png)
+![Example daily task productivity tool](./assets/daily_productivity_sample_ui.png)
 
 This project is a valuable opportunity for us to gain hands-on experience in web development while handling multi-dimensional datasets. It serves as a grinding stone to hone our skills while working on a practical application, allowing us to delve into the complexities of data manipulation within a web-based environment.
 
@@ -37,7 +37,11 @@ TBD
 ### Links
 
 - [Repository](https://github.com/chingu-voyages/v47-tier1-team-04)
-- [Live Site URL]()
+- [Documentation](https://chingu-voyages.github.io/v47-tier1-team-04/)
+- [Live Site URL](https://v47-tier1-team-04.netlify.app/)
+- [Development URL](https://v47-tier1-team-04-dev.netlify.app/)
+- [Beta Testing URL](https://v47-tier1-team-04-beta.netlify.app/)
+- [Alpha Testing URL](https://v47-tier1-team-04-alpha.netlify.app/)
 
 ## General Instructions
 
