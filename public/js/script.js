@@ -4,13 +4,31 @@ class App {
         this.tasks = [];
         return this
     }
+    init() {
+        this.fetchJson();
+        return this;
+    }
     async fetchJson(){
         await fetch('./js/data.model.json')
-        .then(res => console.log(res.json()))
+        .then(res => res.json())
+        // .then(data => data.map(task => new Task()))
     }
 }
-const app = new App()
-console.log(app.fetchJson())
+const app = new App();
+class Task {
+    constructor(name, group, category, frequency, days, calander){
+        this.name = name;
+        this.group = group;
+        this.category = category;
+        this.frequency = frequency;
+        this.days = days;
+        this.calander = calander;
+        this.complete = false;
+        return this;
+    }
+}
+app.init();
+setTimeout(console.log(app),50);
 })()
 
 // import { userActivities } from "./data.js"
