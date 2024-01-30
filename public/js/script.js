@@ -70,7 +70,7 @@
         this.task = task;
       }
       renderView() {
-        const anchor = document.getElementById("#daily-checklist");
+        const anchor = document.getElementById("daily-checklist");
         const view = document.createElement("div");
         view.innerHTML = `
         <div class="activity">
