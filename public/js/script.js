@@ -1,4 +1,11 @@
 (function () {
+  // declare a function to test async functions
+  const testFn = (fN) => {
+    setTimeout(fN, Math.random(Math.floor() * 250));
+    console.log(fN)
+    return fN
+  };
+  // declare a class to contain all application data
   class App {
     constructor() {
       this.tasks = [];
@@ -63,7 +70,7 @@
   }
   const app = new App();
   // Object constructor to create new tasks:
-  let ti = 1;  // sets task index at 1 
+  let ti = 1; // sets task index at 1
   class Task {
     constructor(name, group, category, frequency, days, calendar) {
       this.id = `task_${ti + 1}`; // creates a task id for each task created
@@ -100,23 +107,24 @@
   }
   // initialize app, which also fetches json data and poulates the tasks array with new Tasks
   app.init();
+testFn(app.readAllTasks())
   // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
-  setTimeout(() => console.log(app.readAllTasks()), 50);
+  // setTimeout(() => console.log(app.readAllTasks()), 50);
   // demonstrates the successful retrieval of a single task using the readTask method on app
-  setTimeout(() => console.log(app.readTask(14)), 50);
+  // setTimeout(() => console.log(app.readTask(14)), 50);
   // demonstrates successfully updating a single task within the tasks array
-  setTimeout(
-    () =>
-      console.log(
-        app.updateTask(14, [
-          "updated name of task",
-          "UPDATED GROUP",
-          "Different Category",
-          "monthly",
-          [],
-          [],
-        ])
-      ),
-    50
-  );
+  // setTimeout(
+  //   () =>
+  //     console.log(
+  //       app.updateTask(14, [
+  //         "updated name of task",
+  //         "UPDATED GROUP",
+  //         "Different Category",
+  //         "monthly",
+  //         [],
+  //         [],
+  //       ])
+  //     ),
+  //   50
+  // );
 })();
