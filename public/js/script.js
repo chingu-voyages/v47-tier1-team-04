@@ -1,19 +1,19 @@
-(function () {
+(Function () {
     class App {
       constructor() {
         this.tasks = [];
       }
-      //Function to initialize app:
+      // Method to initialize app:
       init() {
         this.seed();
         return this;
       }
-      //Function to clear/reset tasks:
+      // Method to clear/reset tasks:
       resetState() {
         this.tasks = [];
         return this;
       }
-      //Function to pull in the data from the data.model.json file:
+      // Method to pull in the data from the data.model.json file:
       async seed() {
         await fetch("./js/data.model.json")
           .then((res) => res.json())
@@ -34,7 +34,7 @@
     }
     const app = new App();
   
-    //Object constructor to create new tasks:
+    // Object constructor to create new tasks:
     class Task {
       constructor(name, group, category, frequency, days, calander) {
         this.name = name;
@@ -51,7 +51,7 @@
         this.complete = false;
         return this;
       }
-      //Function to create new tasks:
+      // Method to update a task:
       update(name, group, category, frequency, days, calander) {
         this.name = name;
         this.group = group;
@@ -64,13 +64,13 @@
       }
     }
   
-    //Function to display the data into HTML:
+    // Method to display the data into HTML:
     class View {
       constructor(task) {
         this.task = task;
       }
       renderView() {
-        const anchor = document.querySelector(".daily-checklist");
+        const anchor = document.getElementById("#daily-checklist");
         const view = document.createElement("div");
         view.innerHTML = `
         <div class="activity">
