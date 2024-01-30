@@ -31,66 +31,92 @@
           )
         );
     }
+    returnUniqueGroups() {
+      const unique = [...new Set(this.tasks.map((task) => task.group))];
+      return unique.map((group) => this.returnByGroup(group));
+    }
+    returnUniqueCategories() {
+      const unique = [...new Set(this.tasks.map((task) => task.category))];
+      return unique.map((category) => this.returnByCategory(category));
+    }
+    returnByGroup(group) {
+      return this.tasks.filter((task) => task.group === group);
+    }
+    returnByCategory(category) {
+      return this.tasks.filter((task) => task.category === category);
+    }
+    createTask(name, group, category, frequency, days, calendar) {
+      return new Task(name, group, category, frequency, days, calendar);
+    }
+    readAllTasks() {
+      return this.tasks;
+    }
+    readTask(id) {
+      return this.tasks.filter((task) => task.id === `task_${id}`)[0].read();
+    }
+    updateTask(id, [...args]) {
+      return this.readTask(id).update(...args);
+    }
+    deleteTask(id) {
+      return this.tasks.filter((task) => task.id === id)[0].delete();
+    }
   }
   const app = new App();
-
   // Object constructor to create new tasks:
+  let ti = 1;  // sets task index at 1 
   class Task {
-    constructor(name, group, category, frequency, days, calander) {
+    constructor(name, group, category, frequency, days, calendar) {
+      this.id = `task_${ti + 1}`; // creates a task id for each task created
+      ti++; // increments index
       this.name = name;
       this.group = group;
       this.category = category;
       this.frequency = frequency;
       this.days = days;
-      this.calander = calander;
+      this.calendar = calendar;
       this.complete = false;
       app.tasks.push(this);
     }
-
     read() {
       this.complete = false;
       return this;
     }
     // Method to update a task:
-    update(name, group, category, frequency, days, calander) {
+    update(name, group, category, frequency, days, calendar) {
       this.name = name;
       this.group = group;
       this.category = category;
       this.frequency = frequency;
       this.days = days;
-      this.calander = calander;
+      this.calendar = calendar;
       this.complete = false;
       return this;
     }
-  }
-
-  // Method to display the data into HTML:
-  class View {
-    constructor(task) {
-      this.task = task;
-    }
-    renderView() {
-      const anchor = document.getElementById("daily-checklist");
-      const view = document.createElement("div");
-      view.innerHTML = `
-        <div class="activity">
-           <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-           <ul id="activity-el">
-       
-           </ul>
-       </div>
-        `;
-      anchor.append(view);
+    delete() {
+      let index = app.tasks.indexOf(this);
+      if (index > -1) app.tasks.splice(index, 1);
+      return app.tasks;
     }
   }
-
+  // initialize app, which also fetches json data and poulates the tasks array with new Tasks
   app.init();
-  // setTimeout(() => console.log(app), 50)
-  // setTimeout(() => console.log(app.tasks[0].read()), 50)
-  //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
-  // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-  // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-  const groups = () => [...new Set(app.tasks.map((task) => task.group))];
-  setTimeout(() => groups().map((group) => new View(group)), 50);
-  console.log(groups());
+  // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
+  setTimeout(() => console.log(app.readAllTasks()), 50);
+  // demonstrates the successful retrieval of a single task using the readTask method on app
+  setTimeout(() => console.log(app.readTask(14)), 50);
+  // demonstrates successfully updating a single task within the tasks array
+  setTimeout(
+    () =>
+      console.log(
+        app.updateTask(14, [
+          "updated name of task",
+          "UPDATED GROUP",
+          "Different Category",
+          "monthly",
+          [],
+          [],
+        ])
+      ),
+    50
+  );
 })();
