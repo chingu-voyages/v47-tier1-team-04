@@ -4,9 +4,12 @@ class App {
         this.tasks = [];
         return this
     }
+    fetchJson(){
+        
+    }
 }
+const app = new App()
 
-console.log(new App())
 })()
 
 // import { userActivities } from "./data.js"
