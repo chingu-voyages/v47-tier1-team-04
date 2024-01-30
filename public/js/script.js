@@ -1,6 +1,7 @@
 (function(){
 class App {
     constructor() {
+        this.tasks = [];
         return this
     }
 }
