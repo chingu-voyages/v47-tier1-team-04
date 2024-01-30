@@ -28,6 +28,20 @@
           )
         );
     }
+    returnUniqueGroups() {
+        const unique = [...new Set(this.tasks.map(task => task.group))]
+        return unique.map(group => this.returnByGroup(group))
+    }
+    returnUniqueCategories() {
+        const unique = [...new Set(this.tasks.map(task => task.category))]
+        return unique.map(category => this.returnByCategory(category))
+    }
+    returnByGroup(group) {
+      return this.tasks.filter((task) => task.group === group);
+    }
+    returnByCategory(category) {
+      return this.tasks.filter((task) => task.category === category);
+    }
   }
   const app = new App();
 
@@ -57,35 +71,11 @@
       return this;
     }
   }
-
-  class View {
-    constructor(task) {
-      this.task = task;
-    }
-    renderView() {
-      const anchor = document.querySelector(".daily-checklist");
-      const view = document.createElement("div");
-      view.innerHTML = `
-      <div class="activity">
-         <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-         <ul id="activity-el">
-     
-         </ul>
-     </div>
-      `;
-      anchor.append(view);
-    }
-  }
-
   app.init();
-  // setTimeout(() => console.log(app), 50)
-  // setTimeout(() => console.log(app.tasks[0].read()), 50)
-  //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
-  // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-// setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-const groups = () => [...new Set(app.tasks.map(task => task.group))]
-  setTimeout(() => groups().map(group => new View(group)), 50);
-  console.log(groups())
+  setTimeout(() => console.log(app.tasks), 50);
+  setTimeout(() => console.log(app.returnUniqueGroups()), 50);
+  setTimeout(() => console.log(app.returnUniqueCategories()), 50);
+
 })();
 
 // import { userActivities } from "./data.js"
