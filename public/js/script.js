@@ -5,11 +5,13 @@ class App {
         return this
     }
     async fetchJson(){
+        await fetch('./js/data.js')
+        .then(res => console.log(res.json()))
 
     }
 }
 const app = new App()
-
+console.log(app.fetchJson())
 })()
 
 // import { userActivities } from "./data.js"
