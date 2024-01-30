@@ -7,6 +7,10 @@ class App {
         this.fetchJson();
         return this;
     }
+    resetState() {
+        this.tasks = [];
+        return this;
+    }
     async fetchJson(){
         await fetch('./js/data.model.json')
         .then(res => res.json())
