@@ -4,20 +4,21 @@ class App {
         this.tasks = [];
     }
     init() {
-        this.fetchJson();
+        this.seed();
         return this;
     }
     resetState() {
         this.tasks = [];
         return this;
     }
-    async fetchJson(){
+    async seed(){
         await fetch('./js/data.model.json')
         .then(res => res.json())
-        // .then(data => data.map(task => new Task()))
+        .then(data => data.map(task => new Task(task.name, task.group, task.category, task.frequency, task.days, task.calendar)))
     }
 }
 const app = new App();
+
 class Task {
     constructor(name, group, category, frequency, days, calander){
         this.name = name;
@@ -29,10 +30,16 @@ class Task {
         this.complete = false;
         app.tasks.push(this);
     }
+    read(){
+        this.complete = false;
+        return this;
+    }
 }
-new Task('name', 'group', 'category', 'frequency', 'days', 'calander')
+
 app.init();
-setTimeout(console.log(app),50);
+setTimeout(() => console.log(app), 50)
+setTimeout(() => console.log(app.tasks[0].read()), 50)
+setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
 })()
 
 // import { userActivities } from "./data.js"
