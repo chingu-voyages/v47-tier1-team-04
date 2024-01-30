@@ -1,180 +1,184 @@
-import { userActivities } from "./data.js"
+(function(){
 
-// fetch the json file with Stacy's code
-const fetchJsonFile = async function() {
-    try {
-        const response = await fetch('https://raw.githubusercontent.com/chingu-voyages/voyage-project-tier1-dailytasks/main/assets/tasks-example.json');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error loading JSON:', error);
-        throw error;
-    }
-};
+})()
 
-async function inputUserData() {
-    try {
-        const data = await fetchJsonFile();
-        console.log('Data:', data);
+// import { userActivities } from "./data.js"
 
-        // Moved today's date inside of the function
-        function updateDate() {
-            const dateDiv = document.getElementById('date');
-            const today = new Date();
-            const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-            dateDiv.textContent = `Today: ${formattedDate}`;
-        }
-        updateDate();
+// // fetch the json file with Stacy's code
+// const fetchJsonFile = async function() {
+//     try {
+//         const response = await fetch('https://raw.githubusercontent.com/chingu-voyages/voyage-project-tier1-dailytasks/main/assets/tasks-example.json');
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.error('Error loading JSON:', error);
+//         throw error;
+//     }
+// };
 
-        const contentActivityContainer = document.querySelector('.content-activity');
+// async function inputUserData() {
+//     try {
+//         const data = await fetchJsonFile();
+//         console.log('Data:', data);
 
-        // Map() json data per Micky's idea
-        data.map(category => {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.classList.add('content-activity');
+//         // Moved today's date inside of the function
+//         function updateDate() {
+//             const dateDiv = document.getElementById('date');
+//             const today = new Date();
+//             const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+//             dateDiv.textContent = `Today: ${formattedDate}`;
+//         }
+//         updateDate();
 
-            const categoryNameHeading = document.createElement('h2');
-            categoryNameHeading.classList.add('category-name');
-            categoryNameHeading.textContent = category.categoryName;
-            categoryDiv.appendChild(categoryNameHeading);
+//         const contentActivityContainer = document.querySelector('.content-activity');
 
-            category.activityTypes.map(activityType => {
-                const activityDiv = document.createElement('div');
-                activityDiv.classList.add('content-main');
+//         // Map() json data per Micky's idea
+//         data.map(category => {
+//             const categoryDiv = document.createElement('div');
+//             categoryDiv.classList.add('content-activity');
 
-                const ellipseImg = document.createElement('img');
-                ellipseImg.src = "./img/Ellipse8.svg";
-                ellipseImg.alt = "ellipse checkbox";
-                ellipseImg.classList.add('ellipse');
-                activityDiv.appendChild(ellipseImg);
+//             const categoryNameHeading = document.createElement('h2');
+//             categoryNameHeading.classList.add('category-name');
+//             categoryNameHeading.textContent = category.categoryName;
+//             categoryDiv.appendChild(categoryNameHeading);
 
-                ellipseImg.addEventListener('click', function() {
-                    console.log("ellipse clicked!");
-                    console.log("current source: ", this.src);
+//             category.activityTypes.map(activityType => {
+//                 const activityDiv = document.createElement('div');
+//                 activityDiv.classList.add('content-main');
 
-                    contentInnerDiv.classList.toggle('darken');
+//                 const ellipseImg = document.createElement('img');
+//                 ellipseImg.src = "./img/Ellipse8.svg";
+//                 ellipseImg.alt = "ellipse checkbox";
+//                 ellipseImg.classList.add('ellipse');
+//                 activityDiv.appendChild(ellipseImg);
 
-                    if (this.src.includes("Ellipse8.svg")) {
-                        this.src = "./img/favicon.png";
-                        this.style.width = '55px';
-                        this.style.height = '55px';
-                        this.parentElement.style.display = 'flex';
-                        this.parentElement.style.justifyContent = 'center';
-                        this.parentElement.style.alignItems = 'center';
-                    } else {
-                        this.src = "./img/Ellipse8.svg";
-                    }
-                });
+//                 ellipseImg.addEventListener('click', function() {
+//                     console.log("ellipse clicked!");
+//                     console.log("current source: ", this.src);
 
-                const contentInnerDiv = document.createElement('div');
-                contentInnerDiv.classList.add('content-inner');
+//                     contentInnerDiv.classList.toggle('darken');
 
-                const contentTaskDiv = document.createElement('div');
-                contentTaskDiv.classList.add('content-task');
+//                     if (this.src.includes("Ellipse8.svg")) {
+//                         this.src = "./img/favicon.png";
+//                         this.style.width = '55px';
+//                         this.style.height = '55px';
+//                         this.parentElement.style.display = 'flex';
+//                         this.parentElement.style.justifyContent = 'center';
+//                         this.parentElement.style.alignItems = 'center';
+//                     } else {
+//                         this.src = "./img/Ellipse8.svg";
+//                     }
+//                 });
 
-                const activityNameHeading = document.createElement('h3');
-                activityNameHeading.classList.add('activity');
-                activityNameHeading.textContent = activityType.activityName;
-                contentTaskDiv.appendChild(activityNameHeading);
+//                 const contentInnerDiv = document.createElement('div');
+//                 contentInnerDiv.classList.add('content-inner');
 
-                const priorityBtn = document.createElement('a');
-                priorityBtn.href = "#";
-                priorityBtn.classList.add('btn', 'btn-lite', 'btn-blue');
-                priorityBtn.textContent = "Low"; 
-                contentTaskDiv.appendChild(priorityBtn);
+//                 const contentTaskDiv = document.createElement('div');
+//                 contentTaskDiv.classList.add('content-task');
 
-                contentInnerDiv.appendChild(contentTaskDiv);
+//                 const activityNameHeading = document.createElement('h3');
+//                 activityNameHeading.classList.add('activity');
+//                 activityNameHeading.textContent = activityType.activityName;
+//                 contentTaskDiv.appendChild(activityNameHeading);
 
-                const contentDescriptionDiv = document.createElement('div');
-                contentDescriptionDiv.classList.add('content-description');
+//                 const priorityBtn = document.createElement('a');
+//                 priorityBtn.href = "#";
+//                 priorityBtn.classList.add('btn', 'btn-lite', 'btn-blue');
+//                 priorityBtn.textContent = "Low"; 
+//                 contentTaskDiv.appendChild(priorityBtn);
 
-                const contentParaDiv = document.createElement('div');
-                contentParaDiv.classList.add('content-para');
+//                 contentInnerDiv.appendChild(contentTaskDiv);
 
-                const contentDescriptionEditDiv = document.createElement('div');
-                contentDescriptionEditDiv.classList.add('content-description-edit');
+//                 const contentDescriptionDiv = document.createElement('div');
+//                 contentDescriptionDiv.classList.add('content-description');
 
-                contentDescriptionDiv.appendChild(contentParaDiv);
-                contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
+//                 const contentParaDiv = document.createElement('div');
+//                 contentParaDiv.classList.add('content-para');
 
-                activityType.Tasks.map(task => {
-                    console.log("Tasks: ", task.taskName);
-                    const taskNameParagraph = document.createElement('p');
-                    taskNameParagraph.classList.add('task-name');
-                    taskNameParagraph.textContent = task.taskName;
-                    contentParaDiv.appendChild(taskNameParagraph);
-                });
+//                 const contentDescriptionEditDiv = document.createElement('div');
+//                 contentDescriptionEditDiv.classList.add('content-description-edit');
 
-                const editPencilImg = document.createElement('img');
-                editPencilImg.src = "./img/mynaui_pencil.svg";
-                editPencilImg.alt = "edit pencil image";
-                editPencilImg.classList.add('icon-edit');
-                contentDescriptionEditDiv.appendChild(editPencilImg);
+//                 contentDescriptionDiv.appendChild(contentParaDiv);
+//                 contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
 
-                const trashImg = document.createElement('img');
-                trashImg.src = "./img/ph_trash.svg";
-                trashImg.alt = "delete trash can image";
-                trashImg.classList.add('icon-edit');
-                contentDescriptionEditDiv.appendChild(trashImg);
+//                 activityType.Tasks.map(task => {
+//                     console.log("Tasks: ", task.taskName);
+//                     const taskNameParagraph = document.createElement('p');
+//                     taskNameParagraph.classList.add('task-name');
+//                     taskNameParagraph.textContent = task.taskName;
+//                     contentParaDiv.appendChild(taskNameParagraph);
+//                 });
 
-                contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
+//                 const editPencilImg = document.createElement('img');
+//                 editPencilImg.src = "./img/mynaui_pencil.svg";
+//                 editPencilImg.alt = "edit pencil image";
+//                 editPencilImg.classList.add('icon-edit');
+//                 contentDescriptionEditDiv.appendChild(editPencilImg);
 
-                contentInnerDiv.appendChild(contentDescriptionDiv);
+//                 const trashImg = document.createElement('img');
+//                 trashImg.src = "./img/ph_trash.svg";
+//                 trashImg.alt = "delete trash can image";
+//                 trashImg.classList.add('icon-edit');
+//                 contentDescriptionEditDiv.appendChild(trashImg);
 
-                activityDiv.appendChild(contentInnerDiv);
+//                 contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
 
-                categoryDiv.appendChild(activityDiv);
-            });
+//                 contentInnerDiv.appendChild(contentDescriptionDiv);
 
-            contentActivityContainer.appendChild(categoryDiv);
-        });
+//                 activityDiv.appendChild(contentInnerDiv);
 
-        const dailyChecklistContainer = document.querySelector('.daily-checklist');
+//                 categoryDiv.appendChild(activityDiv);
+//             });
 
-        data.map(category => {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.classList.add('activity');
+//             contentActivityContainer.appendChild(categoryDiv);
+//         });
 
-            const categoryHeading = document.createElement('h3');
-            categoryHeading.textContent = category.categoryName;
-            categoryHeading.innerHTML += ' <i class="fa-solid fa-circle-chevron-down"></i>';
-            categoryDiv.appendChild(categoryHeading);
+//         const dailyChecklistContainer = document.querySelector('.daily-checklist');
 
-            const activityList = document.createElement('ul');
+//         data.map(category => {
+//             const categoryDiv = document.createElement('div');
+//             categoryDiv.classList.add('activity');
 
-            category.activityTypes.map(activityType => {
-                const activity = document.createElement('li');
-                activity.textContent = activityType.activityName;
-                activityList.appendChild(activity);
-            });
+//             const categoryHeading = document.createElement('h3');
+//             categoryHeading.textContent = category.categoryName;
+//             categoryHeading.innerHTML += ' <i class="fa-solid fa-circle-chevron-down"></i>';
+//             categoryDiv.appendChild(categoryHeading);
 
-            categoryDiv.appendChild(activityList);
+//             const activityList = document.createElement('ul');
 
-            dailyChecklistContainer.appendChild(categoryDiv);
-        });
+//             category.activityTypes.map(activityType => {
+//                 const activity = document.createElement('li');
+//                 activity.textContent = activityType.activityName;
+//                 activityList.appendChild(activity);
+//             });
 
-        const menuBtn = document.querySelector('.menu-btn');
-        const asideEl = document.getElementById('aside-el');
+//             categoryDiv.appendChild(activityList);
 
-        menuBtn.addEventListener('click', function () {
-            asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
-        });      
+//             dailyChecklistContainer.appendChild(categoryDiv);
+//         });
 
-    } catch (error) {
-        console.error('Error in inputUserData:', error);
-    }
-}
+//         const menuBtn = document.querySelector('.menu-btn');
+//         const asideEl = document.getElementById('aside-el');
 
-inputUserData();
+//         menuBtn.addEventListener('click', function () {
+//             asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
+//         });      
 
-for (let category of userActivities) {
-    console.log("Category:", category.categoryName);
+//     } catch (error) {
+//         console.error('Error in inputUserData:', error);
+//     }
+// }
+
+// inputUserData();
+
+// for (let category of userActivities) {
+//     console.log("Category:", category.categoryName);
   
-    for (let activityType of category.activityTypes) {
-      console.log("  Activity Type:", activityType.activityName);
+//     for (let activityType of category.activityTypes) {
+//       console.log("  Activity Type:", activityType.activityName);
   
-      for (let task of activityType.Tasks) {
-        console.log("    Task Name:", task.taskName);
-      }
-    }
-  }
+//       for (let task of activityType.Tasks) {
+//         console.log("    Task Name:", task.taskName);
+//       }
+//     }
+//   }
