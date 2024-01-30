@@ -5,9 +5,8 @@ class App {
         return this
     }
     async fetchJson(){
-        await fetch('./js/data.js')
+        await fetch('./js/data.model.json')
         .then(res => console.log(res.json()))
-
     }
 }
 const app = new App()
