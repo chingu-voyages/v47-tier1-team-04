@@ -2,7 +2,6 @@
 class App {
     constructor() {
         this.tasks = [];
-        return this
     }
     init() {
         this.fetchJson();
@@ -24,9 +23,10 @@ class Task {
         this.days = days;
         this.calander = calander;
         this.complete = false;
-        return this;
+        app.tasks.push(this);
     }
 }
+new Task('name', 'group', 'category', 'frequency', 'days', 'calander')
 app.init();
 setTimeout(console.log(app),50);
 })()
