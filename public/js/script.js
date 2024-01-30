@@ -1,5 +1,11 @@
 (function(){
+class App {
+    constructor() {
+        return this
+    }
+}
 
+console.log(new App())
 })()
 
 // import { userActivities } from "./data.js"
