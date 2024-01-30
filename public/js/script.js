@@ -156,25 +156,33 @@ async function inputUserData() {
         const menuBtn = document.querySelector('.menu-btn');
         const asideEl = document.getElementById('aside-el');
 
-        menuBtn.addEventListener('click', function () {
-            asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
-        });      
+    menuBtn.addEventListener('click', function () {
+        asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
+    });
+})
 
-    } catch (error) {
-        console.error('Error in inputUserData:', error);
-    }
-}
+// Complete task checkoff
+const ellipses = document.querySelectorAll('.ellipse');
 
-inputUserData();
-
-for (let category of userActivities) {
-    console.log("Category:", category.categoryName);
-  
-    for (let activityType of category.activityTypes) {
-      console.log("  Activity Type:", activityType.activityName);
-  
-      for (let task of activityType.Tasks) {
-        console.log("    Task Name:", task.taskName);
-      }
-    }
-  }
+ellipses.forEach(ellipse => {   
+    ellipse.addEventListener('click', function() {
+        console.log("clicked ellipse");
+        
+        const contentMainDiv = this.closest('.content-main');
+        
+        const contentInnerDiv = contentMainDiv.querySelector('.content-inner');
+        
+        contentInnerDiv.classList.toggle('darken');
+        
+        if (this.src.includes("Ellipse8.svg")) {
+            this.src = "./img/favicon.png";
+            this.style.width = '55px';
+            this.style.height = '55px';
+            this.parentElement.style.display = 'flex';
+            this.parentElement.style.justifyContent = 'center';
+            this.parentElement.style.alignItems = 'center';
+        } else {
+            this.src = "./img/Ellipse8.svg";
+        }
+    });
+});
