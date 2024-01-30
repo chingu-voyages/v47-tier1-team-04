@@ -4,8 +4,8 @@ class App {
         this.tasks = [];
         return this
     }
-    fetchJson(){
-        
+    async fetchJson(){
+
     }
 }
 const app = new App()
