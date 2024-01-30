@@ -1,46 +1,92 @@
-(function(){
-class App {
+(function () {
+  class App {
     constructor() {
-        this.tasks = [];
+      this.tasks = [];
     }
     init() {
-        this.seed();
-        return this;
+      this.seed();
+      return this;
     }
     resetState() {
-        this.tasks = [];
-        return this;
+      this.tasks = [];
+      return this;
     }
-    async seed(){
-        await fetch('./js/data.model.json')
-        .then(res => res.json())
-        .then(data => data.map(task => new Task(task.name, task.group, task.category, task.frequency, task.days, task.calendar)))
+    async seed() {
+      await fetch("./js/data.model.json")
+        .then((res) => res.json())
+        .then((data) =>
+          data.map(
+            (task) =>
+              new Task(
+                task.name,
+                task.group,
+                task.category,
+                task.frequency,
+                task.days,
+                task.calendar
+              )
+          )
+        );
     }
-}
-const app = new App();
+  }
+  const app = new App();
 
-class Task {
-    constructor(name, group, category, frequency, days, calander){
-        this.name = name;
-        this.group = group;
-        this.category = category;
-        this.frequency = frequency;
-        this.days = days;
-        this.calander = calander;
-        this.complete = false;
-        app.tasks.push(this);
+  class Task {
+    constructor(name, group, category, frequency, days, calander) {
+      this.name = name;
+      this.group = group;
+      this.category = category;
+      this.frequency = frequency;
+      this.days = days;
+      this.calander = calander;
+      this.complete = false;
+      app.tasks.push(this);
     }
-    read(){
-        this.complete = false;
-        return this;
+    read() {
+      this.complete = false;
+      return this;
     }
-}
+    update(name, group, category, frequency, days, calander) {
+      this.name = name;
+      this.group = group;
+      this.category = category;
+      this.frequency = frequency;
+      this.days = days;
+      this.calander = calander;
+      this.complete = false;
+      return this;
+    }
+  }
 
-app.init();
-setTimeout(() => console.log(app), 50)
-setTimeout(() => console.log(app.tasks[0].read()), 50)
-setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-})()
+  class View {
+    constructor(task) {
+      this.task = task;
+    }
+    renderView() {
+      const anchor = document.querySelector(".daily-checklist");
+      const view = document.createElement("div");
+      view.innerHTML = `
+      <div class="activity">
+         <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+         <ul id="activity-el">
+     
+         </ul>
+     </div>
+      `;
+      anchor.append(view);
+    }
+  }
+
+  app.init();
+  // setTimeout(() => console.log(app), 50)
+  // setTimeout(() => console.log(app.tasks[0].read()), 50)
+  //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
+  // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
+// setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
+const groups = () => [...new Set(app.tasks.map(task => task.group))]
+  setTimeout(() => groups().map(group => new View(group)), 50);
+  console.log(groups())
+})();
 
 // import { userActivities } from "./data.js"
 
@@ -124,7 +170,7 @@ setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")
 //                 const priorityBtn = document.createElement('a');
 //                 priorityBtn.href = "#";
 //                 priorityBtn.classList.add('btn', 'btn-lite', 'btn-blue');
-//                 priorityBtn.textContent = "Low"; 
+//                 priorityBtn.textContent = "Low";
 //                 contentTaskDiv.appendChild(priorityBtn);
 
 //                 contentInnerDiv.appendChild(contentTaskDiv);
@@ -202,7 +248,7 @@ setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")
 
 //         menuBtn.addEventListener('click', function () {
 //             asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
-//         });      
+//         });
 
 //     } catch (error) {
 //         console.error('Error in inputUserData:', error);
@@ -213,10 +259,10 @@ setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")
 
 // for (let category of userActivities) {
 //     console.log("Category:", category.categoryName);
-  
+
 //     for (let activityType of category.activityTypes) {
 //       console.log("  Activity Type:", activityType.activityName);
-  
+
 //       for (let task of activityType.Tasks) {
 //         console.log("    Task Name:", task.taskName);
 //       }
