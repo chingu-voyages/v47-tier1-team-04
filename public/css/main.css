@@ -117,6 +117,51 @@ aside, content, footer {
 .activity li {
     margin-bottom: 5px;
 }
+
+.search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  #searchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+  #searchButton {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #searchButton:hover {
+    background-color: #45a049;
+  }
+  
+  .search-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #searchInput {
+    padding-right: 30px;
+  }
+  
+  #searchButton {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }  
   
   /* utilities */
 .darken {
@@ -295,11 +340,16 @@ h2 {
     margin-right: 15px;
     color: #8F8F8F;
 }
+
+.search-input {
+    padding: 5px 15px;
+    height: 50px;
+}
   
 .search input {
     padding: 5px 15px;
     width: 600px;
-    height: 60px;
+    height: 50px;
     font-size: 25px;
     border-radius: 30px;
     border: 1px solid #8F8F8F;
