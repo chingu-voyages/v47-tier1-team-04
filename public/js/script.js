@@ -1,4 +1,5 @@
 (function () {
+
   // declare initial values
   let vi = 0; // sets view index at 1
   let ti = 1; // sets task index at 1
@@ -66,44 +67,106 @@
   // declares a class for handling any view or user interface changes
   class View {
     constructor(ele, content, anchor, id, classList) {
-      this.id = vi;
       const element = document.createElement(ele);
       element.innerHTML = content;
-      if (id) element.id = id;
-      else {
-        this.id = `view_${vi}`;
+      if (id) {
+        element.id = id;
+        this.id = id;
+      } else {
+        element.id = `view_${vi}`;
+        this.id = vi;
         vi++;
-        element.id = this.id;
       }
       if (classList) element.classList = classList;
       anchor.append(element);
       this.element = element;
-      this.views = [];
-      this.views.push(this)
       return this;
     }
     createView(ele, content, anchor, id, classList) {
-      const element = document.createElement(ele);
-      element.innerHTML = content;
-      if (id) element.id = id;
-      else {
-        this.id = `view_${vi}`;
-        vi++;
-        element.id = this.id;
-      }
-      if (classList) element.classList = classList;
-      anchor.append(element);
-      this.element = element;
-      this.views.push(this);
-      
-      return this;
+      app.views.push(this);
+      return new View(ele, content, anchor, id, classList);
     }
-    init() {
-      
+    init(title) {
+      this.renderAside(title);
+      this.renderNavbar();
+    }
+    renderAside(title) {
+      const aside = this.createView(
+        "aside",
+        `<div class="avatar-area">
+          <div class="avatar">
+            <img
+              src="./img/Friendly Ones Avatar and Backdrop.png"
+              alt="avatar pict"
+            />
+          </div>
+          <div class="gear-icon">
+            <img src="./img/solar_settings-linear.svg" alt="gear icon" />
+          </div>
+        </div>
+        <h2>${title}</h2>
+        <div id="daily-checklist">
+        </div>
+        </div>`,
+        document.getElementById("app"),
+        "aside-el",
+        "aside"
+      );
+      app.controller.returnUniqueGroupNames().map((group) => {
+        app.view.createView(
+          "div",
+          `
+            <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="${kebabCase(group)}">
+              </ul>
+            `,
+          document.getElementById("daily-checklist"),
+          null,
+          "activity"
+        );
+        app.controller
+          .returnUniqueCategoriesByGroup(group)
+          .map((category) =>
+            app.view.createView(
+              "li",
+              category,
+              document.getElementById(kebabCase(group))
+            )
+          );
+      });
+      return aside;
+    }
+    renderNavbar() {
+      return this.createView(
+        "nav",
+        `
+      <div class="navbar-top">
+          <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
+          <div id="date" class="date">Today:</div>
+          <div class="btn-undo">
+            <button class="btn undo">
+              <img src="./img/ci_undo.svg" alt="undo button" />
+              undo
+            </button>
+            <button class="btn undo">
+              <img src="./img/ci_redo.svg" alt="redo button" />
+              undo
+            </button>
+            <a href="#" class="btn btn-save">Save</a>
+          </div>
+        </div>
+        <div class="navbtn">
+          <a href="#" class="btn-day">Today</a>
+          <a href="#" class="btn-month">Month</a>
+          <a href="#" class="btn-year">Year</a>
+        </div>`,
+        document.getElementById('app'),
+        "navbar",
+        "navbar"
+      );
     }
     deleteEle(id) {
-      document.getElementById(id).remove();
-      return this.views.filter((view) => view.id === `view_${id}`)[0].delete();
+      return document.getElementById(id).remove();
     }
     delete() {
       let index = this.views.indexOf(this);
@@ -118,9 +181,9 @@
   class Model {
     constructor() {
       this.controller = new Controller();
-      this.view = new View('div',``,document.body, 'app', 'container');
+      this.view = new View("div", ``, document.body, "app", "container");
       this.tasks = [];
-     // this.views = [];
+      this.views = [];
     }
     // Method to initialize app:
     async init() {
@@ -154,23 +217,23 @@
     }
 
     renderSidebar() {
-      this.returnUniqueGroupNames().map((group) => {
-        // new View(
-        //   "div",
-        //   `
-        //     <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-        //       <ul id="${kebabCase(group)}">
-        //       </ul>
-        //     `,
-        //   document.getElementById("daily-checklist"),
-        //   null,
-        //   "activity"
-        // );
-        // this.returnUniqueCategoriesByGroup(group).map(
-        //   (category) =>
-        //     new View("li", category, document.getElementById(kebabCase(group)))
-        // );
-      });
+      // this.returnUniqueGroupNames().map((group) => {
+      //   new View(
+      //     "div",
+      //     `
+      //       <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+      //         <ul id="${kebabCase(group)}">
+      //         </ul>
+      //       `,
+      //     document.getElementById("daily-checklist"),
+      //     null,
+      //     "activity"
+      //   );
+      //   this.returnUniqueCategoriesByGroup(group).map(
+      //     (category) =>
+      //       new View("li", category, document.getElementById(kebabCase(group)))
+      //   );
+      // });
     }
   }
   const app = new Model();
@@ -269,10 +332,11 @@
 
     // demonstrate the ability to delete on demand
     //app.views[0].delete();
-    console.log(app.view.views);
+    //console.log(app.view.views);
     // app.controller.init()
-    console.log(app.view)
-    console.log(app.view.createView('div','content folks', document.body))
-    //setTimeout(console.log(app.view.views[0].delete()),10)
+    console.log(app.view);
+    //console.log(app.view.createView('div','content folks', document.body))
+    //setTimeout(console.log(app.view.views[0]), 10);
+    console.log(app.view.init("My Daily Checklist"));
   })();
 })();
