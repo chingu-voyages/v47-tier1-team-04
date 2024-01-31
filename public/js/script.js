@@ -1,5 +1,3 @@
-(function () {
-
   // declare initial values
   let vi = 0; // sets view index at 1
   let ti = 1; // sets task index at 1
@@ -339,4 +337,4 @@
     //setTimeout(console.log(app.view.views[0]), 10);
     console.log(app.view.init("My Daily Checklist"));
   })();
-})();
+
