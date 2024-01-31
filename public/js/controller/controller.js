@@ -78,10 +78,5 @@ export default class Controller {
     return this.readTask(id).update(...args);
   }
   // method to delete task by ID by using the .delete method on the
-  deleteTask(id) {
-    console.log(app.tasks[id]);
-    app.views.filter((view) => view.id === `view_${id}`)[0].delete();
-    app.tasks.filter((task) => task.id === `task_${id}`)[0].delete();
-  }
-  deleteView(id) {}
+  
 }

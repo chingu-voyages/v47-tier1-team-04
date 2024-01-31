@@ -5,5 +5,5 @@ import app from "./model/model.js";
 (async function () {
   // Initialize application with a title of Daily Task App
   await app.init("Daily Task App");
-   
+
 })();

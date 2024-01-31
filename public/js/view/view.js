@@ -116,18 +116,4 @@ export default class View {
       "navbar"
     );
   }
-  // method intended so that the api allows for `app.view.deleteEle(id)`
-  deleteEle(id) {
-    console.log(id);
-    console.log(document.getElementById(id));
-  }
-  // method indended so that the api allows for `app.views[1].delete()`
-  delete() {
-    let index = app.views.indexOf(this);
-    if (index > -1) {
-      app.views.splice(index, 1);
-      document.getElementById(this.element.id).remove();
-    }
-    return console.log(app.views);
-  }
 }
