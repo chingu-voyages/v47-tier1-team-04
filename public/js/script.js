@@ -4,7 +4,7 @@ import app from "./model/model.js";
 app.init('Daily Task App')
 
 /**************************LOGGING EXAMPLES BELOW************************** */
-console.log(app.views)
+console.log(app)
 // (async function () {
 //   // logs a successful creation of a task into the application
 //   console.log(
