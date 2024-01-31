@@ -1,4 +1,6 @@
-import app from '../script.js'
+import { app } from "../model/model.js";
+import { kebabCase } from "../utils/utils.js";
+let i = 1; // sets view index to 1;
 export default class View {
   constructor(ele, content, anchor, id, classList) {
     const element = document.createElement(ele);
@@ -7,9 +9,9 @@ export default class View {
       element.id = id;
       this.id = id;
     } else {
-      element.id = `view_${vi}`;
-      this.id = vi;
-      vi++;
+      element.id = `view_${i}`;
+      this.id = i;
+      i++;
     }
     if (classList) element.classList = classList;
     anchor.append(element);
