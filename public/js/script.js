@@ -1,25 +1,52 @@
 (function () {
+  
+  // declare initial values
+  let vi = 0; // sets view index at 1
+  let ti = 1; // sets task index at 1
+  const resetView = () => (vi = 1);
+  const resetIndex = () => (ti = 1); // creates function to reset task index if needed
+  const kebabCase = (str) =>
+    str
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[\s_]+/g, "-")
+      .toLowerCase();
   // declares a class for handling any view or user interface changes
   class View {
-    constructor() {}
-    // method to create new views
-    createEle(ele, content, anchor, classList, id) {
-      const container = document.createElement(ele);
-      container.innerHTML = content;
-      if (id) container.id = id;
-      if (classList) container.classList = classList;
-      anchor.append(container);
-      app.views.push(this)
-      return container;
+    constructor(ele, content, anchor, id, classList) {
+      this.id = app.vi;
+      const element = document.createElement(ele);
+      element.innerHTML = content;
+      if (id) element.id = id;
+      else {
+        this.id = `view_${vi}`;
+        vi++;
+        element.id = this.id;
+      }
+      if (classList) element.classList = classList;
+      anchor.append(element);
+      this.element = element;
+      app.views.push(this);
+      return element;
     }
-    removeEle(container){
-      app.views
+    deleteEle(id) {
+      document.getElementById(id).remove();
+      return this.views.filter((view) => view.id === `view_${id}`)[0].delete();
+    }
+    delete() {
+      let index = app.views.indexOf(this);
+      if (index > -1) {
+        this.element.remove();
+        app.views.splice(index, 1);
+      }
+      return app.views;
     }
   }
   // declare a class to contain all application data
   class App {
     constructor() {
-      this.view = new View();
+      //this.view = new View();
+      this.vi = 1;
+      this.ti = 1;
       this.tasks = [];
       this.views = [];
     }
@@ -77,8 +104,8 @@
     returnByGroup(group) {
       return this.tasks.filter((task) => task.group === group);
     }
-    async returnByCategory(category) {
-      return await this.tasks.filter((task) => task.category === category);
+    returnByCategory(category) {
+      return this.tasks.filter((task) => task.category === category);
     }
     returnCategoryByGroup(group) {
       return this.tasks.filter((task) => task.group === group);
@@ -87,10 +114,10 @@
       const categories = this.returnCategoryByGroup(group);
       return [...new Set(categories.map((task) => task.category))];
     }
-    async createTask(name, group, category, frequency, days, calendar) {
-      return await new Task(name, group, category, frequency, days, calendar);
+    createTask(name, group, category, frequency, days, calendar) {
+      return new Task(name, group, category, frequency, days, calendar);
     }
-    async readAllTasks() {
+    readAllTasks() {
       return this.tasks;
     }
     readTask(id) {
@@ -105,7 +132,7 @@
     }
     renderSidebar() {
       this.returnUniqueGroupNames().map((group) => {
-        app.view.createEle(
+        new View(
           "div",
           `
             <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
@@ -116,30 +143,15 @@
           null,
           "activity"
         );
-        this.returnUniqueCategoriesByGroup(group).map((category) =>
-        app.view.createEle("li", category, document.getElementById(kebabCase(group)))
+        this.returnUniqueCategoriesByGroup(group).map(
+          (category) =>
+            new View("li", category, document.getElementById(kebabCase(group)))
         );
       });
     }
   }
   const app = new App();
-  // Function for creating new elements quickly
-  // const app.view.createEle = (ele, content, anchor, id, classList) => {
-  //   const container = document.createElement(ele);
-  //   container.innerHTML = content;
-  //   if (id) container.id = id;
-  //   if (classList) container.classList = classList;
-  //   anchor.append(container);
-  //   return container;
-  // };
   // Object constructor to create new tasks:
-  let ti = 1; // sets task index at 1
-  const resetIndex = () => (ti = 1); // creates function to reset index if needed
-  const kebabCase = (string) =>
-    string
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .replace(/[\s_]+/g, "-")
-      .toLowerCase();
   class Task {
     constructor(name, group, category, frequency, days, calendar) {
       this.id = `task_${ti}`; // creates a task id for each task created
@@ -210,7 +222,7 @@
     // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
     console.log(app.readAllTasks());
     // demonstrates the resetState function
-    console.log(app.resetState())
+    console.log(app.resetState());
     // demonstrates the init function which runs the resetState then seed function and generates sidebar also!
     await app.init();
     // demonstrates the use of returnByGroup for returning tasks within a particular group
@@ -226,10 +238,13 @@
     // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
     console.log(app.returnUniqueCategoryTasks());
     // demonstrates the use of createEle method to render html on demand
-    app.view.createEle(
-      "li",
-      "createEle Example",
-      document.getElementById("routine-activities")
-    );
+    // new View(
+    //   "li",
+    //   "createEle Example",
+    //   document.getElementById("routine-activities")
+    // );
+    const newView = new View('div','',document.body);
+    console.log(newView);
+
   })();
 })();
