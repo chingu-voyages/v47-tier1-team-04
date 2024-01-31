@@ -5,9 +5,10 @@
       this.tasks = [];
     }
     // Method to initialize app:
-    init() {
-      this.resetState();
-      this.seed();
+    async init() {
+      this.resetState(); // calls reset state to clear out tasks 
+      await this.seed(); // awaits json fetch / seed of db
+      this.renderSidebar(); // calls the renderSidebar function to update the sidebar view on initialize
       return this;
     }
     // Method to clear/reset tasks:
@@ -70,7 +71,7 @@
     createTask(name, group, category, frequency, days, calendar) {
       return new Task(name, group, category, frequency, days, calendar);
     }
-    readAllTasks() {
+    async readAllTasks() {
       return this.tasks;
     }
     readTask(id) {
@@ -93,6 +94,7 @@
               </ul>
             `,
           document.getElementById("daily-checklist"),
+          null,
           "activity"
         );
         this.returnUniqueCategoriesByGroup(group).map((category) =>
@@ -103,9 +105,10 @@
   }
   const app = new App();
   // Function for creating new elements quickly
-  const createEle = (ele, content, anchor, classList) => {
+  const createEle = (ele, content, anchor, id, classList) => {
     const container = document.createElement(ele);
     container.innerHTML = content;
+    if (id) container.id = id;
     if (classList) container.classList = classList;
     anchor.append(container);
     return container;
@@ -153,15 +156,6 @@
       return app.tasks;
     }
   }
-  class View {
-    constructor(ele, content, anchor, classList) {
-      const container = document.createElement(ele);
-      container.innerHTML = content;
-      if (classList) container.classList = classList;
-      anchor.append(container);
-      return container;
-    }
-  }
 
   /**************************LOGGING EXAMPLES BELOW************************** */
 
@@ -199,9 +193,9 @@
     // demonstrates the resetState function
     setTimeout(() => console.log(app.resetState()), 1500);
     // demonstrates the init function which runs the resetState then seed function
-    setTimeout(() => console.log(app.init()), 3000);
+    app.init();
     // demonstrates the use of returnByGroup for returning tasks within a particular group
-    setTimeout(() => console.log(app.returnByGroup("STUDYING")), 5000);
+    app.returnByGroup("STUDYING");
     // demonstrates the use of returnByCategory for returning tasks within a particular category
     setTimeout(() => console.log(app.returnByCategory("Node Js Course")), 6000);
     // demonstrates the use of returnUniqueGroupNames
@@ -212,7 +206,16 @@
     setTimeout(() => console.log(app.returnUniqueGroupTasks()), 7500);
     // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
     setTimeout(() => console.log(app.returnUniqueCategoryTasks()), 7750);
-    // demonstrates the use of renderSidebar method to render html
-    setTimeout(() => console.log(app.renderSidebar()), 80);
+    // demonstrates the use of createEle method to render html on demand
+    setTimeout(
+      () =>
+        createEle(
+          "li",
+          "createEle Example",
+          document.getElementById("routine-activities")
+        ),
+      10000
+    );
   })();
+
 })();
