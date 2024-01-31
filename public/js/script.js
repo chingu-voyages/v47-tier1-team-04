@@ -1,4 +1,14 @@
 (function () {
+  // declare initial values
+  let vi = 0; // sets view index at 1
+  let ti = 1; // sets task index at 1
+  const resetView = () => (vi = 1);
+  const resetIndex = () => (app.ti = 1); // creates function to reset task index if needed
+  const kebabCase = (str) =>
+    str
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[\s_]+/g, "-")
+      .toLowerCase();
   // declares controller class
   class Controller {
     constructor() {}
@@ -52,20 +62,11 @@
       return app.tasks.filter((task) => task.id === `task_${id}`)[0].delete();
     }
   }
-  // declare initial values
-  let vi = 0; // sets view index at 1
-  let ti = 1; // sets task index at 1
-  const resetView = () => (vi = 1);
-  const resetIndex = () => (app.ti = 1); // creates function to reset task index if needed
-  const kebabCase = (str) =>
-    str
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .replace(/[\s_]+/g, "-")
-      .toLowerCase();
+
   // declares a class for handling any view or user interface changes
   class View {
     constructor(ele, content, anchor, id, classList) {
-      this.id = app.vi;
+      this.id = vi;
       const element = document.createElement(ele);
       element.innerHTML = content;
       if (id) element.id = id;
@@ -77,31 +78,49 @@
       if (classList) element.classList = classList;
       anchor.append(element);
       this.element = element;
-      app.views.push(this);
-      return element;
+      this.views = [];
+      this.views.push(this)
+      return this;
+    }
+    createView(ele, content, anchor, id, classList) {
+      const element = document.createElement(ele);
+      element.innerHTML = content;
+      if (id) element.id = id;
+      else {
+        this.id = `view_${vi}`;
+        vi++;
+        element.id = this.id;
+      }
+      if (classList) element.classList = classList;
+      anchor.append(element);
+      this.element = element;
+      this.views.push(this);
+      
+      return this;
+    }
+    init() {
+      
     }
     deleteEle(id) {
       document.getElementById(id).remove();
       return this.views.filter((view) => view.id === `view_${id}`)[0].delete();
     }
     delete() {
-      let index = app.views.indexOf(this);
+      let index = this.views.indexOf(this);
       if (index > -1) {
         this.element.remove();
-        app.views.splice(index, 1);
+        this.views.splice(index, 1);
       }
-      return app.views;
+      return this.views;
     }
   }
   // declare a class to contain all application data
   class Model {
     constructor() {
       this.controller = new Controller();
-      //this.view = new View();
-      this.vi = 1;
-      this.ti = 1;
+      this.view = new View('div',``,document.body, 'app', 'container');
       this.tasks = [];
-      this.views = [];
+     // this.views = [];
     }
     // Method to initialize app:
     async init() {
@@ -220,7 +239,7 @@
       ])
     );
     // demonstrates how to delete a task using its id
-    console.log(app.controller.deleteTask(1));
+    //console.log(app.controller.deleteTask(1));
     // demonstrates how to seed the "database" with json file
     console.log(app.seed());
     // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
@@ -245,9 +264,15 @@
     // new View(
     //   "li",
     //   "createEle Example",
-    //   document.getElementById("routine-activities")
+    //   document.body
     // );
-    // const newView = new View("div", "", document.body);
-    // console.log(newView);
+
+    // demonstrate the ability to delete on demand
+    //app.views[0].delete();
+    console.log(app.view.views);
+    // app.controller.init()
+    console.log(app.view)
+    console.log(app.view.createView('div','content folks', document.body))
+    //setTimeout(console.log(app.view.views[0].delete()),10)
   })();
 })();
