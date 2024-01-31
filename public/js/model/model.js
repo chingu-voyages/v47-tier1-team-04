@@ -10,9 +10,10 @@ export class Model {
     this.views = [];
   }
   // Method to initialize app:
-  async init() {
+  async init(title) {
     this.resetState(); // calls reset state to clear out tasks
     await this.seed(); // awaits json fetch / seed of db
+    this.view.init(title)
     return this;
   }
   // Method to clear/reset tasks:

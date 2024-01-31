@@ -25,6 +25,7 @@ export default class View {
   init(title) {
     this.renderAside(title);
     this.renderNavbar();
+    return this
   }
   renderAside(title) {
     const aside = this.createView(
