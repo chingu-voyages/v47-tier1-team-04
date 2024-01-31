@@ -5,9 +5,10 @@
       this.tasks = [];
     }
     // Method to initialize app:
-    init() {
-      this.resetState();
-      this.seed();
+    async init() {
+      this.resetState(); // calls reset state to clear out tasks
+      await this.seed(); // awaits json fetch / seed of db
+      this.renderSidebar(); // calls the renderSidebar function to update the sidebar view on initialize
       return this;
     }
     // Method to clear/reset tasks:
@@ -57,8 +58,8 @@
     returnByGroup(group) {
       return this.tasks.filter((task) => task.group === group);
     }
-    returnByCategory(category) {
-      return this.tasks.filter((task) => task.category === category);
+    async returnByCategory(category) {
+      return await this.tasks.filter((task) => task.category === category);
     }
     returnCategoryByGroup(group) {
       return this.tasks.filter((task) => task.group === group);
@@ -67,10 +68,10 @@
       const categories = this.returnCategoryByGroup(group);
       return [...new Set(categories.map((task) => task.category))];
     }
-    createTask(name, group, category, frequency, days, calendar) {
-      return new Task(name, group, category, frequency, days, calendar);
+    async createTask(name, group, category, frequency, days, calendar) {
+      return await new Task(name, group, category, frequency, days, calendar);
     }
-    readAllTasks() {
+    async readAllTasks() {
       return this.tasks;
     }
     readTask(id) {
@@ -88,11 +89,12 @@
         createEle(
           "div",
           `
-            <h3>${group}<i class="fa-solid fa-circle-chevron-down"></i></h3>
+            <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
               <ul id="${kebabCase(group)}">
               </ul>
             `,
           document.getElementById("daily-checklist"),
+          null,
           "activity"
         );
         this.returnUniqueCategoriesByGroup(group).map((category) =>
@@ -103,9 +105,10 @@
   }
   const app = new App();
   // Function for creating new elements quickly
-  const createEle = (ele, content, anchor, classList) => {
+  const createEle = (ele, content, anchor, id, classList) => {
     const container = document.createElement(ele);
     container.innerHTML = content;
+    if (id) container.id = id;
     if (classList) container.classList = classList;
     anchor.append(container);
     return container;
@@ -153,22 +156,13 @@
       return app.tasks;
     }
   }
-  class View {
-    constructor(ele, content, anchor, classList) {
-      const container = document.createElement(ele);
-      container.innerHTML = content;
-      if (classList) container.classList = classList;
-      anchor.append(container);
-      return container;
-    }
-  }
 
   /**************************LOGGING EXAMPLES BELOW************************** */
 
-  (function () {
+  (async function () {
     // logs a successful creation of a task into the application
     console.log(
-      app.createTask(
+      await app.createTask(
         "demonstrating the power of JavaScript Classes",
         "Group Example I",
         "Category",
@@ -178,10 +172,10 @@
       )
     );
     // demonstrates how to read a task after it has been created (select by the id)
-    console.log(app.readTask(1));
+    console.log(await app.readTask(1));
     // demonstrates how to update a task afer it has been created
     console.log(
-      app.updateTask(1, [
+      await app.updateTask(1, [
         "harnessing the true versatility of that vanilla JS offers.",
         "Team 4 Tasks",
         "FrontEnd",
@@ -191,28 +185,32 @@
       ])
     );
     // demonstrates how to delete a task using its id
-    console.log(app.deleteTask(1));
+    console.log(await app.deleteTask(1));
     // demonstrates how to seed the "database" with json file
-    console.log(app.seed());
+    console.log(await app.seed());
     // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
-    setTimeout(() => console.log(app.readAllTasks()), 500);
+    console.log(await app.readAllTasks());
     // demonstrates the resetState function
-    setTimeout(() => console.log(app.resetState()), 1500);
-    // demonstrates the init function which runs the resetState then seed function
-    setTimeout(() => console.log(app.init()), 3000);
+    console.log(await app.resetState())
+    // demonstrates the init function which runs the resetState then seed function and generates sidebar also!
+    await app.init();
     // demonstrates the use of returnByGroup for returning tasks within a particular group
-    setTimeout(() => console.log(app.returnByGroup("STUDYING")), 5000);
+    console.log(await app.returnByGroup("STUDYING"));
     // demonstrates the use of returnByCategory for returning tasks within a particular category
-    setTimeout(() => console.log(app.returnByCategory("Node Js Course")), 6000);
+    console.log(await app.returnByCategory("Node Js Course"));
     // demonstrates the use of returnUniqueGroupNames
-    setTimeout(() => console.log(app.returnUniqueGroupNames()), 7200);
+    console.log(await app.returnUniqueGroupNames());
     // demonstrates the use of returnUniqueCategoryNames
-    setTimeout(() => console.log(app.returnUniqueCategoryNames()), 7400);
+    console.log(await app.returnUniqueCategoryNames());
     // demonstrates the use of returnByUniqueGroups to get an array of separate array of task objects for each group
-    setTimeout(() => console.log(app.returnUniqueGroupTasks()), 7500);
+    console.log(await app.returnUniqueGroupTasks());
     // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
-    setTimeout(() => console.log(app.returnUniqueCategoryTasks()), 7750);
-    // demonstrates the use of renderSidebar method to render html
-    setTimeout(() => console.log(app.renderSidebar()), 80);
+    console.log(await app.returnUniqueCategoryTasks());
+    // demonstrates the use of createEle method to render html on demand
+    createEle(
+      "li",
+      "createEle Example",
+      document.getElementById("routine-activities")
+    );
   })();
 })();
