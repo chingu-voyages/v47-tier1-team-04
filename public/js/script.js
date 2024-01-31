@@ -88,7 +88,7 @@
         createEle(
           "div",
           `
-            <h3>${group}<i class="fa-solid fa-circle-chevron-down"></i></h3>
+            <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
               <ul id="${kebabCase(group)}">
               </ul>
             `,
