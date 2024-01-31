@@ -1,7 +1,6 @@
 import Controller from "../controller/controller.js";
 import View from "../view/view.js";
-import Task from "./task/task.js";
-import { resetIndex } from "../utils/utils.js";
+
 export class Model {
   constructor() {
     this.controller = new Controller();
@@ -11,35 +10,11 @@ export class Model {
   }
   // Method to initialize app:
   async init(title) {
-    this.resetState(); // calls reset state to clear out tasks
-    await this.seed(); // awaits json fetch / seed of db
-    this.view.init(title)
+    this.controller.resetState(); // calls reset state to clear out tasks
+    await this.controller.seed(); // awaits json fetch / seed of db
+    this.controller.init(title);
     return this;
-  }
-  // Method to clear/reset tasks:
-  resetState() {
-    this.tasks = [];
-    resetIndex();
-    return this;
-  }
-  // Method to pull in the data from the data.model.json file:
-  async seed() {
-    return await fetch("./js/model/data.model.json")
-      .then((res) => res.json())
-      .then((data) =>
-        data.map(
-          (task) =>
-            new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar
-            )
-        )
-      );
   }
 }
 const app = new Model();
-export default app
+export default app;

@@ -1,7 +1,13 @@
 import app from "../model/model.js";
 import { kebabCase } from "../utils/utils.js";
 let i = 1; // sets view index to 1;
+// declares a constructor class for creating new Views within the document (primarily use the method createView for this)
 export default class View {
+  // ele - the type of element to create whether it be a `main`, `div`, etc.
+  // content - the innerHTML of the element being created
+  // anchor - what is this element going to be appended to?
+  // id - (optional) assign an id to the element)
+  // classList - (optional) pass in a classList to the element being created
   constructor(ele, content, anchor, id, classList) {
     const element = document.createElement(ele);
     element.innerHTML = content;
@@ -10,7 +16,7 @@ export default class View {
       this.id = id;
     } else {
       element.id = `view_${i}`;
-      this.id = i;
+      this.id = element.id;
       i++;
     }
     if (classList) element.classList = classList;
@@ -18,16 +24,19 @@ export default class View {
     this.element = element;
     return this;
   }
+  // method to call itself and populate the Model's `views` array with the new element
   createView(ele, content, anchor, id, classList) {
     const newView = new View(ele, content, anchor, id, classList);
     app.views.push(newView);
-    return 
+    return;
   }
+  // collection of functions to initialize the view of the application
   init(title) {
     this.renderAside(title);
     this.renderNavbar();
-    return this
+    return this;
   }
+  // a method which takes a title as an argument and creates a new view from html created by emmett only dynamically creating the title
   renderAside(title) {
     const aside = this.createView(
       "aside",
@@ -50,6 +59,7 @@ export default class View {
       "aside-el",
       "aside"
     );
+    // after rendering some mostly static html, it calls the returnUniqueGroupNames function and then loops over those values to create additional views for each `group`
     app.controller.returnUniqueGroupNames().map((group) => {
       app.view.createView(
         "div",
@@ -62,6 +72,7 @@ export default class View {
         null,
         "activity"
       );
+      // once the groups have been created, the returnUniqueCategoiesByGroup is called, dynamically passing in the `group` that is available to this entire loop wea are currently within
       app.controller
         .returnUniqueCategoriesByGroup(group)
         .map((category) =>
@@ -72,8 +83,10 @@ export default class View {
           )
         );
     });
+    // this returns each object within a group providing us access to more data than just the returnGroupNames() gives. so now we can create a new view on each group for each unique category we have
     return aside;
   }
+  // method to generate static html as found within Emmets html file
   renderNavbar() {
     return this.createView(
       "nav",
@@ -103,15 +116,18 @@ export default class View {
       "navbar"
     );
   }
+  // method intended so that the api allows for `app.view.deleteEle(id)`
   deleteEle(id) {
-    return document.getElementById(id).remove();
+    console.log(id);
+    console.log(document.getElementById(id));
   }
+  // method indended so that the api allows for `app.views[1].delete()`
   delete() {
-    let index = this.views.indexOf(this);
+    let index = app.views.indexOf(this);
     if (index > -1) {
-      this.element.remove();
-      this.views.splice(index, 1);
+      app.views.splice(index, 1);
+      document.getElementById(this.element.id).remove();
     }
-    return this.views;
+    return console.log(app.views);
   }
 }
