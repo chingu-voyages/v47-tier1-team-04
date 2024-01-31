@@ -67,7 +67,7 @@ export default class View {
         "div",
         `
             <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="${kebabCase(group)}">
+              <ul id="sidebar_${kebabCase(group)}">
               </ul>
             `,
         document.getElementById("daily-checklist"),
@@ -81,7 +81,7 @@ export default class View {
           app.view.createView(
             "li",
             category,
-            document.getElementById(kebabCase(group))
+            document.getElementById(`sidebar_${kebabCase(group)}`)
           )
         );
     });
@@ -124,7 +124,7 @@ export default class View {
   }
   // generates the content element currently a static representation
   renderContent() {
-    this.createView(
+    const content = this.createView(
       "content",
       `<div class="content-search">
         <div class="priority">
@@ -137,50 +137,46 @@ export default class View {
             </div>
         </div>               
     </div>
-    <div class="content-activity">
-        <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-        <div class="content-main">
-            <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-            <div class="content-inner">
-                <div class="content-task">
-                    <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-                </div>
-                <div class="content-description">
-                    <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                    <div class="content-description-edit">
-                        <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                        <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                    </div>                            
-                </div>                        
-            </div>
 
-        </div>               
-    </div>
-    <div class="content-activity">
-        <h2 class="category-name" id="category-name-2">Chingu</h2>
-        <div class="content-main">
-            <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-            <div class="content-inner">
-                <div class="content-task">
-                    <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-                </div>
-                <div class="content-description">
-                    <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                    <div class="content-description-edit">
-                        <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                        <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                    </div>                            
-                </div>                        
-            </div>
-
-        </div>
     </div>
     
 `,
       app.view.element,
-      null,
+      "content",
       "content"
     );
+    this.renderGroups();
+  }
+  renderGroups() {
+    app.controller.returnUniqueGroupNames().map((group) => {
+      const content = this.createView(
+        "div",
+        `
+        <h2 class="category-name">${group}</h2>
+        `,
+        document.getElementById("content"),
+        `content_${kebabCase(group)}`,
+        "content-activity"
+      );
+      app.controller.returnUniqueCategoriesByGroup(group).map((category) => {
+        this.createView(
+          "div",
+          `
+          <div class="content-main">
+          <img src="./img/Ellipse8.svg" alt=" ellipse checkbox" class="ellipse">
+          <div class="content-inner">
+          
+          </div>
+          </div>
+          `,
+          document.getElementById(`content_${kebabCase(group)}`)
+        );
+        this.renderCategory(category, group);
+      });
+    });
+  }
+  renderCategory(category, group) {
+ 
   }
   renderFooter() {
     this.createView(
