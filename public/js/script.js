@@ -83,8 +83,33 @@
     deleteTask(id) {
       return this.tasks.filter((task) => task.id === `task_${id}`)[0].delete();
     }
+    renderSidebar() {
+      this.returnUniqueGroupNames().map((group) => {
+        createEle(
+          "div",
+          `
+            <h3>${group}<i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="${kebabCase(group)}">
+              </ul>
+            `,
+          document.getElementById("daily-checklist"),
+          "activity"
+        );
+        this.returnUniqueCategoriesByGroup(group).map((category) =>
+          createEle("li", category, document.getElementById(kebabCase(group)))
+        );
+      });
+    }
   }
   const app = new App();
+  // Function for creating new elements quickly
+  const createEle = (ele, content, anchor, classList) => {
+    const container = document.createElement(ele);
+    container.innerHTML = content;
+    if (classList) container.classList = classList;
+    anchor.append(container);
+    return container;
+  };
   // Object constructor to create new tasks:
   let ti = 1; // sets task index at 1
   const resetIndex = () => (ti = 1); // creates function to reset index if needed
@@ -187,25 +212,7 @@
     setTimeout(() => console.log(app.returnUniqueGroupTasks()), 7500);
     // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
     setTimeout(() => console.log(app.returnUniqueCategoryTasks()), 7750);
-    // demonstrates the use of new View to create html elements
-    setTimeout(() => {
-      app.returnUniqueGroupNames().map((group) => {
-        new View(
-          "div",
-          `
-            <h3>${group}<i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="${kebabCase(group)}">
-              </ul>
-            `,
-          document.getElementById("daily-checklist"),
-          "activity"
-        );
-        app
-          .returnUniqueCategoriesByGroup(group)
-          .map((category) =>
-            new View("li", category, document.getElementById(kebabCase(group)))
-          );
-      });
-    }, 80);
+    // demonstrates the use of renderSidebar method to render html
+    setTimeout(() => console.log(app.renderSidebar()), 80);
   })();
 })();
