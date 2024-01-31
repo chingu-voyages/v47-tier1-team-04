@@ -19,8 +19,9 @@ export default class View {
     return this;
   }
   createView(ele, content, anchor, id, classList) {
-    app.views.push(this);
-    return new View(ele, content, anchor, id, classList);
+    const newView = new View(ele, content, anchor, id, classList);
+    app.views.push(newView);
+    return 
   }
   init(title) {
     this.renderAside(title);
