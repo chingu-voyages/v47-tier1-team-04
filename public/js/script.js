@@ -51,11 +51,21 @@
     returnUniqueCategoryNames() {
       return [...new Set(this.tasks.map((task) => task.category))];
     }
+    returnUniqueCategories() {
+      return [...new Set(this.tasks.map((task) => task))];
+    }
     returnByGroup(group) {
       return this.tasks.filter((task) => task.group === group);
     }
     returnByCategory(category) {
       return this.tasks.filter((task) => task.category === category);
+    }
+    returnCategoryByGroup(group) {
+      return this.tasks.filter((task) => task.group === group);
+    }
+    returnUniqueCategoriesByGroup(group) {
+      const categories = this.returnCategoryByGroup(group);
+      return [...new Set(categories.map((task) => task.category))];
     }
     createTask(name, group, category, frequency, days, calendar) {
       return new Task(name, group, category, frequency, days, calendar);
@@ -78,6 +88,11 @@
   // Object constructor to create new tasks:
   let ti = 1; // sets task index at 1
   const resetIndex = () => (ti = 1); // creates function to reset index if needed
+  const kebabCase = (string) =>
+    string
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[\s_]+/g, "-")
+      .toLowerCase();
   class Task {
     constructor(name, group, category, frequency, days, calendar) {
       this.id = `task_${ti}`; // creates a task id for each task created
@@ -113,52 +128,84 @@
       return app.tasks;
     }
   }
+  class View {
+    constructor(ele, content, anchor, classList) {
+      const container = document.createElement(ele);
+      container.innerHTML = content;
+      if (classList) container.classList = classList;
+      anchor.append(container);
+      return container;
+    }
+  }
+
   /**************************LOGGING EXAMPLES BELOW************************** */
 
-  // logs a successful creation of a task into the application
-  console.log(
-    app.createTask(
-      "demonstrating the power of JavaScript Classes",
-      "Group Example I",
-      "Category",
-      "Daily",
-      [],
-      []
-    )
-  );
-  // demonstrates how to read a task after it has been created (select by the id)
-  console.log(app.readTask(1));
-  // demonstrates how to update a task afer it has been created
-  console.log(
-    app.updateTask(1, [
-      "harnessing the true versatility of that vanilla JS offers.",
-      "Team 4 Tasks",
-      "FrontEnd",
-      "Daily",
-      [],
-      [],
-    ])
-  );
-  // demonstrates how to delete a task using its id
-  console.log(app.deleteTask(1));
-  // demonstrates how to seed the "database" with json file
-  console.log(app.seed());
-  // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
-  setTimeout(() => console.log(app.readAllTasks()), 500);
-  // demonstrates the resetState function
-  setTimeout(() => console.log(app.resetState()), 1500);
-  // demonstrates the init function which runs the resetState then seed function
-  setTimeout(() => console.log(app.init()), 3000);
-  // demonstrates the use of returnByGroup for returning tasks within a particular group
-  setTimeout(() => console.log(app.returnByGroup("STUDYING")), 5000);
-  // demonstrates the use of returnByCategory for returning tasks within a particular category
-  setTimeout(() => console.log(app.returnByCategory("Node Js Course")), 6000);
-  // demonstrates the use of returnUniqueGroupNames
-  setTimeout(() => console.log(app.returnUniqueGroupNames()), 7200);
-  // demonstrates the use of returnUniqueCategoryNames
-  setTimeout(() => console.log(app.returnUniqueCategoryNames()), 7400);
-  // demonstrates the use of returnByUniqueGroups to get an array of separate array of task objects for each group
-  setTimeout(() => console.log(app.returnUniqueGroupTasks()), 7500);
-  // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
-  setTimeout(() => console.log(app.returnUniqueCategoryTasks()), 7750);
+  (function () {
+    // logs a successful creation of a task into the application
+    console.log(
+      app.createTask(
+        "demonstrating the power of JavaScript Classes",
+        "Group Example I",
+        "Category",
+        "Daily",
+        [],
+        []
+      )
+    );
+    // demonstrates how to read a task after it has been created (select by the id)
+    console.log(app.readTask(1));
+    // demonstrates how to update a task afer it has been created
+    console.log(
+      app.updateTask(1, [
+        "harnessing the true versatility of that vanilla JS offers.",
+        "Team 4 Tasks",
+        "FrontEnd",
+        "Daily",
+        [],
+        [],
+      ])
+    );
+    // demonstrates how to delete a task using its id
+    console.log(app.deleteTask(1));
+    // demonstrates how to seed the "database" with json file
+    console.log(app.seed());
+    // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
+    setTimeout(() => console.log(app.readAllTasks()), 500);
+    // demonstrates the resetState function
+    setTimeout(() => console.log(app.resetState()), 1500);
+    // demonstrates the init function which runs the resetState then seed function
+    setTimeout(() => console.log(app.init()), 3000);
+    // demonstrates the use of returnByGroup for returning tasks within a particular group
+    setTimeout(() => console.log(app.returnByGroup("STUDYING")), 5000);
+    // demonstrates the use of returnByCategory for returning tasks within a particular category
+    setTimeout(() => console.log(app.returnByCategory("Node Js Course")), 6000);
+    // demonstrates the use of returnUniqueGroupNames
+    setTimeout(() => console.log(app.returnUniqueGroupNames()), 7200);
+    // demonstrates the use of returnUniqueCategoryNames
+    setTimeout(() => console.log(app.returnUniqueCategoryNames()), 7400);
+    // demonstrates the use of returnByUniqueGroups to get an array of separate array of task objects for each group
+    setTimeout(() => console.log(app.returnUniqueGroupTasks()), 7500);
+    // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
+    setTimeout(() => console.log(app.returnUniqueCategoryTasks()), 7750);
+    // demonstrates the use of new View to create html elements
+    setTimeout(() => {
+      app.returnUniqueGroupNames().map((group) => {
+        new View(
+          "div",
+          `
+            <h3>${group}<i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="${kebabCase(group)}">
+              </ul>
+            `,
+          document.getElementById("daily-checklist"),
+          "activity"
+        );
+        app
+          .returnUniqueCategoriesByGroup(group)
+          .map((category) =>
+            new View("li", category, document.getElementById(kebabCase(group)))
+          );
+      });
+    }, 80);
+  })();
 })();
