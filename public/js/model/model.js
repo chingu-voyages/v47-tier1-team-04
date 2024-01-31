@@ -40,4 +40,5 @@ export class Model {
       );
   }
 }
-export default app = new Model();
+const app = new Model();
+export default app
