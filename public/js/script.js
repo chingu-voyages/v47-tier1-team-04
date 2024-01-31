@@ -132,21 +132,21 @@
     }
     renderSidebar() {
       this.returnUniqueGroupNames().map((group) => {
-        new View(
-          "div",
-          `
-            <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="${kebabCase(group)}">
-              </ul>
-            `,
-          document.getElementById("daily-checklist"),
-          null,
-          "activity"
-        );
-        this.returnUniqueCategoriesByGroup(group).map(
-          (category) =>
-            new View("li", category, document.getElementById(kebabCase(group)))
-        );
+        // new View(
+        //   "div",
+        //   `
+        //     <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+        //       <ul id="${kebabCase(group)}">
+        //       </ul>
+        //     `,
+        //   document.getElementById("daily-checklist"),
+        //   null,
+        //   "activity"
+        // );
+        // this.returnUniqueCategoriesByGroup(group).map(
+        //   (category) =>
+        //     new View("li", category, document.getElementById(kebabCase(group)))
+        // );
       });
     }
   }
