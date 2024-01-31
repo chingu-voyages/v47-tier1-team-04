@@ -1,4 +1,4 @@
-import { app } from "./model/model.js";
+import app from "./model/model.js";
 
 /**************************LOGGING EXAMPLES BELOW************************** */
 

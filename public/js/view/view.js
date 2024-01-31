@@ -1,4 +1,4 @@
-import { app } from "../model/model.js";
+import app from "../model/model.js";
 import { kebabCase } from "../utils/utils.js";
 let i = 1; // sets view index to 1;
 export default class View {

@@ -2,7 +2,7 @@ import Controller from "../controller/controller.js";
 import View from "../view/view.js";
 import Task from "./task/task.js";
 import { resetIndex } from "../utils/utils.js";
-export default class Model {
+export class Model {
   constructor() {
     this.controller = new Controller();
     this.view = new View("div", ``, document.body, "app", "container");
@@ -40,4 +40,4 @@ export default class Model {
       );
   }
 }
-export const app = new Model();
+export default app = new Model();

@@ -1,5 +1,5 @@
 import Task from "../model/task/task.js";
-import { app } from "../model/model.js";
+import app from "../model/model.js";
 // declares controller class
 export default class Controller {
   constructor() {}

@@ -1,5 +1,5 @@
 // Object constructor to create new tasks:
-import { app } from "../model.js";
+import app from "../model.js";
 let i = 1;
 export default class Task {
   constructor(name, group, category, frequency, days, calendar) {
