@@ -1,8 +1,27 @@
 (function () {
+  // declares a class for handling any view or user interface changes
+  class View {
+    constructor() {}
+    // method to create new views
+    createEle(ele, content, anchor, classList, id) {
+      const container = document.createElement(ele);
+      container.innerHTML = content;
+      if (id) container.id = id;
+      if (classList) container.classList = classList;
+      anchor.append(container);
+      app.views.push(this)
+      return container;
+    }
+    removeEle(container){
+      app.views
+    }
+  }
   // declare a class to contain all application data
   class App {
     constructor() {
+      this.view = new View();
       this.tasks = [];
+      this.views = [];
     }
     // Method to initialize app:
     async init() {
@@ -86,7 +105,7 @@
     }
     renderSidebar() {
       this.returnUniqueGroupNames().map((group) => {
-        createEle(
+        app.view.createEle(
           "div",
           `
             <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
@@ -98,21 +117,21 @@
           "activity"
         );
         this.returnUniqueCategoriesByGroup(group).map((category) =>
-          createEle("li", category, document.getElementById(kebabCase(group)))
+        app.view.createEle("li", category, document.getElementById(kebabCase(group)))
         );
       });
     }
   }
   const app = new App();
   // Function for creating new elements quickly
-  const createEle = (ele, content, anchor, id, classList) => {
-    const container = document.createElement(ele);
-    container.innerHTML = content;
-    if (id) container.id = id;
-    if (classList) container.classList = classList;
-    anchor.append(container);
-    return container;
-  };
+  // const app.view.createEle = (ele, content, anchor, id, classList) => {
+  //   const container = document.createElement(ele);
+  //   container.innerHTML = content;
+  //   if (id) container.id = id;
+  //   if (classList) container.classList = classList;
+  //   anchor.append(container);
+  //   return container;
+  // };
   // Object constructor to create new tasks:
   let ti = 1; // sets task index at 1
   const resetIndex = () => (ti = 1); // creates function to reset index if needed
@@ -162,7 +181,7 @@
   (async function () {
     // logs a successful creation of a task into the application
     console.log(
-      await app.createTask(
+      app.createTask(
         "demonstrating the power of JavaScript Classes",
         "Group Example I",
         "Category",
@@ -172,10 +191,10 @@
       )
     );
     // demonstrates how to read a task after it has been created (select by the id)
-    console.log(await app.readTask(1));
+    console.log(app.readTask(1));
     // demonstrates how to update a task afer it has been created
     console.log(
-      await app.updateTask(1, [
+      app.updateTask(1, [
         "harnessing the true versatility of that vanilla JS offers.",
         "Team 4 Tasks",
         "FrontEnd",
@@ -185,29 +204,29 @@
       ])
     );
     // demonstrates how to delete a task using its id
-    console.log(await app.deleteTask(1));
+    console.log(app.deleteTask(1));
     // demonstrates how to seed the "database" with json file
-    console.log(await app.seed());
+    console.log(app.seed());
     // demonstrates the successful retrieval of all tasks using the readAllTasks method on app
-    console.log(await app.readAllTasks());
+    console.log(app.readAllTasks());
     // demonstrates the resetState function
-    console.log(await app.resetState())
+    console.log(app.resetState())
     // demonstrates the init function which runs the resetState then seed function and generates sidebar also!
     await app.init();
     // demonstrates the use of returnByGroup for returning tasks within a particular group
-    console.log(await app.returnByGroup("STUDYING"));
+    console.log(app.returnByGroup("STUDYING"));
     // demonstrates the use of returnByCategory for returning tasks within a particular category
-    console.log(await app.returnByCategory("Node Js Course"));
+    console.log(app.returnByCategory("Node Js Course"));
     // demonstrates the use of returnUniqueGroupNames
-    console.log(await app.returnUniqueGroupNames());
+    console.log(app.returnUniqueGroupNames());
     // demonstrates the use of returnUniqueCategoryNames
-    console.log(await app.returnUniqueCategoryNames());
+    console.log(app.returnUniqueCategoryNames());
     // demonstrates the use of returnByUniqueGroups to get an array of separate array of task objects for each group
-    console.log(await app.returnUniqueGroupTasks());
+    console.log(app.returnUniqueGroupTasks());
     // demonstrates the use of returnByUniqueCategories to get an array of separate array of task objects for each category
-    console.log(await app.returnUniqueCategoryTasks());
+    console.log(app.returnUniqueCategoryTasks());
     // demonstrates the use of createEle method to render html on demand
-    createEle(
+    app.view.createEle(
       "li",
       "createEle Example",
       document.getElementById("routine-activities")
