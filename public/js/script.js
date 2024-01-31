@@ -162,7 +162,7 @@
   (async function () {
     // logs a successful creation of a task into the application
     console.log(
-      app.createTask(
+      await app.createTask(
         "demonstrating the power of JavaScript Classes",
         "Group Example I",
         "Category",
@@ -172,10 +172,10 @@
       )
     );
     // demonstrates how to read a task after it has been created (select by the id)
-    console.log(app.readTask(1));
+    console.log(await app.readTask(1));
     // demonstrates how to update a task afer it has been created
     console.log(
-      app.updateTask(1, [
+      await app.updateTask(1, [
         "harnessing the true versatility of that vanilla JS offers.",
         "Team 4 Tasks",
         "FrontEnd",
@@ -192,7 +192,7 @@
     console.log(await app.readAllTasks());
     // demonstrates the resetState function
     console.log(await app.resetState())
-    // demonstrates the init function which runs the resetState then seed function
+    // demonstrates the init function which runs the resetState then seed function and generates sidebar also!
     await app.init();
     // demonstrates the use of returnByGroup for returning tasks within a particular group
     console.log(await app.returnByGroup("STUDYING"));
