@@ -106,12 +106,15 @@
       this.complete = false;
       return this;
     }
+    // method to delete a task:
     delete() {
       let index = app.tasks.indexOf(this);
       if (index > -1) app.tasks.splice(index, 1);
       return app.tasks;
     }
   }
+  /**************************LOGGING EXAMPLES BELOW************************** */
+
   // logs a successful creation of a task into the application
   console.log(
     app.createTask(
