@@ -88,12 +88,14 @@ export default class View {
   }
   // method to generate static html as found within Emmets html file
   renderNavbar() {
+    const today = new Date();
+    const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
     return this.createView(
       "nav",
       `
       <div class="navbar-top">
           <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
-          <div id="date" class="date">Today:</div>
+          <div id="date" class="date">Today: ${formattedDate}</div>
           <div class="btn-undo">
             <button class="btn undo">
               <img src="./img/ci_undo.svg" alt="undo button" />
