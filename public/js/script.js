@@ -15,7 +15,7 @@
       }
       //Function to pull in the data from the data.model.json file:
       async seed() {
-        await fetch("./js/data.model.json")
+        return await fetch("./js/data.model.json")
           .then((res) => res.json())
           .then((data) =>
             data.map(
