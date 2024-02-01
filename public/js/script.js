@@ -31,9 +31,32 @@
             )
           );
       }
+
+      load() {
+        /*check if localStorage has data, 
+          if true, return localStorage
+          if false, return JSON file
+        */
+        const storedData = localStorage.getItem('userSavedData');
+       
+        if(storedData){
+          console.log("User Saved Data", true);
+          return JSON.parse(storedData);
+        } else {
+          console.log("User Saved Data", false);
+          return app.tasks;
+        }
+      }
+
     }
     const app = new App();
-  
+
+    //Calling the load() method to get the data from the local storage or from JSON file:
+    const loadedData = app.load()
+    
+    //
+    console.log("Loaded Data", loadedData);
+
     //Object constructor to create new tasks:
     class Task {
       constructor(name, group, category, frequency, days, calander) {
@@ -92,12 +115,26 @@
   // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
   const groups = () => [...new Set(app.tasks.map(task => task.group))]
     setTimeout(() => groups().map(group => new View(group)), 50);
-    console.log(groups())
+    console.log("Group List", groups())
   })();
 
 
+/*Steps to using local storage to maintain user's entered data:
+1. Data will be in the form of an object.
+2. Since localStorage can only store strings, we need to convert data into a string format.
+localStorage.setItem('userSavedData', JSON.stringify(myArray));
+3. To retrieve the item, we need to use .getItem('key name here'). Then turn it back into it's original form.
+const storedData = localStorage.getItem('userSavedData');
+const retrievedData = JSON.parse(storedData);
 
-
+4. To remove items from localStorage, use .removeItem().
+localStorage.removeItem('key name here');
+5. To clear all data stored in localStorage, you can use the clear method.
+localStorage.clear();
+Notes:
+It's important to handle potential errors, such as when the storage is full 
+or the user has disabled third-party cookies.
+*/
 
 
 // import { userActivities } from "./data.js"
