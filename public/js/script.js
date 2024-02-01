@@ -20,6 +20,9 @@
         }
         init() {
             this.renderAside("My Daily Checklist");
+            this.renderNavBar();
+            this.renderContent();
+            this.renderFooter();
         }
         createElement(element, content, anchor, id, classList) {
             const newView = new View(element, content, anchor, id, classList);
@@ -71,8 +74,105 @@
                 </div>
             </div>`, document.getElementById("app"), "element-el", "aside")
         }
+
+        renderNavBar() {
+          return this.createElement( "navbar", 
+          
+          `<nav class="navbar">
+            <div class="navbar-top">
+                <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
+                <div id="date" class="date">Today:</div>
+                <div class="btn-undo">
+                    <button class="btn undo">
+                        <img src="./img/ci_undo.svg" alt="undo button">
+                        undo
+                    </button>
+                    <button class="btn undo">
+                        <img src="./img/ci_redo.svg" alt="redo button">
+                        undo
+                    </button>
+                    <a href="#" class="btn btn-save">Save</a>
+                </div>
+            </div>            
+            <div class="navbtn">
+                <a href="#" class="btn-day">Today</a>
+                <a href="#" class="btn-month">Month</a>
+                <a href="#" class="btn-year">Year</a>      
+            </div>
+          </nav>` , document.getElementById("app"), "element-el", "navbar")
+        }
+        renderContent() {
+          return this.createElement( "content", 
+          `<content class="content">
+          <div class="content-search">
+              <div class="priority">
+                  <a href="#" class="btn btn-lite btn-blue">Low</a>
+                  <a href="#" class="btn btn-lite btn-orange">Med</a>
+                  <a href="#" class="btn btn-lite btn-red">High</a>
+
+                  <div class="search">
+                      <input type="text" placeholder="">
+                      <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
+                  </div>
+              </div>               
+          </div>
+          <div class="content-activity">
+              <h2 class="category-name" id="category-name-1">Routine Activities</h2>
+              <div class="content-main">
+                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+                  <div class="content-inner">
+                      <div class="content-task">
+                          <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+                      </div>
+                      <div class="content-description">
+                          <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                          <div class="content-description-edit">
+                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                          </div>                            
+                      </div>                        
+                  </div>
+
+              </div>  
+              <div class="content-activity">
+                  <h2 class="category-name" id="category-name-2">Chingu</h2>
+                  <div class="content-main">
+                      <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+                      <div class="content-inner">
+                          <div class="content-task">
+                              <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
+                          </div>
+                          <div class="content-description">
+                              <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
+                              <div class="content-description-edit">
+                                  <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                                  <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                              </div>                            
+                          </div>                        
+                      </div>
+                  </div>
+              </div>  
+          </content>`, document.getElementById("app"), "element-el", "content")
+        }
+        renderFooter() {
+          return this.createElement( "footer", 
+          `<footer>
+              <div class="footer-left">
+                <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
+                  <p class="copyright">© Chingu Team 04 Github</p>
+                </a>
+              </div>
+              
+              <a href="https://www.chingu.io" class="footer-right">          
+                  <p class="copyright">Chingu</p>
+                  <img class="chingu-logo" src="./img/chingo-logo.png"
+                    />
+              </a>            
+            </footer> `, document.getElementById("app"), "element-el", "footer")
+        }
+
     }
-    
+
     class App {
       constructor() {
         this.tasks = [];
