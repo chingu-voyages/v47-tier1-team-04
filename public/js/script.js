@@ -95,7 +95,28 @@
     console.log(groups())
   })();
 
+// Complete task toggle
+const ellipses = document.querySelectorAll(".ellipse")
 
+ellipses.forEach(function(ellipse) {
+    ellipse.addEventListener("click", function() {
+                
+        if (this.src.includes("Ellipse8.svg")) {
+            this.src = "./img/favicon.png";
+            this.style.width = '55px';
+            this.style.height = '55px';
+            this.parentElement.style.display = 'flex';
+            this.parentElement.style.justifyContent = 'center';
+            this.parentElement.style.alignItems = 'center';
+        } else {
+            this.src = "./img/Ellipse8.svg";
+        }
+        
+        const contentInner = this.closest('.content-main').querySelector('.content-inner');
+        
+        contentInner.classList.toggle('darken');
+    });
+}); 
 
 
 
