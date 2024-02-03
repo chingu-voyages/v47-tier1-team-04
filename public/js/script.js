@@ -96,8 +96,48 @@
   })();
 
 
-  
 
+// Complete Project Mark off
+const ellipses = document.querySelectorAll(".ellipse")
+
+ellipses.forEach(function(ellipse) {
+    ellipse.addEventListener("click", function() {
+                
+        if (this.src.includes("Ellipse8.svg")) {
+            this.src = "./img/favicon.png";
+            this.style.width = '55px';
+            this.style.height = '55px';
+            this.parentElement.style.display = 'flex';
+            this.parentElement.style.justifyContent = 'center';
+            this.parentElement.style.alignItems = 'center';
+        } else {
+            this.src = "./img/Ellipse8.svg";
+        }
+    });
+});
+
+// Completed Task Mark off
+const taskNames = document.querySelectorAll(".task-name");
+
+taskNames.forEach(function(taskName) {
+    taskName.addEventListener("click", function() {
+        this.classList.toggle("complete");
+    });
+});
+
+// Modal pop-up
+const addIconEl = document.getElementById("add-icon-el");
+const modal = document.querySelector(".modal");
+const modalClose = document.getElementById("modal-close-el")
+
+addIconEl.addEventListener("click", function() {
+    console.log("we have lift off");
+    modal.style.display = "block";
+});
+
+modalClose.addEventListener("click", function() {
+    modal.style.display = "none"
+})
 
 
 
