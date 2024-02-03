@@ -1,3 +1,23 @@
+import Controller from "./controller.js";
+//Function to display the data into HTML:
+export class View {
+  constructor(task) {
+    this.task = task;
+  }
+  renderView() {
+    const anchor = document.querySelector(".daily-checklist");
+    const view = document.createElement("div");
+    view.innerHTML = `
+        <div class="activity">
+           <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+           <ul id="activity-el">
+       
+           </ul>
+       </div>
+        `;
+        anchor.append(view);
+      }
+    }
 class App {
   constructor() {
     this.tasks = [];
@@ -72,26 +92,6 @@ export class Task {
     return this;
   }
 }
-
-//Function to display the data into HTML:
-class View {
-  constructor(task) {
-    this.task = task;
-  }
-  renderView() {
-    const anchor = document.querySelector(".daily-checklist");
-    const view = document.createElement("div");
-    view.innerHTML = `
-        <div class="activity">
-           <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-           <ul id="activity-el">
-       
-           </ul>
-       </div>
-        `;
-        anchor.append(view);
-      }
-    }
   
     app.init();
     // setTimeout(() => console.log(app), 50)
