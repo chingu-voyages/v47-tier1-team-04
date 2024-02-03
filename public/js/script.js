@@ -95,6 +95,8 @@
     console.log(groups())
   })();
 
+
+
 // Complete task toggle
 const ellipses = document.querySelectorAll(".ellipse")
 
@@ -111,12 +113,17 @@ ellipses.forEach(function(ellipse) {
         } else {
             this.src = "./img/Ellipse8.svg";
         }
-        
-        const contentInner = this.closest('.content-main').querySelector('.content-inner');
-        
-        contentInner.classList.toggle('darken');
     });
-}); 
+});
+
+// Add event listener to task names for marking as complete
+const taskNames = document.querySelectorAll(".task-name");
+
+taskNames.forEach(function(taskName) {
+    taskName.addEventListener("click", function() {
+        this.classList.toggle("complete");
+    });
+});
 
 
 
