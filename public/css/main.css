@@ -16,6 +16,237 @@ body {
     width: 100vw;
 }
 
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    max-width: 1100px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+  
+.modal-top-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-btn-save {
+    background: #fff;
+    color: #9746C9;
+    border: 1px solid #9746C9;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    width: 120px;
+    height: 40px;   
+    margin-top: 15px;
+    margin-bottom: 15px;
+}    
+  
+.task-category {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.modal-task,
+.modal-category,
+.modal-description,
+.modal-subtask,
+.modal-priority,
+.notes {
+    font-size: 18px;
+    font-weight: 500;
+    color: #8F8F8F;
+}
+
+.modal-task input {
+    height: 50px;
+    width: 400px;
+    font-size: 25px;
+    border: 1px #C7C5C5 solid;
+    border-radius: 20px;
+    padding-left: 20px;
+}
+
+.modal-category select {
+    height: 50px;
+    width: 400px;
+    font-size: 25px;
+    border: 1px #C7C5C5 solid;
+    border-radius: 20px;
+    padding-left: 20px;
+}
+
+.modal-category select option {
+    font-size: 25px;
+}
+  
+.modal-description {
+    margin-left: 60px;
+    margin-bottom: 15px;
+}
+
+.modal-description input {
+    height: 50px;
+    width: 100%;
+    font-size: 25px;
+    border: 1px #C7C5C5 solid;
+    border-radius: 20px;
+    padding-left: 20px;
+}
+
+.modal-subtask {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.modal-subtask input[type="checkbox"] {
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.modal-subtask input[type="text"] {
+    flex: 1;
+    height: 45px;
+    font-size: 25px;
+    border: 1px #C7C5C5 solid;
+    border-radius: 20px;
+    padding-left: 20px;
+}
+  
+/* Date and Time Spinner styles */
+.modal-date-time {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-date-time {
+    font-size: 25px;
+}
+
+.datepicker-spinbuttons,
+.timepicker-spinbuttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.spinbutton {
+  float: left;
+  text-align: center;
+}
+
+.spinbutton:first-child {
+  border-left: 4px;
+}
+
+.spinbutton:last-child {
+  border-right: 4px;
+}
+
+.spinbutton .previous,
+.spinbutton .next {
+  color: #666;
+  border-bottom: 1px solid black;
+}
+
+.spinbutton .next {
+  border-top: 1px solid black;
+}
+
+.spinbutton button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.spinbutton .decrease {
+  position: relative;
+  top: 4px;
+}
+
+.spinbutton.focus,
+.spinbutton:hover {
+  color: #444;
+  background-color: #eee;
+}
+
+.modal-priority {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.modal-priority select {
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #DCF2FF;
+    color: #02A4FF;
+}
+
+.modal-priority select option {
+    font-size: 25px;
+}
+
+.modal-priority select:focus {
+    border-color: #ccc;
+    outline: none;
+}
+
+.notes {
+    height: 100px;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    resize: none;
+}
+
+.add-icon {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom right, #9746C9, #00D2FF);
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.add-icon:hover {
+    opacity: 0.65;
+  }
+
 .container {       
     display: grid;
     grid-template-areas:
