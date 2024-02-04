@@ -447,3 +447,5 @@ app.init("My Daily Classlist");
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
 const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
+console.log(app.tasks);
+(async () => console.log(await app.tasks))(); // make the console log asyncrinus and to be seen when I inspect the page
