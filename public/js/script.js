@@ -1,3 +1,20 @@
+// Function to fetch data from Json file:
+const fetchJsonFile = async function() {
+    try {
+      const response = await fetch('https://raw.githubusercontent.com/chingu-voyages/voyage-project-tier1-dailytasks/main/assets/tasks-example.json');
+      const data = await response.json();
+      
+      console.log("Fetched Data:", data);
+      return data;
+    } catch (error) {
+      console.error('Error loading JSON:', error);
+      throw error;
+    }
+  };
+
+  fetchJsonFile();
+  
+
 import Controller from "./controller.js";
 let viewIndex = 1;
 export class View {
