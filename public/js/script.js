@@ -115,58 +115,59 @@ export class View {
     );
   }
   renderContent() {
-    return this.createElement(
+    this.createElement(
       "content",
-      `<content class="content">
-          <div class="content-search">
-              <div class="priority">
-                  <a href="#" class="btn btn-lite btn-blue">Low</a>
-                  <a href="#" class="btn btn-lite btn-orange">Med</a>
-                  <a href="#" class="btn btn-lite btn-red">High</a>
+      `<div class="content-search">
+      <div class="priority">
+          <a href="#" class="btn btn-lite btn-blue">Low</a>
+          <a href="#" class="btn btn-lite btn-orange">Med</a>
+          <a href="#" class="btn btn-lite btn-red">High</a>
 
-                  <div class="search">
-                      <input type="text" placeholder="">
-                      <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-                  </div>
-              </div>               
+          <div class="search">
+              <input type="text" placeholder="">
+              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
           </div>
-          <div class="content-activity">
-              <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-              <div class="content-main">
-                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                  <div class="content-inner">
-                      <div class="content-task">
-                          <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-                      </div>
-                      <div class="content-description">
-                          <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                          <div class="content-description-edit">
-                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                          </div>                            
-                      </div>                        
-                  </div>
+      </div>               
+  </div>
+  <div class="content-activity">
+      <h2 class="category-name" id="category-name-1">Routine Activities</h2>
+      <div class="content-main">
+          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+          <div class="content-inner">
+              <div class="content-task">
+                  <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+              </div>
+              <div class="content-description">
+                  <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                  <div class="content-description-edit">
+                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                  </div>                            
+              </div>                        
+          </div>
 
-              </div>  
-              <div class="content-activity">
-                  <h2 class="category-name" id="category-name-2">Chingu</h2>
-                  <div class="content-main">
-                      <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                      <div class="content-inner">
-                          <div class="content-task">
-                              <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-                          </div>
-                          <div class="content-description">
-                              <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                              <div class="content-description-edit">
-                                  <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                                  <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                              </div>                            
-                          </div>                        
-                      </div>
-                  </div>
-              </div>  
-          </content>`,
+      </div>               
+  </div>
+
+  <div class="content-activity">
+      <h2 class="category-name" id="category-name-2">Chingu</h2>
+      <div class="content-main">
+          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+          <div class="content-inner">
+              <div class="content-task">
+                  <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
+              </div>
+              <div class="content-description">
+                  <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
+                  <div class="content-description-edit">
+                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                  </div>                            
+              </div>                        
+          </div>
+
+      </div>
+  </div>`,
       document.getElementById("app"),
       "element-el",
       "content"
@@ -291,7 +292,6 @@ export class Task {
     return this;
   }
 }
-
 
 app.init("My Daily Classlist");
 // setTimeout(() => console.log(app), 50)
