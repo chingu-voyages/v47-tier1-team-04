@@ -114,7 +114,7 @@ export class View {
     );
   }
   renderContent() {
-    return this.createElement(
+    this.createElement(
       "content",
       `<content class="content">
           <div class="content-search">
@@ -190,6 +190,14 @@ export class View {
           this.closest(".content-main").querySelector(".content-inner");
 
         contentInner.classList.toggle("darken");
+      });
+    });
+    // Add event listener to task names for marking as complete
+    const taskNames = document.querySelectorAll(".task-name");
+
+    taskNames.forEach(function (taskName) {
+      taskName.addEventListener("click", function () {
+        this.classList.toggle("complete");
       });
     });
   }
