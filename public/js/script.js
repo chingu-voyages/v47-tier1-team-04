@@ -23,6 +23,7 @@ export class View {
     this.renderAsideGroups(title);
     this.renderNavBar();
     this.renderContent();
+    this.renderContentGroups();
     this.renderModalButton();
     this.renderFooter();
   }
@@ -130,47 +131,11 @@ export class View {
           </div>
       </div>               
   </div>
-  <div class="content-activity">
-      <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-      <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-          <div class="content-inner">
-              <div class="content-task">
-                  <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-              </div>
-              <div class="content-description">
-                  <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                  <div class="content-description-edit">
-                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                  </div>                            
-              </div>                        
-          </div>
+  
 
-      </div>               
-  </div>
-
-  <div class="content-activity">
-      <h2 class="category-name" id="category-name-2">Chingu</h2>
-      <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-          <div class="content-inner">
-              <div class="content-task">
-                  <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-              </div>
-              <div class="content-description">
-                  <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                  <div class="content-description-edit">
-                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                  </div>                            
-              </div>                        
-          </div>
-
-      </div>
-  </div>`,
+  `,
       document.getElementById("app"),
-      "element-el",
+      "content",
       "content"
     );
     // Complete task toggle
@@ -204,6 +169,44 @@ export class View {
       });
     });
   }
+
+  renderContentGroup(group) {
+    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${group}`, "content-activity")
+  }
+
+  renderContentGroups() {
+    console.log(app.controller.returnUniqueGroupNames());
+    app.controller.returnUniqueGroupNames().map(group => {
+      app.view.renderContentGroup(group);
+      this.createElement("div",)
+    })
+  }
+  // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
+
+  
+
+  renderCategory(group, category) {
+    this.createElement("div", `
+    <div class="content-main">
+        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+        <div class="content-inner">
+            <div class="content-task">
+                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+            </div>
+            <div class="content-description">
+                <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                <div class="content-description-edit">
+                    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                </div>                            
+            </div>                        
+        </div>
+
+    </div>               
+`, document.getElementById(`content_${group}`))
+  }
+  
+
   renderModalButton() {
     this.createElement(
       "div",
@@ -439,7 +442,6 @@ export class Task {
   }
 }
 
-app.init("My Daily Classlist");
 // setTimeout(() => console.log(app), 50)
 // setTimeout(() => console.log(app.tasks[0].read()), 50)
 //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
@@ -448,4 +450,6 @@ app.init("My Daily Classlist");
 const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
 console.log(app.tasks);
-(async () => console.log(await app.tasks))(); // make the console log asyncrinus and to be seen when I inspect the page
+(async () => {
+  await app.init("My Daily Classlist");
+  console.log(app.tasks)})(); // make the console log asyncrinus and to be seen when I inspect the page
