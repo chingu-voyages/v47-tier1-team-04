@@ -26,6 +26,7 @@ export class View {
     this.renderModalButton();
     this.renderFooter();
   }
+  //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
@@ -117,56 +118,57 @@ export class View {
   renderContent() {
     this.createElement(
       "content",
-      `<content class="content">
-          <div class="content-search">
-              <div class="priority">
-                  <a href="#" class="btn btn-lite btn-blue">Low</a>
-                  <a href="#" class="btn btn-lite btn-orange">Med</a>
-                  <a href="#" class="btn btn-lite btn-red">High</a>
+      `<div class="content-search">
+      <div class="priority">
+          <a href="#" class="btn btn-lite btn-blue">Low</a>
+          <a href="#" class="btn btn-lite btn-orange">Med</a>
+          <a href="#" class="btn btn-lite btn-red">High</a>
 
-                  <div class="search">
-                      <input type="text" placeholder="">
-                      <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-                  </div>
-              </div>               
+          <div class="search">
+              <input type="text" placeholder="">
+              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
           </div>
-          <div class="content-activity">
-              <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-              <div class="content-main">
-                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                  <div class="content-inner">
-                      <div class="content-task">
-                          <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-                      </div>
-                      <div class="content-description">
-                          <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                          <div class="content-description-edit">
-                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                          </div>                            
-                      </div>                        
-                  </div>
+      </div>               
+  </div>
+  <div class="content-activity">
+      <h2 class="category-name" id="category-name-1">Routine Activities</h2>
+      <div class="content-main">
+          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+          <div class="content-inner">
+              <div class="content-task">
+                  <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+              </div>
+              <div class="content-description">
+                  <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                  <div class="content-description-edit">
+                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                  </div>                            
+              </div>                        
+          </div>
 
-              </div>  
-              <div class="content-activity">
-                  <h2 class="category-name" id="category-name-2">Chingu</h2>
-                  <div class="content-main">
-                      <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                      <div class="content-inner">
-                          <div class="content-task">
-                              <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-                          </div>
-                          <div class="content-description">
-                              <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                              <div class="content-description-edit">
-                                  <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                                  <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                              </div>                            
-                          </div>                        
-                      </div>
-                  </div>
-              </div>  
-          </content>`,
+      </div>               
+  </div>
+
+  <div class="content-activity">
+      <h2 class="category-name" id="category-name-2">Chingu</h2>
+      <div class="content-main">
+          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+          <div class="content-inner">
+              <div class="content-task">
+                  <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
+              </div>
+              <div class="content-description">
+                  <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
+                  <div class="content-description-edit">
+                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                  </div>                            
+              </div>                        
+          </div>
+
+      </div>
+  </div>`,
       document.getElementById("app"),
       "element-el",
       "content"
@@ -203,8 +205,14 @@ export class View {
     });
   }
   renderModalButton() {
-    this.createElement('div', '<i class="fa-solid fa-plus add-icon"></i>', document.getElementById('app'), 'add-icon-el', 'fa-solid fa-plus add-icon')
-    this.renderModal()
+    this.createElement(
+      "div",
+      '<i class="fa-solid fa-plus add-icon"></i>',
+      document.getElementById("app"),
+      "add-icon-el",
+      "fa-solid fa-plus add-icon"
+    );
+    this.renderModal();
   }
   renderModal() {
     this.createElement(
@@ -302,7 +310,7 @@ export class View {
     <textarea name="notes" id="notes" class="notes" placeholder="Notes..."></textarea>
    <!-- end of modal -->
   <!-- https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/datepicker-spinbuttons/ -->`,
-      document.getElementById('app'),
+      document.getElementById("app"),
       null,
       "modal"
     );
@@ -324,7 +332,7 @@ export class View {
     });
   }
   renderFooter() {
-    return this.createElement(
+    this.createElement(
       "footer",
       `<footer>
               <div class="footer-left">
@@ -343,6 +351,17 @@ export class View {
       "element-el",
       "footer"
     );
+    // Hamburger Menu Display on Mobile
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const asideEl = document.getElementById("aside-el");
+
+    menuBtn.addEventListener("click", function () {
+      asideEl.style.display =
+        asideEl.style.display === "none" || asideEl.style.display === ""
+          ? "block"
+          : "none";
+    });
   }
 }
 
@@ -427,8 +446,4 @@ app.init("My Daily Classlist");
 // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
 const groups = () => [...new Set(app.tasks.map((task) => task.group))];
-// setTimeout(() => groups().map(group => new View(group)), 50);
-// console.log(app);
 
-//setTimeout(() => groups().map((group) => new View(group)), 50);
-console.log(groups());
