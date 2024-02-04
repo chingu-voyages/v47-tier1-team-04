@@ -203,8 +203,14 @@ export class View {
     });
   }
   renderModalButton() {
-    this.createElement('div', '<i class="fa-solid fa-plus add-icon"></i>', document.getElementById('app'), 'add-icon-el', 'fa-solid fa-plus add-icon')
-    this.renderModal()
+    this.createElement(
+      "div",
+      '<i class="fa-solid fa-plus add-icon"></i>',
+      document.getElementById("app"),
+      "add-icon-el",
+      "fa-solid fa-plus add-icon"
+    );
+    this.renderModal();
   }
   renderModal() {
     this.createElement(
@@ -302,7 +308,7 @@ export class View {
     <textarea name="notes" id="notes" class="notes" placeholder="Notes..."></textarea>
    <!-- end of modal -->
   <!-- https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/datepicker-spinbuttons/ -->`,
-      document.getElementById('app'),
+      document.getElementById("app"),
       null,
       "modal"
     );
@@ -324,7 +330,7 @@ export class View {
     });
   }
   renderFooter() {
-    return this.createElement(
+    this.createElement(
       "footer",
       `<footer>
               <div class="footer-left">
@@ -343,6 +349,17 @@ export class View {
       "element-el",
       "footer"
     );
+    // Hamburger Menu Display on Mobile
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const asideEl = document.getElementById("aside-el");
+
+    menuBtn.addEventListener("click", function () {
+      asideEl.style.display =
+        asideEl.style.display === "none" || asideEl.style.display === ""
+          ? "block"
+          : "none";
+    });
   }
 }
 
