@@ -1,4 +1,5 @@
 import Controller from "./controller.js";
+import renderInfoPopup from "./views/renderInfoPopup.js";
 import { kebabCase } from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
@@ -27,6 +28,7 @@ export class View {
     this.renderContentGroups();
     this.renderContentTasks();
     this.renderContentTasks();
+    renderInfoPopup();
     this.renderModalButton();
     this.renderFooter();
   }
@@ -34,6 +36,7 @@ export class View {
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
+    return newView;
   }
   renderAside(title) {
     return this.createElement(
@@ -197,7 +200,6 @@ export class View {
   }
 
   renderContentGroups() {
-    console.log(app.controller.returnUniqueGroupNames());
     app.controller.returnUniqueGroupNames().map((group) => {
       app.view.renderContentGroup(group);
       app.controller
@@ -399,16 +401,16 @@ export class View {
 
     // Automatically populate details with task name and category from html
     // Get the task name and category name elements
-    const taskNameElement = document.getElementById("task-name-1-1");
-    const categoryNameElement = document.getElementById("category-name-1");
+    // const taskNameElement = document.getElementById("task-name-1-1");
+    // const categoryNameElement = document.getElementById("category-name-1");
 
-    // Get the input fields in the details popup
-    const taskNameInput = document.getElementById("task-name-input");
-    const categoryNameInput = document.getElementById("category-name-input");
+    // // Get the input fields in the details popup
+    // const taskNameInput = document.getElementById("task-name-input");
+    // const categoryNameInput = document.getElementById("category-name-input");
 
-    // Set the initial values of the input fields
-    taskNameInput.value = taskNameElement.textContent;
-    categoryNameInput.value = categoryNameElement.textContent;
+    // // Set the initial values of the input fields
+    // taskNameInput.value = taskNameElement.textContent;
+    // categoryNameInput.value = categoryNameElement.textContent;
   }
   renderFooter() {
     this.createElement(
