@@ -25,6 +25,7 @@ export class View {
     this.renderNavBar();
     this.renderContent();
     this.renderContentGroups();
+    this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
   }
