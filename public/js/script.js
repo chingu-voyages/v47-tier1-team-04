@@ -192,7 +192,7 @@ export class View {
   }
 
   renderContentTasks() {
-    app.tasks.map(task => this.renderContentTask(task.name))
+    app.tasks.map(task => this.renderContentTask(task))
   }
   
 
@@ -453,9 +453,10 @@ export class Task {
 //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
 // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-const groups = () => [...new Set(app.tasks.map((task) => task.group))];
+// const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
-console.log(app.tasks);
+// console.log(app.tasks);
 (async () => {
   await app.init("My Daily Classlist");
-  console.log(app.tasks)})(); // make the console log asyncrinus and to be seen when I inspect the page
+  // console.log(app.tasks)
+})(); // make the console log asyncrinus and to be seen when I inspect the page
