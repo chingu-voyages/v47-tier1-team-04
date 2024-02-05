@@ -1,4 +1,5 @@
 import Controller from "./controller.js";
+import {kebabCase} from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -59,8 +60,8 @@ export class View {
       "div",
       `
             
-              <h3 id="category-title-1">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="sidebar_${group}">
+              <h3 id="category-title-1">${kebabCase(group)} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="sidebar_${kebabCase(group)}">
                   
               </ul>
             `,
@@ -81,7 +82,7 @@ export class View {
     app.view.createElement(
       "li",
       category,
-      document.getElementById(`sidebar_${group}`)
+      document.getElementById(`sidebar_${kebabCase(group)}`)
     );
   }
 
@@ -171,21 +172,31 @@ export class View {
   }
 
   renderContentGroup(group) {
-    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${group}`, "content-activity")
+    this.createElement("div", ` <h2 class="category-name">${kebabCase(group)}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
   }
 
   renderContentGroups() {
     console.log(app.controller.returnUniqueGroupNames());
     app.controller.returnUniqueGroupNames().map(group => {
       app.view.renderContentGroup(group);
-      this.createElement("div",)
+      app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(category))
     })
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
+  renderContentTask(task) {
+    const anchor = document.querySelector(`#category_${task.category} .content-description`)
+    this.createElement("p", task.name, anchor)
+    this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
+  }
+
+  renderContentTasks() {
+    app.tasks.map(task => this.renderContentTask(task))
+  }
   
 
-  renderCategory(group, category) {
+  renderContentCategory(group, category) {
     this.createElement("div", `
     <div class="content-main">
         <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
@@ -203,7 +214,7 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`content_${group}`))
+`, document.getElementById(`content_${kebabCase(group)}`))
   }
   
 
