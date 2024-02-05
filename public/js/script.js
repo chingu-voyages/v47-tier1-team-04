@@ -185,6 +185,7 @@ export class View {
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
   renderContentTask(task) {
+    
     const anchor = document.querySelector(`#category_${kebabCase(task.category)} .content-description`)
     this.createElement("p", task.name, anchor)
     this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
@@ -204,7 +205,8 @@ export class View {
             <div class="content-task">
                 <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
             </div>
-                     
+            <div class="content-description">
+            </div>         
         </div>
 
     </div>               
