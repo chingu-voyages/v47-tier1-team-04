@@ -178,7 +178,7 @@ export class View {
     console.log(app.controller.returnUniqueGroupNames());
     app.controller.returnUniqueGroupNames().map(group => {
       app.view.renderContentGroup(group);
-      app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(category))
+      app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(group, category))
     })
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
@@ -213,7 +213,8 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`group_${kebabCase(group)}`))
+`, document.getElementById(`content_${kebabCase(group)}`),
+`category_${kebabCase(category)}`)
   }
   
 
