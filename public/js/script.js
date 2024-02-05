@@ -1,5 +1,5 @@
 import Controller from "./controller.js";
-import {kebabCase} from "./utilities/utilities.js";
+import { kebabCase } from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -69,8 +69,7 @@ export class View {
     );
   }
   renderAsideGroups(title) {
-    console.log(app.controller.returnUniqueGroupNames());
-    let aside = this.renderAside(title);
+    this.renderAside(title);
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderAsideGroup(group);
       app.controller
