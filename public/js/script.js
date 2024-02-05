@@ -1,4 +1,5 @@
 import Controller from "./controller.js";
+import { kebabCase } from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -23,9 +24,13 @@ export class View {
     this.renderAsideGroups(title);
     this.renderNavBar();
     this.renderContent();
+    this.renderContentGroups();
+    this.renderContentTasks();
+    this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
   }
+  //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
@@ -66,8 +71,7 @@ export class View {
     );
   }
   renderAsideGroups(title) {
-    console.log(app.controller.returnUniqueGroupNames());
-    let aside = this.renderAside(title);
+    this.renderAside(title);
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderAsideGroup(group);
       app.controller
@@ -117,58 +121,23 @@ export class View {
   renderContent() {
     this.createElement(
       "content",
-      `<content class="content">
-          <div class="content-search">
-              <div class="priority">
-                  <a href="#" class="btn btn-lite btn-blue">Low</a>
-                  <a href="#" class="btn btn-lite btn-orange">Med</a>
-                  <a href="#" class="btn btn-lite btn-red">High</a>
+      `<div class="content-search">
+      <div class="priority">
+          <a href="#" class="btn btn-lite btn-blue">Low</a>
+          <a href="#" class="btn btn-lite btn-orange">Med</a>
+          <a href="#" class="btn btn-lite btn-red">High</a>
 
-                  <div class="search">
-                      <input type="text" placeholder="">
-                      <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-                  </div>
-              </div>               
+          <div class="search">
+              <input type="text" placeholder="">
+              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
           </div>
-          <div class="content-activity">
-              <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-              <div class="content-main">
-                  <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                  <div class="content-inner">
-                      <div class="content-task">
-                          <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-                      </div>
-                      <div class="content-description">
-                          <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                          <div class="content-description-edit">
-                              <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                              <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                          </div>                            
-                      </div>                        
-                  </div>
+      </div>               
+  </div>
+  
 
-              </div>  
-              <div class="content-activity">
-                  <h2 class="category-name" id="category-name-2">Chingu</h2>
-                  <div class="content-main">
-                      <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-                      <div class="content-inner">
-                          <div class="content-task">
-                              <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-                          </div>
-                          <div class="content-description">
-                              <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                              <div class="content-description-edit">
-                                  <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                                  <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                              </div>                            
-                          </div>                        
-                      </div>
-                  </div>
-              </div>  
-          </content>`,
+  `,
       document.getElementById("app"),
-      "element-el",
+      "content",
       "content"
     );
     // Complete task toggle
@@ -202,9 +171,75 @@ export class View {
       });
     });
   }
+
+  renderContentGroup(group) {
+    this.createElement(
+      "div",
+      ` <h2 class="category-name">${group}</h2>`,
+      document.getElementById("content"),
+      `content_${kebabCase(group)}`,
+      "content-activity"
+    );
+  }
+
+  renderContentGroups() {
+    console.log(app.controller.returnUniqueGroupNames());
+    app.controller.returnUniqueGroupNames().map((group) => {
+      app.view.renderContentGroup(group);
+      app.controller
+        .returnUniqueCategoriesByGroup(group)
+        .map((category) => this.renderContentCategory(group, category));
+    });
+  }
+  // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
+
+  renderContentTask(task) {
+    const anchor = document.querySelector(
+      `#category_${kebabCase(task.category)} .content-description`
+    );
+    this.createElement("p", task.name, anchor);
+    this.createElement(
+      "div",
+      ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+      anchor
+    );
+  }
+
+  renderContentTasks() {
+    app.tasks.map((task) => this.renderContentTask(task));
+  }
+
+  renderContentCategory(group, category) {
+    this.createElement(
+      "div",
+      `
+    <div class="content-main">
+        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+        <div class="content-inner">
+            <div class="content-task">
+                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+            </div>
+            <div class="content-description">
+            </div>         
+        </div>
+
+    </div>               
+`,
+      document.getElementById(`content_${kebabCase(group)}`),
+      `category_${kebabCase(category)}`
+    );
+  }
+
   renderModalButton() {
-    this.createElement('div', '<i class="fa-solid fa-plus add-icon"></i>', document.getElementById('app'), 'add-icon-el', 'fa-solid fa-plus add-icon')
-    this.renderModal()
+    this.createElement(
+      "div",
+      '<i class="fa-solid fa-plus add-icon"></i>',
+      document.getElementById("app"),
+      "add-icon-el",
+      "fa-solid fa-plus add-icon"
+    );
+    this.renderModal();
   }
   renderModal() {
     this.createElement(
@@ -302,7 +337,7 @@ export class View {
     <textarea name="notes" id="notes" class="notes" placeholder="Notes..."></textarea>
    <!-- end of modal -->
   <!-- https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/datepicker-spinbuttons/ -->`,
-      document.getElementById('app'),
+      document.getElementById("app"),
       null,
       "modal"
     );
@@ -324,7 +359,7 @@ export class View {
     });
   }
   renderFooter() {
-    return this.createElement(
+    this.createElement(
       "footer",
       `<footer>
               <div class="footer-left">
@@ -343,6 +378,17 @@ export class View {
       "element-el",
       "footer"
     );
+    // Hamburger Menu Display on Mobile
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const asideEl = document.getElementById("aside-el");
+
+    menuBtn.addEventListener("click", function () {
+      asideEl.style.display =
+        asideEl.style.display === "none" || asideEl.style.display === ""
+          ? "block"
+          : "none";
+    });
   }
 }
 
@@ -420,15 +466,15 @@ export class Task {
   }
 }
 
-app.init("My Daily Classlist");
 // setTimeout(() => console.log(app), 50)
 // setTimeout(() => console.log(app.tasks[0].read()), 50)
 //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
 // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-const groups = () => [...new Set(app.tasks.map((task) => task.group))];
-// setTimeout(() => groups().map(group => new View(group)), 50);
-// console.log(app);
+// const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
-//setTimeout(() => groups().map((group) => new View(group)), 50);
-console.log(groups());
+// console.log(app.tasks);
+(async () => {
+  await app.init("My Daily Classlist");
+  // console.log(app.tasks)
+})(); // make the console log asyncrinus and to be seen when I inspect the page
