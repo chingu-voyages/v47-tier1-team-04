@@ -162,26 +162,27 @@ export class View {
         contentInner.classList.toggle("darken");
       });
     });
-    
+
     // Complete task toggle
     // Add event listener to task names for marking as complete
     const taskNames = document.querySelectorAll(".task-name");
 
-    taskNames.forEach(function(taskName) {
-        taskName.addEventListener("click", function() {
-            
-            this.classList.toggle("complete");
+    taskNames.forEach(function (taskName) {
+      taskName.addEventListener("click", function () {
+        this.classList.toggle("complete");
 
-            const checkboxIcon = this.closest('.content-description').querySelector('.checkbox');
+        const checkboxIcon = this.closest(".content-description").querySelector(
+          ".checkbox"
+        );
 
-            if (checkboxIcon.classList.contains('fa-square')) {
-                checkboxIcon.classList.remove('fa-square');
-                checkboxIcon.classList.add('fa-square-check');
-            } else {
-                checkboxIcon.classList.remove('fa-square-check');
-                checkboxIcon.classList.add('fa-square');
-            }
-        });
+        if (checkboxIcon.classList.contains("fa-square")) {
+          checkboxIcon.classList.remove("fa-square");
+          checkboxIcon.classList.add("fa-square-check");
+        } else {
+          checkboxIcon.classList.remove("fa-square-check");
+          checkboxIcon.classList.add("fa-square");
+        }
+      });
     });
   }
 
@@ -210,12 +211,20 @@ export class View {
     const anchor = document.querySelector(
       `#category_${kebabCase(task.category)} .content-description`
     );
-    this.createElement("p", task.name, anchor);
+    this.createElement("i", "", anchor, null, "fa-regular fa-square checkbox");
+    this.createElement("p", task.name, anchor, null, "content-description");
     this.createElement(
       "div",
       ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
       anchor
+    );
+    this.createElement(
+      "i",
+      "",
+      anchor,
+      null,
+      "fa-solid fa-circle-info fa-2x detail"
     );
   }
 
@@ -372,33 +381,34 @@ export class View {
     });
 
     // Details popup window
-    const detailsPopup = document.querySelector('.task-details-popup');
-    const openDetailsButtons = document.querySelectorAll('.fa-circle-info.detail');
-    const closeDetailsButton = document.querySelector('.close-details-popup');
+    const detailsPopup = document.querySelector(".task-details-popup");
+    const openDetailsButtons = document.querySelectorAll(
+      ".fa-circle-info.detail"
+    );
+    const closeDetailsButton = document.querySelector(".close-details-popup");
 
-    openDetailsButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            detailsPopup.style.display = 'block';
-        });
+    openDetailsButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        detailsPopup.style.display = "block";
+      });
     });
 
-    closeDetailsButton.addEventListener('click', function() {
-        detailsPopup.style.display = 'none';
+    closeDetailsButton.addEventListener("click", function () {
+      detailsPopup.style.display = "none";
     });
 
     // Automatically populate details with task name and category from html
     // Get the task name and category name elements
-const taskNameElement = document.getElementById('task-name-1-1');
-const categoryNameElement = document.getElementById('category-name-1');
+    const taskNameElement = document.getElementById("task-name-1-1");
+    const categoryNameElement = document.getElementById("category-name-1");
 
-// Get the input fields in the details popup
-const taskNameInput = document.getElementById('task-name-input');
-const categoryNameInput = document.getElementById('category-name-input');
+    // Get the input fields in the details popup
+    const taskNameInput = document.getElementById("task-name-input");
+    const categoryNameInput = document.getElementById("category-name-input");
 
-// Set the initial values of the input fields
-taskNameInput.value = taskNameElement.textContent;
-categoryNameInput.value = categoryNameElement.textContent;
-
+    // Set the initial values of the input fields
+    taskNameInput.value = taskNameElement.textContent;
+    categoryNameInput.value = categoryNameElement.textContent;
   }
   renderFooter() {
     this.createElement(
