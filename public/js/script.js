@@ -171,7 +171,7 @@ export class View {
   }
 
   renderContentGroup(group) {
-    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${group}`, "content-activity")
+    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
   }
 
   renderContentGroups() {
@@ -184,7 +184,7 @@ export class View {
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
   renderContentTask(task) {
-    const anchor = document.querySelector(`#category_${task.category} .content-description`)
+    const anchor = document.querySelector(`#category_${kebabCase(task.category)} .content-description`)
     this.createElement("p", task.name, anchor)
     this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
@@ -213,7 +213,7 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`content_${group}`))
+`, document.getElementById(`group_${kebabCase(group)}`))
   }
   
 
