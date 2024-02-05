@@ -60,8 +60,8 @@ export class View {
       "div",
       `
             
-              <h3 id="category-title-1">${kebabCase(group)} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="sidebar_${kebabCase(group)}">
+              <h3 id="category-title-1">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="sidebar_${group}">
                   
               </ul>
             `,
@@ -82,7 +82,7 @@ export class View {
     app.view.createElement(
       "li",
       category,
-      document.getElementById(`sidebar_${kebabCase(group)}`)
+      document.getElementById(`sidebar_${group}`)
     );
   }
 
@@ -172,7 +172,7 @@ export class View {
   }
 
   renderContentGroup(group) {
-    this.createElement("div", ` <h2 class="category-name">${kebabCase(group)}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
+    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${group}`, "content-activity")
   }
 
   renderContentGroups() {
@@ -214,7 +214,7 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`content_${kebabCase(group)}`))
+`, document.getElementById(`content_${group}`))
   }
   
 
