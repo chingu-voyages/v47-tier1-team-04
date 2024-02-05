@@ -173,7 +173,7 @@ export class View {
       "element-el",
       "content"
     );
-    // Complete task toggle
+    // Complete Project toggle
     const ellipses = document.querySelectorAll(".ellipse");
 
     ellipses.forEach(function (ellipse) {
@@ -195,13 +195,26 @@ export class View {
         contentInner.classList.toggle("darken");
       });
     });
+    
+    // Complete task toggle
     // Add event listener to task names for marking as complete
     const taskNames = document.querySelectorAll(".task-name");
 
-    taskNames.forEach(function (taskName) {
-      taskName.addEventListener("click", function () {
-        this.classList.toggle("complete");
-      });
+    taskNames.forEach(function(taskName) {
+        taskName.addEventListener("click", function() {
+            
+            this.classList.toggle("complete");
+
+            const checkboxIcon = this.closest('.content-description').querySelector('.checkbox');
+
+            if (checkboxIcon.classList.contains('fa-square')) {
+                checkboxIcon.classList.remove('fa-square');
+                checkboxIcon.classList.add('fa-square-check');
+            } else {
+                checkboxIcon.classList.remove('fa-square-check');
+                checkboxIcon.classList.add('fa-square');
+            }
+        });
     });
   }
   renderModalButton() {
@@ -330,6 +343,35 @@ export class View {
     modalClose.addEventListener("click", function () {
       modal.style.display = "none";
     });
+
+    // Details popup window
+    const detailsPopup = document.querySelector('.task-details-popup');
+    const openDetailsButtons = document.querySelectorAll('.fa-circle-info.detail');
+    const closeDetailsButton = document.querySelector('.close-details-popup');
+
+    openDetailsButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            detailsPopup.style.display = 'block';
+        });
+    });
+
+    closeDetailsButton.addEventListener('click', function() {
+        detailsPopup.style.display = 'none';
+    });
+
+    // Automatically populate details with task name and category from html
+    // Get the task name and category name elements
+const taskNameElement = document.getElementById('task-name-1-1');
+const categoryNameElement = document.getElementById('category-name-1');
+
+// Get the input fields in the details popup
+const taskNameInput = document.getElementById('task-name-input');
+const categoryNameInput = document.getElementById('category-name-input');
+
+// Set the initial values of the input fields
+taskNameInput.value = taskNameElement.textContent;
+categoryNameInput.value = categoryNameElement.textContent;
+
   }
   renderFooter() {
     this.createElement(
