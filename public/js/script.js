@@ -191,7 +191,7 @@ export class View {
   }
 
   renderContentTasks() {
-    app.tasks.map(task => this.renderContentTask(task))
+    app.tasks.map(task => this.renderContentTask(task.name))
   }
   
 
