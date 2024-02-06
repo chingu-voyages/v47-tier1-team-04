@@ -193,7 +193,7 @@ export class View {
   }
 
   renderContentTasks() {
-    app.tasks.map(task => this.renderContentTask(task.name))
+    app.tasks.map(task => this.renderContentTask(task))
   }
   
 
@@ -211,7 +211,7 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`content_${kebabCase(group)}`, `category_${kebabCase(category)}`))
+`, document.getElementById(`content_${kebabCase(group)}`) , `category_${kebabCase(category)}`)
   }
   
 

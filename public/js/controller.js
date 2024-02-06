@@ -18,4 +18,5 @@ export default class Controller{
     returnCategoryByGroup(group) {
         return app.tasks.filter(task => task.group === group);
     }
+    
 }
