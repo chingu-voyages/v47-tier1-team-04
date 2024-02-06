@@ -34,6 +34,10 @@ export class View {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
   }
+  //Popup message to user once they press the "save" button:
+  renderSuccessfulSave(){
+    alert("Your data has been saved!");
+  }
   renderAside(title) {
     return this.createElement(
       "aside",
@@ -88,11 +92,10 @@ export class View {
   }
 
   renderNavBar() {
-    return this.createElement(
-      "navbar",
+    this.createElement(
+      "nav",
 
-      `<nav class="navbar">
-            <div class="navbar-top">
+      `<div class="navbar-top">
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                 <div id="date" class="date">Today:</div>
                 <div class="btn-undo">
@@ -104,19 +107,19 @@ export class View {
                         <img src="./img/ci_redo.svg" alt="redo button">
                         undo
                     </button>
-                    <a href="#" class="btn btn-save">Save</a>
+                    <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
             </div>            
             <div class="navbtn">
                 <a href="#" class="btn-day">Today</a>
                 <a href="#" class="btn-month">Month</a>
                 <a href="#" class="btn-year">Year</a>      
-            </div>
-          </nav>`,
+            </div>`,
       document.getElementById("app"),
       "element-el",
       "navbar"
     );
+    document.getElementById("save-all").addEventListener("click", app.controller.saveData);
   }
   renderContent() {
     this.createElement(
@@ -389,34 +392,11 @@ class App {
     );
     this.controller = new Controller();
   }
-  //Function to initialize app:
-  async init(title) {
-    await this.seed();
-    this.controller.init(title);
-    return this;
-  }
-  //Function to clear/reset tasks:
-  resetState() {
-    this.tasks = [];
-    return this;
-  }
-  //Function to pull in the data from the data.model.json file:
-  async seed() {
-    await fetch("./js/data.model.json")
-      .then((res) => res.json())
-      .then((data) =>
-        data.map(
-          (task) =>
-            new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar
-            )
-        )
-      );
+//Function to initialize app:
+async init(title) {
+  await this.controller.loadData();
+  this.controller.init(title);
+  return this;
   }
 }
 const app = new App();
@@ -460,4 +440,4 @@ const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 console.log(app.tasks);
 (async () => {
   await app.init("My Daily Classlist");
-  console.log(app.tasks)})(); // make the console log asyncrinus and to be seen when I inspect the page
+})(); // make the console log asyncrinus and to be seen when I inspect the page
