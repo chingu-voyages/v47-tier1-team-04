@@ -25,6 +25,7 @@ export class View {
     this.renderContent();
     this.renderModalButton();
     this.renderFooter();
+    this.renderTaskDetailsPopup()
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
@@ -139,12 +140,21 @@ export class View {
                   <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
               </div>
               <div class="content-description">
-                  <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                  <p class="task-name" id="task-name-1-1"><i class="fa-regular fa-square checkbox"></i> Update recipes project backlog</p>
                   <div class="content-description-edit">
+                      <i class="fa-solid fa-circle-info fa-2x detail"></i>
                       <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
                       <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
                   </div>                            
-              </div>                        
+              </div>
+              <div class="content-description">
+                  <p class="task-name" id="task-name-1-2"><i class="fa-regular fa-square checkbox"></i> Fix Task complete and details issue</p>
+                  <div class="content-description-edit">
+                      <i class="fa-solid fa-circle-info fa-2x detail"></i>
+                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                  </div>                            
+              </div>                     
           </div>
 
       </div>               
@@ -159,8 +169,9 @@ export class View {
                   <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
               </div>
               <div class="content-description">
-                  <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
+                  <p class="task-name" id="task-name-2-1"><i class="fa-regular fa-square checkbox"></i> Create the UI/UX design for the daily task project</p>
                   <div class="content-description-edit">
+                      <i class="fa-solid fa-circle-info fa-2x detail"></i>
                       <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
                       <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
                   </div>                            
@@ -344,20 +355,21 @@ export class View {
       modal.style.display = "none";
     });
 
-    // Details popup window
-    const detailsPopup = document.querySelector('.task-details-popup');
-    const openDetailsButtons = document.querySelectorAll('.fa-circle-info.detail');
-    const closeDetailsButton = document.querySelector('.close-details-popup');
+    // // Details popup window
+    // const detailsPopup = document.querySelector('.task-details-popup');
+    // const openDetailsButtons = document.querySelectorAll('.fa-circle-info');
+    // const closeDetailsButton = document.querySelector('.close-details-popup');
 
-    openDetailsButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            detailsPopup.style.display = 'block';
-        });
-    });
+    // openDetailsButtons.forEach(function(button) {
+    //     button.addEventListener('click', function() {
+    //       console.log("details here!")
+    //       detailsPopup.style.display="block"
+    //     });
+    // });
 
-    closeDetailsButton.addEventListener('click', function() {
-        detailsPopup.style.display = 'none';
-    });
+    // closeDetailsButton.addEventListener('click', function() {
+    //     detailsPopup.style.display = 'none';
+    // });
 
     // Automatically populate details with task name and category from html
     // Get the task name and category name elements
@@ -372,7 +384,10 @@ const categoryNameInput = document.getElementById('category-name-input');
 taskNameInput.value = taskNameElement.textContent;
 categoryNameInput.value = categoryNameElement.textContent;
 
+
+
   }
+
   renderFooter() {
     this.createElement(
       "footer",
@@ -393,19 +408,91 @@ categoryNameInput.value = categoryNameElement.textContent;
       "element-el",
       "footer"
     );
-    // Hamburger Menu Display on Mobile
-
-    const menuBtn = document.querySelector(".menu-btn");
-    const asideEl = document.getElementById("aside-el");
-
-    menuBtn.addEventListener("click", function () {
-      asideEl.style.display =
-        asideEl.style.display === "none" || asideEl.style.display === ""
-          ? "block"
-          : "none";
-    });
   }
+
+  // Details Popup for tasks
+  renderTaskDetailsPopup() {
+    this.createElement(
+      "div",
+      `<div class="task-details-popup">
+          <div class="task-details-content">
+              <i class="fa-solid fa-xmark fa-2x close-details-popup"></i>
+              <h2>Task Details</h2>
+              <div class="task-details">
+                  <label for="task-name">Task Name:</label>
+                  <input type="text" id="task-name-input" name="task-name">
+              </div>
+              <div class="task-details">
+                  <label for="category-name">Category Name:</label>
+                  <input type="text" id="category-name-input" name="category-name">
+              </div>
+              <div class="task-details">
+                  <label for="description-name">Description:</label>
+                  <input type="text" id="description-name" name="description-name" size="50">
+              </div>
+              <div class="task-details">
+                  <label for="modal-subtask">Subtask:</label>
+                  <input type="checkbox" id="modal-subtask" name="modal-subtask" value="subtask">
+                  <input type="text" id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
+              </div>
+              <div class="task-details">
+                  <label for="modal-date">Date:</label>
+                  <input type="text" id="modal-date" name="modal-date">
+              </div>
+              <div class="task-details">
+                  <label for="modal-time">Time:</label>
+                  <input type="text" id="modal-time" name="modal-time">
+              </div>
+              <div class="task-details">
+                  <label for="priority-level">Priority:</label>
+                  <select id="priority-level" name="priority-level">
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                  </select>
+              </div>
+              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
+              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
+          </div>
+      </div>`,
+      document.getElementById("app"),
+      null,
+      ".task-details-popup"
+    );
+    
+  }
+
+  // Details popup window FOCUS ON THIS TOMORROW
+  // const detailsPopup = document.querySelector(".task-details-popup");
+  // const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
+  // const closeDetailsButton = document.querySelector(".close-details-popup");
+
+  // openDetailsButtons.forEach(function(button) {
+  //     button.addEventListener('click', function() {
+  //       console.log("details here!")
+  //       detailsPopup.style.display="block"
+  //     });
+  // });
+
+  // closeDetailsButton.addEventListener('click', function() {
+  //     detailsPopup.style.display = 'none';
+  // });
+
+   // Hamburger Menu Display on Mobile
+
+//     const menuBtn = document.querySelector(".menu-btn");
+//     const asideEl = document.getElementById("aside-el");
+
+//     menuBtn.addEventListener("click", function () {
+//       asideEl.style.display =
+//         asideEl.style.display === "none" || asideEl.style.display === ""
+//           ? "block"
+//           : "none";
+//     });
+//   }
 }
+
+
 
 class App {
   constructor() {
@@ -489,3 +576,18 @@ app.init("My Daily Classlist");
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
 const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
+ // Details popup window
+    // const detailsPopup = document.querySelector('.task-details-popup');
+    // const openDetailsButtons = document.querySelectorAll('.fa-circle-info');
+    // const closeDetailsButton = document.querySelector('.close-details-popup');
+
+    // openDetailsButtons.forEach(function(button) {
+    //     button.addEventListener('click', function() {
+    //       console.log("details here!")
+    //       detailsPopup.style.display="block"
+    //     });
+    // });
+
+    // closeDetailsButton.addEventListener('click', function() {
+    //     detailsPopup.style.display = 'none';
+    // });
