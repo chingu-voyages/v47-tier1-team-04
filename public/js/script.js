@@ -215,7 +215,8 @@ export class View {
         </div>
 
     </div>               
-`, document.getElementById(`content_${kebabCase(group)}`))
+`, document.getElementById(`group_${kebabCase(group)}`))
+
   }
   
 
