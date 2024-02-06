@@ -200,8 +200,7 @@ export class View {
 
   renderContentTask(task) {
     const anchor = this.createElement('div', ``, document.querySelector(`#category_${kebabCase(task.category)} .content-inner`), `task_${kebabCase(task.name.slice(0,20))}`, 'content-description').container
-    console.log(anchor)
-    this.createElement("p", `<i class="fa-regular fa-square checkbox"></i> ${task.name}`, anchor)
+    this.createElement("p", `<i class="fa-regular fa-square checkbox"></i> ${task.name}`, anchor,  null, 'task-name')
     this.createElement("div", `<i class="fa-solid fa-circle-info fa-2x detail"></i>
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
@@ -215,7 +214,7 @@ export class View {
   renderContentCategory(group, category) {
     this.createElement("div", `
     <div class="content-main">
-        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${kebabCase(group)}_${kebabCase(category)}">
         <div class="content-inner">
             <div class="content-task">
                 <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
