@@ -1,6 +1,7 @@
 import app from '../app.js';
-import {renderAsideGroups, renderNavBar, renderContent, renderContentGroups, renderContentTasks, renderModalButton, renderFooter, renderTaskDetailsPopup} from './everythingElse.temp.js';
-import { kebabCase } from "../utilities/utilities.js";
+import renderAsideGroups from './renderAside/renderAsideGroups.js'
+
+import { renderNavBar, renderContent, renderContentGroups, renderContentTasks, renderModalButton, renderFooter, renderTaskDetailsPopup} from './everythingElse.temp.js';
 let viewIndex = 1;
 export default class View {
   // What the app looks like, what the user can see and do, User Interface

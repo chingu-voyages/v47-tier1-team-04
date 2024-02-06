@@ -4,55 +4,6 @@
   export const renderSuccessfulSave = () => {
     alert("Your data has been saved!");
   }
-  export const renderAside = (title) => {
-    return app.view.createElement(
-      "aside",
-      ` <div class="avatar-area">
-            <div class="avatar">
-                <img src="./img/Friendly Ones Avatar and Backdrop.png" alt="avatar pict">
-            </div>
-            <div class="gear-icon">
-                <img src="./img/solar_settings-linear.svg" alt="gear icon">
-            </div>
-        </div>            
-
-        <h2>${title}</h2>
-            <div id="daily-checklist">
-            </div>`,
-      document.getElementById("app"),
-      "element-el",
-      "aside"
-    );
-  }
-  export const renderAsideGroup = (group) => {
-    app.view.createElement(
-      "div",
-      `
-            
-              <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-              <ul id="sidebar_${group}">
-                  
-              </ul>
-            `,
-      document.getElementById("daily-checklist", null, "activity")
-    );
-  }
-  export const renderAsideGroups = (title) => {
-    renderAside(title);
-    app.controller.returnUniqueGroupNames().map((group) => {
-      renderAsideGroup(group);
-      app.controller
-        .returnUniqueCategoriesByGroup(group)
-        .map((category) => renderAsideCatagory(category, group));
-    });
-  }
-  export const renderAsideCatagory = (category, group) => {
-    app.view.createElement(
-      "li",
-      category,
-      document.getElementById(`sidebar_${group}`)
-    );
-  }
 
   export const renderNavBar = () => {
     app.view.createElement(
