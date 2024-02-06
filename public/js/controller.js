@@ -14,7 +14,7 @@ export default class Controller {
 
   //Function to pull in the data from the data.model.json file:
   async seed() {
-    await fetch("./js/data.model.json")
+    await fetch("./js/data/data.model.json")
       .then((res) => res.json())
       .then((data) =>
         data.map(
