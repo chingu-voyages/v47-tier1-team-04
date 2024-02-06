@@ -1,282 +1,443 @@
-(function () {
-    class App {
-      constructor() {
-        this.tasks = [];
-      }
-      //Function to initialize app:
-      init() {
-        this.seed();
-        return this;
-      }
-      //Function to clear/reset tasks:
-      resetState() {
-        this.tasks = [];
-        return this;
-      }
-      //Function to pull in the data from the data.model.json file:
-      async seed() {
-        await fetch("./js/data.model.json")
-          .then((res) => res.json())
-          .then((data) =>
-            data.map(
-              (task) =>
-                new Task(
-                  task.name,
-                  task.group,
-                  task.category,
-                  task.frequency,
-                  task.days,
-                  task.calendar
-                )
-            )
-          );
-      }
+import Controller from "./controller.js";
+import {kebabCase} from "./utilities/utilities.js";
+let viewIndex = 1;
+export class View {
+  // What the app looks like, what the user can see and do, User Interface
+  constructor(element, content, anchor, id, classList) {
+    const container = document.createElement(element);
+    container.innerHTML = content;
+    if (id) {
+      container.id = id;
+      this.id = id;
+    } else {
+      container.id = `view_${viewIndex}`;
+      this.id = container.id;
+      viewIndex++;
     }
-    const app = new App();
-  
-    //Object constructor to create new tasks:
-    class Task {
-      constructor(name, group, category, frequency, days, calander) {
-        this.name = name;
-        this.group = group;
-        this.category = category;
-        this.frequency = frequency;
-        this.days = days;
-        this.calander = calander;
-        this.complete = false;
-        app.tasks.push(this);
-      }
+    if (classList) {
+      container.classList = classList;
+    }
+    anchor.append(container);
+    this.container = container;
+  }
+  init(title) {
+    this.renderAsideGroups(title);
+    this.renderNavBar();
+    this.renderContent();
+    this.renderContentGroups();
+    this.renderContentTasks();
+    this.renderModalButton();
+    this.renderFooter();
+  }
+  //Function to display the data into HTML:
+  createElement(element, content, anchor, id, classList) {
+    const newView = new View(element, content, anchor, id, classList);
+    app.views.push(newView);
+  }
+  //Popup message to user once they press the "save" button:
+  renderSuccessfulSave(){
+    alert("Your data has been saved!");
+  }
+  renderAside(title) {
+    return this.createElement(
+      "aside",
+      ` <div class="avatar-area">
+            <div class="avatar">
+                <img src="./img/Friendly Ones Avatar and Backdrop.png" alt="avatar pict">
+            </div>
+            <div class="gear-icon">
+                <img src="./img/solar_settings-linear.svg" alt="gear icon">
+            </div>
+        </div>            
 
-      read() {
-        this.complete = false;
-        return this;
-      }
-      //Function to create new tasks:
-      update(name, group, category, frequency, days, calander) {
-        this.name = name;
-        this.group = group;
-        this.category = category;
-        this.frequency = frequency;
-        this.days = days;
-        this.calander = calander;
-        this.complete = false;
-        return this;
-      }
-    }
+        <h2>${title}</h2>
+            <div id="daily-checklist">
+
+            </div>`,
+      document.getElementById("app"),
+      "element-el",
+      "aside"
+    );
+  }
+  renderAsideGroup(group) {
+    console.log(group);
+    this.createElement(
+      "div",
+      `
+            
+              <h3 id="category-title-1">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <ul id="sidebar_${group}">
+                  
+              </ul>
+            `,
+      document.getElementById("daily-checklist", null, "activity")
+    );
+  }
+  renderAsideGroups(title) {
+    console.log(app.controller.returnUniqueGroupNames());
+    let aside = this.renderAside(title);
+    app.controller.returnUniqueGroupNames().map((group) => {
+      this.renderAsideGroup(group);
+      app.controller
+        .returnUniqueCategoriesByGroup(group)
+        .map((category) => this.renderAsideCatagory(category, group));
+    });
+  }
+  renderAsideCatagory(category, group) {
+    app.view.createElement(
+      "li",
+      category,
+      document.getElementById(`sidebar_${group}`)
+    );
+  }
+
+  renderNavBar() {
+    this.createElement(
+      "nav",
+
+      `<div class="navbar-top">
+                <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
+                <div id="date" class="date">Today:</div>
+                <div class="btn-undo">
+                    <button class="btn undo">
+                        <img src="./img/ci_undo.svg" alt="undo button">
+                        undo
+                    </button>
+                    <button class="btn undo">
+                        <img src="./img/ci_redo.svg" alt="redo button">
+                        undo
+                    </button>
+                    <a id="save-all" href="#" class="btn btn-save">Save</a>
+                </div>
+            </div>            
+            <div class="navbtn">
+                <a href="#" class="btn-day">Today</a>
+                <a href="#" class="btn-month">Month</a>
+                <a href="#" class="btn-year">Year</a>      
+            </div>`,
+      document.getElementById("app"),
+      "element-el",
+      "navbar"
+    );
+    document.getElementById("save-all").addEventListener("click", app.controller.saveData);
+  }
+  renderContent() {
+    this.createElement(
+      "content",
+      `<div class="content-search">
+      <div class="priority">
+          <a href="#" class="btn btn-lite btn-blue">Low</a>
+          <a href="#" class="btn btn-lite btn-orange">Med</a>
+          <a href="#" class="btn btn-lite btn-red">High</a>
+
+          <div class="search">
+              <input type="text" placeholder="">
+              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
+          </div>
+      </div>               
+  </div>
   
+
+  `,
+      document.getElementById("app"),
+      "content",
+      "content"
+    );
+    // Complete task toggle
+    const ellipses = document.querySelectorAll(".ellipse");
+
+    ellipses.forEach(function (ellipse) {
+      ellipse.addEventListener("click", function () {
+        if (this.src.includes("Ellipse8.svg")) {
+          this.src = "./img/favicon.png";
+          this.style.width = "55px";
+          this.style.height = "55px";
+          this.parentElement.style.display = "flex";
+          this.parentElement.style.justifyContent = "center";
+          this.parentElement.style.alignItems = "center";
+        } else {
+          this.src = "./img/Ellipse8.svg";
+        }
+
+        const contentInner =
+          this.closest(".content-main").querySelector(".content-inner");
+
+        contentInner.classList.toggle("darken");
+      });
+    });
+    // Add event listener to task names for marking as complete
+    const taskNames = document.querySelectorAll(".task-name");
+
+    taskNames.forEach(function (taskName) {
+      taskName.addEventListener("click", function () {
+        this.classList.toggle("complete");
+      });
+    });
+  }
+
+  renderContentGroup(group) {
+    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
+  }
+
+  renderContentGroups() {
+    console.log(app.controller.returnUniqueGroupNames());
+    app.controller.returnUniqueGroupNames().map(group => {
+      app.view.renderContentGroup(group);
+      app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(group, category))
+    })
+  }
+  // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
+
+  renderContentTask(task) {
+    const anchor = document.querySelector(`#category_${kebabCase(task.category)} .content-description`)
+    this.createElement("p", task.name, anchor)
+    this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
+  }
+
+  renderContentTasks() {
+    app.tasks.map(task => this.renderContentTask(task))
+  }
+  
+
+  renderContentCategory(group, category) {
+    this.createElement("div", `
+    <div class="content-main">
+        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
+        <div class="content-inner">
+            <div class="content-task">
+                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+            </div>
+            <div class="content-description">
+                                      
+            </div>                        
+        </div>
+
+    </div>               
+`, document.getElementById(`content_${kebabCase(group)}`) , `category_${kebabCase(category)}`)
+  }
+  
+
+  renderModalButton() {
+    this.createElement(
+      "div",
+      '<i class="fa-solid fa-plus add-icon"></i>',
+      document.getElementById("app"),
+      "add-icon-el",
+      "fa-solid fa-plus add-icon"
+    );
+    this.renderModal();
+  }
+  renderModal() {
+    this.createElement(
+      "div",
+      `<!-- this is hidden until click event -->
+    <div class="modal-top-nav">
+      <i class="fa-solid fa-xmark fa-2x" id="modal-close-el"></i>
+      <h2>Task Details</h2> 
+      <a href="#" class="btn modal-btn-save">Save</a>
+    </div>
+
+    <div class="task-category">
+      <div class="modal-task">
+        <label for="task-name">Task Name</label><br>
+        <input type="text" id="task-name" name="task-name" placeholder="Projects...">
+      </div>
+      <div class="modal-category">
+        <label for="category-name">Category Name</label><br>
+        <select name="categpory-name" id="category-name">
+          <option value="routine">Routine Activites</option>
+          <option value="studying">Studying</option>
+          <option value="daily">Daily Task Project</option>
+          <option value="chingu">Chingu</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-description">
+        <label for="description-name">Description</label><br>
+        <input type="text" id="description-name" name="description-name" size="50">
+    </div>
+    <div class="modal-subtask">
+          <input type="checkbox" id="modal-subtask" name="modal-subtask" value="subtask">
+          <input type="text" id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
+    </div>
+
+    <div class="modal-date-time">
+      <div class="datepicker-spinbuttons modal-date" role="group" aria-labelledby="datepickerLabel datepickerDate">  
+        <div id="datepickerLabel">Date</div>      
+        <div class="dateinfo">
+            <div class="date" id="datepickerDate"></div>
+            <div class="day spinbutton">
+                <div class="previous" aria-hidden="true">30</div>
+                <div role="spinbutton" aria-valuenow="1" aria-valuetext="first" aria-valuemin="1" aria-valuemax="31" aria-label="Day">1</div>
+                <div class="next" aria-hidden="true">2</div>
+            </div>    
+            <div class="month spinbutton">
+                <div class="previous" aria-hidden="true">May</div>
+                <div role="spinbutton" aria-valuenow="5" aria-valuetext="June" aria-valuemin="0" aria-valuemax="11" aria-label="Month">June</div>
+                <div class="next" aria-hidden="true">July</div>
+            </div>    
+            <div class="year spinbutton">
+                <div class="previous" aria-hidden="true">2018</div>
+                <div role="spinbutton" aria-valuenow="2019" aria-valuemin="2019" aria-valuemax="2040" aria-label="Year">2019</div>
+                <div class="next" aria-hidden="true">2020</div>
+            </div>
+        </div>
+      </div>
+    
+      <div class="time modal-time">
+        <div class="timepicker-spinbuttons" role="group" aria-labelledby="timepickerLabel timepickerDate">
+            <div id="timepickerLabel">Time</div>
+            <div class="time" id="timepickerDate"></div>
+    
+            <div class="hour spinbutton">
+                <div class="previous" aria-hidden="true">11</div>
+                <div role="spinbutton" aria-valuenow="1" aria-valuetext="first" aria-valuemin="1" aria-valuemax="12" aria-label="Hour">12</div>
+                <div class="next" aria-hidden="true">1</div>
+            </div>
+    
+            <div class="minute spinbutton">
+                <div class="previous" aria-hidden="true">59</div>
+                <div role="spinbutton" aria-valuenow="0" aria-valuetext="00" aria-valuemin="0" aria-valuemax="59" aria-label="Minute">00</div>
+                <div class="next" aria-hidden="true">01</div>
+            </div>
+    
+            <div class="ampm spinbutton">
+                <div class="previous" aria-hidden="true">AM</div>
+                <div role="spinbutton" aria-valuenow="AM" aria-valuetext="AM" aria-valuemin="AM" aria-valuemax="PM" aria-label="AM">AM</div>
+                <div class="next" aria-hidden="true">PM</div>
+            </div>
+        </div>
+      </div>
+  </div>
+
+    <div class="modal-priority">
+      <label for="priority-level">Priority-level</label>
+        <select name="priority-level" id="priority-level">
+          <option value="low">Low</option>
+          <option value="med">Med</option>
+          <option value="high">High</option>                    
+        </select>
+    </div>
+
+    <textarea name="notes" id="notes" class="notes" placeholder="Notes..."></textarea>
+   <!-- end of modal -->
+  <!-- https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/datepicker-spinbuttons/ -->`,
+      document.getElementById("app"),
+      null,
+      "modal"
+    );
     //Function to display the data into HTML:
-    class View {
-      constructor(task) {
-        this.task = task;
-      }
-      renderView() {
-        const anchor = document.querySelector(".daily-checklist");
-        const view = document.createElement("div");
-        view.innerHTML = `
-        <div class="activity">
-           <h3>${this.task.group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-           <ul id="activity-el">
-       
-           </ul>
-       </div>
-        `;
-        anchor.append(view);
-      }
-    }
-  
-    app.init();
-    // setTimeout(() => console.log(app), 50)
-    // setTimeout(() => console.log(app.tasks[0].read()), 50)
-    //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
-    // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-  // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-  const groups = () => [...new Set(app.tasks.map(task => task.group))]
-    setTimeout(() => groups().map(group => new View(group)), 50);
-    console.log(groups())
-  })();
+    let viewIndex = 1;
 
+    // Modal pop-up
+    const addIconEl = document.getElementById("add-icon-el");
+    const modal = document.querySelector(".modal");
+    const modalClose = document.getElementById("modal-close-el");
 
+    addIconEl.addEventListener("click", function () {
+      console.log("we have lift off");
+      modal.style.display = "block";
+    });
 
+    modalClose.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  }
+  renderFooter() {
+    this.createElement(
+      "footer",
+      `<footer>
+              <div class="footer-left">
+                <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
+                  <p class="copyright">© Chingu Team 04 Github</p>
+                </a>
+              </div>
+              
+              <a href="https://www.chingu.io" class="footer-right">          
+                  <p class="copyright">Chingu</p>
+                  <img class="chingu-logo" src="./img/chingo-logo.png"
+                    />
+              </a>            
+            </footer> `,
+      document.getElementById("app"),
+      "element-el",
+      "footer"
+    );
+    // Hamburger Menu Display on Mobile
 
+    const menuBtn = document.querySelector(".menu-btn");
+    const asideEl = document.getElementById("aside-el");
 
+    menuBtn.addEventListener("click", function () {
+      asideEl.style.display =
+        asideEl.style.display === "none" || asideEl.style.display === ""
+          ? "block"
+          : "none";
+    });
+  }
+}
 
-// import { userActivities } from "./data.js"
+class App {
+  constructor() {
+    this.tasks = [];
+    this.views = [];
+    this.view = new View(
+      "div",
+      " <!--Code injected by Amanda-->",
+      document.body,
+      "app",
+      "container"
+    );
+    this.controller = new Controller();
+  }
+//Function to initialize app:
+async init(title) {
+  await this.controller.loadData();
+  this.controller.init(title);
+  return this;
+  }
+}
+const app = new App();
+export default app;
+//Object constructor to create new tasks:
+export class Task {
+  constructor(name, group, category, frequency, days, calander) {
+    this.name = name;
+    this.group = group;
+    this.category = category;
+    this.frequency = frequency;
+    this.days = days;
+    this.calander = calander;
+    this.complete = false;
+    app.tasks.push(this);
+  }
+  read() {
+    this.complete = false;
+    return this;
+  }
+  //Function to create new tasks:
+  update(name, group, category, frequency, days, calander) {
+    this.name = name;
+    this.group = group;
+    this.category = category;
+    this.frequency = frequency;
+    this.days = days;
+    this.calander = calander;
+    this.complete = false;
+    return this;
+  }
+}
 
-// fetch the json file with Stacy's code
-// const fetchJsonFile = async function() {
-//     try {
-//         const response = await fetch('https://raw.githubusercontent.com/chingu-voyages/voyage-project-tier1-dailytasks/main/assets/tasks-example.json');
-//         const data = await response.json();
-//         return data;
-//     } catch (error) {
-//         console.error('Error loading JSON:', error);
-//         throw error;
-//     }
-// };
+// setTimeout(() => console.log(app), 50)
+// setTimeout(() => console.log(app.tasks[0].read()), 50)
+//setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
+// setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
+// setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
+const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
-// async function inputUserData() {
-//     try {
-//         const data = await fetchJsonFile();
-//         console.log('Data:', data);
-
-//         // Moved today's date inside of the function
-//         function updateDate() {
-//             const dateDiv = document.getElementById('date');
-//             const today = new Date();
-//             const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-//             dateDiv.textContent = `Today: ${formattedDate}`;
-//         }
-//         updateDate();
-
-//         const contentActivityContainer = document.querySelector('.content-activity');
-
-//         // Map() json data per Micky's idea
-//         data.map(category => {
-//             const categoryDiv = document.createElement('div');
-//             categoryDiv.classList.add('content-activity');
-
-//             const categoryNameHeading = document.createElement('h2');
-//             categoryNameHeading.classList.add('category-name');
-//             categoryNameHeading.textContent = category.categoryName;
-//             categoryDiv.appendChild(categoryNameHeading);
-
-//             category.activityTypes.map(activityType => {
-//                 const activityDiv = document.createElement('div');
-//                 activityDiv.classList.add('content-main');
-
-//                 const ellipseImg = document.createElement('img');
-//                 ellipseImg.src = "./img/Ellipse8.svg";
-//                 ellipseImg.alt = "ellipse checkbox";
-//                 ellipseImg.classList.add('ellipse');
-//                 activityDiv.appendChild(ellipseImg);
-
-//                 ellipseImg.addEventListener('click', function() {
-//                     console.log("ellipse clicked!");
-//                     console.log("current source: ", this.src);
-
-//                     contentInnerDiv.classList.toggle('darken');
-
-//                     if (this.src.includes("Ellipse8.svg")) {
-//                         this.src = "./img/favicon.png";
-//                         this.style.width = '55px';
-//                         this.style.height = '55px';
-//                         this.parentElement.style.display = 'flex';
-//                         this.parentElement.style.justifyContent = 'center';
-//                         this.parentElement.style.alignItems = 'center';
-//                     } else {
-//                         this.src = "./img/Ellipse8.svg";
-//                     }
-//                 });
-
-//                 const contentInnerDiv = document.createElement('div');
-//                 contentInnerDiv.classList.add('content-inner');
-
-//                 const contentTaskDiv = document.createElement('div');
-//                 contentTaskDiv.classList.add('content-task');
-
-//                 const activityNameHeading = document.createElement('h3');
-//                 activityNameHeading.classList.add('activity');
-//                 activityNameHeading.textContent = activityType.activityName;
-//                 contentTaskDiv.appendChild(activityNameHeading);
-
-//                 const priorityBtn = document.createElement('a');
-//                 priorityBtn.href = "#";
-//                 priorityBtn.classList.add('btn', 'btn-lite', 'btn-blue');
-//                 priorityBtn.textContent = "Low"; 
-//                 contentTaskDiv.appendChild(priorityBtn);
-
-//                 contentInnerDiv.appendChild(contentTaskDiv);
-
-//                 const contentDescriptionDiv = document.createElement('div');
-//                 contentDescriptionDiv.classList.add('content-description');
-
-//                 const contentParaDiv = document.createElement('div');
-//                 contentParaDiv.classList.add('content-para');
-
-//                 const contentDescriptionEditDiv = document.createElement('div');
-//                 contentDescriptionEditDiv.classList.add('content-description-edit');
-
-//                 contentDescriptionDiv.appendChild(contentParaDiv);
-//                 contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
-
-//                 activityType.Tasks.map(task => {
-//                     console.log("Tasks: ", task.taskName);
-//                     const taskNameParagraph = document.createElement('p');
-//                     taskNameParagraph.classList.add('task-name');
-//                     taskNameParagraph.textContent = task.taskName;
-//                     contentParaDiv.appendChild(taskNameParagraph);
-//                 });
-
-//                 const editPencilImg = document.createElement('img');
-//                 editPencilImg.src = "./img/mynaui_pencil.svg";
-//                 editPencilImg.alt = "edit pencil image";
-//                 editPencilImg.classList.add('icon-edit');
-//                 contentDescriptionEditDiv.appendChild(editPencilImg);
-
-//                 const trashImg = document.createElement('img');
-//                 trashImg.src = "./img/ph_trash.svg";
-//                 trashImg.alt = "delete trash can image";
-//                 trashImg.classList.add('icon-edit');
-//                 contentDescriptionEditDiv.appendChild(trashImg);
-
-//                 contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
-
-//                 contentInnerDiv.appendChild(contentDescriptionDiv);
-
-//                 activityDiv.appendChild(contentInnerDiv);
-
-//                 categoryDiv.appendChild(activityDiv);
-//             });
-
-//             contentActivityContainer.appendChild(categoryDiv);
-//         });
-
-//         const dailyChecklistContainer = document.querySelector('.daily-checklist');
-
-//         data.map(category => {
-//             const categoryDiv = document.createElement('div');
-//             categoryDiv.classList.add('activity');
-
-//             const categoryHeading = document.createElement('h3');
-//             categoryHeading.textContent = category.categoryName;
-//             categoryHeading.innerHTML += ' <i class="fa-solid fa-circle-chevron-down"></i>';
-//             categoryDiv.appendChild(categoryHeading);
-
-//             const activityList = document.createElement('ul');
-
-//             category.activityTypes.map(activityType => {
-//                 const activity = document.createElement('li');
-//                 activity.textContent = activityType.activityName;
-//                 activityList.appendChild(activity);
-//             });
-
-//             categoryDiv.appendChild(activityList);
-
-//             dailyChecklistContainer.appendChild(categoryDiv);
-//         });
-
-//         const menuBtn = document.querySelector('.menu-btn');
-//         const asideEl = document.getElementById('aside-el');
-
-//         menuBtn.addEventListener('click', function () {
-//             asideEl.style.display = (asideEl.style.display === 'none' || asideEl.style.display === '') ? 'block' : 'none';
-//         });      
-
-//     } catch (error) {
-//         console.error('Error in inputUserData:', error);
-//     }
-// }
-
-// inputUserData();
-
-// for (let category of userActivities) {
-//     console.log("Category:", category.categoryName);
-  
-//     for (let activityType of category.activityTypes) {
-//       console.log("  Activity Type:", activityType.activityName);
-  
-//       for (let task of activityType.Tasks) {
-//         console.log("    Task Name:", task.taskName);
-//       }
-//     }
-//   }
+console.log(app.tasks);
+(async () => {
+  await app.init("My Daily Classlist");
+})(); // make the console log asyncrinus and to be seen when I inspect the page
