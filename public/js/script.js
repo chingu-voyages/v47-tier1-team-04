@@ -193,7 +193,7 @@ export class View {
   }
 
   renderContentTasks() {
-    app.tasks.map(task => this.renderContentTask(task))
+    app.tasks.map(task => this.renderContentTask(task.name))
   }
   
 
@@ -206,16 +206,12 @@ export class View {
                 <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
             </div>
             <div class="content-description">
-                <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                <div class="content-description-edit">
-                    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                </div>                            
+                                      
             </div>                        
         </div>
 
     </div>               
-`, document.getElementById(`content_${kebabCase(group)}`))
+`, document.getElementById(`content_${kebabCase(group)}`, `category_${kebabCase(category)}`))
   }
   
 
