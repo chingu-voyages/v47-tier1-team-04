@@ -1,5 +1,6 @@
 import Controller from "./controller.js";
 import View from './views/index.js';
+import Task from "./utilities/task.js";
 
 class Model {
   constructor() {
@@ -24,30 +25,30 @@ class Model {
 const app = new Model();
 export default app;
 //Object constructor to create new tasks:
-export class Task {
-  constructor(name, group, category, frequency, days, calander) {
-    this.name = name;
-    this.group = group;
-    this.category = category;
-    this.frequency = frequency;
-    this.days = days;
-    this.calander = calander;
-    this.complete = false;
-    app.tasks.push(this);
-  }
-  read() {
-    this.complete = false;
-    return this;
-  }
-  //Function to create new tasks:
-  update(name, group, category, frequency, days, calander) {
-    this.name = name;
-    this.group = group;
-    this.category = category;
-    this.frequency = frequency;
-    this.days = days;
-    this.calander = calander;
-    this.complete = false;
-    return this;
-  }
-}
+// export class Task {
+//   constructor(name, group, category, frequency, days, calander) {
+//     this.name = name;
+//     this.group = group;
+//     this.category = category;
+//     this.frequency = frequency;
+//     this.days = days;
+//     this.calander = calander;
+//     this.complete = false;
+//     app.tasks.push(this);
+//   }
+//   read() {
+//     this.complete = false;
+//     return this;
+//   }
+//   //Function to create new tasks:
+//   update(name, group, category, frequency, days, calander) {
+//     this.name = name;
+//     this.group = group;
+//     this.category = category;
+//     this.frequency = frequency;
+//     this.days = days;
+//     this.calander = calander;
+//     this.complete = false;
+//     return this;
+//   }
+// }

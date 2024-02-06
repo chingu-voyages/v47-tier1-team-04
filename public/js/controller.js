@@ -1,4 +1,5 @@
-import app, { Task } from "./app.js";
+import app from "./app.js";
+import Task from "./utilities/task.js";
 
 export default class Controller {
   init(title) {
