@@ -1,4 +1,4 @@
-import app, { Task } from "./script.js";
+import app, { Task } from "./app.js";
 
 export default class Controller {
   init(title) {
