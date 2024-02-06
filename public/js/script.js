@@ -1,4 +1,5 @@
 import Controller from "./controller.js";
+import { kebabCase } from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -23,13 +24,21 @@ export class View {
     this.renderAsideGroups(title);
     this.renderNavBar();
     this.renderContent();
+    this.renderContentGroups();
+    this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
+    //this.renderTaskDetailsPopup()
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
+    return newView;
+  }
+  //Popup message to user once they press the "save" button:
+  renderSuccessfulSave() {
+    alert("Your data has been saved!");
   }
   renderAside(title) {
     return this.createElement(
@@ -45,7 +54,6 @@ export class View {
 
         <h2>${title}</h2>
             <div id="daily-checklist">
-
             </div>`,
       document.getElementById("app"),
       "element-el",
@@ -53,12 +61,11 @@ export class View {
     );
   }
   renderAsideGroup(group) {
-    console.log(group);
     this.createElement(
       "div",
       `
             
-              <h3 id="category-title-1">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
               <ul id="sidebar_${group}">
                   
               </ul>
@@ -67,8 +74,7 @@ export class View {
     );
   }
   renderAsideGroups(title) {
-    console.log(app.controller.returnUniqueGroupNames());
-    let aside = this.renderAside(title);
+    this.renderAside(title);
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderAsideGroup(group);
       app.controller
@@ -85,11 +91,9 @@ export class View {
   }
 
   renderNavBar() {
-    return this.createElement(
-      "navbar",
-
-      `<nav class="navbar">
-            <div class="navbar-top">
+    this.createElement(
+      "nav",
+      `<div class="navbar-top">
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                 <div id="date" class="date">Today:</div>
                 <div class="btn-undo">
@@ -101,19 +105,21 @@ export class View {
                         <img src="./img/ci_redo.svg" alt="redo button">
                         undo
                     </button>
-                    <a href="#" class="btn btn-save">Save</a>
+                    <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
             </div>            
             <div class="navbtn">
                 <a href="#" class="btn-day">Today</a>
                 <a href="#" class="btn-month">Month</a>
                 <a href="#" class="btn-year">Year</a>      
-            </div>
-          </nav>`,
+            </div>`,
       document.getElementById("app"),
       "element-el",
       "navbar"
     );
+    document
+      .getElementById("save-all")
+      .addEventListener("click", app.controller.saveData);
   }
   renderContent() {
     this.createElement(
@@ -130,50 +136,60 @@ export class View {
           </div>
       </div>               
   </div>
-  <div class="content-activity">
-      <h2 class="category-name" id="category-name-1">Routine Activities</h2>
-      <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-          <div class="content-inner">
-              <div class="content-task">
-                  <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-              </div>
-              <div class="content-description">
-                  <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
-                  <div class="content-description-edit">
-                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                  </div>                            
-              </div>                        
-          </div>
+  
 
-      </div>               
-  </div>
-
-  <div class="content-activity">
-      <h2 class="category-name" id="category-name-2">Chingu</h2>
-      <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
-          <div class="content-inner">
-              <div class="content-task">
-                  <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
-              </div>
-              <div class="content-description">
-                  <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
-                  <div class="content-description-edit">
-                      <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-                      <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
-                  </div>                            
-              </div>                        
-          </div>
-
-      </div>
-  </div>`,
+  `,
       document.getElementById("app"),
-      "element-el",
+      "content",
       "content"
     );
-    // Complete task toggle
+  }
+
+  renderContentGroup(group) {
+    this.createElement(
+      "div",
+      `<h2 class="category-name">${group}</h2>`,
+      document.getElementById("content"),
+      `content_${kebabCase(group)}`,
+      "content-activity"
+    );
+  }
+
+  renderContentGroups() {
+    app.controller.returnUniqueGroupNames().map((group) => {
+      app.view.renderContentGroup(group);
+      app.controller
+        .returnUniqueCategoriesByGroup(group)
+        .map((category) => this.renderContentCategory(group, category));
+    });
+  }
+  // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
+
+  renderContentTask(task) {
+    const anchor = this.createElement(
+      "div",
+      ``,
+      document.querySelector(
+        `#category_${kebabCase(task.category)} .content-inner`
+      ),
+      `task_${kebabCase(task.name.slice(0, 20))}`,
+      "content-description"
+    ).container;
+    this.createElement(
+      "p",
+      `<i class="fa-regular fa-square checkbox"></i> ${task.name}`,
+      anchor,
+      null,
+      "task-name"
+    );
+    this.createElement(
+      "div",
+      `<i class="fa-solid fa-circle-info fa-2x detail"></i>
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+      anchor
+    );
+    // Complete Project toggle
     const ellipses = document.querySelectorAll(".ellipse");
 
     ellipses.forEach(function (ellipse) {
@@ -195,15 +211,58 @@ export class View {
         contentInner.classList.toggle("darken");
       });
     });
+
+    // Complete task toggle
     // Add event listener to task names for marking as complete
     const taskNames = document.querySelectorAll(".task-name");
 
     taskNames.forEach(function (taskName) {
       taskName.addEventListener("click", function () {
         this.classList.toggle("complete");
+
+        const checkboxIcon = this.closest(".content-description").querySelector(
+          ".checkbox"
+        );
+
+        if (taskName.classList.contains("fa-square")) {
+          checkboxIcon.classList.remove("fa-square");
+          checkboxIcon.classList.add("fa-square-check");
+        } else {
+          checkboxIcon.classList.remove("fa-square-check");
+          checkboxIcon.classList.add("fa-square");
+        }
       });
     });
   }
+
+  renderContentTasks() {
+    app.tasks.map((task) => this.renderContentTask(task));
+  }
+
+  renderContentCategory(group, category) {
+    this.createElement(
+      "div",
+      `
+    <div class="content-main">
+        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${kebabCase(
+          group
+        )}_${kebabCase(category)}">
+        <div class="content-inner">
+            <div class="content-task">
+                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+            </div>
+            <div class="content-description">
+                                      
+            </div>                        
+        </div>
+
+    </div>               
+`,
+      document.getElementById(`content_${kebabCase(group)}`),
+      `category_${kebabCase(category)}`
+    );
+  }
+
   renderModalButton() {
     this.createElement(
       "div",
@@ -213,13 +272,14 @@ export class View {
       "fa-solid fa-plus add-icon"
     );
     this.renderModal();
+    this.onclick = () => (addButton.style.display = "block");
   }
   renderModal() {
     this.createElement(
       "div",
       `<!-- this is hidden until click event -->
     <div class="modal-top-nav">
-      <i class="fa-solid fa-xmark fa-2x" id="modal-close-el"></i>
+      <i class="fa-solid fa-xmark fa-2x" id="modal-close-el" ></i>
       <h2>Task Details</h2> 
       <a href="#" class="btn modal-btn-save">Save</a>
     </div>
@@ -314,8 +374,6 @@ export class View {
       null,
       "modal"
     );
-    //Function to display the data into HTML:
-    let viewIndex = 1;
 
     // Modal pop-up
     const addIconEl = document.getElementById("add-icon-el");
@@ -330,7 +388,37 @@ export class View {
     modalClose.addEventListener("click", function () {
       modal.style.display = "none";
     });
+
+    // // Details popup window
+    // const detailsPopup = document.querySelector('.task-details-popup');
+    // const openDetailsButtons = document.querySelectorAll('.fa-circle-info');
+    // const closeDetailsButton = document.querySelector('.close-details-popup');
+
+    // openDetailsButtons.forEach(function(button) {
+    //     button.addEventListener('click', function() {
+    //       console.log("details here!")
+    //       detailsPopup.style.display="block"
+    //     });
+    // });
+
+    // closeDetailsButton.addEventListener('click', function() {
+    //     detailsPopup.style.display = 'none';
+    // });
+
+    // Automatically populate details with task name and category from html
+    // Get the task name and category name elements
+    const taskNameElement = document.getElementById("task-name-1-1");
+    const categoryNameElement = document.getElementById("category-name-1");
+
+    // Get the input fields in the details popup
+    const taskNameInput = document.getElementById("task-name-input");
+    const categoryNameInput = document.getElementById("category-name-input");
+
+    // Set the initial values of the input fields
+    // taskNameInput.value = taskNameElement.textContent;
+    // categoryNameInput.value = categoryNameElement.textContent;
   }
+
   renderFooter() {
     this.createElement(
       "footer",
@@ -351,18 +439,87 @@ export class View {
       "element-el",
       "footer"
     );
-    // Hamburger Menu Display on Mobile
-
-    const menuBtn = document.querySelector(".menu-btn");
-    const asideEl = document.getElementById("aside-el");
-
-    menuBtn.addEventListener("click", function () {
-      asideEl.style.display =
-        asideEl.style.display === "none" || asideEl.style.display === ""
-          ? "block"
-          : "none";
-    });
   }
+
+  // Details Popup for tasks
+  renderTaskDetailsPopup() {
+    this.createElement(
+      "div",
+      `<div class="task-details-popup">
+          <div class="task-details-content">
+              <i class="fa-solid fa-xmark fa-2x close-details-popup"></i>
+              <h2>Task Details</h2>
+              <div class="task-details">
+                  <label for="task-name">Task Name:</label>
+                  <input type="text" id="task-name-input" name="task-name">
+              </div>
+              <div class="task-details">
+                  <label for="category-name">Category Name:</label>
+                  <input type="text" id="category-name-input" name="category-name">
+              </div>
+              <div class="task-details">
+                  <label for="description-name">Description:</label>
+                  <input type="text" id="description-name" name="description-name" size="50">
+              </div>
+              <div class="task-details">
+                  <label for="modal-subtask">Subtask:</label>
+                  <input type="checkbox" id="modal-subtask" name="modal-subtask" value="subtask">
+                  <input type="text" id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
+              </div>
+              <div class="task-details">
+                  <label for="modal-date">Date:</label>
+                  <input type="text" id="modal-date" name="modal-date">
+              </div>
+              <div class="task-details">
+                  <label for="modal-time">Time:</label>
+                  <input type="text" id="modal-time" name="modal-time">
+              </div>
+              <div class="task-details">
+                  <label for="priority-level">Priority:</label>
+                  <select id="priority-level" name="priority-level">
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                  </select>
+              </div>
+              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
+              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
+          </div>
+      </div>`,
+      document.getElementById("app"),
+      null,
+      ".task-details-popup"
+    );
+  }
+
+  // Details popup window FOCUS ON THIS TOMORROW
+  // const detailsPopup = document.querySelector(".task-details-popup");
+  // const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
+  // const closeDetailsButton = document.querySelector(".close-details-popup");
+
+  // openDetailsButtons.forEach(function(button) {
+  //     button.addEventListener('click', function() {
+  //       console.log("details here!")
+  //       detailsPopup.style.display="block"
+  //     });
+  // });
+
+  // closeDetailsButton.addEventListener('click', function() {
+  //     detailsPopup.style.display = 'none';
+  // });
+
+  // Hamburger Menu Display on Mobile
+
+  //     const menuBtn = document.querySelector(".menu-btn");
+  //     const asideEl = document.getElementById("aside-el");
+
+  //     menuBtn.addEventListener("click", function () {
+  //       asideEl.style.display =
+  //         asideEl.style.display === "none" || asideEl.style.display === ""
+  //           ? "block"
+  //           : "none";
+  //     });
+  //   }
 }
 
 class App {
@@ -380,32 +537,9 @@ class App {
   }
   //Function to initialize app:
   async init(title) {
-    await this.seed();
+    await this.controller.loadData();
     this.controller.init(title);
     return this;
-  }
-  //Function to clear/reset tasks:
-  resetState() {
-    this.tasks = [];
-    return this;
-  }
-  //Function to pull in the data from the data.model.json file:
-  async seed() {
-    await fetch("./js/data.model.json")
-      .then((res) => res.json())
-      .then((data) =>
-        data.map(
-          (task) =>
-            new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar
-            )
-        )
-      );
   }
 }
 const app = new App();
@@ -438,12 +572,3 @@ export class Task {
     return this;
   }
 }
-
-app.init("My Daily Classlist");
-// setTimeout(() => console.log(app), 50)
-// setTimeout(() => console.log(app.tasks[0].read()), 50)
-//setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
-// setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-// setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-const groups = () => [...new Set(app.tasks.map((task) => task.group))];
-
