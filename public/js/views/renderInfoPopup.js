@@ -1,6 +1,5 @@
 import app from "../script.js";
 const renderInfoPopup = () => {
-    console.log('hello')
   const detailsPopup = app.view.createElement(
     "div",
     `<!-- Details popup window -->
