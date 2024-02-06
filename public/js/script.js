@@ -28,7 +28,7 @@ export class View {
     this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
-    //this.renderTaskDetailsPopup()
+    this.renderTaskDetailsPopup(app.tasks[0]);
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
@@ -184,7 +184,7 @@ export class View {
     );
     this.createElement(
       "div",
-      `<i class="fa-solid fa-circle-info fa-2x detail"></i>
+      `${this.renderInfoButton()}
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
       anchor
@@ -389,22 +389,6 @@ export class View {
       modal.style.display = "none";
     });
 
-    // // Details popup window
-    // const detailsPopup = document.querySelector('.task-details-popup');
-    // const openDetailsButtons = document.querySelectorAll('.fa-circle-info');
-    // const closeDetailsButton = document.querySelector('.close-details-popup');
-
-    // openDetailsButtons.forEach(function(button) {
-    //     button.addEventListener('click', function() {
-    //       console.log("details here!")
-    //       detailsPopup.style.display="block"
-    //     });
-    // });
-
-    // closeDetailsButton.addEventListener('click', function() {
-    //     detailsPopup.style.display = 'none';
-    // });
-
     // Automatically populate details with task name and category from html
     // Get the task name and category name elements
     const taskNameElement = document.getElementById("task-name-1-1");
@@ -418,7 +402,12 @@ export class View {
     // taskNameInput.value = taskNameElement.textContent;
     // categoryNameInput.value = categoryNameElement.textContent;
   }
-
+  renderInfoButton() {
+    const button = document.createElement("i")
+    button.classList = "fa-solid fa-circle-info fa-2x detail";
+    button.addEventListener('click', () => console.log('f'))
+    return button.outerHTML;
+  }
   renderFooter() {
     this.createElement(
       "footer",
@@ -442,24 +431,31 @@ export class View {
   }
 
   // Details Popup for tasks
-  renderTaskDetailsPopup() {
-    this.createElement(
+  renderCloseDetailsButton() {
+    const button = document.createElement('i');
+    button.classList = "fa-solid fa-xmark fa-2x close-details-popup";
+    button.addEventListener('click', () => console.log('e'))
+    return button.outerHTML
+  }
+  renderTaskDetailsPopup(task) {
+    console.log(task)
+    const detailsPopup = this.createElement(
       "div",
       `<div class="task-details-popup">
           <div class="task-details-content">
-              <i class="fa-solid fa-xmark fa-2x close-details-popup"></i>
+              ${this.renderCloseDetailsButton()}
               <h2>Task Details</h2>
               <div class="task-details">
-                  <label for="task-name">Task Name:</label>
-                  <input type="text" id="task-name-input" name="task-name">
+                  <label for="task_${kebabCase(task.name)}">Task Name:</label>
+                  <input type="text" value="${task.name}" id="task_${kebabCase(task.name)}-input" name="task_${kebabCase(task.name)}">
               </div>
               <div class="task-details">
-                  <label for="category-name">Category Name:</label>
-                  <input type="text" id="category-name-input" name="category-name">
+                  <label for="category_${kebabCase(task.category)}">Category Name:</label>
+                  <input type="text" value="${task.category} id="category_${kebabCase(task.category)}-input" name="category_${kebabCase(task.name)}">
               </div>
               <div class="task-details">
                   <label for="description-name">Description:</label>
-                  <input type="text" id="description-name" name="description-name" size="50">
+                  <input type="text" value="${task.name}" id="desc_${kebabCase(task.name.slice(0,20))}" name="description-name" size="50">
               </div>
               <div class="task-details">
                   <label for="modal-subtask">Subtask:</label>
@@ -488,39 +484,41 @@ export class View {
       </div>`,
       document.getElementById("app"),
       null,
-      ".task-details-popup"
-    );
-  }
-
+      "task-details-popup"
+    ).container;
   // Details popup window FOCUS ON THIS TOMORROW
   // const detailsPopup = document.querySelector(".task-details-popup");
-  // const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
-  // const closeDetailsButton = document.querySelector(".close-details-popup");
+  const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
+  const closeDetailsButton = document.querySelector(".close-details-popup");
+  detailsPopup.style = "display: none";
+  openDetailsButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        console.log("details here!")
+        detailsPopup.style.display="block"
+      });
+  });
 
-  // openDetailsButtons.forEach(function(button) {
-  //     button.addEventListener('click', function() {
-  //       console.log("details here!")
-  //       detailsPopup.style.display="block"
-  //     });
-  // });
+  closeDetailsButton.addEventListener('click', function() {
+      detailsPopup.style.display = 'none';
+  });
+  }
+  
+}
 
-  // closeDetailsButton.addEventListener('click', function() {
-  //     detailsPopup.style.display = 'none';
-  // });
 
   // Hamburger Menu Display on Mobile
 
-  //     const menuBtn = document.querySelector(".menu-btn");
-  //     const asideEl = document.getElementById("aside-el");
+      // const menuBtn = document.querySelector(".menu-btn");
+      // const asideEl = document.getElementById("aside-el");
 
-  //     menuBtn.addEventListener("click", function () {
-  //       asideEl.style.display =
-  //         asideEl.style.display === "none" || asideEl.style.display === ""
-  //           ? "block"
-  //           : "none";
-  //     });
-  //   }
-}
+      // menuBtn.addEventListener("click", function () {
+      //   asideEl.style.display =
+      //     asideEl.style.display === "none" || asideEl.style.display === ""
+      //       ? "block"
+      //       : "none";
+      // });
+    
+
 
 class App {
   constructor() {
