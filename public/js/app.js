@@ -1,6 +1,5 @@
 import Controller from "./controller.js";
 import View from './views/index.js';
-import Task from "./utilities/task.js";
 
 class Model {
   constructor() {
