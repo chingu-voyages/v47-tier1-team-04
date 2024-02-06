@@ -28,6 +28,7 @@ export class View {
     this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
+    this.renderTaskDetailsPopup()
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
@@ -143,7 +144,7 @@ export class View {
       "content",
       "content"
     );
-    // Complete task toggle
+    // Complete Project toggle
     const ellipses = document.querySelectorAll(".ellipse");
 
     ellipses.forEach(function (ellipse) {
@@ -165,13 +166,26 @@ export class View {
         contentInner.classList.toggle("darken");
       });
     });
+    
+    // Complete task toggle
     // Add event listener to task names for marking as complete
     const taskNames = document.querySelectorAll(".task-name");
 
-    taskNames.forEach(function (taskName) {
-      taskName.addEventListener("click", function () {
-        this.classList.toggle("complete");
-      });
+    taskNames.forEach(function(taskName) {
+        taskName.addEventListener("click", function() {
+            
+            this.classList.toggle("complete");
+
+            const checkboxIcon = this.closest('.content-description').querySelector('.checkbox');
+
+            if (checkboxIcon.classList.contains('fa-square')) {
+                checkboxIcon.classList.remove('fa-square');
+                checkboxIcon.classList.add('fa-square-check');
+            } else {
+                checkboxIcon.classList.remove('fa-square-check');
+                checkboxIcon.classList.add('fa-square');
+            }
+        });
     });
   }
 
@@ -344,7 +358,40 @@ export class View {
     modalClose.addEventListener("click", function () {
       modal.style.display = "none";
     });
+
+    // // Details popup window
+    // const detailsPopup = document.querySelector('.task-details-popup');
+    // const openDetailsButtons = document.querySelectorAll('.fa-circle-info');
+    // const closeDetailsButton = document.querySelector('.close-details-popup');
+
+    // openDetailsButtons.forEach(function(button) {
+    //     button.addEventListener('click', function() {
+    //       console.log("details here!")
+    //       detailsPopup.style.display="block"
+    //     });
+    // });
+
+    // closeDetailsButton.addEventListener('click', function() {
+    //     detailsPopup.style.display = 'none';
+    // });
+
+    // Automatically populate details with task name and category from html
+    // Get the task name and category name elements
+const taskNameElement = document.getElementById('task-name-1-1');
+const categoryNameElement = document.getElementById('category-name-1');
+
+// Get the input fields in the details popup
+const taskNameInput = document.getElementById('task-name-input');
+const categoryNameInput = document.getElementById('category-name-input');
+
+// Set the initial values of the input fields
+taskNameInput.value = taskNameElement.textContent;
+categoryNameInput.value = categoryNameElement.textContent;
+
+
+
   }
+
   renderFooter() {
     this.createElement(
       "footer",
@@ -365,19 +412,91 @@ export class View {
       "element-el",
       "footer"
     );
-    // Hamburger Menu Display on Mobile
-
-    const menuBtn = document.querySelector(".menu-btn");
-    const asideEl = document.getElementById("aside-el");
-
-    menuBtn.addEventListener("click", function () {
-      asideEl.style.display =
-        asideEl.style.display === "none" || asideEl.style.display === ""
-          ? "block"
-          : "none";
-    });
   }
+
+  // Details Popup for tasks
+  renderTaskDetailsPopup() {
+    this.createElement(
+      "div",
+      `<div class="task-details-popup">
+          <div class="task-details-content">
+              <i class="fa-solid fa-xmark fa-2x close-details-popup"></i>
+              <h2>Task Details</h2>
+              <div class="task-details">
+                  <label for="task-name">Task Name:</label>
+                  <input type="text" id="task-name-input" name="task-name">
+              </div>
+              <div class="task-details">
+                  <label for="category-name">Category Name:</label>
+                  <input type="text" id="category-name-input" name="category-name">
+              </div>
+              <div class="task-details">
+                  <label for="description-name">Description:</label>
+                  <input type="text" id="description-name" name="description-name" size="50">
+              </div>
+              <div class="task-details">
+                  <label for="modal-subtask">Subtask:</label>
+                  <input type="checkbox" id="modal-subtask" name="modal-subtask" value="subtask">
+                  <input type="text" id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
+              </div>
+              <div class="task-details">
+                  <label for="modal-date">Date:</label>
+                  <input type="text" id="modal-date" name="modal-date">
+              </div>
+              <div class="task-details">
+                  <label for="modal-time">Time:</label>
+                  <input type="text" id="modal-time" name="modal-time">
+              </div>
+              <div class="task-details">
+                  <label for="priority-level">Priority:</label>
+                  <select id="priority-level" name="priority-level">
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                  </select>
+              </div>
+              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
+              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
+          </div>
+      </div>`,
+      document.getElementById("app"),
+      null,
+      ".task-details-popup"
+    );
+    
+  }
+
+  // Details popup window FOCUS ON THIS TOMORROW
+  // const detailsPopup = document.querySelector(".task-details-popup");
+  // const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
+  // const closeDetailsButton = document.querySelector(".close-details-popup");
+
+  // openDetailsButtons.forEach(function(button) {
+  //     button.addEventListener('click', function() {
+  //       console.log("details here!")
+  //       detailsPopup.style.display="block"
+  //     });
+  // });
+
+  // closeDetailsButton.addEventListener('click', function() {
+  //     detailsPopup.style.display = 'none';
+  // });
+
+   // Hamburger Menu Display on Mobile
+
+//     const menuBtn = document.querySelector(".menu-btn");
+//     const asideEl = document.getElementById("aside-el");
+
+//     menuBtn.addEventListener("click", function () {
+//       asideEl.style.display =
+//         asideEl.style.display === "none" || asideEl.style.display === ""
+//           ? "block"
+//           : "none";
+//     });
+//   }
 }
+
+
 
 class App {
   constructor() {
@@ -437,7 +556,3 @@ export class Task {
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
 const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
-console.log(app.tasks);
-(async () => {
-  await app.init("My Daily Classlist");
-})(); // make the console log asyncrinus and to be seen when I inspect the page
