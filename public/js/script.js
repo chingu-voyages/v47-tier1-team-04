@@ -28,7 +28,7 @@ export class View {
     this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
-    this.renderTaskDetailsPopup()
+    //this.renderTaskDetailsPopup()
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
@@ -65,7 +65,7 @@ export class View {
       "div",
       `
             
-              <h3 id="category-title-1">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+              <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
               <ul id="sidebar_${group}">
                   
               </ul>
@@ -383,8 +383,8 @@ const taskNameInput = document.getElementById('task-name-input');
 const categoryNameInput = document.getElementById('category-name-input');
 
 // Set the initial values of the input fields
-taskNameInput.value = taskNameElement.textContent;
-categoryNameInput.value = categoryNameElement.textContent;
+// taskNameInput.value = taskNameElement.textContent;
+// categoryNameInput.value = categoryNameElement.textContent;
 
 
 
