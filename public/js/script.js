@@ -34,6 +34,7 @@ export class View {
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
+    return newView;
   }
   //Popup message to user once they press the "save" button:
   renderSuccessfulSave(){
@@ -53,7 +54,6 @@ export class View {
 
         <h2>${title}</h2>
             <div id="daily-checklist">
-
             </div>`,
       document.getElementById("app"),
       "element-el",
@@ -61,7 +61,6 @@ export class View {
     );
   }
   renderAsideGroup(group) {
-    console.log(group);
     this.createElement(
       "div",
       `
@@ -75,8 +74,7 @@ export class View {
     );
   }
   renderAsideGroups(title) {
-    console.log(app.controller.returnUniqueGroupNames());
-    let aside = this.renderAside(title);
+    this.renderAside(title);
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderAsideGroup(group);
       app.controller
@@ -95,7 +93,6 @@ export class View {
   renderNavBar() {
     this.createElement(
       "nav",
-
       `<div class="navbar-top">
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                 <div id="date" class="date">Today:</div>
@@ -190,11 +187,10 @@ export class View {
   }
 
   renderContentGroup(group) {
-    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
+    this.createElement("div", `<h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
   }
 
   renderContentGroups() {
-    console.log(app.controller.returnUniqueGroupNames());
     app.controller.returnUniqueGroupNames().map(group => {
       app.view.renderContentGroup(group);
       app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(group, category))
@@ -203,9 +199,11 @@ export class View {
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
   renderContentTask(task) {
-    const anchor = document.querySelector(`#category_${kebabCase(task.category)} .content-description`)
-    this.createElement("p", task.name, anchor)
-    this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    const anchor = this.createElement('div', ``, document.querySelector(`#category_${kebabCase(task.category)} .content-inner`), `task_${kebabCase(task.name.slice(0,20))}`, 'content-description').container
+    console.log(anchor)
+    this.createElement("p", `<i class="fa-regular fa-square checkbox"></i> ${task.name}`, anchor)
+    this.createElement("div", `<i class="fa-solid fa-circle-info fa-2x detail"></i>
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
   }
 
@@ -241,9 +239,10 @@ export class View {
       "fa-solid fa-plus add-icon"
     );
     this.renderModal();
+    this.onclick = () => addButton.style.display = "block";
   }
   renderModal() {
-    this.createElement(
+   this.createElement(
       "div",
       `<!-- this is hidden until click event -->
     <div class="modal-top-nav">
