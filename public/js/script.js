@@ -27,8 +27,6 @@ export class View {
     this.renderContent();
     this.renderContentGroups();
     this.renderContentTasks();
-    this.renderContentTasks();
-    renderInfoPopup();
     this.renderModalButton();
     this.renderFooter();
   }
