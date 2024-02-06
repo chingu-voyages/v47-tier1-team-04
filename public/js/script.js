@@ -26,7 +26,6 @@ export class View {
     this.renderContent();
     this.renderContentGroups();
     this.renderContentTasks();
-    this.renderContentTasks();
     this.renderModalButton();
     this.renderFooter();
   }
@@ -183,8 +182,7 @@ export class View {
   }
 
   renderContentGroups() {
-    console.log(app.controller.returnUniqueGroupNames());
-    app.controller.returnUniqueGroupNames().map((group) => {
+      app.controller.returnUniqueGroupNames().map((group) => {
       app.view.renderContentGroup(group);
       app.controller
         .returnUniqueCategoriesByGroup(group)
