@@ -223,7 +223,6 @@ export class View {
         const checkboxIcon = this.closest(".content-description").querySelector(
           ".checkbox"
         );
-        console.log(taskName.classList)
 
         if (taskName.classList.contains("fa-square")) {
           checkboxIcon.classList.remove("fa-square");
@@ -573,10 +572,3 @@ export class Task {
     return this;
   }
 }
-
-// setTimeout(() => console.log(app), 50)
-// setTimeout(() => console.log(app.tasks[0].read()), 50)
-//setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
-// setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
-// setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-const groups = () => [...new Set(app.tasks.map((task) => task.group))];
