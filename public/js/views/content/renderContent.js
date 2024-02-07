@@ -1,11 +1,11 @@
-import app from '../../app.js';
-import renderContentGroups from './renderContentGroups.js';
+import app from "../../app.js";
+import renderContentGroups from "./renderContentGroups.js";
+import renderContentTasks from "./renderContentTasks.js";
 
-import { renderContentTasks} from "../everythingElse.temp.js"
 const renderContent = () => {
-    app.view.createElement(
-      "content",
-      `<div class="content-search">
+  app.view.createElement(
+    "content",
+    `<div class="content-search">
       <div class="priority">
           <a href="#" class="btn btn-lite btn-blue">Low</a>
           <a href="#" class="btn btn-lite btn-orange">Med</a>
@@ -18,11 +18,11 @@ const renderContent = () => {
       </div>               
   </div>
   `,
-      document.getElementById("app"),
-      "content",
-      "content"
-    );
-    renderContentGroups()
-    renderContentTasks()
-  }
-  export default renderContent
+    document.getElementById("app"),
+    "content",
+    "content"
+  );
+  renderContentGroups();
+  renderContentTasks();
+};
+export default renderContent;

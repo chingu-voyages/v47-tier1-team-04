@@ -2,7 +2,8 @@ import app from '../app.js';
 import renderAsideGroups from './renderAside/renderAsideGroups.js'
 import renderNavBar from './renderNavbar.js';
 import renderContent from './content/renderContent.js';
-import {  renderModalButton, renderFooter, renderTaskDetailsPopup} from './everythingElse.temp.js';
+import renderModals from './modals/index.js';
+
 let viewIndex = 1;
 export default class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -27,9 +28,7 @@ export default class View {
     renderAsideGroups(title);
     renderNavBar();
     renderContent();
-    renderModalButton();
-    renderFooter();
-    renderTaskDetailsPopup(app.tasks[0]);
+    renderModals()
   }
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {

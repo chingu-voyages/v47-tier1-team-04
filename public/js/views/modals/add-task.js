@@ -1,18 +1,5 @@
-  import app from '../app.js';
-  import { kebabCase } from '../utilities/utilities.js';
-  //Popup message to user once they press the "save" button:
-  export const renderSuccessfulSave = () => {
-    alert("Your data has been saved!");
-  }
-
-  // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
-
-
-
-
-
-
-  export const renderModal = () => {
+import app from "../../app.js";
+export const renderModal = () => {
     app.view.createElement(
       "div",
       `<!-- this is hidden until click event -->
@@ -141,101 +128,16 @@
     // categoryNameInput.value = categoryNameElement.textContent;
   }
 
-  export const renderFooter = () => {
-    app.view.createElement(
-      "footer",
-      `<footer>
-              <div class="footer-left">
-                <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
-                  <p class="copyright">© Chingu Team 04 Github</p>
-                </a>
-              </div>
-              
-              <a href="https://www.chingu.io" class="footer-right">          
-                  <p class="copyright">Chingu</p>
-                  <img class="chingu-logo" src="./img/chingo-logo.png"
-                    />
-              </a>            
-            </footer> `,
-      document.getElementById("app"),
-      "element-el",
-      "footer"
-    );
-  }
-
-
-  export const renderTaskDetailsPopup = (task) => {
-    const detailsPopup = app.view.createElement(
+  export const renderModalButton = () => {
+    const thisButton = app.view.createElement(
       "div",
-      `<div class="task-details-popup">
-          <div class="task-details-content">
-              ${renderCloseDetailsButton()}
-              <h2>Task Details</h2>
-              <div class="task-details">
-                  <label for="task_${kebabCase(task.name)}">Task Name:</label>
-                  <input type="text" value="${task.name}" id="task_${kebabCase(task.name)}-input" name="task_${kebabCase(task.name)}">
-              </div>
-              <div class="task-details">
-                  <label for="category_${kebabCase(task.category)}">Category Name:</label>
-                  <input type="text" value="${task.category} id="category_${kebabCase(task.category)}-input" name="category_${kebabCase(task.name)}">
-              </div>
-              <div class="task-details">
-                  <label for="description-name">Description:</label>
-                  <input type="text" value="${task.name}" id="desc_${kebabCase(task.name.slice(0,20))}" name="description-name" size="50">
-              </div>
-              <div class="task-details">
-                  <label for="modal-subtask">Subtask:</label>
-                  <input type="checkbox" id="modal-subtask" name="modal-subtask" value="subtask">
-                  <input type="text" id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
-              </div>
-              <div class="task-details">
-                  <label for="modal-date">Date:</label>
-                  <input type="text" id="modal-date" name="modal-date">
-              </div>
-              <div class="task-details">
-                  <label for="modal-time">Time:</label>
-                  <input type="text" id="modal-time" name="modal-time">
-              </div>
-              <div class="task-details">
-                  <label for="priority-level">Priority:</label>
-                  <select id="priority-level" name="priority-level">
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                  </select>
-              </div>
-              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
-              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
-          </div>
-      </div>`,
+      '<i class="fa-solid fa-plus add-icon"></i>',
       document.getElementById("app"),
-      null,
-      "task-details-popup"
-    ).container;
-  // Details popup window FOCUS ON THIS TOMORROW
-  // const detailsPopup = document.querySelector(".task-details-popup");
-  const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
-  const closeDetailsButton = document.querySelector(".close-details-popup");
-  detailsPopup.style = "display: none";
-  openDetailsButtons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        console.log("details here!")
-        detailsPopup.style.display="block"
-      });
-  });
+      "add-icon-el",
+      "fa-solid fa-plus add-icon"
+    );
+    renderModal();
+    thisButton.onclick = () => (addButton.style.display = "block");
+  };
 
-  closeDetailsButton.addEventListener('click', function() {
-      detailsPopup.style.display = 'none';
-  });
-  }
-  // Hamburger Menu Display on Mobile
-
-      // const menuBtn = document.querySelector(".menu-btn");
-      // const asideEl = document.getElementById("aside-el");
-
-      // menuBtn.addEventListener("click", function () {
-      //   asideEl.style.display =
-      //     asideEl.style.display === "none" || asideEl.style.display === ""
-      //       ? "block"
-      //       : "none";
-      // });
+  export default renderModal
