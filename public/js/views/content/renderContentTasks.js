@@ -2,10 +2,13 @@ import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
 
 const renderInfoButton = (task) => {
-  const button = document.createElement("i");
-  button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 7)}`;
-  return button.outerHTML;
+  app.view.createElement(
+    "i",
+    "",
+    document.getElementById(`info_${task.name.slice(0, 7)}`),
+    `button_${kebabCase(task.name).slice(0, 7)}`,
+    "fa-solid fa-circle-info fa-2x detail"
+  );
 };
 
 const renderContentTask = (task) => {
@@ -27,11 +30,14 @@ const renderContentTask = (task) => {
   );
   app.view.createElement(
     "div",
-    `${renderInfoButton(task)}
+    `
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
-    anchor
+    anchor,
+    `info_${kebabCase(task.name.slice(0, 7))}}`
   );
+
+  renderInfoButton(task);
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
 
