@@ -26,4 +26,9 @@ export default class Task {
       this.complete = false;
       return this;
     }
+
+    toggleComplete() {
+      this.complete = !this.complete;
+      return this.complete;
+    }
   }

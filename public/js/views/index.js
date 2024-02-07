@@ -37,6 +37,9 @@ export default class View {
     app.views.push(newView);
     return newView;
   }
+  renderToggleCompleteTask(task) {
+    console.log(task);
+  }
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
