@@ -1,7 +1,7 @@
 import app from "../app.js";
 import renderAsideGroups from "./renderAside/renderAsideGroups.js";
 import renderNavBar from "./renderNavbar.js";
-import renderContent from "./content/renderContent.js";
+import renderContent, { clearContent } from "./content/renderContent.js";
 import renderModals from "./modals/index.js";
 
 let viewIndex = 1;
@@ -37,8 +37,17 @@ export default class View {
     app.views.push(newView);
     return newView;
   }
-  renderToggleCompleteTask(task) {
-    console.log(task);
+  renderToggleCompleteTask(task, taskContainer, taskCheckbox) {
+    if (task.complete) {
+      taskContainer.container.classList.add("complete");
+      taskCheckbox.classList = "fa-regular fa-square-check checkbox";
+    } else {
+      taskContainer.container.classList.remove("complete");
+      taskCheckbox.classList = "fa-regular fa-square checkbox";
+    }
+    clearContent();
+    renderContent();
+    console.log(app.tasks)
   }
 }
 

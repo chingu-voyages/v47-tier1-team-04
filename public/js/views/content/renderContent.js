@@ -25,4 +25,7 @@ const renderContent = () => {
   renderContentGroups();
   renderContentTasks();
 };
+export const clearContent = () => document.getElementById('content').remove()
+
+
 export default renderContent;

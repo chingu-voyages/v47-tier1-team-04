@@ -1,14 +1,14 @@
 import app from '../app.js';
 //Object constructor to create new tasks:
 export default class Task {
-    constructor(name, group, category, frequency, days, calander) {
+    constructor(name, group, category, frequency, days, calander, complete) {
       this.name = name;
       this.group = group;
       this.category = category;
       this.frequency = frequency;
       this.days = days;
       this.calander = calander;
-      this.complete = false;
+      this.complete = complete;
       app.tasks.push(this);
     }
     read() {
@@ -27,8 +27,8 @@ export default class Task {
       return this;
     }
 
-    toggleComplete() {
+    toggleCompleteTask() {
       this.complete = !this.complete;
-      return this.complete;
+      return this;
     }
   }
