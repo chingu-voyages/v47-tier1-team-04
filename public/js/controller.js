@@ -1,5 +1,6 @@
 import app from "./app.js";
 import Task from "./utilities/task.js";
+import renderSuccessfulSave from "./views/utils/save.js";
 
 export default class Controller {
   init(title) {
@@ -50,7 +51,7 @@ export default class Controller {
 
   saveData() {
     localStorage.setItem("savedUserData", JSON.stringify(app.tasks));
-    app.view.renderSuccessfulSave();
+    renderSuccessfulSave();
   }
 
   returnUniqueGroupNames() {
