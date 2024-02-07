@@ -65,28 +65,6 @@ const renderContentTask = (task) => {
       contentInner.classList.toggle("darken");
     });
   });
-
-  // Complete task toggle
-  // Add event listener to task names for marking as complete
-  const taskNames = document.querySelectorAll(".task-name");
-
-  taskNames.forEach(function (taskName) {
-    taskName.addEventListener("click", function () {
-     // this.classList.toggle("complete");
-
-      /* const checkboxIcon = this.closest(".content-description").querySelector(
-        ".checkbox"
-      ); */
-
-      if (taskName.classList.contains("fa-square")) {
-        checkboxIcon.classList.remove("fa-square");
-        checkboxIcon.classList.add("fa-square-check");
-      } else {
-        checkboxIcon.classList.remove("fa-square-check");
-        checkboxIcon.classList.add("fa-square");
-      }
-    });
-  });
 };
 
 const renderContentTasks = () => {
