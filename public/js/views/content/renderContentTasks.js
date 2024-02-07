@@ -18,7 +18,7 @@ const renderContentTask = (task) => {
     `task_${kebabCase(task.name)}`,
     "content-description"
   ).container;
-  app.view.createElement(
+  const taskContainer = app.view.createElement(
     "p",
     `<i class="fa-regular fa-square checkbox"></i> ${task.name}`,
     anchor,
@@ -32,6 +32,17 @@ const renderContentTask = (task) => {
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
     anchor
   );
+  taskContainer.container.onclick = () => {
+    taskContainer.container.classList.toggle("complete");
+    const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
+    if (taskCheckbox.classList.contains("fa-square")) {
+      taskCheckbox.classList.remove("fa-square");
+      taskCheckbox.classList.add("fa-square-check");
+    } else {
+      taskCheckbox.classList.remove("fa-square-check");
+      taskCheckbox.classList.add("fa-square");
+    }
+  }
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
 
@@ -61,11 +72,11 @@ const renderContentTask = (task) => {
 
   taskNames.forEach(function (taskName) {
     taskName.addEventListener("click", function () {
-      this.classList.toggle("complete");
+     // this.classList.toggle("complete");
 
-      const checkboxIcon = this.closest(".content-description").querySelector(
+      /* const checkboxIcon = this.closest(".content-description").querySelector(
         ".checkbox"
-      );
+      ); */
 
       if (taskName.classList.contains("fa-square")) {
         checkboxIcon.classList.remove("fa-square");
