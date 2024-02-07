@@ -26,7 +26,8 @@ export default class Controller {
               task.category,
               task.frequency,
               task.days,
-              task.calendar
+              task.calendar,
+              task.complete
             )
         )
       );
@@ -43,7 +44,8 @@ export default class Controller {
               task.category,
               task.frequency,
               task.days,
-              task.calendar
+              task.calendar,
+              task.complete
             )
         )
       : await this.seed();
@@ -52,6 +54,11 @@ export default class Controller {
   saveData() {
     localStorage.setItem("savedUserData", JSON.stringify(app.tasks));
     renderSuccessfulSave();
+  }
+
+  toggleCompleteTask(task, taskContainer, taskCheckbox) {
+    task.toggleCompleteTask()
+    app.view.renderToggleCompleteTask(task.complete, taskContainer, taskCheckbox)
   }
 
   returnUniqueGroupNames() {
