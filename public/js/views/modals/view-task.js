@@ -20,7 +20,7 @@ const renderTaskDetailsPopup = (task) => {
                   )}">Category Name:</label>
                   <input type="text" value="${
                     task.category
-                  } id="category_${kebabCase(
+                  }" id="category_${kebabCase(
       task.category
     )}-input" name="category_${kebabCase(task.name)}">
               </div>
