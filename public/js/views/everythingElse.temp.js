@@ -6,48 +6,11 @@
   }
 
 
-  export const renderContent = () => {
-    app.view.createElement(
-      "content",
-      `<div class="content-search">
-      <div class="priority">
-          <a href="#" class="btn btn-lite btn-blue">Low</a>
-          <a href="#" class="btn btn-lite btn-orange">Med</a>
-          <a href="#" class="btn btn-lite btn-red">High</a>
 
-          <div class="search">
-              <input type="text" placeholder="">
-              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-          </div>
-      </div>               
-  </div>
-  
 
-  `,
-      document.getElementById("app"),
-      "content",
-      "content"
-    );
-  }
 
-  export const renderContentGroup = (group) => {
-    app.view.createElement(
-      "div",
-      `<h2 class="category-name">${group}</h2>`,
-      document.getElementById("content"),
-      `content_${kebabCase(group)}`,
-      "content-activity"
-    );
-  }
 
-  export const renderContentGroups = () => {
-    app.controller.returnUniqueGroupNames().map((group) => {
-      renderContentGroup(group);
-      app.controller
-        .returnUniqueCategoriesByGroup(group)
-        .map((category) => renderContentCategory(group, category));
-    });
-  }
+
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
   export const renderContentTask = (task) => {
@@ -124,29 +87,7 @@
     app.tasks.map((task) => renderContentTask(task));
   }
 
-  export const renderContentCategory = (group, category) => {
-    app.view.createElement(
-      "div",
-      `
-    <div class="content-main">
-        <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${kebabCase(
-          group
-        )}_${kebabCase(category)}">
-        <div class="content-inner">
-            <div class="content-task">
-                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
-            </div>
-            <div class="content-description">
-                                      
-            </div>                        
-        </div>
 
-    </div>               
-`,
-      document.getElementById(`content_${kebabCase(group)}`),
-      `category_${kebabCase(category)}`
-    );
-  }
 
   export const renderModalButton = () => {
     const thisButton = app.view.createElement(
