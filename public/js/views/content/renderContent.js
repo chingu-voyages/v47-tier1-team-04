@@ -25,7 +25,12 @@ const renderContent = () => {
   renderContentGroups();
   renderContentTasks();
 };
-export const clearContent = () => document.getElementById('content').remove()
+const clearContent = () => document.getElementById('content').remove()
+
+export const renderToggleCompleteTask = () => {
+    clearContent();
+    renderContent();
+  }
 
 
 export default renderContent;
