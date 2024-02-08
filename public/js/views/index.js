@@ -2,6 +2,7 @@ import app from "../app.js";
 import renderAsideGroups from "./renderAside/renderAsideGroups.js";
 import renderNavBar from "./renderNavbar.js";
 import renderContent, { renderToggleCompleteTask } from "./content/renderContent.js";
+import renderFooter from './renderFooter.js';
 import renderModals from "./modals/index.js";
 
 let viewIndex = 1;
@@ -28,13 +29,13 @@ export default class View {
     renderAsideGroups(title);
     renderNavBar();
     renderContent();
+    renderFooter();
     renderModals();
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
   //Function to display the data into HTML:
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
-    app.views.push(newView);
     return newView;
   }
   renderToggleCompleteTask() {
