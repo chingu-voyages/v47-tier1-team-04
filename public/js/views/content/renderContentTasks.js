@@ -67,27 +67,16 @@ const renderContentTask = (task) => {
     });
   });
 
-  // Complete task toggle
-  // Add event listener to task names for marking as complete
-  const taskNames = document.querySelectorAll(".task-name");
+  if (task.complete) {
+    taskContainer.container.classList.toggle("complete");
 
-  taskNames.forEach(function (taskName) {
-    taskName.addEventListener("click", function () {
-     // this.classList.toggle("complete");
+    console.log(task.complete);
+      const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
 
-      /* const checkboxIcon = this.closest(".content-description").querySelector(
-        ".checkbox"
-      ); */
+      taskCheckbox.classList.remove("fa-square");
+      taskCheckbox.classList.add("fa-square-check");
+  } 
 
-      if (taskName.classList.contains("fa-square")) {
-        checkboxIcon.classList.remove("fa-square");
-        checkboxIcon.classList.add("fa-square-check");
-      } else {
-        checkboxIcon.classList.remove("fa-square-check");
-        checkboxIcon.classList.add("fa-square");
-      }
-    });
-  });
 };
 
 const renderContentTasks = () => {
