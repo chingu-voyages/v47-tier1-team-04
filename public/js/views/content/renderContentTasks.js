@@ -1,10 +1,11 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
+import renderTaskDetailsPopup from '../modals/view-task.js';
 
 const renderInfoButton = (task) => {
   const button = document.createElement("i");
   button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 7)}`;
+  button.id = `button_${kebabCase(task.name)}`;
   return button.outerHTML;
 };
 
@@ -32,6 +33,8 @@ const renderContentTask = (task) => {
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
     anchor
   );
+  const infoButton = document.getElementById(`button_${kebabCase(task.name)}`)
+  infoButton.onclick = () => renderTaskDetailsPopup(task)
   const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
   if (task.complete) {
     taskContainer.container.classList.add("complete");
