@@ -43,7 +43,8 @@ export default class Controller {
               task.category,
               task.frequency,
               task.days,
-              task.calendar
+              task.calendar,
+              task.complete
             )
         )
       : await this.seed();
