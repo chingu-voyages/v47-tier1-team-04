@@ -20,7 +20,7 @@ const renderContentTask = (task) => {
   ).container;
   const taskContainer = app.view.createElement(
     "p",
-    `<i class=""></i> ${task.name}`,
+    `<i></i> ${task.name}`,
     anchor,
     null,
     "task-name"
@@ -40,9 +40,8 @@ const renderContentTask = (task) => {
     taskContainer.container.classList.remove("complete");
     taskCheckbox.classList = "fa-regular fa-square checkbox";
   }
-  taskContainer.container.onclick = () => {
-    app.controller.toggleCompleteTask(task, taskContainer, taskCheckbox);
-  };
+  taskContainer.container.onclick = () => app.controller.toggleCompleteTask(task); 
+
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
 
