@@ -1,25 +1,17 @@
 import app from "../../app.js";
-import { removePopup } from "./view-task.js";
-const removeModal = (cbFn) => {
-  let modal = document.querySelector(".modal");
-  if (modal) console.log(modal.remove());
-  else if (document.querySelectorAll(".modal")) {
-    let modals = document.querySelectorAll(".modal");
-    modals.forEach((modal) => modal.remove());
-  } else cbFn()
-};
-console.log('clicked')
+import { clearPopups } from "./index.js";
+
 const renderModal = () => {
-  removeModal(ifOpen());
-  removePopup();
-  
-  const ifOpen = () => app.view.createElement(
-    "div",
-    `<!-- this is hidden until click event -->
+  let modal = document.querySelector(".modal");
+  if (modal) clearPopups();
+  else
+    modal = app.view.createElement(
+      "div",
+      `<!-- this is hidden until click event -->
     <div class="modal-top-nav">
       <i class="fa-solid fa-xmark fa-2x" id="modal-close-el" ></i>
       <h2>Task Details</h2> 
-      <a href="#" class="btn modal-btn-save">Save</a>
+      <a href="#" class="btn modal-btn-save" id="modal-btn-save">Save</a>
     </div>
 
     <div class="task-category">
@@ -108,38 +100,15 @@ const renderModal = () => {
     <textarea name="notes" id="notes" class="notes" placeholder="Notes..."></textarea>
    <!-- end of modal -->
   <!-- https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/datepicker-spinbuttons/ -->`,
-    document.getElementById("app"),
-    null,
-    "modal"
-  );
-
-  // Modal pop-up
-  const addIconEl = document.getElementById("add-icon-el");
-  const modal = document.querySelector(".modal");
-  const modalClose = document.getElementById("modal-close-el");
-  modalClose.onclick = () => modal.remove()
-
-  // addIconEl.addEventListener("click", function () {
-  //   console.log("we have lift off");
-  //   modal.style.display = "block";
-  // });
-
-  // modalClose.addEventListener("click", function () {
-  //   modal.remove()
-  // });
-
-  // Automatically populate details with task name and category from html
-  // Get the task name and category name elements
-  const taskNameElement = document.getElementById("task-name-1-1");
-  const categoryNameElement = document.getElementById("category-name-1");
-
-  // Get the input fields in the details popup
-  const taskNameInput = document.getElementById("task-name-input");
-  const categoryNameInput = document.getElementById("category-name-input");
-
-  // Set the initial values of the input fields
-  // taskNameInput.value = taskNameElement.textContent;
-  // categoryNameInput.value = categoryNameElement.textContent;
+      document.getElementById("app"),
+      null,
+      "modal"
+    ).container;
+  document.getElementById("modal-close-el").onclick = () => modal.remove();
+  document.getElementById("modal-btn-save").onclick = () => {
+    modal.remove()
+    app.controller.saveData();
+  };
 };
 
 const renderModalButton = () => {

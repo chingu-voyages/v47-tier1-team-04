@@ -1,9 +1,14 @@
-import app from "../../app.js";
-import renderTaskDetailsPopup from "./view-task.js";
-import renderAddModal, { renderModalButton } from "./add-task.js";
+//import { renderModalButton } from "./add-task.js";
+
+export const clearPopups = () => {
+  let popup =
+    document.querySelector(".task-details-popup") &&
+    document.querySelector(".modal");
+  if (popup) popup.remove();
+};
 
 const renderModals = () => {
-  renderModalButton();
+  //renderModalButton();
 };
 
 export default renderModals;

@@ -4,6 +4,9 @@ import { kebabCase } from "../../utilities/utilities.js";
 export const removePopup = () => {
   let popup = document.querySelector(".task-details-popup");
   if (popup) popup.remove();
+  popup = document.querySelector('.modal');
+  if (popup) popup.remove();
+  popup = document.querySelectorAll('.modal');
 };
 
 const renderTaskDetailsPopup = (task) => {
