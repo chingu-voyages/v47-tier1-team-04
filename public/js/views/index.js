@@ -1,9 +1,11 @@
 import app from "../app.js";
 import renderAsideGroups from "./renderAside/renderAsideGroups.js";
 import renderNavBar from "./renderNavbar.js";
-import renderContent, { renderToggleCompleteTask } from "./content/renderContent.js";
-import renderFooter from './renderFooter.js';
-import renderModals from "./modals/index.js";
+import renderContent, {
+  renderToggleCompleteTask,
+} from "./content/renderContent.js";
+import renderFooter from "./renderFooter.js";
+import renderModalButton from "./modals/add-task.js";
 
 let viewIndex = 1;
 export default class View {
@@ -30,7 +32,7 @@ export default class View {
     renderNavBar();
     renderContent();
     renderFooter();
-    renderModals();
+    renderModalButton();
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
   //Function to display the data into HTML:
@@ -39,8 +41,8 @@ export default class View {
     return newView;
   }
   renderToggleCompleteTask() {
-   return renderToggleCompleteTask()
-}
+    return renderToggleCompleteTask();
+  }
 }
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
 

@@ -1,9 +1,13 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
 
+export const removePopup = () => {
+  let popup = document.querySelector(".task-details-popup");
+  if (popup) popup.remove();
+};
+
 const renderTaskDetailsPopup = (task) => {
-  const popup = document.querySelector('.task-details-popup');
-  if (popup) popup.remove()
+  removePopup();
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
@@ -65,6 +69,5 @@ const renderTaskDetailsPopup = (task) => {
   const closeDetailsButton = document.querySelector(".close-details-popup");
   closeDetailsButton.onclick = () => detailsPopup.remove();
 };
-
 
 export default renderTaskDetailsPopup;
