@@ -246,9 +246,18 @@
                         <div class="content-task">
                             <h3 class="activity" id="activity-title-1-1">Projects</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
                         </div>
-                        <div class="content-description">
-                            <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                        <div class="content-description">                            
+                            <p class="task-name" id="task-name-1-1"><i class="fa-regular fa-square checkbox"></i> Update recipes project backlog</p>
                             <div class="content-description-edit">
+                                <i class="fa-solid fa-circle-info fa-2x detail"></i>
+                                <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                                <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                            </div>                            
+                        </div>
+                        <div class="content-description">
+                            <p class="task-name" id="task-name-1-1"><i class="fa-regular fa-square checkbox"></i> Add fix for issue 155</p>
+                            <div class="content-description-edit">
+                                <i class="fa-solid fa-circle-info fa-2x detail"></i>
                                 <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
                                 <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
                             </div>                            
@@ -267,8 +276,10 @@
                             <h3 class="activity" id="activity-title-2-1">Voyage</h3> <a href="#" class="btn btn-lite btn-red">High</a>
                         </div>
                         <div class="content-description">
-                            <p class="task-name" id="task-name-2-1">Create the UI/UX design for the daily task project</p>
+                            <p class="task-name" id="task-name-1-1"><i class="fa-regular fa-square checkbox"></i> Create the UI/UX design for the daily task project</p>
+                            
                             <div class="content-description-edit">
+                                <i class="fa-solid fa-circle-info fa-2x detail"></i>
                                 <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
                                 <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
                             </div>                            
@@ -292,7 +303,45 @@
           <img class="chingu-logo" src="./img/chingo-logo.png"
             />
       </a>            
-    </footer>  
+    </footer>
+
+    <!-- Details popup window -->
+        <div class="task-details-popup" style="display: none;">
+            <div class="task-details-content">
+                <span class="close-details-popup"><i class="fa-solid fa-xmark fa-2x"></i></span>
+                <h2>Task Details</h2>
+                <div class="task-details">
+                    <label for="task-name">Task Name:</label>
+                    <input type="text" id="task-name" name="task-name">
+                </div>
+                <div class="task-details">
+                    <label for="category-name">Category Name:</label>
+                    <input type="text" id="category-name" name="category-name">
+                </div>
+                <div class="task-details">
+                    <label for="task-description">Description:</label>
+                    <textarea id="task-description" name="task-description"></textarea>
+                </div>
+                <div class="task-details">
+                    <label for="task-frequency">Frequency:</label>
+                    <input type="text" id="task-frequency" name="task-frequency">
+                </div>
+                <div class="task-details">
+                    <label for="task-days">Days:</label>
+                    <input type="text" id="task-days" name="task-days">
+                </div>
+                <div class="task-details">
+                    <label for="task-priority">Priority:</label>
+                    <select id="task-priority" name="task-priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>                
+                    <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>               
+            </div>
+        </div>
+    
     </div>
   <script src="./js/script.js" type="module"></script>
 </body>
