@@ -31,7 +31,6 @@ export default class Controller {
             )
         )
       );
-    this.saveData();
   }
 
   async loadData() {
@@ -56,9 +55,9 @@ export default class Controller {
     renderSuccessfulSave();
   }
 
-  toggleCompleteTask(task, taskContainer, taskCheckbox) {
+  toggleCompleteTask(task) {
     task.toggleCompleteTask()
-    app.view.renderToggleCompleteTask(task.complete, taskContainer, taskCheckbox)
+    app.view.renderToggleCompleteTask()
   }
 
   returnUniqueGroupNames() {
