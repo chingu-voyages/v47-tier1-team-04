@@ -43,7 +43,7 @@ const renderContentTask = (task) => {
       taskCheckbox.classList.remove("fa-square-check");
       taskCheckbox.classList.add("fa-square");
     }
-  }
+  };
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
 
@@ -69,14 +69,10 @@ const renderContentTask = (task) => {
 
   if (task.complete) {
     taskContainer.container.classList.toggle("complete");
-
-    console.log(task.complete);
-      const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
-
-      taskCheckbox.classList.remove("fa-square");
-      taskCheckbox.classList.add("fa-square-check");
-  } 
-
+    const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
+    taskCheckbox.classList.remove("fa-square");
+    taskCheckbox.classList.add("fa-square-check");
+  }
 };
 
 const renderContentTasks = () => {
