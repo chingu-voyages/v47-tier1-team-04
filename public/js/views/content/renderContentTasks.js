@@ -29,7 +29,7 @@ const renderContentTask = (task) => {
     "div",
     `${renderInfoButton(task)}
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="trashIcon">`,
     anchor
   );
   taskContainer.container.onclick = () => {

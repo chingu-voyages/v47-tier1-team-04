@@ -671,6 +671,10 @@ h2 {
     height: 2.5rem;
 }
 
+.hideDeletedTask {
+    display: none;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
