@@ -29,15 +29,9 @@ export default class Task {
 
     toggleComplete() {
       this.complete = !this.complete;
-      let savedUserData = JSON.parse(localStorage.getItem('savedUserData'));
-
-      for (let i = 0; i < savedUserData.length; i++){
-        if (savedUserData[i].name == this.name){
-          savedUserData[i].complete = this.complete;
-        }
-      }
-
-      localStorage.setItem('savedUserData', JSON.stringify(savedUserData));
+      
+      // to enable auto-save uncomment next line  
+      // app.controller.saveData();
       return this.complete;
     }
 
