@@ -2,11 +2,13 @@ import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
 
 const renderTaskDetailsPopup = (task) => {
+  const popup = document.querySelector('.task-details-popup');
+  if (popup) popup.remove()
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
           <div class="task-details-content">
-              ${renderCloseDetailsButton()}
+              <i class="fa-solid fa-xmark fa-2x close-details-popup"></i>
               <h2>Task Details</h2>
               <div class="task-details">
                   <label for="task_${kebabCase(task.name)}">Task Name:</label>
@@ -59,28 +61,10 @@ const renderTaskDetailsPopup = (task) => {
     null,
     "task-details-popup"
   ).container;
-  // Details popup window FOCUS ON THIS TOMORROW
-  // const detailsPopup = document.querySelector(".task-details-popup");
-  const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
+
   const closeDetailsButton = document.querySelector(".close-details-popup");
-  detailsPopup.style = "display: none";
-  openDetailsButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      console.log("details here!");
-      detailsPopup.style.display = "block";
-    });
-  });
-
-  closeDetailsButton.addEventListener("click", function () {
-    detailsPopup.style.display = "none";
-  });
+  closeDetailsButton.onclick = () => detailsPopup.remove();
 };
 
-// Details Popup for tasks
-const renderCloseDetailsButton = () => {
-  const button = document.createElement("i");
-  button.classList = "fa-solid fa-xmark fa-2x close-details-popup";
-  return button.outerHTML;
-};
 
 export default renderTaskDetailsPopup;
