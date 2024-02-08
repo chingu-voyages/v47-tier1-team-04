@@ -33,6 +33,7 @@ const renderContentTask = (task) => {
     anchor
   );
   taskContainer.container.onclick = () => {
+    task.toggleComplete();
     taskContainer.container.classList.toggle("complete");
     const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
     if (taskCheckbox.classList.contains("fa-square")) {
