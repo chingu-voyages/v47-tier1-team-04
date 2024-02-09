@@ -1,11 +1,12 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
-import renderTaskDetailsPopup from '../modals/view-task.js';
+import renderViewTask from "../modals/view-task.js";
+import renderEditTask from "../modals/edit-task.js";
 
 const renderInfoButton = (task) => {
   const button = document.createElement("i");
   button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name)}`;
+  button.id = `task_view_${kebabCase(task.name)}`;
   return button.outerHTML;
 };
 
@@ -29,12 +30,27 @@ const renderContentTask = (task) => {
   app.view.createElement(
     "div",
     `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit" id="task_edit_${kebabCase(
+      task.name
+    )}">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${kebabCase(
+      task.name
+    )}">`,
     anchor
   );
-  const infoButton = document.getElementById(`button_${kebabCase(task.name)}`)
-  infoButton.onclick = () => renderTaskDetailsPopup(task)
+  task.view = anchor
+  const infoButton = document.getElementById(
+    `task_view_${kebabCase(task.name)}`
+  );
+  const editButton = document.getElementById(
+    `task_edit_${kebabCase(task.name)}`
+  );
+  const removeButton = document.getElementById(
+    `task_remove_${kebabCase(task.name)}`
+  );
+  infoButton.onclick = () => renderViewTask(task);
+  editButton.onclick = () => renderEditTask(task);
+  removeButton.onclick = () => app.controller.removeTask(task)
   const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
   if (task.complete) {
     taskContainer.container.classList.add("complete");
@@ -43,7 +59,8 @@ const renderContentTask = (task) => {
     taskContainer.container.classList.remove("complete");
     taskCheckbox.classList = "fa-regular fa-square checkbox";
   }
-  taskContainer.container.onclick = () => app.controller.toggleCompleteTask(task); 
+  taskContainer.container.onclick = () =>
+    app.controller.toggleCompleteTask(task);
 
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
