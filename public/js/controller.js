@@ -34,30 +34,35 @@ export default class Controller {
   }
 
   async loadData() {
-    localStorage.savedUserData
-      ? JSON.parse(localStorage.getItem("savedUserData")).map(
-          (task) =>
-            new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar,
-              task.complete
-            )
-        )
-      : await this.seed();
+    if (localStorage.savedUserData) {
+      app.archive = JSON.parse(localStorage.savedUserData).archive
+      JSON.parse(localStorage.getItem("savedUserData")).tasks.map(
+        (task) =>
+          new Task(
+            task.name,
+            task.group,
+            task.category,
+            task.frequency,
+            task.days,
+            task.calendar,
+            task.complete
+          )
+      );
+    } else await this.seed();
   }
 
   saveData() {
-    localStorage.setItem("savedUserData", JSON.stringify(app.tasks));
+    localStorage.setItem("savedUserData", JSON.stringify(app));
     renderSuccessfulSave();
   }
 
+  removeTask(task) {
+    task.archive();
+    task.view.remove()
+  }
   toggleCompleteTask(task) {
-    task.toggleCompleteTask()
-    app.view.renderToggleCompleteTask()
+    task.toggleCompleteTask();
+    app.view.renderToggleCompleteTask();
   }
 
   returnUniqueGroupNames() {
