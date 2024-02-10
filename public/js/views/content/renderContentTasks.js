@@ -4,7 +4,12 @@ import { kebabCase } from "../../utilities/utilities.js";
 const renderInfoButton = (task) => {
   const button = document.createElement("i");
   button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 7)}`;
+  button.id = `button_${kebabCase(task.name).slice(0, 6)}`;
+
+  var myObject = task;
+  var jsonString = JSON.stringify(myObject);
+  button.setAttribute('data-my-object', jsonString);
+
   return button.outerHTML;
 };
 
@@ -28,7 +33,7 @@ const renderContentTask = (task) => {
   app.view.createElement(
     "div",
     `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
     anchor
   );
