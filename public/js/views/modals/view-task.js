@@ -93,6 +93,7 @@ const renderTaskDetailsPopup = () => {
   });
 
   const updateDetailsButtons = document.querySelectorAll(".icon-update");
+  
 
   // const closeDetailsButton = document.querySelector(".close-details-popup");
 

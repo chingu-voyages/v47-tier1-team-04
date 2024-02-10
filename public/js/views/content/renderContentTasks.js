@@ -1,5 +1,6 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
+import renderEditTaskDetailsPopup from "../modals/edit-task.js";
 
 const renderInfoButton = (task) => {
   const button = document.createElement("i");
@@ -33,10 +34,15 @@ const renderContentTask = (task) => {
   app.view.createElement(
     "div",
     `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update">
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${task.name}">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
     anchor
   );
+    document.getElementById(`edit_${task.name}`).onclick = () => {
+      renderEditTaskDetailsPopup(task);
+      console.log(task);
+    }
+
   taskContainer.container.onclick = () => {
     task.toggleComplete();
     taskContainer.container.classList.toggle("complete");
