@@ -1,6 +1,9 @@
 import app from "./app.js";
 import Task from "./utilities/task.js";
+import renderContent, { updateContent } from "./views/content/renderContent.js";
 import renderSuccessfulSave from "./views/utils/save.js";
+import renderContentTask from "./views/content/renderContentTasks.js"
+import { removePopup } from "./views/modals/view-task.js";
 
 export default class Controller {
   init(title) {
@@ -30,7 +33,7 @@ export default class Controller {
             )
         )
       );
-    this.saveData();
+    this.saveData(false);
   }
 
   async loadData() {
@@ -50,9 +53,16 @@ export default class Controller {
       : await this.seed();
   }
 
-  saveData() {
+  saveData(bool) {
     localStorage.setItem("savedUserData", JSON.stringify(app.tasks));
-    renderSuccessfulSave();
+    if (bool) renderSuccessfulSave();
+  }
+
+  updateTask(task, updatedTask) {
+    task.update(updatedTask);
+    updateContent();
+    removePopup();
+    this.saveData(false);
   }
 
   returnUniqueGroupNames() {

@@ -1,14 +1,20 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
+import renderEditTaskDetailsPopup from "../modals/edit-task.js";
 
 const renderInfoButton = (task) => {
   const button = document.createElement("i");
   button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 7)}`;
+  button.id = `button_${kebabCase(task.name).slice(0, 6)}`;
+
+  var myObject = task;
+  var jsonString = JSON.stringify(myObject);
+  button.setAttribute('data-my-object', jsonString);
+
   return button.outerHTML;
 };
 
-const renderContentTask = (task) => {
+export const renderContentTask = (task) => {
   const anchor = app.view.createElement(
     "div",
     ``,
@@ -25,13 +31,19 @@ const renderContentTask = (task) => {
     null,
     "task-name"
   );
+
+  task.view = anchor;
   app.view.createElement(
     "div",
     `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${task.name}">
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
     anchor
   );
+    document.getElementById(`edit_${task.name}`).onclick = () => {
+      renderEditTaskDetailsPopup(task);
+    }
+
   taskContainer.container.onclick = () => {
     task.toggleComplete();
     taskContainer.container.classList.toggle("complete");
