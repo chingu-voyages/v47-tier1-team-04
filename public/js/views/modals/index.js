@@ -5,7 +5,7 @@ import renderAddModal, { renderModalButton } from "./add-task.js";
 const renderModals = () => {
   renderModalButton();
   renderAddModal();
-  renderTaskDetailsPopup(app.tasks[0]);
+  renderTaskDetailsPopup();
 };
 
 export default renderModals;

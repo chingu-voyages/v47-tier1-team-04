@@ -24,5 +24,12 @@ const renderContent = () => {
   );
   renderContentGroups();
   renderContentTasks();
+
 };
+
+export const updateContent = () => {
+  document.getElementById("content").remove();
+  renderContent();
+}
+
 export default renderContent;

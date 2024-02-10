@@ -16,14 +16,15 @@ export default class Task {
       return this;
     }
     //Function to create new tasks:
-    update(name, group, category, frequency, days, calander, complete) {
-      this.name = name;
-      this.group = group;
-      this.category = category;
-      this.frequency = frequency;
-      this.days = days;
-      this.calander = calander;
-      this.complete = complete;
+    update(updatedTask) {
+      const {name, group, category, frequency, days, calander, complete} = updatedTask;
+      this.name = name || this.name;
+      this.group = group || this.group;
+      this.category = category || this.category;
+      this.frequency = frequency || this.frequency;
+      this.days = days || this.days;
+      this.calander = calander || this.calander;
+      this.complete = complete || this.complete;
       return this;
     }
 
