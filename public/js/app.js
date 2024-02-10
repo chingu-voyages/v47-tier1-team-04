@@ -23,3 +23,4 @@ class Model {
 }
 const app = new Model();
 export default app;
+

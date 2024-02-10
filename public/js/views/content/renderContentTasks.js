@@ -14,7 +14,7 @@ const renderInfoButton = (task) => {
   return button.outerHTML;
 };
 
-const renderContentTask = (task) => {
+export const renderContentTask = (task) => {
   const anchor = app.view.createElement(
     "div",
     ``,
@@ -31,6 +31,8 @@ const renderContentTask = (task) => {
     null,
     "task-name"
   );
+
+  task.view = anchor;
   app.view.createElement(
     "div",
     `${renderInfoButton(task)}
@@ -40,7 +42,6 @@ const renderContentTask = (task) => {
   );
     document.getElementById(`edit_${task.name}`).onclick = () => {
       renderEditTaskDetailsPopup(task);
-      console.log(task);
     }
 
   taskContainer.container.onclick = () => {
@@ -87,6 +88,7 @@ const renderContentTask = (task) => {
       taskCheckbox.classList.remove("fa-square");
       taskCheckbox.classList.add("fa-square-check");
   } 
+  return anchor;
 
 };
 

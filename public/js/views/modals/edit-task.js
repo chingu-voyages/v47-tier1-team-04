@@ -138,22 +138,16 @@ const renderEditTaskDetailsPopup = (task) => {
     null,
     "task-details-popup"
   ).container;
-//     console.log('---------------------------');
-// //   const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
-//     // const detailsPopup = app.view.createElement(`div`, )
 
-// //   openDetailsButtons.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//       console.log("details here!");
-//       const taskData = JSON.parse(this.getAttribute('data-my-object'));
-//       const disabled = false;
-//       const detailsPopup = taskModal(taskData, disabled);
-//       detailsPopup.style.display = "block";
-//     });
-//   });
-
-
-  const updateDetailsButtons = document.querySelectorAll(".icon-update");
+  const updateDetailsButton = document.getElementById("save-task-details");
+  updateDetailsButton.onclick = () => {
+    const name = document.getElementById(`task_${kebabCase(
+        task.name
+      )}-input`).value;
+    const updatedTask = {...task, name}; 
+    
+    app.controller.updateTask(task, updatedTask);
+  }
 
   const closeDetailsButton = document.querySelector(".close-details-popup");
 
@@ -164,6 +158,8 @@ const renderEditTaskDetailsPopup = (task) => {
   //   detailsPopup.style.display = "none";
   // });
 };
+
+
 
 // Details Popup for tasks
 const renderCloseDetailsButton = () => {
