@@ -86,13 +86,15 @@ const renderEditTaskDetailsPopup = (task) => {
     `<div class="task-details-popup">
           <div class="task-details-content">
               ${renderCloseDetailsButton()}
-              <h2>Task Details</h2>
+              <h2>Task Edit</h2>
+            <div class="task-details-group">
               <div class="task-details">
-                  <label for="task_${kebabCase(task.name)}">Task Name:</label>
-                  <input type="text" value="${task.name}" id="task_${kebabCase(
-      task.name
-    )}-input" name="task_${kebabCase(task.name)}">
+                  <label for="task_${kebabCase(task.group)}">Task Group:</label>
+                  <input type="text" value="${task.group}" id="task_${kebabCase(
+      task.group
+    )}-input" name="task_${kebabCase(task.group)}">
               </div>
+
               <div class="task-details">
                   <label for="category_${kebabCase(
                     task.category
@@ -103,36 +105,40 @@ const renderEditTaskDetailsPopup = (task) => {
       task.category
     )}-input" name="category_${kebabCase(task.name)}">
               </div>
+            </div>
+
               <div class="task-details">
-                  <label for="description-name">Description:</label>
+                  <label for="description-name">Task Description:</label>
                   <input type="text"  value="${task.name}" id="desc_${kebabCase(
       task.name.slice(0, 20)
     )}" name="description-name" size="50">
-              </div>
-              <div class="task-details">
-                  <label for="modal-subtask">Subtask:</label>
-                  <input type="checkbox"  id="modal-subtask" name="modal-subtask" value="subtask">
-                  <input type="text"  id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
-              </div>
+              </div>              
+
+          <div class="task-details-group">
               <div class="task-details">
                   <label for="modal-date">Date:</label>
-                  <input type="text"  id="modal-date" name="modal-date">
+                  <input type="date"  id="modal-date" name="modal-date">
               </div>
               <div class="task-details">
                   <label for="modal-time">Time:</label>
-                  <input type="text"   id="modal-time" name="modal-time">
+                  <input type="time" id="modal-time" name="modal-time">
               </div>
-              <div class="task-details">
-                  <label for="priority-level">Priority:</label>
-                  <select id="priority-level" name="priority-level">
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                  </select>
+            </div>
+
+            <div class="task-details-group">
+               <div class="task-details">
+                 <label for="task-frequency">Frequency:</label>
+                 <input type="text" value="${task.frequency}" id="desc_${kebabCase(
+                  task.frequency.slice(0, 20)
+                )}" name="task-frequency" size="50">                 
+               </div>
+               <div class="task-details">
+                 <label for="task-days">Days:</label>
+                 <input type="text" value="${task.days}" id="desc_${task.days}" name="task-frequency" size="50">                 
+               </div> 
               </div>
-              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
-              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
-          </div>
+              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details close">Save</a>              
+           </div>              
       </div>`,
     document.getElementById("app"),
     null,
@@ -158,7 +164,6 @@ const renderEditTaskDetailsPopup = (task) => {
   //   detailsPopup.style.display = "none";
   // });
 };
-
 
 
 // Details Popup for tasks
