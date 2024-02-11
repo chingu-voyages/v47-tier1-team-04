@@ -12,7 +12,7 @@ const renderNavBar = () => {
                     </button>
                     <button class="btn undo">
                         <img src="./img/ci_redo.svg" alt="redo button">
-                        undo
+                        redo
                     </button>
                     <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
