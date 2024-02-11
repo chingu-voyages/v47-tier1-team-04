@@ -1,6 +1,5 @@
 import Controller from "./controller.js";
-import renderInfoPopup from "./views/renderInfoPopup.js";
-import { kebabCase } from "./utilities/utilities.js";
+import {kebabCase} from "./utilities/utilities.js";
 let viewIndex = 1;
 export class View {
   // What the app looks like, what the user can see and do, User Interface
@@ -34,7 +33,6 @@ export class View {
   createElement(element, content, anchor, id, classList) {
     const newView = new View(element, content, anchor, id, classList);
     app.views.push(newView);
-    return newView;
   }
   renderAside(title) {
     return this.createElement(
@@ -72,7 +70,8 @@ export class View {
     );
   }
   renderAsideGroups(title) {
-    this.renderAside(title);
+    console.log(app.controller.returnUniqueGroupNames());
+    let aside = this.renderAside(title);
     app.controller.returnUniqueGroupNames().map((group) => {
       this.renderAsideGroup(group);
       app.controller
@@ -163,79 +162,56 @@ export class View {
         contentInner.classList.toggle("darken");
       });
     });
-
+    
     // Complete task toggle
     // Add event listener to task names for marking as complete
     const taskNames = document.querySelectorAll(".task-name");
 
-    taskNames.forEach(function (taskName) {
-      taskName.addEventListener("click", function () {
-        this.classList.toggle("complete");
+    taskNames.forEach(function(taskName) {
+        taskName.addEventListener("click", function() {
+            
+            this.classList.toggle("complete");
 
-        const checkboxIcon = this.closest(".content-description").querySelector(
-          ".checkbox"
-        );
+            const checkboxIcon = this.closest('.content-description').querySelector('.checkbox');
 
-        if (checkboxIcon.classList.contains("fa-square")) {
-          checkboxIcon.classList.remove("fa-square");
-          checkboxIcon.classList.add("fa-square-check");
-        } else {
-          checkboxIcon.classList.remove("fa-square-check");
-          checkboxIcon.classList.add("fa-square");
-        }
-      });
+            if (checkboxIcon.classList.contains('fa-square')) {
+                checkboxIcon.classList.remove('fa-square');
+                checkboxIcon.classList.add('fa-square-check');
+            } else {
+                checkboxIcon.classList.remove('fa-square-check');
+                checkboxIcon.classList.add('fa-square');
+            }
+        });
     });
   }
 
   renderContentGroup(group) {
-    this.createElement(
-      "div",
-      ` <h2 class="category-name">${group}</h2>`,
-      document.getElementById("content"),
-      `content_${kebabCase(group)}`,
-      "content-activity"
-    );
+    this.createElement("div", ` <h2 class="category-name">${group}</h2>`, document.getElementById("content"), `content_${kebabCase(group)}`, "content-activity")
   }
 
   renderContentGroups() {
-    app.controller.returnUniqueGroupNames().map((group) => {
+    console.log(app.controller.returnUniqueGroupNames());
+    app.controller.returnUniqueGroupNames().map(group => {
       app.view.renderContentGroup(group);
-      app.controller
-        .returnUniqueCategoriesByGroup(group)
-        .map((category) => this.renderContentCategory(group, category));
-    });
+      app.controller.returnUniqueCategoriesByGroup(group).map(category => this.renderContentCategory(category))
+    })
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
 
   renderContentTask(task) {
-    const anchor = document.querySelector(
-      `#category_${kebabCase(task.category)} .content-description`
-    );
-    this.createElement("i", "", anchor, null, "fa-regular fa-square checkbox");
-    this.createElement("p", task.name, anchor, null, "content-description");
-    this.createElement(
-      "div",
-      ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
-      anchor
-    );
-    this.createElement(
-      "i",
-      "",
-      anchor,
-      null,
-      "fa-solid fa-circle-info fa-2x detail"
-    );
+    const anchor = document.querySelector(`#category_${kebabCase(task.category)} .content-description`)
+    this.createElement("p", task.name, anchor)
+    this.createElement("div", ` <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`, anchor)
   }
 
   renderContentTasks() {
-    app.tasks.map((task) => this.renderContentTask(task));
+    app.tasks.map(task => this.renderContentTask(task))
   }
+  
 
   renderContentCategory(group, category) {
-    this.createElement(
-      "div",
-      `
+    this.createElement("div", `
     <div class="content-main">
         <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse-el">
         <div class="content-inner">
@@ -243,15 +219,18 @@ export class View {
                 <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
             </div>
             <div class="content-description">
-            </div>         
+                <p class="task-name" id="task-name-1-1">Update recipes project backlog</p>
+                <div class="content-description-edit">
+                    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
+                    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">
+                </div>                            
+            </div>                        
         </div>
 
     </div>               
-`,
-      document.getElementById(`content_${kebabCase(group)}`),
-      `category_${kebabCase(category)}`
-    );
+`, document.getElementById(`content_${kebabCase(group)}`))
   }
+  
 
   renderModalButton() {
     this.createElement(
@@ -381,34 +360,33 @@ export class View {
     });
 
     // Details popup window
-    const detailsPopup = document.querySelector(".task-details-popup");
-    const openDetailsButtons = document.querySelectorAll(
-      ".fa-circle-info.detail"
-    );
-    const closeDetailsButton = document.querySelector(".close-details-popup");
+    const detailsPopup = document.querySelector('.task-details-popup');
+    const openDetailsButtons = document.querySelectorAll('.fa-circle-info.detail');
+    const closeDetailsButton = document.querySelector('.close-details-popup');
 
-    openDetailsButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        detailsPopup.style.display = "block";
-      });
+    openDetailsButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            detailsPopup.style.display = 'block';
+        });
     });
 
-    closeDetailsButton.addEventListener("click", function () {
-      detailsPopup.style.display = "none";
+    closeDetailsButton.addEventListener('click', function() {
+        detailsPopup.style.display = 'none';
     });
 
     // Automatically populate details with task name and category from html
     // Get the task name and category name elements
-    // const taskNameElement = document.getElementById("task-name-1-1");
-    // const categoryNameElement = document.getElementById("category-name-1");
+const taskNameElement = document.getElementById('task-name-1-1');
+const categoryNameElement = document.getElementById('category-name-1');
 
-    // // Get the input fields in the details popup
-    // const taskNameInput = document.getElementById("task-name-input");
-    // const categoryNameInput = document.getElementById("category-name-input");
+// Get the input fields in the details popup
+const taskNameInput = document.getElementById('task-name-input');
+const categoryNameInput = document.getElementById('category-name-input');
 
-    // // Set the initial values of the input fields
-    // taskNameInput.value = taskNameElement.textContent;
-    // categoryNameInput.value = categoryNameElement.textContent;
+// Set the initial values of the input fields
+taskNameInput.value = taskNameElement.textContent;
+categoryNameInput.value = categoryNameElement.textContent;
+
   }
   renderFooter() {
     this.createElement(
@@ -523,10 +501,9 @@ export class Task {
 //setTimeout(() => console.log(app.tasks[0].update('new','change','from','method','that')), 50)
 // setTimeout(() => console.log(app.tasks.filter(task => task.group === "STUDYING")), 50)
 // setTimeout(() =>   console.log([...new Set(app.tasks.map(task => task.group))]), 50)
-// const groups = () => [...new Set(app.tasks.map((task) => task.group))];
+const groups = () => [...new Set(app.tasks.map((task) => task.group))];
 
-// console.log(app.tasks);
+console.log(app.tasks);
 (async () => {
   await app.init("My Daily Classlist");
-  // console.log(app.tasks)
-})(); // make the console log asyncrinus and to be seen when I inspect the page
+  console.log(app.tasks)})(); // make the console log asyncrinus and to be seen when I inspect the page

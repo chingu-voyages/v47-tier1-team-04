@@ -702,6 +702,7 @@ footer {
 
 /* Detail popup window  */
 .task-details-popup {
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
