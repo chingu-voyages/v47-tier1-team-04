@@ -1,18 +1,7 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
 import renderEditTaskDetailsPopup from "../modals/edit-task.js";
-
-const renderInfoButton = (task) => {
-  const button = document.createElement("i");
-  button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 6)}`;
-
-  var myObject = task;
-  var jsonString = JSON.stringify(myObject);
-  button.setAttribute('data-my-object', jsonString);
-
-  return button.outerHTML;
-};
+import renderViewTaskDetailsPopup from "../modals/view-task.js";
 
 export const renderContentTask = (task) => {
   const anchor = app.view.createElement(
@@ -35,14 +24,27 @@ export const renderContentTask = (task) => {
   task.view = anchor;
   app.view.createElement(
     "div",
-    `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${task.name}">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+    `<i class="fa-solid fa-circle-info fa-2x detail" id="button_${kebabCase(
+      task.name
+    ).slice(0, 6)}"></i>
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${kebabCase(
+      task.name
+    )}">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${kebabCase(
+      task.name
+    )}">`,
     anchor
   );
-    document.getElementById(`edit_${task.name}`).onclick = () => {
-      renderEditTaskDetailsPopup(task);
-    }
+  document.getElementById(
+    `button_${kebabCase(task.name).slice(0, 6)}`
+  ).onclick = () => {
+    renderViewTaskDetailsPopup(task);
+  };
+  document.getElementById(`edit_${kebabCase(task.name)}`).onclick = () =>
+    renderEditTaskDetailsPopup(task);
+
+  document.getElementById(`task_remove_${kebabCase(task.name)}`).onclick = () =>
+    app.controller.removeTask(task);
 
   taskContainer.container.onclick = () => {
     task.toggleComplete();

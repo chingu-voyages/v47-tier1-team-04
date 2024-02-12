@@ -1,8 +1,9 @@
 import app from "../app.js";
-import renderAsideGroups from "./renderAside/renderAsideGroups.js";
+import renderAsideGroups, { updateAsideGroups } from "./renderAside/renderAsideGroups.js";
 import renderNavBar from "./renderNavbar.js";
-import renderContent from "./content/renderContent.js";
+import renderContent, { updateContent } from "./content/renderContent.js";
 import renderModals from "./modals/index.js";
+import { removePopup } from "./modals/view-task.js";
 
 let viewIndex = 1;
 export default class View {
@@ -39,6 +40,11 @@ export default class View {
   }
   renderToggleCompleteTask(task) {
     console.log(task);
+  }
+  updateView(){
+    removePopup();
+    updateAsideGroups();
+    updateContent();
   }
 }
 
