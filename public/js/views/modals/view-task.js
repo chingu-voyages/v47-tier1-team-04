@@ -70,7 +70,7 @@ export const renderViewTaskDetailsPopup = (task) => {
       </div>
       <div class="task-details">
         <label>Due Date:</label>
-        <p>${task.dueDate}</p>
+        <p>${task.date ? task.date : " "}  ${task.scheduledTime ? task.scheduledTime : " "}</p>
       </div>
    </div>`
             }
