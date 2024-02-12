@@ -24,9 +24,9 @@ export const renderContentTask = (task) => {
   task.view = anchor;
   app.view.createElement(
     "div",
-    `<i class="fa-solid fa-circle-info fa-2x detail" id="button_${kebabCase(
+    `<i class="fa-solid fa-circle-info fa-2x detail" id="view_${kebabCase(
       task.name
-    ).slice(0, 6)}"></i>
+    )}"></i>
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${kebabCase(
       task.name
     )}">
@@ -36,7 +36,7 @@ export const renderContentTask = (task) => {
     anchor
   );
   document.getElementById(
-    `button_${kebabCase(task.name).slice(0, 6)}`
+    `view_${kebabCase(task.name)}`
   ).onclick = () => {
     renderViewTaskDetailsPopup(task);
   };
