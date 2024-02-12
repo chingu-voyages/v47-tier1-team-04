@@ -8,7 +8,7 @@ class Model {
     this.archive = [];
     this.view = new View(
       "div",
-      " <!--Code injected by Amanda-->",
+      "<!--Code injected by Amanda-->",
       document.body,
       "app",
       "container"
