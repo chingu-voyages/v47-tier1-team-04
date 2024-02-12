@@ -46,6 +46,7 @@ export default class Controller {
               task.description,
               task.date,
               task.scheduledTime,
+              task.priority,
               task.complete
             )
         )
