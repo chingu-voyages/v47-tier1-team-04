@@ -46,12 +46,17 @@ const renderNavBar = () => {
     "contentAnchor",
     "content"
   );
-  document.getElementById("search").addEventListener("keyup", (e) => {
-    let searchKey = e.target.value;
+  document.getElementById("search").addEventListener("input", (e) => {
+    let searchKey = e.target.value.toLowerCase();
 
     let tasks = app.tasks.filter(
       (task) =>
-        task.name.includes(searchKey) 
+        task.name.toLowerCase().includes(searchKey) ||
+        task.description.toLowerCase().includes(searchKey) ||
+        task.group.toLowerCase().includes(searchKey) ||
+        task.category.toLowerCase().includes(searchKey) ||
+        task.priority.toLowerCase().includes(searchKey) ||
+        task.days.includes(searchKey)
     );
     searchKey === ""
       ? renderFilteredTasks(app.tasks)
