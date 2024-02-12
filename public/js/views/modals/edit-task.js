@@ -184,7 +184,7 @@ const renderEditTaskDetailsPopup = (task) => {
                   <input type="time" id="modal-time" name="modal-time">
               </div>
             </div>            
-              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details close">Save</a>              
+              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
            </div>              
       </div>`,
     document.getElementById("app"),
