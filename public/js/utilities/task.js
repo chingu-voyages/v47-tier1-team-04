@@ -8,10 +8,10 @@ export default class Task {
       this.frequency = frequency;
       this.days = days;
       this.description = description || " ";
-      this.date = date || null;
-      this.scheduledTime = scheduledTime || null;
-      this.priority = priority || "low";
-      this.complete = complete || false;
+      this.date = date
+      this.scheduledTime = scheduledTime
+      this.priority = priority
+      this.complete = complete
       app.tasks.push(this);
     }
     read() {
