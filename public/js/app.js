@@ -1,13 +1,14 @@
 import Controller from "./controller.js";
-import View from './views/index.js';
+import View from './views/view.index.js';
 
 class Model {
   constructor() {
     this.tasks = [];
     this.views = [];
+    this.archive = [];
     this.view = new View(
       "div",
-      " <!--Code injected by Amanda-->",
+      "<!--Code injected by Amanda-->",
       document.body,
       "app",
       "container"
