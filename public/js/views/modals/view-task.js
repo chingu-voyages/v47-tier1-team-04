@@ -12,7 +12,7 @@ export const removePopup = () => {
 
 export const renderViewTaskDetailsPopup = (task) => {
   removePopup();
-  console.log(task)
+  console.log(task);
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
@@ -43,7 +43,9 @@ export const renderViewTaskDetailsPopup = (task) => {
                 <p>${task.description}</p>
             </div>
 
-            <!-- ${task.description? `<div class="task-details border-shadow-sub">
+            <!-- ${
+              task.description
+                ? `<div class="task-details border-shadow-sub">
             <label>Description:</label>
             <p>${task.description}</p>
             </div>`
@@ -84,6 +86,7 @@ export const renderViewTaskDetailsPopup = (task) => {
   ).container;
 
   const closeDetailsButton = document.getElementById("close-details-popup");
+  document.getElementById("close-task-details").onclick = () => removePopup();
 
   closeDetailsButton.addEventListener("click", function () {
     removePopup();
