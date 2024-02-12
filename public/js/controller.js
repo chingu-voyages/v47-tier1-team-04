@@ -33,8 +33,10 @@ export default class Controller {
     this.saveData(false);
   }
   async loadData() {
-    localStorage.savedUserData
-      ? JSON.parse(localStorage.getItem("savedUserData")).tasks.map(
+    let tasks = JSON.parse(localStorage.getItem("savedUserData"))
+    if (!tasks.tasks) return await this.seed() 
+    tasks
+      ? tasks.map(
           (task) =>
             new Task(
               task.name,
