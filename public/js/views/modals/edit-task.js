@@ -36,7 +36,7 @@ const renderEditTaskDetailsPopup = (task) => {
                   }" name="name" size="50">
               </div>              
               <div class="task-details">
-              <label for="task-description">Description:</label>
+              <label for="description">Description:</label>
               <input type="text"  value="${
                 task.description
               }"  name="description" size="50">
@@ -101,7 +101,7 @@ const renderEditTaskDetailsPopup = (task) => {
                   <label style="text-align:left" for="priority">Priority:</label>
                   <select id="priority-select" name="priority">
                     <option value=3 ${
-                     task.priority == 3 || !task.priority ? "selected" : ""
+                      task.priority == 3 || !task.priority ? "selected" : ""
                     }>Low</option>
                     <option value=2 ${
                       task.priority == 2 ? "selected" : ""
@@ -115,14 +115,14 @@ const renderEditTaskDetailsPopup = (task) => {
 
           <div class="task-details-group" id="calander">
               <div class="task-details">
-                  <label for="modal-date">Due Date:</label>
-                  <input type="date"  id="modal-date" name="modal-date" value=${
+                  <label for="date">Due Date:</label>
+                  <input type="date"  id="modal-date" name="date" value=${
                     task.date
                   }>
               </div>
               <div class="task-details">
-                  <label for="modal-time">Time:</label>
-                  <input type="time" id="modal-time" name="modal-time" value=${
+                  <label for="scheduledTime">Time:</label>
+                  <input type="time" id="modal-time" name="scheduledTime" value=${
                     task.scheduledTime
                   }>
               </div>
@@ -134,7 +134,6 @@ const renderEditTaskDetailsPopup = (task) => {
     "edit-task-details-popup",
     "task-details-popup"
   ).container;
-
   const updateDetailsButton = document.getElementById("save-task-details");
   updateDetailsButton.onclick = () => {
     const formInputs = Array.from(
@@ -148,7 +147,6 @@ const renderEditTaskDetailsPopup = (task) => {
       .filter((input) => input.type === "checkbox" && input.checked)
       .map((input) => input.value);
     updatedTask.priority = document.getElementById("priority-select").value;
-    console.log(updatedTask);
     app.controller.updateTask(task, updatedTask);
   };
 
