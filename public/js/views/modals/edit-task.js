@@ -9,75 +9,6 @@ export const removePopup = () => {
   }
 };
 
-const taskModal = (task, disabled) => {
-  removePopup();
-  const detailsPopup = app.view.createElement(
-    "div",
-    `<div class="task-details-popup">
-          <div class="task-details-content">
-              ${renderCloseDetailsButton()}
-              <h2>Task Details</h2>
-              <div class="task-details">
-                  <label for="task_${kebabCase(task.name)}">Task Name:</label>
-                  <input type="text"  value="${task.name}" id="task_${kebabCase(
-      task.name
-    )}-input" name="task_${kebabCase(task.name)}">
-              </div>
-              <div class="task-details">
-                  <label for="category_${kebabCase(
-                    task.category
-                  )}">Category Name:</label>
-                  <input type="text"  value="${
-                    task.category
-                  }" id="category_${kebabCase(
-      task.category
-    )}-input" name="category_${kebabCase(task.name)}">
-              </div>
-              <div class="task-details">
-                  <label for="description-name">Description:</label>
-                  <input type="text"  value="${task.name}" id="desc_${kebabCase(
-      task.name.slice(0, 20)
-    )}" name="description-name" size="50">
-              </div>
-              <div class="task-details">
-                  <label for="modal-subtask">Subtask:</label>
-                  <input type="checkbox"  id="modal-subtask" name="modal-subtask" value="subtask">
-                  <input type="text"  id="modal-subtask" name="modal-subtask" placeholder="Add subtask...">
-              </div>
-              <div class="task-details">
-                  <label for="modal-date">Date:</label>
-                  <input type="text"  id="modal-date" name="modal-date">
-              </div>
-              <div class="task-details">
-                  <label for="modal-time">Time:</label>
-                  <input type="text"   id="modal-time" name="modal-time">
-              </div>
-              <div class="task-details">
-                  <label for="priority-level">Priority:</label>
-                  <select id="priority-level" name="priority-level">
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                  </select>
-              </div>
-              <textarea id="notes" name="notes" class="task-details" placeholder="Notes..."></textarea>
-              <a href="#" class="btn btn-save btn-detail" id="save-task-details">Save</a>
-          </div>
-      </div>`,
-    document.getElementById("app"),
-    null,
-    "task-details-popup"
-  ).container;
-
-  const closeDetailsButton = document.getElementById("close-details-popup");
-
-  closeDetailsButton.addEventListener("click", function () {
-    removePopup();
-  });
-
-  return detailsPopup;
-};
-
 const renderEditTaskDetailsPopup = (task) => {
   let disabled = false;
   removePopup();
@@ -121,11 +52,11 @@ const renderEditTaskDetailsPopup = (task) => {
           <div class="task-details-group">
               <div class="task-details">
                   <label for="modal-date">Date:</label>
-                  <input type="date"  id="modal-date" name="modal-date">
+                  <input type="date"  id="modal-date" name="modal-date" value=${task.date}>
               </div>
               <div class="task-details">
                   <label for="modal-time">Time:</label>
-                  <input type="time" id="modal-time" name="modal-time">
+                  <input type="time" id="modal-time" name="modal-time" value=${task.scheduledTime}>
               </div>
             </div>
 
@@ -145,7 +76,7 @@ const renderEditTaskDetailsPopup = (task) => {
     }" name="task-frequency" size="50">                 
                </div> 
               </div>
-              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details close">Save</a>              
+              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
            </div>              
       </div>`,
     document.getElementById("app"),
@@ -153,12 +84,18 @@ const renderEditTaskDetailsPopup = (task) => {
     "task-details-popup"
   ).container;
 
-  const updateDetailsButton = document.getElementById("save-task-details");
+  const updateDetailsButton = document.getElementById('save-task-details');
   updateDetailsButton.onclick = () => {
-    const name = document.getElementById(
-      `task_${kebabCase(task.name)}-input`
-    ).value;
-    const updatedTask = { ...task, name };
+    const group = document.getElementById(`task_${kebabCase(task.group)}-input`).value;
+    const category = document.getElementById(`category_${kebabCase(task.category)}-input`).value;
+    const name = document.getElementById(`name_${kebabCase(task.name.slice(0, 20))}`).value;
+    const description = document.getElementById(`name_${kebabCase(task.name.slice(0, 20))}`).value;
+    const date = document.getElementById(`modal-date`).value;
+    const scheduledTime = document.getElementById(`modal-time`).value;
+    const frequency = document.getElementById(`desc_${kebabCase(task.frequency.slice(0, 20))}`).value;
+    const days = document.getElementById(`desc_${task.days}`).value;
+    const complete = task.complete;
+    const updatedTask = { name, group, category, frequency, days, description, date, scheduledTime, complete };
 
     app.controller.updateTask(task, updatedTask);
   };
@@ -166,6 +103,9 @@ const renderEditTaskDetailsPopup = (task) => {
   const closeDetailsButton = document.querySelector(".close-details-popup");
 
   closeDetailsButton.onclick = () => detailsPopup.remove();
+
+
+  
 };
 
 export default renderEditTaskDetailsPopup;

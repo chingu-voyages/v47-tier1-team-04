@@ -46,7 +46,9 @@ export default class Controller {
               task.category,
               task.frequency,
               task.days,
-              task.calendar,
+              task.description,
+              task.date,
+              task.scheduledTime,
               task.complete
             )
         )
