@@ -12,16 +12,6 @@ const renderContent = () => {
   );
   renderContentGroups();
   renderContentTasks();
-  document.getElementById("search").addEventListener("keyup", (e) => {
-    let searchKey = e.target.value;
-    let tasks = app.tasks.filter((obj) =>
-      Object.keys(obj).some((key) => obj[key].includes(searchKey))
-    );
-    searchKey === ""
-      ? renderFilteredTasks(app.tasks)
-      : renderFilteredTasks(tasks);
-    renderFilteredTasks(tasks);
-  });
 };
 
 export const updateContent = () => {
