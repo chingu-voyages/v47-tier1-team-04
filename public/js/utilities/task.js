@@ -7,7 +7,7 @@ export default class Task {
       this.category = category;
       this.frequency = frequency;
       this.days = days;
-      this.description = description || " ";
+      this.description = description;
       this.date = date
       this.scheduledTime = scheduledTime
       this.priority = priority

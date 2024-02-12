@@ -32,7 +32,6 @@ export default class Controller {
       );
     this.saveData(false);
   }
-
   async loadData() {
     localStorage.savedUserData
       ? JSON.parse(localStorage.getItem("savedUserData")).tasks.map(
@@ -46,6 +45,7 @@ export default class Controller {
               task.description,
               task.date,
               task.scheduledTime,
+              task.priority,
               task.complete
             )
         )

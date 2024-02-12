@@ -38,28 +38,21 @@ export const renderViewTaskDetailsPopup = (task) => {
                 <p>${task.name}</p>
             </div>
 
-            <div class="task-details border-shadow-sub">
-                <label>Description:</label>
-                <p>${task.description}</p>
-            </div>
-
-            <!-- ${
-              task.description
-                ? `<div class="task-details border-shadow-sub">
+                 ${task.description
+      ? `<div class="task-details border-shadow-sub">
             <label>Description:</label>
             <p>${task.description}</p>
             </div>`
-                : ""
-            } -->
-            ${
-              task.calendar
-                ? `<div class="task-details">
+      : ""
+    }
+            ${task.calendar
+      ? `<div class="task-details">
             <div class="task-details border-shadow-sub">
             <label>Due Date:</label>
             <p>${task.calander}</p>
           </div>
       </div>`
-                : `<div class="task-details-group border-shadow-sub">
+      : `<div class="task-details-group border-shadow-sub">
       <div class="task-details">
         <label>Frequency:</label>
         <p>${task.frequency}</p>
@@ -73,7 +66,7 @@ export const renderViewTaskDetailsPopup = (task) => {
         <p>${task.date ? task.date : " "}  ${task.scheduledTime ? task.scheduledTime : " "}</p>
       </div>
    </div>`
-            }
+    }
         <!--   <label style="text-align:left">Priority:</label>
             ${label(task.priority)} -->
 
