@@ -1,1 +1,0 @@
-console.log("In the harbor, boats are safe; but they were built for voyages.")
