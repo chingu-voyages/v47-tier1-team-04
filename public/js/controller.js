@@ -1,9 +1,6 @@
 import app from "./app.js";
 import Task from "./utilities/task.js";
-import renderContent, { updateContent } from "./views/content/renderContent.js";
 import renderSuccessfulSave from "./views/utils/save.js";
-import renderContentTask from "./views/content/renderContentTasks.js"
-import { removePopup } from "./views/modals/view-task.js";
 
 export default class Controller {
   init(title) {
@@ -46,7 +43,9 @@ export default class Controller {
               task.category,
               task.frequency,
               task.days,
-              task.calendar,
+              task.description,
+              task.date,
+              task.scheduledTime,
               task.complete
             )
         )
@@ -58,10 +57,15 @@ export default class Controller {
     if (bool) renderSuccessfulSave();
   }
 
+  removeTask(task) {
+    task.archive();
+    app.view.updateView()
+    this.saveData(false);
+  }
+
   updateTask(task, updatedTask) {
     task.update(updatedTask);
-    updateContent();
-    removePopup();
+    app.view.updateView()
     this.saveData(false);
   }
 

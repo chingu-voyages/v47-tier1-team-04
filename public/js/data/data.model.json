@@ -1,170 +1,190 @@
 [
-	{
-	  "name": "Update Recipes Project Backlog",
-	  "group": "ROUTINE ACTIVITIES",
-	  "category": "Projects",
-	  "frequency": "weekly",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Update The dailyTasks sheet with the backlog tasks",
-	  "group": "ROUTINE ACTIVITIES",
-	  "category": "Projects",
-	  "frequency": "weekly",
-	  "days": [],
-	  "calender": []
-	},
-	{
-	  "name": "Publish The recent Blog Post Draft to hashnode",
-	  "group": "ROUTINE ACTIVITIES",
-	  "category": "BLOG Posts",
-	  "frequency": "weekly",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Write a New headline in a Blog Post Draft",
-	  "group": "ROUTINE ACTIVITIES",
-	  "category": "BLOG Posts",
-	  "frequency": "weekly",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Plan The Node Js Course Progress By Month",
-	  "group": "STUDYING",
-	  "category": "Node Js Course",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Study The First Node Js Lecture",
-	  "group": "STUDYING",
-	  "category": "Node Js Course",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Study The First MongoDB Lecture",
-	  "group": "STUDYING",
-	  "category": "mongoDB",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Plan The MongoDB Course Progress By Month",
-	  "group": "STUDYING",
-	  "category": "mongoDB",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Add The New Features list",
-	  "group": "Daily Tasks Project",
-	  "category": "Backlog",
-	  "frequency": "weekly",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Add The New PRs To InReview",
-	  "group": "Daily Tasks Project",
-	  "category": "Backlog",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Work On The Sidebar",
-	  "group": "Daily Tasks Project",
-	  "category": "Coding",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Refactor The Filtering Feature Code",
-	  "group": "Daily Tasks Project",
-	  "category": "Coding",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Conduct The Project Planning Meeting To Discuss Our Ideas",
-	  "group": "Chingu",
-	  "category": "Voyage",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Set Up A Plan For The Next Month Of Node Js Learning",
-	  "group": "Chingu",
-	  "category": "Voyage",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Create The UI/UX Design For The DailyTasks Project Based On The Team Discussion",
-	  "group": "Chingu",
-	  "category": "Voyage",
-	  "frequency": "once",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Create When2Meet Link",
-	  "group": "Chingu",
-	  "category": "Pair Programming",
-	  "frequency": false,
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "Attend The Introduction Meeting With Someone",
-	  "group": "Chingu",
-	  "category": "Pair Programming",
-	  "frequency": false,
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "25 sit ups",
-	  "group": "Personal",
-	  "category": "Physical Exercise",
-	  "frequency": "daily",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "25 push ups",
-	  "group": "Personal",
-	  "category": "Physical Exercise",
-	  "frequency": "bi-daily",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "25 curls",
-	  "group": "Personal",
-	  "category": "Physical Exercise",
-	  "frequency": "bi-daily",
-	  "days": [],
-	  "calendar": []
-	},
-	{
-	  "name": "2:00 plank",
-	  "group": "Personal",
-	  "category": "Physical Exercise",
-	  "frequency": "daily",
-	  "days": [],
-	  "calendar": []
-	}
-  ]
+  {
+    "name": "Update Recipes Project Backlog",
+    "group": "ROUTINE ACTIVITIES",
+    "category": "Projects",
+    "frequency": "weekly",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Update The dailyTasks sheet with the backlog tasks",
+    "group": "ROUTINE ACTIVITIES",
+    "category": "Projects",
+    "frequency": "weekly",
+    "days": [],
+    "calender": []
+  },
+  {
+    "name": "Publish The recent Blog Post Draft to hashnode",
+    "group": "ROUTINE ACTIVITIES",
+    "category": "BLOG Posts",
+    "frequency": "weekly",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Write a New headline in a Blog Post Draft",
+    "group": "ROUTINE ACTIVITIES",
+    "category": "BLOG Posts",
+    "frequency": "weekly",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Plan The Node Js Course Progress By Month",
+    "group": "STUDYING",
+    "category": "Node Js Course",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Study The First Node Js Lecture",
+    "group": "STUDYING",
+    "category": "Node Js Course",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Study The First MongoDB Lecture",
+    "group": "STUDYING",
+    "category": "mongoDB",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Plan The MongoDB Course Progress By Month",
+    "group": "STUDYING",
+    "category": "mongoDB",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Add The New Features list",
+    "group": "Daily Tasks Project",
+    "category": "Backlog",
+    "frequency": "weekly",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Add The New PRs To InReview",
+    "group": "Daily Tasks Project",
+    "category": "Backlog",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Work On The Sidebar",
+    "group": "Daily Tasks Project",
+    "category": "Coding",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Refactor The Filtering Feature Code",
+    "group": "Daily Tasks Project",
+    "category": "Coding",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Conduct The Project Planning Meeting To Discuss Our Ideas",
+    "group": "Chingu",
+    "category": "Voyage",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Set Up A Plan For The Next Month Of Node Js Learning",
+    "group": "Chingu",
+    "category": "Voyage",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Create The UI/UX Design For The DailyTasks Project Based On The Team Discussion",
+    "group": "Chingu",
+    "category": "Voyage",
+    "frequency": "once",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Create When2Meet Link",
+    "group": "Chingu",
+    "category": "Pair Programming",
+    "frequency": false,
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "Attend The Introduction Meeting With Someone",
+    "group": "Chingu",
+    "category": "Pair Programming",
+    "frequency": false,
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "25 sit ups",
+    "group": "Personal",
+    "category": "Physical Exercise",
+    "frequency": "daily",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "25 push ups",
+    "group": "Personal",
+    "category": "Physical Exercise",
+    "frequency": "bi-daily",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "25 curls",
+    "group": "Personal",
+    "category": "Physical Exercise",
+    "frequency": "bi-daily",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  },
+  {
+    "name": "2:00 plank",
+    "group": "Personal",
+    "category": "Physical Exercise",
+    "frequency": "daily",
+    "days": [],
+    "calendar": "",
+    "priority": 2
+  }
+]

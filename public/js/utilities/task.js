@@ -1,13 +1,15 @@
-import app from '../app.js';
+import app from "../app.js";
 //Object constructor to create new tasks:
 export default class Task {
-    constructor(name, group, category, frequency, days, calander, complete) {
+    constructor(name, group, category, frequency, days, description, date, scheduledTime, complete) {
       this.name = name;
       this.group = group;
       this.category = category;
       this.frequency = frequency;
       this.days = days;
-      this.calander = calander;
+      this.description = description;
+      this.date = date || null;
+      this.scheduledTime = scheduledTime || null;
       this.complete = complete || false;
       app.tasks.push(this);
     }
@@ -17,23 +19,30 @@ export default class Task {
     }
     //Function to create new tasks:
     update(updatedTask) {
-      const {name, group, category, frequency, days, calander, complete} = updatedTask;
+      const { name, group, category, frequency, days, description, date, scheduledTime, complete } = updatedTask;
       this.name = name || this.name;
       this.group = group || this.group;
       this.category = category || this.category;
       this.frequency = frequency || this.frequency;
       this.days = days || this.days;
-      this.calander = calander || this.calander;
+      this.description = description || this.description;
+      this.date = date || this.date;
+      this.scheduledTime = scheduledTime || this.scheduledTime;
       this.complete = complete || this.complete;
       return this;
     }
 
-    toggleComplete() {
-      this.complete = !this.complete;
-      
-      // to enable auto-save uncomment next line  
-      // app.controller.saveData();
-      return this.complete;
-    }
-
+  archive() {
+    app.tasks = app.tasks.filter((task) => task !== this);
+    app.archive.push(this);
+    // to disable auto-save after archive (delete) comment next line
+    app.controller.saveData(false);
   }
+
+  toggleComplete() {
+    this.complete = !this.complete;
+    // to disable auto-save after toggle complete comment next line
+    app.controller.saveData(false);
+    return this.complete;
+  }
+}
