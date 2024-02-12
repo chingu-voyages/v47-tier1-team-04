@@ -9,13 +9,13 @@ export const removePopup = () => {
   }
 };
 
-const taskModal = (task, disabled) => {
+export const taskModal = (task, disabled) => {
   removePopup();
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
           <div class="task-details-content">
-              ${renderCloseDetailsButton()}
+          <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>
               <h2>Task Details</h2>
               <div class="task-details">
                   <label for="task_${kebabCase(task.name)}">Task Name:</label>
@@ -114,7 +114,9 @@ const renderEditTaskDetailsPopup = (task) => {
               </div>              
               <div class="task-details">
               <label for="task-description">Description:</label>
-              <input type="text"  value="${task.description}" id="desc_${kebabCase(
+              <input type="text"  value="${
+                task.description
+              }" id="desc_${kebabCase(
       task.name.slice(0, 20)
     )}" name="description-description" size="50">
           </div>    
@@ -145,7 +147,7 @@ const renderEditTaskDetailsPopup = (task) => {
     }" name="task-frequency" size="50">                 
                </div> 
               </div>
-              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
+              <a class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
            </div>              
       </div>`,
     document.getElementById("app"),

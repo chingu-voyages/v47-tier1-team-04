@@ -10,8 +10,9 @@ export const removePopup = () => {
   }
 };
 
-const taskModal = (task, disabled) => {
+export const renderViewTaskDetailsPopup = (task) => {
   removePopup();
+  console.log(task)
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
@@ -81,30 +82,4 @@ const taskModal = (task, disabled) => {
 
   return detailsPopup;
 };
-
-const renderTaskDetailsPopup = () => {
-  const openDetailsButtons = document.querySelectorAll(".fa-circle-info");
-
-  openDetailsButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      console.log("details here!");
-      const taskData = JSON.parse(this.getAttribute("data-my-object"));
-      const disabled = true;
-      const detailsPopup = taskModal(taskData, disabled);
-      detailsPopup.style.display = "block";
-    });
-  });
-};
-
-document.addEventListener("click", function (event) {
-  if (event.target.id === "close-task-details") {
-    closeModal();
-  }
-});
-
-const closeModal = function () {
-  const modal = document.querySelector(".task-details-popup");
-  modal.style.display = "none";
-};
-
-export default renderTaskDetailsPopup;
+export default renderViewTaskDetailsPopup;
