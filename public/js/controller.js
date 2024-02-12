@@ -35,7 +35,7 @@ export default class Controller {
 
   async loadData() {
     localStorage.savedUserData
-      ? JSON.parse(localStorage.getItem("savedUserData")).map(
+      ? JSON.parse(localStorage.getItem("savedUserData")).tasks.map(
           (task) =>
             new Task(
               task.name,
@@ -53,7 +53,7 @@ export default class Controller {
   }
 
   saveData(bool) {
-    localStorage.setItem("savedUserData", JSON.stringify(app.tasks));
+    localStorage.setItem("savedUserData", JSON.stringify(app));
     if (bool) renderSuccessfulSave();
   }
 
