@@ -145,7 +145,7 @@ const renderEditTaskDetailsPopup = (task) => {
     }" name="task-frequency" size="50">                 
                </div> 
               </div>
-              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details close">Save</a>              
+              <a href="#" class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
            </div>              
       </div>`,
     document.getElementById("app"),
@@ -163,7 +163,7 @@ const renderEditTaskDetailsPopup = (task) => {
     app.controller.updateTask(task, updatedTask);
   };
 
-  const closeDetailsButton = document.querySelector(".close-details-popup");
+  const closeDetailsButton = document.querySelector("#close-details-popup");
 
   closeDetailsButton.onclick = () => detailsPopup.remove();
 };
