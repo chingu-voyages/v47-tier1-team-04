@@ -1,4 +1,5 @@
 import app from "../../app.js";
+import Task from "../../utilities/task.js";
 // export const renderModal = () => {
 
   export const removePopup = () => {
@@ -9,7 +10,14 @@ import app from "../../app.js";
     }
   };
   
-  export const renderEditTaskDetailsPopup = (task) => {
+  export const renderEditTaskDetailsPopup = () => {
+    const task = new Task();
+    task.days = new Array();
+    task.group = "";
+    task.category = "";
+    task.name = "";
+    task.description = "";
+    task.frequency = "";
     removePopup();
     console.log(task.days.includes("Monday"));
     const detailsPopup = app.view.createElement(
@@ -17,7 +25,7 @@ import app from "../../app.js";
       `<form class="task-details-popup" id="edit_details">
             <div class="task-details-content">
               <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>            
-                <h2>Edit Task</h2>
+                <h2>Add Task</h2>
               <div class="task-details-group">
                 <div class="task-details">
                     <label for="group">Group:</label>
@@ -163,8 +171,9 @@ import app from "../../app.js";
       "add-icon-el",
       "fa-solid fa-plus add-icon"
     );
-    renderEditTaskDetailsPopup(new Task());
-    thisButton.onclick = () => (addButton.style.display = "block");
+    // renderEditTaskDetailsPopup(new Task());
+    document.querySelector(".add-icon").onclick = () => (renderEditTaskDetailsPopup())
+   // thisButton.onclick = () => (addButton.style.display = "block");
   }
   export default renderEditTaskDetailsPopup
  // export default renderModal
