@@ -396,6 +396,12 @@ aside, content, footer {
   }  
   
   /* utilities */
+.block {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .item-center {
     margin: 0 auto;
 }
@@ -719,7 +725,7 @@ footer {
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 800px;
-    height: 730px;
+    height: auto;
     background-color: #fff;
     border-radius: 10px;
     z-index: 1000;
@@ -749,10 +755,6 @@ footer {
     width: 50px;
 
 }
-
-
-
-
 
 .border-shadow {
     border: rgba(0, 0, 0, 0.54);
@@ -784,7 +786,7 @@ footer {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     width: 100%;
-    height: 700px;
+    height: auto;
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -857,12 +859,24 @@ footer {
     border: none;
 }
 
-.btn-detail {
-    margin-top: 20px;
+.task-details-due {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
 }
 
 .btn-detail:hover {
     background-color: #0056b3;
+}
+
+/* Chose days option */
+.day-checkboxes {
+    display: flex;
+}
+
+.day-checkboxes input[type="checkbox"],
+.day-checkboxes label {
+    margin-right: 8px;
 }
 
 /* Mobile Screens of 768px */
@@ -1090,10 +1104,22 @@ footer {
 
     .task-details-content {
         font-size: 1rem;
+        width: auto;
     }
 
     .task-details-group {
         flex-direction: column;
+    }
+
+    .day-checkboxes {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
     }
 }
 
