@@ -34,7 +34,8 @@ export default class Controller {
   }
   async loadData() {
     const storage = localStorage.getItem('savedUserData');
-    const parsedStorage = JSON.parse(storage).tasks
+    const parsedStorage = JSON.parse(storage).tasks;
+    console.log(parsedStorage)
     parsedStorage ? parsedStorage.map(
       (task) =>
         new Task(
