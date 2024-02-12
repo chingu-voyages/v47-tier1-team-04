@@ -34,7 +34,7 @@ export default class Controller {
   }
   async loadData() {
      let tasks = localStorage.savedUserData
-      ? JSON.parse(tasks).map(
+     tasks ? JSON.parse(tasks).map(
         (task) =>
           new Task(
             task.name,
