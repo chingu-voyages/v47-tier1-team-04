@@ -51,7 +51,12 @@ const renderNavBar = () => {
 
     let tasks = app.tasks.filter(
       (task) =>
-        task.name.toLowerCase().includes(searchKey) 
+        task.name.toLowerCase().includes(searchKey) ||
+        task.description.toLowerCase().includes(searchKey) ||
+        task.group.toLowerCase().includes(searchKey) ||
+        task.category.toLowerCase().includes(searchKey) ||
+        task.priority.toLowerCase().includes(searchKey) ||
+        task.days.includes(searchKey)
     );
     searchKey === ""
       ? renderFilteredTasks(app.tasks)
