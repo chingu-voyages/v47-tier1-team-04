@@ -18,6 +18,8 @@ export const renderViewTaskDetailsPopup = (task) => {
     `<div class="task-details-popup">
           <div class="task-details-content">
               <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>
+              <label style="text-align:left">Priority:</label>
+            ${label(task.priority)}
               <h2>Task Details</h2>
               <div class="task-details-group border-shadow">
                 <div class="task-details">
@@ -36,14 +38,17 @@ export const renderViewTaskDetailsPopup = (task) => {
                 <p>${task.name}</p>
             </div>
 
-            ${
-              task.description
-                ? `<div class="task-details border-shadow-sub">
+            <div class="task-details border-shadow-sub">
+                <label>Description:</label>
+                <p>${task.description}</p>
+            </div>
+
+            <!-- ${task.description? `<div class="task-details border-shadow-sub">
             <label>Description:</label>
             <p>${task.description}</p>
             </div>`
                 : ""
-            }
+            } -->
             ${
               task.calendar
                 ? `<div class="task-details">
@@ -61,10 +66,14 @@ export const renderViewTaskDetailsPopup = (task) => {
         <label>Days:</label>
         <p>${task.days}</p>
       </div>
+      <div class="task-details">
+        <label>Due Date:</label>
+        <p>${task.dueDate}</p>
+      </div>
    </div>`
             }
-            <label style="text-align:left">Priority:</label>
-            ${label(task.priority)}
+        <!--   <label style="text-align:left">Priority:</label>
+            ${label(task.priority)} -->
 
               
           <a class="btn btn-save btn-detail item-center close" id="close-task-details">Close</a>
