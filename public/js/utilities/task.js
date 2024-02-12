@@ -1,7 +1,7 @@
 import app from "../app.js";
 //Object constructor to create new tasks:
 export default class Task {
-    constructor(name, group, category, frequency, days, description, date, scheduledTime, complete) {
+    constructor(name, group, category, frequency, days, description, date, scheduledTime, priority, complete) {
       this.name = name;
       this.group = group;
       this.category = category;
@@ -10,6 +10,7 @@ export default class Task {
       this.description = description;
       this.date = date || null;
       this.scheduledTime = scheduledTime || null;
+      this.priority = priority || "low";
       this.complete = complete || false;
       app.tasks.push(this);
     }
@@ -19,7 +20,7 @@ export default class Task {
     }
     //Function to create new tasks:
     update(updatedTask) {
-      const { name, group, category, frequency, days, description, date, scheduledTime, complete } = updatedTask;
+      const { name, group, category, frequency, days, description, date, scheduledTime, priority, complete } = updatedTask;
       this.name = name || this.name;
       this.group = group || this.group;
       this.category = category || this.category;
@@ -28,6 +29,7 @@ export default class Task {
       this.description = description || this.description;
       this.date = date || this.date;
       this.scheduledTime = scheduledTime || this.scheduledTime;
+      this.priority = priority || this.priority;
       this.complete = complete || this.complete;
       return this;
     }
