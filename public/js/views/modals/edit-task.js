@@ -89,11 +89,11 @@ const renderEditTaskDetailsPopup = (task) => {
           <div class="task-details-group" id="calander">
               <div class="task-details">
                   <label for="modal-date">Due Date:</label>
-                  <input type="date"  id="modal-date" name="modal-date">
+                  <input type="date"  id="modal-date" name="modal-date" value=${task.date}>
               </div>
               <div class="task-details">
                   <label for="modal-time">Time:</label>
-                  <input type="time" id="modal-time" name="modal-time">
+                  <input type="time" id="modal-time" name="modal-time" value=${task.scheduledTime}>
               </div>
             </div>            
               <a class="btn btn-save btn-detail item-center" id="save-task-details">Save</a>              
@@ -104,7 +104,7 @@ const renderEditTaskDetailsPopup = (task) => {
     "task-details-popup"
   ).container;
 
-  const updateDetailsButton = document.getElementById("save-task-details");
+  const updateDetailsButton = document.getElementById('save-task-details');
   updateDetailsButton.onclick = () => {
     const formInputs = Array.from(
       document.getElementById("edit_details").elements
@@ -124,6 +124,9 @@ const renderEditTaskDetailsPopup = (task) => {
   const closeDetailsButton = document.querySelector("#close-details-popup");
 
   closeDetailsButton.onclick = () => detailsPopup.remove();
+
+
+  
 };
 
 export default renderEditTaskDetailsPopup;
