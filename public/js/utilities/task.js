@@ -8,8 +8,8 @@ export default class Task {
       this.frequency = frequency;
       this.days = days;
       this.description = description;
-      this.date = date || `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}-${new Date().getDate()}`;
-      this.scheduledTime = scheduledTime || new Date().toLocaleTimeString();
+      this.date = date || null;
+      this.scheduledTime = scheduledTime || null;
       this.complete = complete || false;
       app.tasks.push(this);
     }
@@ -31,6 +31,13 @@ export default class Task {
       this.complete = complete || this.complete;
       return this;
     }
+
+  archive() {
+    app.tasks = app.tasks.filter((task) => task !== this);
+    app.archive.push(this);
+    // to disable auto-save after archive (delete) comment next line
+    app.controller.saveData(false);
+  }
 
   toggleComplete() {
     this.complete = !this.complete;

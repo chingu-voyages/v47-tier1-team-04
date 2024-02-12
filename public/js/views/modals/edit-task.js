@@ -11,6 +11,7 @@ export const removePopup = () => {
 
 const renderEditTaskDetailsPopup = (task) => {
   removePopup();
+  console.log(task.days.includes("Monday"));
   const detailsPopup = app.view.createElement(
     "div",
     `<form class="task-details-popup" id="edit_details">
@@ -41,31 +42,31 @@ const renderEditTaskDetailsPopup = (task) => {
           <label class="block" for="days">Days:</label>
               <div class="day-checkboxes" id="checkboxes">
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Monday" name="Monday" value="Monday" ${task.days.includes('Mon') ? checked : null}>
+                      <input type="checkbox" id="Monday" name="Monday" value="Monday" class="days" ${task.days.includes("Monday") ? checked : ''}>
                       <label for="Monday">Mon</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Tuesday" name="Tuesday" value="Tuesday">
+                      <input type="checkbox" id="Tuesday" name="Tuesday" value="Tuesday" class="days" ${task.days.includes("Tuesday") ? checked : ''}>
                       <label for="Tuesday">Tue</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Wednesday" name="Wednesday" value="Wednesday">
+                      <input type="checkbox" id="Wednesday" name="Wednesday" value="Wednesday" class="days" ${task.days.includes("Wednesday") ? checked : ''}>
                       <label for="Wednesday">Wed</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Thursday" name="Thursday" value="Thursday">
+                      <input type="checkbox" id="Thursday" name="Thursday" value="Thursday" class="days" ${task.days.includes("Thursday") ? checked : ''}>
                       <label for="Thursday">Thur</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Friday" name="Friday" value="Friday">
+                      <input type="checkbox" id="Friday" name="Friday" value="Friday" class="days" ${task.days.includes("Friday") ? checked : ''}>
                       <label for="Friday">Fri</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Saturday" name="Saturday" value="Saturday">
+                      <input type="checkbox" id="Saturday" name="Saturday" value="Saturday" class="days" ${task.days.includes("Saturday") ? checked : ''}>
                       <label for="Saturday">Sat</label>
                   </div>
                   <div class="checkbox-container">
-                      <input type="checkbox" id="Sunday" name="Sunday" value="Sunday">
+                      <input type="checkbox" id="Sunday" name="Sunday" value="Sunday" class="days" ${task.days.includes("Sunday") ? checked : ''}>
                       <label for="Sunday">Sun</label>
                   </div>
           </div>
@@ -90,9 +91,11 @@ const renderEditTaskDetailsPopup = (task) => {
               <div class="task-details">
                   <label for="modal-date">Due Date:</label>
                   <input type="date"  id="modal-date" name="modal-date" value=${task.date}>
+                  <input type="date"  id="modal-date" name="modal-date" value=${task.date}>
               </div>
               <div class="task-details">
                   <label for="modal-time">Time:</label>
+                  <input type="time" id="modal-time" name="modal-time" value=${task.scheduledTime}>
                   <input type="time" id="modal-time" name="modal-time" value=${task.scheduledTime}>
               </div>
             </div>            
