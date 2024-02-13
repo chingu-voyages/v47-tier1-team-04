@@ -67,7 +67,16 @@ export const renderViewTaskDetailsPopup = (task) => {
         task.days.length > 0
           ? `<div class="task-details">
       <label>Day${task.days.length > 1 ? "s" : ""}:</label>
-      <p>${task.days}</p>
+      <p>${
+        task.days.toString() === "Monday,Tuesday,Wednesday,Thursday,Friday"
+          ? "Weekdays"
+          : task.days.toString() ===
+            "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+          ? "Everyday"
+          : task.days.toString() === "Saturday,Sunday"
+          ? "Weekends"
+          : task.days.toString()
+      }</p>
     </div>`
           : `<div class="task-details">
              <label>No Days Selected</label>
