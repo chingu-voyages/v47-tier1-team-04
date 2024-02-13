@@ -750,7 +750,8 @@ footer {
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 800px;
-    height: auto;
+    height: 100vh;
+    overflow: auto;
     background-color: #fff;
     border-radius: 10px;
     z-index: 1000;
