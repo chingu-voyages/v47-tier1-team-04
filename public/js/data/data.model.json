@@ -5,8 +5,9 @@
     "category": "Projects",
     "frequency": "weekly",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-02",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Update The dailyTasks sheet with the backlog tasks",
@@ -22,8 +23,9 @@
     "category": "BLOG Posts",
     "frequency": "weekly",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-03",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Write a New headline in a Blog Post Draft",
@@ -31,8 +33,9 @@
     "category": "BLOG Posts",
     "frequency": "weekly",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-04",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Plan The Node Js Course Progress By Month",
@@ -40,8 +43,9 @@
     "category": "Node Js Course",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-05",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Study The First Node Js Lecture",
@@ -49,8 +53,9 @@
     "category": "Node Js Course",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-06",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Study The First MongoDB Lecture",
@@ -58,8 +63,9 @@
     "category": "mongoDB",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-07",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Plan The MongoDB Course Progress By Month",
@@ -67,8 +73,9 @@
     "category": "mongoDB",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-08",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Add The New Features list",
@@ -76,8 +83,9 @@
     "category": "Backlog",
     "frequency": "weekly",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-09",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Add The New PRs To InReview",
@@ -85,8 +93,9 @@
     "category": "Backlog",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-10",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Work On The Sidebar",
@@ -94,8 +103,9 @@
     "category": "Coding",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Refactor The Filtering Feature Code",
@@ -103,8 +113,9 @@
     "category": "Coding",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Conduct The Project Planning Meeting To Discuss Our Ideas",
@@ -112,8 +123,9 @@
     "category": "Voyage",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "1"
   },
   {
     "name": "Set Up A Plan For The Next Month Of Node Js Learning",
@@ -121,8 +133,9 @@
     "category": "Voyage",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "3"
   },
   {
     "name": "Create The UI/UX Design For The DailyTasks Project Based On The Team Discussion",
@@ -130,8 +143,9 @@
     "category": "Voyage",
     "frequency": "once",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "Create When2Meet Link",
@@ -139,8 +153,9 @@
     "category": "Pair Programming",
     "frequency": false,
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "Attend The Introduction Meeting With Someone",
@@ -148,8 +163,9 @@
     "category": "Pair Programming",
     "frequency": false,
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "25 sit ups",
@@ -157,8 +173,9 @@
     "category": "Physical Exercise",
     "frequency": "daily",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "25 push ups",
@@ -166,8 +183,9 @@
     "category": "Physical Exercise",
     "frequency": "bi-daily",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "25 curls",
@@ -175,8 +193,9 @@
     "category": "Physical Exercise",
     "frequency": "bi-daily",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "",
+    "scheduledTime": "",
+    "priority": "2"
   },
   {
     "name": "2:00 plank",
@@ -184,7 +203,8 @@
     "category": "Physical Exercise",
     "frequency": "daily",
     "days": [],
-    "calendar": "",
-    "priority": 2
+    "date": "2024-03-01",
+    "scheduledTime": "",
+    "priority": "2"
   }
 ]
