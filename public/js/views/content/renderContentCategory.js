@@ -11,7 +11,7 @@ const renderContentCategory = (group, category) => {
         )}_${kebabCase(category)}">
         <div class="content-inner">
             <div class="content-task">
-                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+                <h3 class="activity">${category}</h3> 
             </div>
             <div class="content-description">
                                       
