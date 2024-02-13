@@ -49,14 +49,20 @@ const renderNavBar = () => {
   document.getElementById("search").addEventListener("input", (e) => {
     let searchKey = e.target.value.toLowerCase();
 
-    let tasks = app.tasks.filter(
-      (task) =>
+    let tasks = app.tasks.filter((task) => {
+      const description = (search) => {
+        if (task.description) {
+          return task.description.toLowerCase().includes(search);
+        }
+      };
+      return (
         task.name.toLowerCase().includes(searchKey) ||
-        task.description.toLowerCase().includes(searchKey) ||
+        description(searchKey) ||
         task.group.toLowerCase().includes(searchKey) ||
         task.category.toLowerCase().includes(searchKey) ||
         task.days.toString().toLowerCase().includes(searchKey)
-    );
+      );
+    });
     searchKey === ""
       ? renderFilteredTasks(app.tasks)
       : renderFilteredTasks(tasks);
