@@ -1,4 +1,5 @@
 import app from "../../app.js";
+import renderFooter from "../renderFooter.js";
 import renderContentGroups from "./renderContentGroups.js";
 import renderContentTasks from "./renderContentTasks.js";
 
@@ -12,6 +13,7 @@ const renderContent = () => {
   );
   renderContentGroups();
   renderContentTasks();
+  renderFooter();
 };
 
 export const updateContent = () => {

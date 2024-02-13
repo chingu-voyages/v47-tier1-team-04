@@ -1,16 +1,16 @@
 import app from "../app.js";
-import { renderModal } from "./everythingElse.temp.js";
-(() => {
-  const thisButton = app.view.createElement(
-    "div",
-    '<i class="fa-solid fa-plus add-icon"></i>',
-    document.getElementById("app"),
-    "add-icon-el",
-    "fa-solid fa-plus add-icon"
-  );
-  renderModal();
-  thisButton.onclick = () => (addButton.style.display = "block");
-})();
+// import { renderModal } from "./everythingElse.temp.js";
+// (() => {
+//   const thisButton = app.view.createElement(
+//     "div",
+//     '<i class="fa-solid fa-plus add-icon"></i>',
+//     document.getElementById("app"),
+//     "add-icon-el",
+//     "fa-solid fa-plus add-icon"
+//   );
+//   renderModal();
+//   thisButton.onclick = () => (addButton.style.display = "block");
+// })();
 
 const renderFooter = () => {
   app.view.createElement(
