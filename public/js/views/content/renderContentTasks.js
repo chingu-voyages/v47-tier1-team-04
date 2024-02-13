@@ -34,7 +34,9 @@ export const renderContentTask = (task) => {
     <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${kebabCase(
       task.name
     )}">`,
-    anchor
+    anchor,
+    null,
+    "task-icons"
   );
   document.getElementById(
     `view_${kebabCase(task.name)}`
