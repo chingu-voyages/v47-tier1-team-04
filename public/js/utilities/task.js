@@ -14,8 +14,8 @@ export default class Task {
     complete,
   }) {
     this.name = name;
-    this.group = group;
-    this.category = category;
+    this.group = group //|| "Ungrouped Tasks";
+    this.category = category //|| "Uncategorized";
     this.frequency = frequency;
     this.days = days;
     this.description = description;

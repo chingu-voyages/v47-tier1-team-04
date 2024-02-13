@@ -29,7 +29,7 @@ export const renderAddTaskDetailsPopup = () => {
   
                 <div class="task-details">
                     <label for="name">Name:</label>
-                    <input type="text"  name="name" size="50">
+                    <input type="text" id="required" name="name" size="50">
                 </div>              
                 <div class="task-details">
                 <label for="description">Description:</label>
@@ -102,8 +102,15 @@ export const renderAddTaskDetailsPopup = () => {
     "view-task-details-popup",
     "task-details-popup"
   ).container;
+  
   const saveDetailsButton = document.getElementById("save-task-details");
   saveDetailsButton.onclick = () => {
+    const nameInput = document.getElementById("required");
+    if (nameInput.value === "") {
+      nameInput.style.border = "1px solid red";
+      nameInput.placeholder = "Please provide a task name";
+      return;
+    } else document.getElementById("required").style.border = "none";
     const formInputs = Array.from(
       document.getElementById("view-task-details-popup").elements
     );
@@ -125,7 +132,7 @@ export const renderAddTaskDetailsPopup = () => {
 };
 
 export const renderModalButton = () => {
-  const thisButton = app.view.createElement(
+  app.view.createElement(
     "div",
     '<i class="fa-solid fa-plus add-icon"></i>',
     document.getElementById("app"),
