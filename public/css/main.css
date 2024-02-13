@@ -248,18 +248,23 @@ body {
     opacity: 0.65;
   }
 
-.container {       
+  .container {
     display: grid;
     grid-template-areas:
       'aside nav nav'
       'aside content content'
       'aside content content'
-      'aside footer footer';
+      'footer footer footer';
     grid-template-columns: 30% 70%;
-    grid-template-rows: 7.5rem 2fr 4.3rem;
+    grid-template-rows: 7.5rem 2fr auto;
     gap: 0.6rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.footer {
+    border-radius: 10px;
+    grid-column: 1 / span 3; 
 }
 
 /* grid assignment */
@@ -717,7 +722,6 @@ footer {
     width: 100%;
     padding: 5px 20px;
     position: relative;
-    top: 1400px;
 }
 
 .copyright:hover{
