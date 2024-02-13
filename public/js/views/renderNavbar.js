@@ -7,14 +7,6 @@ const renderNavBar = () => {
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                 <div id="date" class="date">Today:</div>
                 <div class="btn-undo">
-                    <button class="btn undo">
-                        <img src="./img/ci_undo.svg" alt="undo button">
-                        undo
-                    </button>
-                    <button class="btn undo">
-                        <img src="./img/ci_redo.svg" alt="redo button">
-                        redo
-                    </button>
                     <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
             </div>            
