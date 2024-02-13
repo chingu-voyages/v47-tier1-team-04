@@ -5,7 +5,7 @@ const renderNavBar = () => {
     "nav",
     `<div class="navbar-top">
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
-                <div id="date" class="date">Today: ${new Date().toLocaleDateString()}</div>
+                <div id="date" class="date">Today:</div>
                 <div class="btn-undo">
                     <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
