@@ -502,37 +502,16 @@ h2 {
     background: #DCF2FF;
 }
 
-.task-priority-3 {
-    color: #dcf2ff;
-    font-size: 2em;
-    border: 3px solid #02a4ff;
-    border-radius: 50%;
-}
-
 .btn-orange {
     color: #FF7B02;
     border: 1px solid #FF7B02;
     background: #FFEEDD;
 }
 
-.task-priority-2 {
-    color: #ffeedd;
-    font-size: 2em;
-    border-radius: 50%;
-    border: 3px solid #ff8211;
-}
-
 .btn-red {
     color: #FF0202;
     border: 1px solid #FF0202;
     background: #FFE0E0;
-}
-
-.task-priority-1 {
-    color: #ffe0e0;
-    font-size: 2em;
-    border-radius: 50%;
-    border: 3px solid #ff0202;
 }
 
 .btn-undo {
