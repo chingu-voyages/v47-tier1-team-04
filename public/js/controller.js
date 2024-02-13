@@ -57,7 +57,9 @@ export default class Controller {
     app.view.updateView()
     this.saveData(false);
   }
-
+  toggleCategory(group, category) {
+    app.view.toggleCategory(group, category);
+  }
   returnUniqueGroupNames() {
     return [...new Set(app.tasks.map((task) => task.group))];
   }

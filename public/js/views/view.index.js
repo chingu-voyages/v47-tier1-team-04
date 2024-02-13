@@ -41,6 +41,9 @@ export default class View {
     updateAsideGroups();
     updateContent();
   }
+  toggleCategory(group, category){
+    console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
+  }
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
