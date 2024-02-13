@@ -36,7 +36,7 @@ const renderNavBar = () => {
         <a href="#" class="btn btn-lite btn-red">High</a>
 
         <div class="search">
-            <input type="text" placeholder="Search for a task by name..." id="search">
+            <input type="text" placeholder="Search by task name, category, group, etc..." id="search">
             <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
         </div>
     </div>               
@@ -55,8 +55,7 @@ const renderNavBar = () => {
         task.description.toLowerCase().includes(searchKey) ||
         task.group.toLowerCase().includes(searchKey) ||
         task.category.toLowerCase().includes(searchKey) ||
-        task.priority.toLowerCase().includes(searchKey) ||
-        task.days.includes(searchKey)
+        task.days.toString().toLowerCase().includes(searchKey)
     );
     searchKey === ""
       ? renderFilteredTasks(app.tasks)
