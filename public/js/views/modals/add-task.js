@@ -10,7 +10,7 @@ import Task from "../../utilities/task.js";
     }
   };
   
-  export const renderEditTaskDetailsPopup = () => {
+  export const renderAddTaskDetailsPopup = () => {
     const task = new Task();
     task.days = new Array();
     task.group = "";
@@ -172,10 +172,10 @@ import Task from "../../utilities/task.js";
       "fa-solid fa-plus add-icon"
     );
     // renderEditTaskDetailsPopup(new Task());
-    document.querySelector(".add-icon").onclick = () => (renderEditTaskDetailsPopup())
+    document.querySelector(".add-icon").onclick = () => (renderAddTaskDetailsPopup())
    // thisButton.onclick = () => (addButton.style.display = "block");
   }
-  export default renderEditTaskDetailsPopup
+  export default renderAddTaskDetailsPopup
  // export default renderModal
 
 
