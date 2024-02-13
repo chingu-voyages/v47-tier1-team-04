@@ -16,20 +16,18 @@ const renderContent = () => {
 
 export const updateContent = () => {
   document.getElementById("content").remove();
+  
   renderContent();
 };
 
 export const renderFilteredTasks = (tasks) => {
+  const searchField =  document.getElementById("search");
   let temp = app.tasks;
   app.tasks = tasks;
-  
-  app.tasks = temp;
-  const searchField =  document.getElementById("search");
   app.searchField = searchField.value;
+  //document.getElementById("search").value = '';
+  app.tasks = temp;
   updateContent();
-  searchField.value = "";
-  
-  setTimeout(() => searchField.value = app.searchField, 50)
 };
 
 

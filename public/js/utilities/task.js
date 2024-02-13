@@ -1,7 +1,7 @@
 import app from "../app.js";
 //Object constructor to create new tasks:
 export default class Task {
-    constructor(name, group, category, frequency, days, description, date, scheduledTime, priority, complete) {
+    constructor({name, group, category, frequency, days, description, date, scheduledTime, priority, complete}) {
       this.name = name;
       this.group = group;
       this.category = category;

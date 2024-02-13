@@ -48,8 +48,8 @@ export const renderViewTaskDetailsPopup = (task) => {
                  }
             ${`<div class="task-details-group border-shadow-sub">
       <div class="task-details">
-        <label>${task.frequency ? "Frequency:" : "No Frequency Set" }</label>
-        <p>${task.frequency ? task.frequency : "&nbsp;" }</p>
+        <label>${task.frequency ? "Frequency:" : "No Frequency Set"}</label>
+        <p>${task.frequency ? task.frequency : "&nbsp;"}</p>
       </div>
       ${
         task.days.length > 0
@@ -80,11 +80,7 @@ export const renderViewTaskDetailsPopup = (task) => {
             : "<p>&nbsp;</p>"
         }
       </div>
-   </div>`}
-        <!--   <label style="text-align:left">Priority:</label>
-            ${label(task.priority)} -->
-
-              
+   </div>`}             
           <a class="btn btn-save btn-detail item-center close" id="close-task-details">Close</a>
       </div>`,
     document.getElementById("app"),
