@@ -38,9 +38,6 @@ export default class View {
     app.views.push(newView);
     return newView;
   }
-  renderToggleCompleteTask(task) {
-    console.log(task);
-  }
   updateView(){
     removePopup();
     updateAsideGroups();
