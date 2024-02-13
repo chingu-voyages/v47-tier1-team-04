@@ -21,36 +21,23 @@ export default class Controller {
         data.map(
           (task) =>
             new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar
+              task
             )
         )
       );
     this.saveData(false);
   }
   async loadData() {
-    let tasks = JSON.parse(localStorage.getItem("savedUserData"))
-    if (tasks.tasks) tasks = tasks.tasks
-    tasks
-      ? tasks.map(
-        (task) =>
-          new Task(
-            task.name,
-            task.group,
-            task.category,
-            task.frequency,
-            task.days,
-            task.description,
-            task.date,
-            task.scheduledTime,
-            task.priority,
-            task.complete
-          )
-      )
+    let storage, parsedStorage;
+    if (localStorage) storage = localStorage.getItem('savedUserData');
+    if (storage) parsedStorage = JSON.parse(storage).tasks;
+
+    parsedStorage ? parsedStorage.map(
+      (task) =>
+        new Task(
+          task
+        )
+    )
       : await this.seed();
   }
 
@@ -70,7 +57,9 @@ export default class Controller {
     app.view.updateView()
     this.saveData(false);
   }
-
+  toggleCategory(group, category) {
+    app.view.toggleCategory(group, category);
+  }
   returnUniqueGroupNames() {
     return [...new Set(app.tasks.map((task) => task.group))];
   }

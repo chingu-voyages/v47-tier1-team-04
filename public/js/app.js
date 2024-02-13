@@ -4,7 +4,6 @@ import View from './views/view.index.js';
 class Model {
   constructor() {
     this.tasks = [];
-    this.views = [];
     this.archive = [];
     this.view = new View(
       "div",
