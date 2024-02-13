@@ -14,8 +14,8 @@ export default class Task {
     complete,
   }) {
     this.name = name;
-    this.group = group //|| "Ungrouped Tasks";
-    this.category = category //|| "Uncategorized";
+    this.group = group || "Ungrouped";
+    this.category = category || "Uncategorized";
     this.frequency = frequency;
     this.days = days;
     this.description = description;
@@ -42,15 +42,15 @@ export default class Task {
     priority,
     complete,
   }) {
-    this.name = name || this.name;
-    this.group = group || this.group;
-    this.category = category || this.category;
+    this.name = name
+    this.group = group || "Ungrouped";
+    this.category = category || "Uncategorized";
     this.frequency = frequency || this.frequency;
     this.days = days || this.days;
     this.description = description || this.description;
     this.date = date || this.date;
     this.scheduledTime = scheduledTime || this.scheduledTime;
-    this.priority = priority || this.priority;
+    this.priority = priority || "3";
     this.complete = complete || this.complete;
     return this;
   }

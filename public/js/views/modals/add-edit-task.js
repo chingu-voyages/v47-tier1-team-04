@@ -1,5 +1,4 @@
 import app from "../../app.js";
-import { kebabCase } from "../../utilities/utilities.js";
 
 export const removePopup = () => {
   let popup = document.querySelector(".task-details-popup");
@@ -41,7 +40,7 @@ const renderTaskDetailsPopup = (oldTask) => {
     `<form class="task-details-popup" id="edit_details">
           <div class="task-details-content">
             <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>            
-              <h2>Edit Task</h2>
+              <h2>${oldTask ? "Edit" : "Add"} Task</h2>
             <div class="task-details-group">
               <div class="task-details">
                   <label for="group">Group:</label>
@@ -49,7 +48,7 @@ const renderTaskDetailsPopup = (oldTask) => {
               </div>
               <div class="task-details">
                   <label for="category">Category:</label>
-                  <input type="text" placeholder="Uncategorized" value="${category}" name="category" requrired>
+                  <input type="text" placeholder="Uncategorized" value="${category}" name="category" required>
               </div>
             </div>
 
@@ -163,16 +162,30 @@ const renderTaskDetailsPopup = (oldTask) => {
     updatedTask.priority = document.getElementById("priority-select").value;
 
     const validateInput = (input) => {
+      if (
+        input.name === "name" &&
+        app.tasks.filter((task) => task.name === input.value).length
+      ) {
+        input.style.border = "1px solid red";
+        input.value = "";
+        input.placeholder = "Please enter a unique task name";
+        return false;
+      }
       if (input.required && input.value === "") {
         input.style.border = "1px solid red";
         input.placeholder = `Please provide a ${input.name}`;
+
+        if (input.name === "group" || input.name === "category") return;
         return false;
-      } else return;
+      }
     };
     const validateInputs = () =>
       formInputs.map((input) => validateInput(input));
     if (validateInputs().includes(false)) return;
-    else app.controller.updateTask(task, updatedTask);
+    else {
+      if (oldTask) app.controller.updateTask(oldTask, updatedTask);
+      else app.controller.addTask(updatedTask);
+    }
   };
 
   const closeDetailsButton = document.querySelector("#close-details-popup");
@@ -189,8 +202,7 @@ export const renderModalButton = () => {
     "fa-solid fa-plus add-icon"
   );
 
-  document.querySelector(".add-icon").onclick = () =>
-    renderTaskDetailsPopup();
+  document.querySelector(".add-icon").onclick = () => renderTaskDetailsPopup();
 };
 
 export default renderTaskDetailsPopup;

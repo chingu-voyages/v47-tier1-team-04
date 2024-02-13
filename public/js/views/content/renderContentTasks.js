@@ -1,6 +1,7 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
 import renderTaskDetailsPopup from "../modals/add-edit-task.js";
+import renderViewTaskDetailsPopup from "../modals/view-task.js";
 
 export const renderContentTask = (task) => {
   const anchor = app.view.createElement(
