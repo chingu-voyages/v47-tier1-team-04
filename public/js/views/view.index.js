@@ -3,7 +3,7 @@ import renderNavBar from "./renderNavbar.js";
 import renderContent, { updateContent } from "./content/renderContent.js";
 import { removePopup } from "./modals/view-task.js";
 import renderFooter from "./renderFooter.js";
-import { renderModalButton } from "./modals/add-task.js";
+import { renderModalButton } from "./modals/add-edit-task.js";
 
 let viewIndex = 1;
 export default class View {
