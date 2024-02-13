@@ -23,5 +23,10 @@ const renderContentCategory = (group, category) => {
     document.getElementById(`content_${kebabCase(group)}`),
     `category_${kebabCase(category)}`
   );
+  document.getElementById(
+    `ellipse_${kebabCase(group)}_${kebabCase(category)}`
+  ).onclick = () => {
+    app.controller.toggleCategory(group, category);
+  };
 };
 export default renderContentCategory;
