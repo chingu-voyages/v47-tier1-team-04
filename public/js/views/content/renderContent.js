@@ -22,8 +22,14 @@ export const updateContent = () => {
 export const renderFilteredTasks = (tasks) => {
   let temp = app.tasks;
   app.tasks = tasks;
-  updateContent();
+  
   app.tasks = temp;
+  const searchField =  document.getElementById("search");
+  app.searchField = searchField.value;
+  updateContent();
+  searchField.value = "";
+  
+  setTimeout(() => searchField.value = app.searchField, 50)
 };
 
 
