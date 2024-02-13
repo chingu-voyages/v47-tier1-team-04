@@ -24,7 +24,8 @@ export const renderContentTask = (task) => {
   task.view = anchor;
   app.view.createElement(
     "div",
-    `<i class="fa-solid fa-circle-info fa-2x detail" id="view_${kebabCase(
+    `<i class="fa fa-circle task-priority-${task.priority}" aria-hidden="true"></i>
+    <i class="fa-solid fa-circle-info fa-2x detail" id="view_${kebabCase(
       task.name
     )}"></i>
     <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${kebabCase(

@@ -36,13 +36,13 @@ export default class View {
   createElement(element, content, anchor, id, classList) {
     return new View(element, content, anchor, id, classList);
   }
-  renderToggleCompleteTask(task) {
-    console.log(task);
-  }
   updateView(){
     removePopup();
     updateAsideGroups();
     updateContent();
+  }
+  toggleCategory(group, category){
+    //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
   }
 }
 

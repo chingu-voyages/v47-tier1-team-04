@@ -11,7 +11,7 @@ const renderContentCategory = (group, category) => {
         )}_${kebabCase(category)}">
         <div class="content-inner">
             <div class="content-task">
-                <h3 class="activity">${category}</h3> <a href="#" class="btn btn-lite btn-blue">Low</a>
+                <h3 class="activity">${category}</h3> 
             </div>
             <div class="content-description">
                                       
@@ -23,5 +23,10 @@ const renderContentCategory = (group, category) => {
     document.getElementById(`content_${kebabCase(group)}`),
     `category_${kebabCase(category)}`
   );
+  document.getElementById(
+    `ellipse_${kebabCase(group)}_${kebabCase(category)}`
+  ).onclick = () => {
+    app.controller.toggleCategory(group, category);
+  };
 };
 export default renderContentCategory;
