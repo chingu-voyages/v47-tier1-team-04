@@ -163,7 +163,7 @@ const renderTaskDetailsPopup = (oldTask) => {
 
     const validateInput = (input) => {
       if (
-        input.name === "name" &&
+        input.value !== task.name && input.name === "name" &&
         app.tasks.filter((task) => task.name === input.value).length
       ) {
         input.style.border = "1px solid red";
