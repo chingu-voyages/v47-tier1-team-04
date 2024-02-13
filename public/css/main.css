@@ -502,16 +502,31 @@ h2 {
     background: #DCF2FF;
 }
 
+.task-priority-3 {
+    color: #02A4FF;
+    font-size: 2em;
+}
+
 .btn-orange {
     color: #FF7B02;
     border: 1px solid #FF7B02;
     background: #FFEEDD;
 }
 
+.task-priority-2 {
+    color: #FF7B02; 
+    font-size: 2em;
+}
+
 .btn-red {
     color: #FF0202;
     border: 1px solid #FF0202;
     background: #FFE0E0;
+}
+
+.task-priority-1 {
+    color: #FF0202;
+    font-size: 2em;
 }
 
 .btn-undo {

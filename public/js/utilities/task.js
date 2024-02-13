@@ -10,7 +10,7 @@ export default class Task {
       this.description = description;
       this.date = date
       this.scheduledTime = scheduledTime
-      this.priority = priority
+      this.priority = priority || 3;
       this.complete = complete
       app.tasks.push(this);
     }
