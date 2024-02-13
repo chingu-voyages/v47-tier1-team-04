@@ -2,209 +2,277 @@
   {
     "name": "Update Recipes Project Backlog",
     "group": "ROUTINE ACTIVITIES",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "Projects",
-    "frequency": "weekly",
-    "days": [],
-    "date": "2024-03-02",
-    "scheduledTime": "",
-    "priority": "1"
+    "frequency": "once",
+    "priority": 1,
+    "days": "",
+    "date": "2024-02-14",
+    "scheduledTime": "14:50",
+    "complete": "x"
   },
   {
     "name": "Update The dailyTasks sheet with the backlog tasks",
     "group": "ROUTINE ACTIVITIES",
+    "description": "Professional chefs often experiment with new and unique recipes to elevate their culinary creations.",
     "category": "Projects",
     "frequency": "weekly",
-    "days": [],
-    "calender": []
+    "priority": 3,
+    "days": ["Thursday", "Friday", "Saturday"],
+    "date": "",
+    "scheduledTime": "17:45",
+    "complete": ""
   },
   {
     "name": "Publish The recent Blog Post Draft to hashnode",
     "group": "ROUTINE ACTIVITIES",
+    "description": "The team was assigned a challenging task that required collaboration and strategic thinking to successfully complete.",
     "category": "BLOG Posts",
-    "frequency": "weekly",
-    "days": [],
-    "date": "2024-03-03",
-    "scheduledTime": "",
-    "priority": "1"
+    "frequency": "once",
+    "priority": 2,
+    "days": "",
+    "date": "2024-02-18",
+    "scheduledTime": "13:32",
+    "complete": "x"
   },
   {
     "name": "Write a New headline in a Blog Post Draft",
     "group": "ROUTINE ACTIVITIES",
+    "description": "The completion of this task requires careful planning and efficient execution to ensure successful results.",
     "category": "BLOG Posts",
     "frequency": "weekly",
-    "days": [],
-    "date": "2024-03-04",
-    "scheduledTime": "",
-    "priority": "3"
+    "priority": 1,
+    "days": ["Sunday", "Tuesday", "Thursday"],
+    "date": "",
+    "scheduledTime": "12:01",
+    "complete": ""
   },
   {
     "name": "Plan The Node Js Course Progress By Month",
     "group": "STUDYING",
+    "description": "As a project manager, it is important to prioritize our daily tasks in order to ensure efficiency and success.",
     "category": "Node Js Course",
     "frequency": "once",
-    "days": [],
-    "date": "2024-03-05",
-    "scheduledTime": "",
-    "priority": "3"
+    "priority": 3,
+    "days": "",
+    "date": "2024-02-22",
+    "scheduledTime": "14:50",
+    "complete": "x"
   },
   {
     "name": "Study The First Node Js Lecture",
     "group": "STUDYING",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "Node Js Course",
     "frequency": "once",
-    "days": [],
-    "date": "2024-03-06",
-    "scheduledTime": "",
-    "priority": "3"
+    "priority": 2,
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "date": "",
+    "scheduledTime": "17:45",
+    "complete": ""
   },
   {
     "name": "Study The First MongoDB Lecture",
     "group": "STUDYING",
+    "description": "Completing daily tasks efficiently is key to success in any profession.",
     "category": "mongoDB",
     "frequency": "once",
-    "days": [],
-    "date": "2024-03-07",
-    "scheduledTime": "",
-    "priority": "1"
+    "priority": 1,
+    "days": "",
+    "date": "2024-02-26",
+    "scheduledTime": "13:32",
+    "complete": ""
   },
   {
     "name": "Plan The MongoDB Course Progress By Month",
     "group": "STUDYING",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "mongoDB",
     "frequency": "once",
-    "days": [],
-    "date": "2024-03-08",
-    "scheduledTime": "",
-    "priority": "1"
+    "priority": 2,
+    "days": "",
+    "date": "2024-02-28",
+    "scheduledTime": "12:01",
+    "complete": ""
   },
   {
     "name": "Add The New Features list",
     "group": "Daily Tasks Project",
+    "description": "Professional chefs often experiment with new and unique recipes to elevate their culinary creations.",
     "category": "Backlog",
     "frequency": "weekly",
-    "days": [],
-    "date": "2024-03-09",
-    "scheduledTime": "",
-    "priority": "1"
+    "priority": 3,
+    "days": ["Monday", "Wednesday", "Friday"],
+    "date": "",
+    "scheduledTime": "14:50",
+    "complete": "x"
   },
   {
     "name": "Add The New PRs To InReview",
     "group": "Daily Tasks Project",
+    "description": "The team was assigned a challenging task that required collaboration and strategic thinking to successfully complete.",
     "category": "Backlog",
     "frequency": "once",
-    "days": [],
-    "date": "2024-03-10",
-    "scheduledTime": "",
-    "priority": "3"
+    "priority": 2,
+    "days": "",
+    "date": "2024-03-03",
+    "scheduledTime": "17:45",
+    "complete": "x"
   },
   {
     "name": "Work On The Sidebar",
     "group": "Daily Tasks Project",
+    "description": "The completion of this task requires careful planning and efficient execution to ensure successful results.",
     "category": "Coding",
     "frequency": "once",
-    "days": [],
-    "date": "",
-    "scheduledTime": "",
-    "priority": "1"
+    "priority": 1,
+    "days": "",
+    "date": "2024-03-05",
+    "scheduledTime": "13:32",
+    "complete": ""
   },
   {
     "name": "Refactor The Filtering Feature Code",
     "group": "Daily Tasks Project",
+    "description": "As a project manager, it is important to prioritize our daily tasks in order to ensure efficiency and success.",
     "category": "Coding",
-    "frequency": "once",
-    "days": [],
+    "frequency": "weekly",
+    "priority": 1,
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
     "date": "",
-    "scheduledTime": "",
-    "priority": "3"
+    "scheduledTime": "12:01",
+    "complete": "x"
   },
   {
     "name": "Conduct The Project Planning Meeting To Discuss Our Ideas",
     "group": "Chingu",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "Voyage",
     "frequency": "once",
-    "days": [],
-    "date": "",
-    "scheduledTime": "",
-    "priority": "1"
+    "priority": 3,
+    "days": "",
+    "date": "2024-03-09",
+    "scheduledTime": "14:50",
+    "complete": ""
   },
   {
     "name": "Set Up A Plan For The Next Month Of Node Js Learning",
     "group": "Chingu",
+    "description": "Completing daily tasks efficiently is key to success in any profession.",
     "category": "Voyage",
     "frequency": "once",
-    "days": [],
-    "date": "",
-    "scheduledTime": "",
-    "priority": "3"
+    "priority": 3,
+    "days": "",
+    "date": "2024-03-11",
+    "scheduledTime": "17:45",
+    "complete": "x"
   },
   {
     "name": "Create The UI/UX Design For The DailyTasks Project Based On The Team Discussion",
     "group": "Chingu",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "Voyage",
-    "frequency": "once",
-    "days": [],
+    "frequency": "weekly",
+    "priority": 2,
+    "days": ["Sunday", "Tuesday", "Thursday"],
     "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "scheduledTime": "13:32",
+    "complete": "x"
   },
   {
     "name": "Create When2Meet Link",
     "group": "Chingu",
+    "description": "Professional chefs often experiment with new and unique recipes to elevate their culinary creations.",
     "category": "Pair Programming",
-    "frequency": false,
-    "days": [],
-    "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "frequency": "once",
+    "priority": 2,
+    "days": "",
+    "date": "2024-03-15",
+    "scheduledTime": "12:01",
+    "complete": ""
   },
   {
     "name": "Attend The Introduction Meeting With Someone",
     "group": "Chingu",
+    "description": "The team was assigned a challenging task that required collaboration and strategic thinking to successfully complete.",
     "category": "Pair Programming",
-    "frequency": false,
-    "days": [],
-    "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "frequency": "once",
+    "priority": 1,
+    "days": "",
+    "date": "2024-03-17",
+    "scheduledTime": "14:50",
+    "complete": "x"
   },
   {
     "name": "25 sit ups",
     "group": "Personal",
+    "description": "The completion of this task requires careful planning and efficient execution to ensure successful results.",
     "category": "Physical Exercise",
     "frequency": "daily",
-    "days": [],
+    "priority": 3,
+    "days": ["Thursday", "Friday", "Saturday"],
     "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "scheduledTime": "17:45",
+    "complete": ""
   },
   {
     "name": "25 push ups",
     "group": "Personal",
+    "description": "As a project manager, it is important to prioritize our daily tasks in order to ensure efficiency and success.",
     "category": "Physical Exercise",
     "frequency": "bi-daily",
-    "days": [],
+    "priority": 2,
+    "days": ["Monday", "Wednesday", "Friday"],
     "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "scheduledTime": "13:32",
+    "complete": "x"
   },
   {
     "name": "25 curls",
     "group": "Personal",
+    "description": "By following these tested and trusted recipes, you will be able to create delicious meals with ease.",
     "category": "Physical Exercise",
     "frequency": "bi-daily",
-    "days": [],
+    "priority": 2,
+    "days": ["Sunday", "Tuesday", "Thursday"],
     "date": "",
-    "scheduledTime": "",
-    "priority": "2"
+    "scheduledTime": "12:01",
+    "complete": ""
   },
   {
     "name": "2:00 plank",
     "group": "Personal",
+    "description": "Completing daily tasks efficiently is key to success in any profession.",
     "category": "Physical Exercise",
     "frequency": "daily",
-    "days": [],
-    "date": "2024-03-01",
-    "scheduledTime": "",
-    "priority": "2"
+    "priority": 1,
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "date": "",
+    "scheduledTime": "14:50",
+    "complete": "x"
   }
 ]
