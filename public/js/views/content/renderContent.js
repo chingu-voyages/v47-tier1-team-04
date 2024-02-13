@@ -13,7 +13,6 @@ const renderContent = () => {
   );
   renderContentGroups();
   renderContentTasks();
-  renderFooter();
 };
 
 export const updateContent = () => {
