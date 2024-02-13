@@ -5,24 +5,27 @@ import renderContentTasks from "./renderContentTasks.js";
 const renderContent = () => {
   app.view.createElement(
     "content",
-    `<div class="content-search">
-      <div class="priority">
-          <a href="#" class="btn btn-lite btn-blue">Low</a>
-          <a href="#" class="btn btn-lite btn-orange">Med</a>
-          <a href="#" class="btn btn-lite btn-red">High</a>
-
-          <div class="search">
-              <input type="text" placeholder="">
-              <i class="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-          </div>
-      </div>               
-  </div>
-  `,
-    document.getElementById("app"),
+    "",
+    document.getElementById("contentAnchor"),
     "content",
     "content"
   );
   renderContentGroups();
   renderContentTasks();
 };
+
+export const updateContent = () => {
+  document.getElementById("content").remove();
+  renderContent();
+};
+
+export const renderFilteredTasks = (tasks) => {
+  let temp = app.tasks;
+  app.tasks = tasks;
+  updateContent();
+  app.tasks = temp;
+};
+
+
+
 export default renderContent;

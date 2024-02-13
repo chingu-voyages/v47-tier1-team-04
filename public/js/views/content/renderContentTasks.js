@@ -1,14 +1,9 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
+import renderEditTaskDetailsPopup from "../modals/edit-task.js";
+import renderViewTaskDetailsPopup from "../modals/view-task.js";
 
-const renderInfoButton = (task) => {
-  const button = document.createElement("i");
-  button.classList = "fa-solid fa-circle-info fa-2x detail";
-  button.id = `button_${kebabCase(task.name).slice(0, 7)}`;
-  return button.outerHTML;
-};
-
-const renderContentTask = (task) => {
+export const renderContentTask = (task) => {
   const anchor = app.view.createElement(
     "div",
     ``,
@@ -25,13 +20,32 @@ const renderContentTask = (task) => {
     null,
     "task-name"
   );
+
+  task.view = anchor;
   app.view.createElement(
     "div",
-    `${renderInfoButton(task)}
-    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-edit">
-    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit">`,
+    `<i class="fa-solid fa-circle-info fa-2x detail" id="view_${kebabCase(
+      task.name
+    )}"></i>
+    <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${kebabCase(
+      task.name
+    )}">
+    <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${kebabCase(
+      task.name
+    )}">`,
     anchor
   );
+  document.getElementById(
+    `view_${kebabCase(task.name)}`
+  ).onclick = () => {
+    renderViewTaskDetailsPopup(task);
+  };
+  document.getElementById(`edit_${kebabCase(task.name)}`).onclick = () =>
+    renderEditTaskDetailsPopup(task);
+
+  document.getElementById(`task_remove_${kebabCase(task.name)}`).onclick = () =>
+    app.controller.removeTask(task);
+
   taskContainer.container.onclick = () => {
     task.toggleComplete();
     taskContainer.container.classList.toggle("complete");
@@ -43,7 +57,7 @@ const renderContentTask = (task) => {
       taskCheckbox.classList.remove("fa-square-check");
       taskCheckbox.classList.add("fa-square");
     }
-  }
+  };
   // Complete Project toggle
   const ellipses = document.querySelectorAll(".ellipse");
 
@@ -69,14 +83,10 @@ const renderContentTask = (task) => {
 
   if (task.complete) {
     taskContainer.container.classList.toggle("complete");
-
-    console.log(task.complete);
-      const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
-
-      taskCheckbox.classList.remove("fa-square");
-      taskCheckbox.classList.add("fa-square-check");
-  } 
-
+    const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
+    taskCheckbox.classList.remove("fa-square");
+    taskCheckbox.classList.add("fa-square-check");
+  }
 };
 
 const renderContentTasks = () => {
