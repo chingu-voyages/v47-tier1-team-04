@@ -21,12 +21,7 @@ export default class Controller {
         data.map(
           (task) =>
             new Task(
-              task.name,
-              task.group,
-              task.category,
-              task.frequency,
-              task.days,
-              task.calendar
+              task
             )
         )
       );
@@ -40,16 +35,7 @@ export default class Controller {
     parsedStorage ? parsedStorage.map(
       (task) =>
         new Task(
-          task.name,
-          task.group,
-          task.category,
-          task.frequency,
-          task.days,
-          task.description,
-          task.date,
-          task.scheduledTime,
-          task.priority,
-          task.complete
+          task
         )
     )
       : await this.seed();

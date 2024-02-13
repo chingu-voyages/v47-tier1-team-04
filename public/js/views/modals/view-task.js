@@ -38,39 +38,49 @@ export const renderViewTaskDetailsPopup = (task) => {
                 <p>${task.name}</p>
             </div>
 
-                 ${task.description
-      ? `<div class="task-details border-shadow-sub">
+                 ${
+                   task.description
+                     ? `<div class="task-details border-shadow-sub">
             <label>Description:</label>
             <p>${task.description}</p>
             </div>`
-      : ""
-    }
-            ${task.calendar
-      ? `<div class="task-details">
-            <div class="task-details border-shadow-sub">
-            <label>Due Date:</label>
-            <p>${task.calander}</p>
-          </div>
-      </div>`
-      : `<div class="task-details-group border-shadow-sub">
+                     : ""
+                 }
+            ${`<div class="task-details-group border-shadow-sub">
       <div class="task-details">
-        <label>Frequency:</label>
-        <p>${task.frequency}</p>
+        <label>${task.frequency ? "Frequency:" : "No Frequency Set"}</label>
+        <p>${task.frequency ? task.frequency : "&nbsp;"}</p>
       </div>
+      ${
+        task.days.length > 0
+          ? `<div class="task-details">
+      <label>Day${task.days.length > 1 ? "s" : ""}:</label>
+      <p>${task.days}</p>
+    </div>`
+          : `<div class="task-details">
+             <label>No Days Selected</label>
+              <p>&nbsp;</p>
+             </div>`
+      }
       <div class="task-details">
-        <label>Days:</label>
-        <p>${task.days}</p>
+        <label>${
+          task.date && task.scheduledTime
+            ? "Due Date:"
+            : task.date
+            ? "Due Date"
+            : task.scheduledTime
+            ? "Scheduled Time"
+            : "No Due Date"
+        }</label>
+        ${
+          task.date && task.scheduledTime
+            ? `<p>${task.date} at ${task.scheduledTime}</p>`
+            : task.date || task.scheduledTime
+            ? `<p>${task.date || task.scheduledTime}</p>`
+            : "<p>&nbsp;</p>"
+        }
       </div>
-      <div class="task-details">
-        <label>Due Date:</label>
-        <p>${task.date ? task.date : " "}  ${task.scheduledTime ? task.scheduledTime : " "}</p>
-      </div>
-   </div>`
-    }
-        <!--   <label style="text-align:left">Priority:</label>
-            ${label(task.priority)} -->
-
-              
+   </div>`}             
           <a class="btn btn-save btn-detail item-center close" id="close-task-details">Close</a>
       </div>`,
     document.getElementById("app"),
