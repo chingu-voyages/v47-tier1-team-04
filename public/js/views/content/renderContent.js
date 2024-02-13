@@ -16,18 +16,14 @@ const renderContent = () => {
 
 export const updateContent = () => {
   document.getElementById("content").remove();
-  
   renderContent();
 };
 
 export const renderFilteredTasks = (tasks) => {
-  const searchField =  document.getElementById("search");
   let temp = app.tasks;
   app.tasks = tasks;
-  app.searchField = searchField.value;
-  //document.getElementById("search").value = '';
-  app.tasks = temp;
   updateContent();
+  app.tasks = temp;
 };
 
 
