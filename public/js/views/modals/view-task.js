@@ -11,7 +11,6 @@ export const removePopup = () => {
 
 export const renderViewTaskDetailsPopup = (task) => {
   removePopup();
-  console.log(task);
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
