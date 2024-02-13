@@ -92,10 +92,10 @@ const renderNavBar = () => {
     .addEventListener("click", app.controller.saveData);
 
   document.getElementById("priority_low").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "3"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 3));
   document.getElementById("priority_med").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "2"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 2));
   document.getElementById("high").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "1"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 1));
 };
 export default renderNavBar;
