@@ -45,6 +45,9 @@ export default class View {
   toggleCategory(group, category){
     //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
   }
+  resetSearch(){
+    document.getElementById("search").value = "";
+  }
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu

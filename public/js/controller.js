@@ -33,6 +33,7 @@ export default class Controller {
   saveData(bool) {
     localStorage.setItem("savedUserData", JSON.stringify(app));
     if (bool) renderSuccessfulSave();
+    app.view.resetSearch()
   }
 
   addTask(task) {
