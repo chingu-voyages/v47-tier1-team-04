@@ -22,10 +22,8 @@ export const updateContent = () => {
 export const renderFilteredTasks = (tasks) => {
   let temp = app.tasks;
   app.tasks = tasks;
-  updateContent();
+  updateContent(tasks);
   app.tasks = temp;
 };
-
-
 
 export default renderContent;
