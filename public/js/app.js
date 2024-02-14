@@ -24,3 +24,20 @@ class Model {
 const app = new Model(); //Creating a new data model and naming it 'app'
 export default app;
 
+
+// Everything in JavaScript is an object.
+// defining anything and everything itself is an object
+// in the global space we are always defining a property on the global object, which is a copy of the window object
+// try creating a variable in the global space and then type window. and you will see the variable you just created
+// window is the global object in the browser. Therefore we can access the window object by typing window. or just the variable name
+
+// By creating a new object, we are creating a new instance of the object and since we created a constructor for a Model, we can create our own version of this same namespace
+// Only in our namespace, app will only contain the tasks and archive properties, and the view and controller methods
+
+// Since the view and controller are methods, we can access them by typing app.view or app.controller
+// And since they are new instance of the view and controller, we can access the methods on them by typing app.view.method() or app.controller.method()
+
+// By utilizing the constructor, we can create a single instance of the Model and have access to the view and controller methods and properties by importing the app object into any file we want to use it in
+// This is a way to create a single source of truth for our application and to keep our code DRY
+
+// This way we dont have to keey track of a bunch of const and let variables and we can keep everything in one place and access it from anywhere in our application
