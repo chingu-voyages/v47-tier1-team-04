@@ -30,7 +30,16 @@ const renderNavBar = () => {
     "navbar"
   );
   app.filteredTasks = app.tasks;
-
+  const menuBtn = document.getElementById("menu-btn");
+  const asideEl = document.getElementById("element-el");
+  
+  menuBtn.addEventListener("click", function () {
+    asideEl.style.display =
+      asideEl.style.display === "none" || asideEl.style.display === ""
+        ? "block"
+        : "none";
+  });
+  
   document.querySelectorAll(".btn.btn-week").forEach((ele) => {
     ele.onclick = (e) => {
       resetButtons(e.target);
@@ -93,6 +102,7 @@ const renderNavBar = () => {
     "contentAnchor",
     "content"
   );
+  
   const searchBar = document.getElementById("search");
   const buttons = document.querySelectorAll(".btn");
   const resetButtons = (target) => {
