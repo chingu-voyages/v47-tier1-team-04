@@ -259,7 +259,6 @@
     gap: 0.6rem;
     max-width: 1200px;
     margin: 0 auto;
-<<<<<<< HEAD
 }
 
 .navday {
@@ -271,11 +270,6 @@
 }
 
 .footer {
-=======
-  }
-  
-  .footer {
->>>>>>> origin/alpha
     border-radius: 10px;
     grid-column: 1 / span 3;
   }
@@ -471,19 +465,11 @@
     text-align: center;
     padding: 10px;
     cursor: pointer;
-<<<<<<< HEAD
 } 
 
 .btn-day,
 .btn-month,
 .btn-year, .btn-week {
-=======
-  }
-  
-  .btn-day,
-  .btn-month,
-  .btn-year {
->>>>>>> origin/alpha
     background: #fff;
     color: #8f8f8f;
     border: 1px solid #8f8f8f;
@@ -495,7 +481,6 @@
     padding-top: 5px;
     margin-top: 15px;
     margin-bottom: 15px;
-<<<<<<< HEAD
     flex-grow: 1;
 }
 
@@ -510,9 +495,6 @@
 .btn:hover {
     opacity: 0.65;
 }
-=======
-  }
->>>>>>> origin/alpha
   
   .btn-day:hover,
   .btn-month:hover,
