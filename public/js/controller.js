@@ -63,6 +63,7 @@ export default class Controller {
     app.view.toggleCategory(group, category);
   }
   returnUniqueGroupNames() {
+    //Return unique array from task.group by leveraging JS set and the spread operator
     return [...new Set(app.tasks.map((task) => task.group))];
   }
   returnUniqueCategoryNames() {
@@ -70,6 +71,7 @@ export default class Controller {
   }
   returnUniqueCategoriesByGroup(group) {
     const categories = this.returnCategoryByGroup(group);
+    //Mapping over categories and not a
     return [...new Set(categories.map((task) => task.category))];
   }
   returnCategoryByGroup(group) {
