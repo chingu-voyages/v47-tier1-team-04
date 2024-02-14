@@ -9,10 +9,13 @@ export default class Controller {
 
   //Function to clear/reset tasks:
   resetState() {
-    this.tasks = [];
-    return this;
+    app.tasks = [];
   }
-
+  restoreArchivedTasks() {
+    app.tasks = app.tasks.concat(app.archive);
+    app.archive = [];
+    app.view.updateView();
+  }
   //Function to pull in the data from the data.model.json file:
   async seed() {
     await fetch("./js/data/data.model.json")
@@ -33,7 +36,6 @@ export default class Controller {
   saveData(bool) {
     localStorage.setItem("savedUserData", JSON.stringify(app));
     if (bool) renderSuccessfulSave();
-    app.view.resetSearch()
   }
 
   addTask(task) {
