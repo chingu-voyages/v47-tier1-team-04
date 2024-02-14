@@ -37,10 +37,13 @@ export default class View {
   createElement(element, content, anchor, id, classList) {
     return new View(element, content, anchor, id, classList);
   }
-  updateView(){
+  updateView(filteredTasks){
+    let temp = app.tasks;
+    if (filter) app.tasks = filteredTasks;
     removePopup();
     updateAsideGroups();
     updateContent();
+    app.tasks = temp;
     if (app.tasks && app.tasks.length > 0) {
     if (document.getElementById("search").classList.includes("active")) return 
     else document.getElementById("search").value = "";
