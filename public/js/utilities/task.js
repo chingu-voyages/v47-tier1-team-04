@@ -70,4 +70,12 @@ export default class Task {
     app.controller.saveData(false);
     return this.complete;
   }
+
+  cyclePriority() {
+    if(this.priority == 3){
+      this.priority = 1
+    } else {
+      this.priority++;
+    }
+  }
 }
