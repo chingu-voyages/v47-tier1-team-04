@@ -14,17 +14,17 @@ export default class Task {
     complete,
   }) {
     this.name = name;
-    this.group = group || "Ungrouped";
-    this.category = category || "Uncategorized";
+    this.group = group || "Ungrouped";//Line used when user doesn't add "group name" to newly added task
+    this.category = category || "Uncategorized";//Line used when user doesn't add "category name" to newly added task
     this.frequency = frequency;
     this.days = days;
     this.description = description;
     this.date = date;
     this.scheduledTime = scheduledTime;
-    this.priority = priority || '3';
-    this.complete = complete;
+    this.priority = priority || '3';//1=high, 2=medium, 3=low
+    this.complete = complete;//Brings in any completed data from localStorage or seed data
     app.tasks.push(this);//This line pushes our task to our task array, model keeps track of these tasks
-    app.controller.saveData(false);
+    app.controller.saveData(false);//Enables autosave
   }
   read() {
     this.complete = false;

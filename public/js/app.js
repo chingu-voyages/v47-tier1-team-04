@@ -16,8 +16,8 @@ class Model {
   }
   //Function to initialize app:
   async init(title) {
-    await this.controller.loadData();
-    this.controller.init(title);
+    await this.controller.loadData();//Line runs process to check for localStorage and then makes tasks array from that or seed data
+    this.controller.init(title);//
     return this;
   }
 }
