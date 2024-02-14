@@ -12,7 +12,7 @@
       name="author"
       content="Amanda Libbey, Jayanti Neu, Stacy Riley, Tasmine Wakil, Mikey Nichols, Will Burroughs, Emmett Pennington"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Let's come up with a better project name -->
     <title>v47-tier1-team-04 Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,11 +48,12 @@
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script defer type="module">
-      import app from './js/app.js'
-      app.init('Chingu Task Tracker')
-      console.log(app);
+      import app from './js/app.js'; //This line imports the app
+      app.init('Chingu Task Tracker'); // This line initializes the app
+      //Value of 'Chingu Task Tracker' passes title into app
+      console.log(app); //Provides user with app level information inside of the console
+      //Should remove console.log before going live
     </script>
-    <!--this is for trying out the code to see if it works, but I don't have access to app here-->
   </head>
   <body></body>
 </html>
