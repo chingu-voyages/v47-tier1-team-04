@@ -256,10 +256,18 @@ body {
       'aside content content'
       'footer footer footer';
     grid-template-columns: 30% 70%;
-    grid-template-rows: 7.5rem 2fr auto;
+    grid-template-rows: 15rem 2fr auto;
     gap: 0.6rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.navday {
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    margin: 0 10px;
+    gap: 5px;
 }
 
 .footer {
@@ -460,7 +468,7 @@ h2 {
 
 .btn-day,
 .btn-month,
-.btn-year {
+.btn-year, .btn-week {
     background: #fff;
     color: #8F8F8F;
     border: 1px solid #8F8F8F;
@@ -468,11 +476,11 @@ h2 {
     text-align: center;
     font-size: 25px;
     font-weight: 500;
-    width: 300px;
     height: 50px;
     padding-top: 5px;
     margin-top: 15px;
     margin-bottom: 15px;
+    flex-grow: 1;
 }
 
 .btn-day:hover,
