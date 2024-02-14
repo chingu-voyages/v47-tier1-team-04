@@ -34,8 +34,8 @@ export default class Controller {
   }
 
   saveData(bool) {
-    localStorage.setItem("savedUserData", JSON.stringify(app));
-    if (bool) renderSuccessfulSave();
+    localStorage.setItem("savedUserData", JSON.stringify(app));//Storing the entire app, including any user settings
+    if (bool) renderSuccessfulSave();//if false, saves to localStorage but doesn't show message
   }
 
   addTask(task) {
