@@ -39,7 +39,7 @@ export default class View {
   }
   updateView(filteredTasks){
     let temp = app.tasks;
-    if (filter) app.tasks = filteredTasks;
+    if (filteredTasks) app.tasks = filteredTasks;
     removePopup();
     updateAsideGroups();
     updateContent();
