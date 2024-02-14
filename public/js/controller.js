@@ -21,7 +21,6 @@ export default class Controller {
     await fetch("./js/data/data.model.json")
       .then((res) => res.json())
       .then((data) => data.map((task) => new Task(task)));
-    this.saveData(false);
   }
   async loadData() {
     let storage, parsedStorage;

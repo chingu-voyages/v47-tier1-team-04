@@ -24,6 +24,7 @@ export default class Task {
     this.priority = priority || '3';
     this.complete = complete;
     app.tasks.push(this);
+    app.controller.saveData(false);
   }
   read() {
     this.complete = false;
@@ -52,6 +53,7 @@ export default class Task {
     this.scheduledTime = scheduledTime || this.scheduledTime;
     this.priority = priority || "3";
     this.complete = complete || this.complete;
+    app.controller.saveData(false);
     return this;
   }
 

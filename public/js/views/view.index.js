@@ -41,8 +41,10 @@ export default class View {
     removePopup();
     updateAsideGroups();
     updateContent();
+    if (app.tasks.length > 0) {
     if (document.getElementById("search").classList.includes("active")) return 
     else document.getElementById("search").value = "";
+  }
   }
   toggleCategory(group, category){
     //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
