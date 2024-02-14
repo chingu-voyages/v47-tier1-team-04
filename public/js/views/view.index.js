@@ -38,9 +38,9 @@ export default class View {
     return new View(element, content, anchor, id, classList);
   }
   updateView(filteredTasks){
-    let temp = app.tasks;
-    if (filteredTasks) app.tasks = filteredTasks;
-    removePopup();
+    let temp = app.tasks;//Defines a temporary variable to store all tasks on
+    if (filteredTasks) app.tasks = filteredTasks;//Checking if we have a filtered array from user search, if so assign app.tasks to that array
+    removePopup();//Removes the modal popup
     updateAsideGroups();
     updateContent();
     app.tasks = temp;
