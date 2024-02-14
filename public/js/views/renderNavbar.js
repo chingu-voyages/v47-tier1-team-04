@@ -13,12 +13,29 @@ const renderNavBar = () => {
             <div class="navbtn">
                 <a id="btn-day" class="btn-day">Today</a>
                 <a id="btn-month" class="btn-month">Month</a>
-                <a id="btn-all" class="btn-year">All</a>      
-            </div>`,
+                <a id="btn-all" class="btn-year">All</a>  
+            </div>
+            <div class="navday">
+                <a id="btn-mon" class="btn-week">Monday</a>
+                <a id="btn-tue" class="btn-week">Tuesday</a>
+                <a id="btn-wed" class="btn-week">Wednesday</a> 
+                <a id="btn-thur" class="btn-week">Thursday</a>      
+                <a id="btn-fri" class="btn-week">Friday</a>  
+                <a id="btn-sat" class="btn-week">Saturday</a>  
+                <a id="btn-sun" class="btn-week">Sunday</a>  
+            </div>
+            `,
     document.getElementById("app"),
     "element-el",
     "navbar"
   );
+
+  document.querySelectorAll('.btn-week').forEach(ele => {
+    ele.onclick = (e) => {
+      renderFilteredTasks(app.tasks.filter((task) => task.days.includes(e.target.innerHTML)));
+    }
+  
+  })
   function formatDate(date) {
     let d = new Date(date),
       month = "" + (d.getMonth() + 1),
