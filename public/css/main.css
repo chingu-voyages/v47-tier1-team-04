@@ -702,9 +702,21 @@
   .content-task {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: baseline;
     gap: 40px;
     font-size: 25px;
+  }
+
+  .add-task {
+    border: 1px solid #8f8f8f;
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
+
+  .add-task-input {
+    border: 2px solid red;
+    padding: 5px;
+    border-radius: 10px;
   }
   
   .task-name {

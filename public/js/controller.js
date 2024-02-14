@@ -21,21 +21,21 @@ export default class Controller {
     await fetch("./js/data/data.model.json")
       .then((res) => res.json())
       .then((data) => data.map((task) => new Task(task)));
-    this.saveData(false);
   }
   async loadData() {
-    let storage, parsedStorage;
-    if (localStorage) storage = localStorage.getItem("savedUserData");
-    if (storage) parsedStorage = JSON.parse(storage).tasks;
+    let storage, parsedStorage;//Defining some temp variables
+    if (localStorage) storage = localStorage.getItem("savedUserData");//Checks if we have local storage and gets it if we do
+    if (storage) parsedStorage = JSON.parse(storage).tasks;//Getting the saved data from local storage
 
+    //This is ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
     parsedStorage
       ? parsedStorage.map((task) => new Task(task))
       : await this.seed();
   }
 
   saveData(bool) {
-    localStorage.setItem("savedUserData", JSON.stringify(app));
-    if (bool) renderSuccessfulSave();
+    localStorage.setItem("savedUserData", JSON.stringify(app));//Storing the entire app, including any user settings
+    if (bool) renderSuccessfulSave();//if false, saves to localStorage but doesn't show message
   }
 
   addTask(task) {
@@ -49,7 +49,11 @@ export default class Controller {
     app.view.updateView();
     this.saveData(false);
   }
-
+  cyclePriority(task) {
+    task.cyclePriority();
+    app.view.updateView();
+    this.saveData(false);
+  }
   updateTask(task, updatedTask) {
     task.update(updatedTask);
     app.view.updateView();
@@ -59,6 +63,7 @@ export default class Controller {
     app.view.toggleCategory(group, category);
   }
   returnUniqueGroupNames() {
+    //Return unique array from task.group by leveraging JS set and the spread operator
     return [...new Set(app.tasks.map((task) => task.group))];
   }
   returnUniqueCategoryNames() {
@@ -66,6 +71,7 @@ export default class Controller {
   }
   returnUniqueCategoriesByGroup(group) {
     const categories = this.returnCategoryByGroup(group);
+    //Mapping over categories and not a
     return [...new Set(categories.map((task) => task.category))];
   }
   returnCategoryByGroup(group) {

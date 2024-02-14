@@ -7,23 +7,23 @@ import { renderModalButton } from "./modals/add-edit-task.js";
 
 let viewIndex = 1;
 export default class View {
-  // What the app looks like, what the user can see and do, User Interface
+  // Constructor object that creates new 'views'
   constructor(element, content, anchor, id, classList) {
-    const container = document.createElement(element);
-    container.innerHTML = content;
+    const container = document.createElement(element); //Creating an empty html tag of whatever element is equal too
+    container.innerHTML = content; //Defines the html container we just created
     if (id) {
       container.id = id;
       this.id = id;
     } else {
-      container.id = `view_${viewIndex}`;
+      container.id = `view_${viewIndex}`; //If there isn't an 'id', we will dynamically create one
       this.id = container.id;
-      viewIndex++;
+      viewIndex++; //This increments the id so we always end up with new one 
     }
     if (classList) {
       container.classList = classList;
     }
-    anchor.append(container);
-    this.container = container;
+    anchor.append(container);//Where we are appending the container too
+    this.container = container;//Stores container on obj so we can access later
   }
   init(title) {
     renderAsideGroups(title);
@@ -37,12 +37,17 @@ export default class View {
   createElement(element, content, anchor, id, classList) {
     return new View(element, content, anchor, id, classList);
   }
-  updateView(){
-    removePopup();
+  updateView(filteredTasks){
+    let temp = app.tasks;//Defines a temporary variable to store all tasks on
+    if (filteredTasks) app.tasks = filteredTasks;//Checking if we have a filtered array from user search, if so assign app.tasks to that array
+    removePopup();//Removes the modal popup
     updateAsideGroups();
     updateContent();
+    app.tasks = temp;
+    if (app.tasks && app.tasks.length > 0) {
     if (document.getElementById("search").classList.includes("active")) return 
     else document.getElementById("search").value = "";
+  }
   }
   toggleCategory(group, category){
     //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));

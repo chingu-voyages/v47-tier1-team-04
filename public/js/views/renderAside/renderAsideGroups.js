@@ -4,13 +4,13 @@ import renderAside from "./renderAside.js";
 import renderAsideCategory from "./renderAsideCategory.js";
 
 export const updateAsideGroups = () => {
-  const aside = document.getElementById("daily-checklist");
-  aside.innerHTML = "";
+  const aside = document.getElementById("daily-checklist");//Finds div with "daily-checklist" 
+  aside.innerHTML = "";//Here it resets to empty string
   app.controller.returnUniqueGroupNames().map((group) => {
     renderAsideGroup(group);
     app.controller
       .returnUniqueCategoriesByGroup(group)
-      .map((category) => renderAsideCategory(category, group));
+      .map((category) => renderAsideCategory(category, group));//Mapping over all categories and calling the renderAsideCategory()
   });
 };
 
