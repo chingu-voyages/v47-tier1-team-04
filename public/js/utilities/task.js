@@ -78,4 +78,7 @@ export default class Task {
       this.priority++;
     }
   }
+  render() {
+    console.log(this.view)
+  }
 }

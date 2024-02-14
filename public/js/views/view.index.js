@@ -22,7 +22,7 @@ export default class View {
     if (classList) {
       container.classList = classList;
     }
-    anchor.append(container);//Where we are appending the container too
+    anchor.append(container);//Where we are appending the container to
     this.container = container;//Stores container on obj so we can access later
   }
   init(title) {
@@ -48,11 +48,7 @@ export default class View {
     if (document.getElementById("search").classList.includes("active")) return 
     else document.getElementById("search").value = "";
   }
-  }
-  toggleCategory(group, category){
-    //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
-  }
-  
+  } 
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
