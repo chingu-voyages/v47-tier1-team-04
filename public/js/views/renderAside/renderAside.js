@@ -1,6 +1,6 @@
 import app from "../../app.js";
 import renderSettings from "../utils/renderSettings.js";
-export const renderAside = (title) => {
+export const renderAside = (title = "Daily Checklist") => {
   app.view.createElement(
     "aside",
     ` <div class="avatar-area">
@@ -17,7 +17,7 @@ export const renderAside = (title) => {
     document.getElementById("app"),
     "aside-el",
     "aside"
-  );
-  document.getElementById("settings-icon").onclick = () => renderSettings();
+  );//Creates aside element and adds the above html to display on screen and dynamically displays title
+  document.getElementById("settings-icon").onclick = () => renderSettings(); //Onclick for settings-icon to run renderSettings function
 };
 export default renderAside;
