@@ -23,7 +23,7 @@ export default class Task {
     this.scheduledTime = scheduledTime;
     this.priority = priority || '3';
     this.complete = complete;
-    app.tasks.push(this);
+    app.tasks.push(this);//This line pushes our task to our task array, model keeps track of these tasks
     app.controller.saveData(false);
   }
   read() {

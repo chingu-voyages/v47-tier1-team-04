@@ -23,10 +23,11 @@ export default class Controller {
       .then((data) => data.map((task) => new Task(task)));
   }
   async loadData() {
-    let storage, parsedStorage;
-    if (localStorage) storage = localStorage.getItem("savedUserData");
-    if (storage) parsedStorage = JSON.parse(storage).tasks;
+    let storage, parsedStorage;//Defining some temp variables
+    if (localStorage) storage = localStorage.getItem("savedUserData");//Checks if we have local storage and gets it if we do
+    if (storage) parsedStorage = JSON.parse(storage).tasks;//Getting the saved data from local storage
 
+    //This is ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
     parsedStorage
       ? parsedStorage.map((task) => new Task(task))
       : await this.seed();
