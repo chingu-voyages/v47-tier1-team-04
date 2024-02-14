@@ -712,6 +712,12 @@
     padding: 5px 15px;
     border-radius: 10px;
   }
+
+  .add-task-input {
+    border: 2px solid red;
+    padding: 5px;
+    border-radius: 10px;
+  }
   
   .task-name {
     display: block;
