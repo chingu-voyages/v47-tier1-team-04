@@ -29,7 +29,6 @@ const renderNavBar = () => {
     "element-el",
     "navbar"
   );
-  app.filteredTasks = app.tasks;
   const menuBtn = document.getElementById("menu-btn");
   const asideEl = document.getElementById("element-el");
   
