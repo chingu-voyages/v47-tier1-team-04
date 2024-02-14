@@ -765,9 +765,9 @@
     text-align: center;
   }
   @media screen and (max-width: 768px) {
-    .task-details-popup {
+    .task-details-content {
       height: 100vh;
-      overflow: auto;
+      overflow: scroll;
     }
   }
   
