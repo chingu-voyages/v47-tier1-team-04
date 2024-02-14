@@ -15,7 +15,7 @@ export const renderAside = (title) => {
             <div id="daily-checklist">
             </div>`,
     document.getElementById("app"),
-    "element-el",
+    "aside-el",
     "aside"
   );
   document.getElementById("settings-icon").onclick = () => renderSettings();
