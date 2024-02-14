@@ -31,8 +31,8 @@ const renderSettings = () => {
         "settings-popup"
     );
     document.getElementById("close-settings-popup").onclick = () => settings.container.remove();
-    document.getElementById("reset-storage").onclick = () => {app.controller.resetStorage(); settings.container.remove(); app.view.updateView();};
-    document.getElementById("restore-archive").onclick = () => {app.controller.restoreArchive(); settings.container.remove(); app.view.updateView();};
+    document.getElementById("reset-storage").onclick = () => {localStorage.clear();app.controller.resetState(); settings.container.remove(); app.view.updateView();};
+    document.getElementById("restore-archive").onclick = () => {app.controller.restoreArchivedTasks(); settings.container.remove(); app.view.updateView();};
     document.getElementById("reseed-data").onclick = async () => {await app.controller.seed(); settings.container.remove(); app.view.updateView();};
     document.getElementById("remove-tasks").onclick = () => {app.controller.resetState(); settings.container.remove(); app.view.updateView();};
 }
