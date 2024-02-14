@@ -1,5 +1,6 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
+import renderTaskDetailsPopup from "../modals/add-edit-task.js";
 
 const renderContentCategory = (group, category) => {
   app.view.createElement(
@@ -12,6 +13,9 @@ const renderContentCategory = (group, category) => {
         <div class="content-inner">
             <div class="content-task">
                 <h3 class="activity">${category}</h3> 
+
+                <i class="fa-solid fa-plus add-task"></i>
+
             </div>
             <div class="content-description">
                                       
@@ -23,6 +27,16 @@ const renderContentCategory = (group, category) => {
     document.getElementById(`content_${kebabCase(group)}`),
     `category_${kebabCase(category)}`
   );
+
+  document.querySelectorAll(".add-task").forEach(ele => {
+    ele.onclick = (e) => {
+      renderTaskDetailsPopup();
+      const group = e.target.previousElementSibling.innerHTML;
+      const category = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.firstChild.innerHTML;
+      document.getElementsByName("group")[0].value = group;
+      document.getElementsByName("category")[0].value = category;
+    }
+  });
   document.getElementById(
     `ellipse_${kebabCase(group)}_${kebabCase(category)}`
   ).onclick = () => {
