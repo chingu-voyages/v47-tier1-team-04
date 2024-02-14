@@ -44,10 +44,7 @@ export const renderContentTask = (task) => {
     renderViewTaskDetailsPopup(task);
   };
 
-  document.querySelector(`#task_${CSS.escape(kebabCase(task.name))} i.fa-circle`).onclick = () => {
-    task.cyclePriority();
-    app.view.updateView();
-  }
+  document.querySelector(`#task_${CSS.escape(kebabCase(task.name))} i.fa-circle`).onclick = () => app.controller.cyclePriority(task);
   
   document.getElementById(`edit_${kebabCase(task.name)}`).onclick = () =>
     renderTaskDetailsPopup(task);

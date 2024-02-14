@@ -48,7 +48,11 @@ export default class Controller {
     app.view.updateView();
     this.saveData(false);
   }
-
+  cyclePriority(task) {
+    task.cyclePriority();
+    app.view.updateView();
+    this.saveData(false);
+  }
   updateTask(task, updatedTask) {
     task.update(updatedTask);
     app.view.updateView();
