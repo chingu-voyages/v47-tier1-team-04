@@ -41,23 +41,14 @@ export default class View {
     removePopup();
     updateAsideGroups();
     updateContent();
+    if (document.getElementById("search").classList.includes("active")) return 
+    else document.getElementById("search").value = "";
   }
   toggleCategory(group, category){
     //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
   }
-  resetSearch(){
-    document.getElementById("search").value = "";
-  }
+  
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
 
-// const menuBtn = document.querySelector(".menu-btn");
-// const asideEl = document.getElementById("aside-el");
-
-// menuBtn.addEventListener("click", function () {
-//   asideEl.style.display =
-//     asideEl.style.display === "none" || asideEl.style.display === ""
-//       ? "block"
-//       : "none";
-// });
