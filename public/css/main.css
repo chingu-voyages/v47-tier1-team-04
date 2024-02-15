@@ -1097,15 +1097,24 @@
       border: rgba(0, 0, 0, 0.54);
       border-radius: 1px;
       box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.54);
+      margin-left: 10px;
+      margin-right: 10px;
     }
   
     .content-task {
       display: flex;
       justify-content: start;
-      align-items: center;
+      align-items: start;
       font-size: 1rem;
     }
   
+    .content-task h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      /* margin-right auto pushes the "+" icon all the way to the right */
+      margin-right: auto;
+    }
+
     .task-name {
       font-size: 1rem;
     }
@@ -1189,7 +1198,7 @@
     }
   
     .category-name {
-      margin-left: 20px;
+      margin-left: 10px;
       margin-top: 30px;
     }
 
