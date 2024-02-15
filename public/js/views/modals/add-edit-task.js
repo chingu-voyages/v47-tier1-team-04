@@ -51,7 +51,7 @@ const renderTaskDetailsPopup = (oldTask) => {
                   <input type="text" placeholder="Uncategorized" value="${category}" name="category" required>
               </div>
             </div>
-
+            <div class="task-details-group task-details-due">
               <div class="task-details">
                   <label for="name">Name:</label>
                   <input type="text"  value="${name}" name="name" placeholder="Enter a task name" required size="50">
@@ -60,7 +60,7 @@ const renderTaskDetailsPopup = (oldTask) => {
               <label for="description">Description:</label>
               <input type="text"  value="${description}"  name="description" size="50">
           </div> 
-
+            </div>
           <div class="block">
           <label class="block" for="days">Days:</label>
               <div class="day-checkboxes" id="checkboxes">

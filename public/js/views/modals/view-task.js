@@ -44,20 +44,21 @@ export const renderViewTaskDetailsPopup = (task) => {
                 }
               </div>
             </div>
-
-            <div class="task-details border-shadow-sub">
-                <label>Name:</label>
-                <p>${task.name}</p>
-            </div>
+            <div class="task-details-group border-shadow">
+              <div class="task-details border-shadow-sub">
+                  <label>Name:</label>
+                  <p>${task.name}</p>
+              </div>
 
                  ${
                    task.description
                      ? `<div class="task-details border-shadow-sub">
-            <label>Description:</label>
-            <p>${task.description}</p>
-            </div>`
+              <label>Description:</label>
+              <p>${task.description}</p>
+              </div>`
                      : ""
                  }
+            </div>
             ${`<div class="task-details-group border-shadow-sub">
       <div class="task-details">
         <label>${task.frequency ? "Frequency:" : "No Frequency Set"}</label>
