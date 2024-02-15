@@ -1,4 +1,5 @@
-import renderAsideGroups, { updateAsideGroups } from "./renderAside/renderAsideGroups.js";
+import AsideViewController from "./AsideView.js";
+import TaskViewController from "./TaskView.js";
 import renderNavBar from "./renderNavbar.js";
 import renderContent, { updateContent } from "./content/renderContent.js";
 import { removePopup } from "./modals/view-task.js";
@@ -17,16 +18,18 @@ export default class View {
     } else {
       container.id = `view_${viewIndex}`; //If there isn't an 'id', we will dynamically create one
       this.id = container.id;
-      viewIndex++; //This increments the id so we always end up with new one 
+      viewIndex++; //This increments the id so we always end up with new one
     }
     if (classList) {
       container.classList = classList;
     }
-    anchor.append(container);//Where we are appending the container too
-    this.container = container;//Stores container on obj so we can access later
+    anchor.append(container); //Where we are appending the container too
+    this.container = container; //Stores container on obj so we can access later
   }
+  asideViewController = new AsideViewController();
+  taskViewController = new TaskViewController();
   init(title) {
-    renderAsideGroups(title);
+    this.asideViewController.init(title);
     renderNavBar();
     renderContent();
     renderFooter();
@@ -37,23 +40,22 @@ export default class View {
   createElement(element, content, anchor, id, classList) {
     return new View(element, content, anchor, id, classList);
   }
-  updateView(filteredTasks){
-    let temp = app.tasks;//Defines a temporary variable to store all tasks on
-    if (filteredTasks) app.tasks = filteredTasks;//Checking if we have a filtered array from user search, if so assign app.tasks to that array
-    removePopup();//Removes the modal popup
-    updateAsideGroups();
+  updateView(filteredTasks) {
+    let temp = app.tasks; //Defines a temporary variable to store all tasks on
+    if (filteredTasks) app.tasks = filteredTasks; //Checking if we have a filtered array from user search, if so assign app.tasks to that array
+    removePopup(); //Removes the modal popup
+    this.asideViewController.updateAsideGroups();
     updateContent();
     app.tasks = temp;
     if (app.tasks && app.tasks.length > 0) {
-    if (document.getElementById("search").classList.includes("active")) return 
-    else document.getElementById("search").value = "";
+      if (document.getElementById("search").classList.includes("active"))
+        return;
+      else document.getElementById("search").value = "";
+    }
   }
-  }
-  toggleCategory(group, category){
+  toggleCategory(group, category) {
     //console.log(group,category, app.controller.returnCategoryByGroup(group).map(task => task.toggleComplete()));
   }
-  
 }
 
 // Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
-
