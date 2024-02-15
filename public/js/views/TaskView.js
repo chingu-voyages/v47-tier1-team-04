@@ -11,7 +11,6 @@ export default class TaskViewController {
     task.view.innerHTML = "";
   }
   updateTasks(tasks) {
-    console.log(tasks);
     app.tasks.map((task) => task.view.update(content));
   }
   updateTask(task) {
@@ -31,7 +30,6 @@ export default class TaskViewController {
     }
   }
   renderTaskDetails = (task, anchor) => {
-    console.log(task, anchor);
     const taskContainer = app.view.createElement(
       "p",
       `<i class="fa-regular fa-square checkbox"></i> ${task.name}`,
