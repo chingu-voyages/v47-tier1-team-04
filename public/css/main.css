@@ -816,6 +816,7 @@
   .task-details-group {
     display: flex;
     justify-content: space-around;
+    margin-top: 20px;
   }
   
   .task-details-group-timing {
