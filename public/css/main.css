@@ -1188,6 +1188,11 @@
       margin-right: 5px;
     }
   
+    .category-name {
+      margin-left: 20px;
+      margin-top: 30px;
+    }
+
     /* Popup mobile */
      .task-details-popup {
       max-width: 400px;
