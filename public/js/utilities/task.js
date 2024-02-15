@@ -24,7 +24,6 @@ export default class Task {
     this.priority = priority || '3';//1=high, 2=medium, 3=low
     this.complete = complete;//Brings in any completed data from localStorage or seed data
     app.tasks.push(this);//This line pushes our task to our task array, model keeps track of these tasks
-    app.controller.saveData(false);//Enables autosave
   }
   read() {
     this.complete = false;
@@ -53,7 +52,6 @@ export default class Task {
     this.scheduledTime = scheduledTime || this.scheduledTime;
     this.priority = priority || "3";
     this.complete = complete || this.complete;
-    app.controller.saveData(false);
     return this;
   }
 

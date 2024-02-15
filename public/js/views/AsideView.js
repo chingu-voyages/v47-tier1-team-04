@@ -39,7 +39,7 @@ export default class AsideViewController {
     });
     return `rendered the unique categories by group in the aside view`;
   };
-  updateAsideGroups = () => {
+  updateAside = () => {
     const aside = document.getElementById("daily-checklist"); //Finds div with "daily-checklist"
     aside.innerHTML = ""; //Here it resets to empty string
     app.controller.returnUniqueGroupNames().map((group) => {

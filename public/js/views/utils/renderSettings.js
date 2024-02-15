@@ -33,26 +33,26 @@ const renderSettings = () => {
   document.getElementById("close-settings-popup").onclick = () =>
     settings.container.remove(); //Listen for close-settings-popup to be pressed and closes the modal on screen
   //Listens for an onclick of reset-storage
-    document.getElementById("reset-storage").onclick = () => {
+  document.getElementById("reset-storage").onclick = () => {
     localStorage.clear(); //and now it clears the localStorage in the user's browser
-    app.controller.resetState();//Calls the apps resetState method
-    settings.container.remove();//Closes the window after button is pressed
-    app.view.updateView();//Calling updateView without argument
+    app.controller.resetState(); //Calls the apps resetState method
+    settings.container.remove(); //Closes the window after button is pressed
+    app.view.appViewController.updateApp(); //Calling updateView without argument
   };
   document.getElementById("restore-archive").onclick = () => {
     app.controller.restoreArchivedTasks();
     settings.container.remove();
-    app.view.updateView();
+    app.view.appViewController.updateApp();
   };
   document.getElementById("reseed-data").onclick = async () => {
     await app.controller.seed();
     settings.container.remove();
-    app.view.updateView();
+    app.view.appViewController.updateApp();
   };
   document.getElementById("remove-tasks").onclick = () => {
     app.controller.resetState();
     settings.container.remove();
-    app.view.updateView();
+    app.view.appViewController.updateApp();
   };
 };
 
