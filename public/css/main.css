@@ -1058,10 +1058,6 @@
   /* Mobile screens  468px  */
   @media (max-width: 468px) and (max-height: 914px),
     (max-width: 914px) and (max-height: 468px) {
-    body {
-      line-height: 1.1;
-    }
-  
     .container {
       grid-template-areas:
         "nav"
