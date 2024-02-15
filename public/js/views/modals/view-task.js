@@ -70,8 +70,7 @@ export const renderViewTaskDetailsPopup = (task) => {
       <p>${
         task.days.toString() === "Monday,Tuesday,Wednesday,Thursday,Friday"
           ? "Weekdays"
-          : task.days.toString() ===
-            "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+          : task.days.length === 7
           ? "Everyday"
           : task.days.toString() === "Saturday,Sunday"
           ? "Weekends"
