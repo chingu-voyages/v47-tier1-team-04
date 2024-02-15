@@ -1109,10 +1109,13 @@
     }
   
     .content-task h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
+      margin-top: 5px;
       /* margin-right auto pushes the "+" icon all the way to the right */
       margin-right: auto;
+    }
+
+    .content-description {
+      margin-top: 5px;
     }
 
     .task-name {
