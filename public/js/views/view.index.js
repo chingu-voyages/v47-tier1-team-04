@@ -28,6 +28,9 @@ export default class View {
   createElement(element, content, anchor, id, classList) {
     return new View(element, content, anchor, id, classList);
   }
+  update(content) {
+    this.container.innerHTML = content;
+  }
   appViewController = new AppViewController();
   asideViewController = new AsideViewController();
   contentViewController = new ContentViewController();

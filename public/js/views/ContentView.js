@@ -16,12 +16,21 @@ export default class ContentViewController {
     this.renderContentGroups();
     app.view.taskViewController.renderContentTasks();
   }
-  updateContentTasks() {
+  updateContentTasks(filter) {
     this.clearContent();
-    this.renderContent();
+    if (filter) {
+      let temp = app.tasks;
+      app.tasks = filter;
+      this.renderContent();
+      app.tasks = temp;
+    } else this.renderContent();
   }
   clearContentGroup(group) {
     document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
+  }
+  clearContentGroup(group) {
+    if (document.getElementById(`content_${kebabCase(group)}`))
+      document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
   }
   updateContentGroup(group) {
     this.clearContentGroup(group);
@@ -103,10 +112,5 @@ export default class ContentViewController {
         });
       };
     });
-    document.getElementById(
-      `ellipse_${kebabCase(group)}_${kebabCase(category)}`
-    ).onclick = () => {
-      app.controller.toggleCategory(group, category);
-    };
   }
 }

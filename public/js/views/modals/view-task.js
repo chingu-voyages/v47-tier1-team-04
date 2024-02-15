@@ -4,7 +4,8 @@ import label from "../utils/labels.js";
 export const removePopup = () => {
   let popup = document.querySelector(".task-details-popup");
 
-  if (popup) {//If there, it gets removed
+  if (popup) {
+    //If there, it gets removed
     popup.remove();
   }
 };

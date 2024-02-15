@@ -15,7 +15,6 @@ export default class AppViewController {
   }
   removePopup() {
     let popup = document.querySelector(".task-details-popup");
-
     if (popup) {
       popup.remove();
     }
@@ -62,9 +61,12 @@ export default class AppViewController {
     document.querySelectorAll(".btn.btn-week").forEach((ele) => {
       ele.onclick = (e) => {
         resetButtons(e.target);
-        app.view.taskViewController.renderContentTasks(
-          app.tasks.filter((task) => task.days.includes(e.target.innerHTML))
+        let temp = app.tasks;
+        app.tasks = app.tasks.filter((task) =>
+          task.days.includes(e.target.innerHTML)
         );
+        app.view.contentViewController.updateContentTasks();
+        app.tasks = temp;
       };
     });
     function formatDate(date) {
@@ -80,11 +82,11 @@ export default class AppViewController {
     }
     document.getElementById("btn-all").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.renderContentTasks();
+      app.view.appViewController.updateApp();
     };
     document.getElementById("btn-month").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.renderContentTasks(
+      app.view.contentViewController.updateContentTasks(
         app.tasks.filter((task) => {
           if (typeof task.date === "undefined") return;
           return (
@@ -96,7 +98,7 @@ export default class AppViewController {
     };
     document.getElementById("btn-day").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.renderContentTasks(
+      app.view.contentViewController.updateContentTasks(
         app.tasks.filter(
           (task) => task.date === formatDate(new Date().toString().slice(0, 15))
         )
@@ -150,9 +152,13 @@ export default class AppViewController {
           task.days.toString().toLowerCase().includes(searchKey)
         );
       });
-      searchKey === ""
-        ? app.view.taskViewController.renderContentTasks()
-        : app.view.taskViewController.renderContentTasks(tasks);
+      if (searchKey === "") app.contentViewController.updateContentTasks();
+      else {
+        let temp = app.tasks;
+        app.tasks = tasks;
+        app.view.contentViewController.updateContentTasks();
+        app.tasks = temp;
+      }
     });
     document
       .getElementById("save-all")
@@ -160,16 +166,21 @@ export default class AppViewController {
 
     document.getElementById("priority_low").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.renderContentTasks(app.tasks.filter((task) => task.priority == 3));
+      app.view.contentViewController.updateContentTasks(
+        app.tasks.filter((task) => task.priority == 3)
+      );
     };
     document.getElementById("priority_med").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.clear
-      app.view.taskViewController.renderContentTasks(app.tasks.filter((task) => task.priority == 2));
+      app.view.contentViewController.updateContentTasks(
+        app.tasks.filter((task) => task.priority == 2)
+      );
     };
     document.getElementById("priority_high").onclick = (e) => {
       resetButtons(e.target);
-      app.view.taskViewController.renderContentTasks(app.tasks.filter((task) => task.priority == 1));
+      app.view.contentViewController.updateContentTasks(
+        app.tasks.filter((task) => task.priority == 1)
+      );
     };
   }
   renderFooter() {

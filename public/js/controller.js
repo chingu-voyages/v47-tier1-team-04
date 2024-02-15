@@ -42,10 +42,12 @@ export default class Controller {
     new Task(task);
     app.view.taskViewController.addTask(task);
     this.saveData(false);
+    app.view.appViewController.removePopup();
   }
   removeTask(task) {
     task.archive();
     app.view.taskViewController.removeTask(task);
+    app.view.asideViewController.updateAside();
     this.saveData(false);
   }
   cyclePriority(task) {
@@ -57,6 +59,7 @@ export default class Controller {
     task.update(updatedTask);
     app.view.taskViewController.updateTask(task);
     this.saveData(false);
+    app.view.appViewController.removePopup();
   }
   returnUniqueGroupNames() {
     //Return unique array from task.group by leveraging JS set and the spread operator
