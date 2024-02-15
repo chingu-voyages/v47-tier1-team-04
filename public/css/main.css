@@ -1217,10 +1217,6 @@
     .task-details-content {
       margin-top: 60px;
     }
-
-    .task-details-group {
-      /* flex-direction: column; */
-    }
   
     .day-checkboxes {
       flex-wrap: wrap;
