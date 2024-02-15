@@ -670,7 +670,8 @@
   
   .content-main {
     display: flex;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   
   .ellipse:hover {
@@ -685,6 +686,7 @@
     width: 100%;
     height: auto;
     margin-left: 20px;
+    margin-right: 20px;
     background: #fff;
     border: rgba(0, 0, 0, 0.54);
     border-radius: 30px;
