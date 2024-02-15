@@ -4,7 +4,8 @@ import label from "../utils/labels.js";
 export const removePopup = () => {
   let popup = document.querySelector(".task-details-popup");
 
-  if (popup) {//If there, it gets removed
+  if (popup) {
+    //If there, it gets removed
     popup.remove();
   }
 };
@@ -69,8 +70,7 @@ export const renderViewTaskDetailsPopup = (task) => {
       <p>${
         task.days.toString() === "Monday,Tuesday,Wednesday,Thursday,Friday"
           ? "Weekdays"
-          : task.days.toString() ===
-            "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+          : task.days.length === 7
           ? "Everyday"
           : task.days.toString() === "Saturday,Sunday"
           ? "Weekends"
