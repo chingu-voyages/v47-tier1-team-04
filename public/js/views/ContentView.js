@@ -2,14 +2,17 @@ import app from "../app.js";
 import { kebabCase } from "../utilities/utilities.js";
 
 export default class ContentViewController {
-  constructor() {
-    this.anchor = () => document.getElementById("contentAnchor");
-  }
   clearContent() {
     document.getElementById("content").innerHTML = "";
   }
   init() {
-    app.view.createElement("content", "", this.anchor(), "content", "content");
+    app.view.createElement(
+      "content",
+      "",
+      document.getElementById("contentAnchor"),
+      "content",
+      "content"
+    );
     this.renderContent();
   }
   renderContent() {
