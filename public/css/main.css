@@ -948,7 +948,6 @@
     justify-content: space-between;
     align-content: stretch;
     flex-wrap: nowrap;
-    flex-direction: row-reverse;
   }
   
   .day-checkboxes input[type="checkbox"],
