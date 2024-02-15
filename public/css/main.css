@@ -806,7 +806,7 @@
     padding: 20px;
     text-align: center;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 768px) {
     .task-details-content {
       height: 100vh;
       overflow: scroll;
@@ -1052,6 +1052,9 @@
     .undo {
       justify-content: center;
       margin-right: 5px;
+    }
+    .category-name {
+      margin-left: 30px;
     }
   }
   
