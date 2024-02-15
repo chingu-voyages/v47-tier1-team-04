@@ -28,13 +28,10 @@ export default class ContentViewController {
       app.tasks = temp;
     } else this.renderContent();
   }
-  clearContentGroup(group) {
-    document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
-  }
-  clearContentGroup(group) {
-    if (document.getElementById(`content_${kebabCase(group)}`))
-      document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
-  }
+//   clearContentGroup(group) {
+//     document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
+//   }
+
   updateContentGroup(group) {
     this.clearContentGroup(group);
     this.renderContentGroup(group);
@@ -59,7 +56,13 @@ export default class ContentViewController {
         .map((category) => this.renderContentCategory(group, category));
     });
   }
-
+  clearContentCategory(category) {
+    document.getElementById(`category_${kebabCase(category)}`).innerHTML = "";
+  }
+  updateContentCategory(group, category) {
+    this.clearContentCategory(category);
+    this.renderContentCategory(group, category);    
+  }
   renderContentCategory(group, category) {
     app.view.createElement(
       "div",
@@ -106,11 +109,12 @@ export default class ContentViewController {
               category: category,
               days: new Array(),
               description: "",
+              priority: 3
             };
             app.controller.addTask(task);
             inputElement.style.display = "none";
             ele.style.display = "inline";
-            app.view.contentViewController.updateContentTasks();
+            this.updateContentCategory(task.group, task.category);
           }
         });
       };
