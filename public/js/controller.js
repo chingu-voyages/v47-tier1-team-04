@@ -4,7 +4,7 @@ import renderSuccessfulSave from "./views/utils/save.js";
 
 export default class Controller {
   init(title) {
-    app.view.init(title);
+    app.view.appViewController.init(title);
   }
 
   //Function to clear/reset tasks:
@@ -14,7 +14,7 @@ export default class Controller {
   restoreArchivedTasks() {
     app.tasks = app.tasks.concat(app.archive);
     app.archive = [];
-    app.view.updateView();
+    app.view.appViewController.updateView();
   }
   //Function to pull in the data from the data.model.json file:
   async seed() {
@@ -40,27 +40,26 @@ export default class Controller {
 
   addTask(task) {
     new Task(task);
-    app.view.updateView();
+    app.view.taskViewController.addTask(task);
     this.saveData(false);
+    app.view.appViewController.removePopup();
   }
-
   removeTask(task) {
     task.archive();
-    app.view.updateView();
+    app.view.taskViewController.removeTask(task);
+    app.view.asideViewController.updateAside();
     this.saveData(false);
   }
   cyclePriority(task) {
     task.cyclePriority();
-    app.view.updateView();
+    app.view.taskViewController.updateTask(task);
     this.saveData(false);
   }
   updateTask(task, updatedTask) {
     task.update(updatedTask);
-    app.view.updateView();
+    app.view.taskViewController.updateTask(task);
     this.saveData(false);
-  }
-  toggleCategory(group, category) {
-    app.view.toggleCategory(group, category);
+    app.view.appViewController.removePopup();
   }
   returnUniqueGroupNames() {
     //Return unique array from task.group by leveraging JS set and the spread operator
