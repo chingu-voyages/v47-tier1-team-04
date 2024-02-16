@@ -67,11 +67,6 @@ export default class TaskViewController {
     ellipse.onclick = () => {
       if (ellipse.src.includes("Ellipse8.svg")) {
         ellipse.src = "./img/favicon.png";
-        ellipse.style.width = "55px";
-        ellipse.style.height = "55px";
-        ellipse.parentElement.style.display = "flex";
-        ellipse.parentElement.style.justifyContent = "center";
-        ellipse.parentElement.style.alignItems = "center";
         app.tasks
         .filter((taskFilter) => taskFilter.category === task.category)
         .map((filteredTask) => {
