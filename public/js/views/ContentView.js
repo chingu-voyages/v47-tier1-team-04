@@ -1,5 +1,4 @@
 import app from "../app.js";
-import { kebabCase } from "../utilities/utilities.js";
 
 export default class ContentViewController {
   clearContent() {
@@ -29,7 +28,7 @@ export default class ContentViewController {
     } else this.renderContent();
   }
   clearContentGroup(group) {
-    const groupElement = document.getElementById(`content_${kebabCase(group)}`);
+    const groupElement = document.getElementById(`content_${app.controller.formatString(group)}`);
     if (groupElement) groupElement.innerHTML = "";
     else document.getElementById(`content`).innerHTML = "";
   }
@@ -45,7 +44,7 @@ export default class ContentViewController {
       "div",
       `<h2 class="category-name">${group}</h2>`,
       document.getElementById("content"),
-      `content_${kebabCase(group)}`,
+      `content_${app.controller.formatString(group)}`,
       "content-activity"
     );
   }
@@ -58,7 +57,7 @@ export default class ContentViewController {
     });
   }
   clearContentCategory(category) {
-    document.getElementById(`category_${kebabCase(category)}`).innerHTML = "";
+    document.getElementById(`category_${app.controller.formatString(category)}`).innerHTML = "";
   }
   updateContentCategory(group, category) {
     this.clearContentCategory(category);
@@ -69,9 +68,9 @@ export default class ContentViewController {
       "div",
       `
       <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${kebabCase(
+          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${app.controller.formatString(
             group
-          )}_${kebabCase(category)}">
+          )}_${app.controller.formatString(category)}">
           <div class="content-inner">
               <div class="content-task">
                   <h3 class="activity">${category}</h3> 
@@ -86,8 +85,8 @@ export default class ContentViewController {
   
       </div>               
   `,
-      document.getElementById(`content_${kebabCase(group)}`),
-      `category_${kebabCase(category)}`
+      document.getElementById(`content_${app.controller.formatString(group)}`),
+      `category_${app.controller.formatString(category)}`
     );
 
     document.querySelectorAll(".add-task").forEach((ele) => {
@@ -106,8 +105,8 @@ export default class ContentViewController {
           if (event.key === "Enter") {
             const task = {
               name: inputElement.value,
-              group: group,
-              category: category,
+              group,
+              category,
               days: new Array(),
               description: "",
               priority: 3
@@ -115,7 +114,6 @@ export default class ContentViewController {
             app.controller.addTask(task);
             inputElement.style.display = "none";
             ele.style.display = "inline";
-            this.updateContentCategory(task.group, task.category);
           }
         });
       };
