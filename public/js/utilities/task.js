@@ -68,7 +68,14 @@ export default class Task {
     app.controller.saveData(false);
     return this.complete;
   }
-
+  setComplete() {
+    this.complete = true;
+    app.controller.saveData(false);
+  }
+  setIncomplete() {
+    this.complete = false;
+    app.controller.saveData(false);
+  } 
   cyclePriority() {
     if(this.priority == 3){
       this.priority = 1
