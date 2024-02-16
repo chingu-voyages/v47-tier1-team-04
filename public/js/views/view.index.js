@@ -29,12 +29,11 @@ export default class View {
     return new View(element, content, anchor, id, classList);
   }
   update(content) {
-    this.container.innerHTML = content;
+    this.container.innerHTML = content; // method allowing us to change the inner html of the View's container
   }
   appViewController = new AppViewController();
   asideViewController = new AsideViewController();
   contentViewController = new ContentViewController();
   taskViewController = new TaskViewController();
 }
-
-// Hamburger Menu Display on Mobile < Emmetts code for hamburger menu
+// This is the View object that is being exported to the app.js file. It is being used to create new views and update the content of the view's container. It also has properties that are instances of the other view objects.
