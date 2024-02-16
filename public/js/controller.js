@@ -1,5 +1,5 @@
 /**
- * @file This file contains the Controller class which serves as the main controller for the application.
+ * @controller This file contains the Controller class which serves as the main controller for the application.
  * It handles the initialization of the app, creation of tasks, data management, and updating the view.
  * The Controller class is responsible for interacting with the app's model and view components.
  */
@@ -38,7 +38,7 @@ export default class Controller {
   restoreArchivedTasks() {
     app.tasks = app.tasks.concat(app.archive);
     app.archive = [];
-    app.view.appViewController.updateView();
+    app.view.appViewController.updateApp();
   }
 
   /**
