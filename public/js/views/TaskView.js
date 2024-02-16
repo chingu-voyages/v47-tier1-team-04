@@ -64,38 +64,39 @@ export default class TaskViewController {
         task.group
       )}_${app.controller.formatString(task.category)}`
     );
-    ellipse.onclick = () => {
-      if (ellipse.src.includes("Ellipse8.svg")) {
-        ellipse.src = "./img/favicon.png";
-        app.tasks
-        .filter((taskFilter) => taskFilter.category === task.category)
-        .map((filteredTask) => {
-          filteredTask.setComplete();
-          this.updateTask(filteredTask);
-        });
-      } else {
-        ellipse.src = "./img/Ellipse8.svg";
-        app.tasks
-        .filter((taskFilter) => taskFilter.category === task.category)
-        .map((filteredTask) => {
-          filteredTask.setIncomplete();
-          this.updateTask(filteredTask);
-        });
-      }
-
-      const contentInner = ellipse
-        .closest(".content-main")
-        .querySelector(".content-inner");
-
-      contentInner.classList.toggle("darken");
-      
-    };
+    if (ellipse)
+      ellipse.onclick = () => {
+        const contentInner = ellipse
+          .closest(".content-main")
+          .querySelector(".content-inner");
+        if (ellipse.src.includes("Ellipse8.svg")) {
+          ellipse.src = "./img/favicon.png";
+          contentInner.classList.add("darken");
+          app.tasks
+            .filter((taskFilter) => taskFilter.category === task.category)
+            .map((filteredTask) => {
+              filteredTask.setComplete();
+              this.updateTask(filteredTask);
+            });
+        } else {
+          ellipse.src = "./img/Ellipse8.svg";
+          contentInner.classList.remove("darken");
+          app.tasks
+            .filter((taskFilter) => taskFilter.category === task.category)
+            .map((filteredTask) => {
+              filteredTask.setIncomplete();
+              this.updateTask(filteredTask);
+            });
+        }
+      };
     this.renderTaskOptionsDiv(task, anchor);
     if (task.complete) {
       taskContainer.container.classList.toggle("complete");
       const taskCheckbox = document.querySelector(`#${taskContainer.id} i`);
-      taskCheckbox.classList.remove("fa-square");
-      taskCheckbox.classList.add("fa-square-check");
+      if (taskCheckbox) {
+        taskCheckbox.classList.remove("fa-square");
+        taskCheckbox.classList.add("fa-square-check");
+      }
     }
   };
   renderTaskOptionsDiv = (task, anchor) => {
@@ -117,28 +118,28 @@ export default class TaskViewController {
       `task_options_${app.controller.formatString(task.name)}`,
       "task-icons"
     );
-    document.getElementById(
+    const viewTaskButton = document.getElementById(
       `view_${app.controller.formatString(task.name)}`
-    ).onclick = () => {
-      renderViewTaskDetailsPopup(task);
-    };
-
-    if (
-      document.querySelector(
-        `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
-      )
-    )
-      document.querySelector(
-        `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
-      ).onclick = () => app.controller.cyclePriority(task);
-
-    document.getElementById(
+    );
+    const cyclePriorityButton = document.querySelector(
+      `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
+    );
+    const editButton = document.getElementById(
       `edit_${app.controller.formatString(task.name)}`
-    ).onclick = () => renderTaskDetailsPopup(task);
+    );
+    if (viewTaskButton)
+      viewTaskButton.onclick = () => {
+        renderViewTaskDetailsPopup(task);
+      };
+    if (cyclePriorityButton)
+      cyclePriorityButton.onclick = () => app.controller.cyclePriority(task);
 
-    document.getElementById(
+    if (editButton) editButton.onclick = () => renderTaskDetailsPopup(task);
+    const removeTaskButton = document.getElementById(
       `task_remove_${app.controller.formatString(task.name)}`
-    ).onclick = () => app.controller.removeTask(task);
+    );
+    if (removeTaskButton)
+      removeTaskButton.onclick = () => app.controller.removeTask(task);
   };
   renderContentTask = (task) => {
     const anchor = app.view.createElement(
