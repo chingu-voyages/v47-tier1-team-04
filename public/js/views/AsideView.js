@@ -1,5 +1,5 @@
 import app from "../app.js";
-import renderSettings from "./utils/renderSettings.js";
+import renderSettings from "./modals/renderSettings.js";
 
 // Template for the avatar section
 const avatarTemplate = (title) => `

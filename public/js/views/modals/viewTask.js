@@ -1,15 +1,6 @@
 import app from "../../app.js";
 import label from "../utils/labels.js";
 
-export const removePopup = () => {
-  let popup = document.querySelector(".task-details-popup");
-
-  if (popup) {
-    //If there, it gets removed
-    popup.remove();
-  }
-};
-
 export const renderViewTaskDetailsPopup = (task) => {
   removePopup();
   const detailsPopup = app.view.createElement(
@@ -110,7 +101,7 @@ export const renderViewTaskDetailsPopup = (task) => {
   ).container;
 
   const closeDetailsButton = document.getElementById("close-details-popup");
-  document.getElementById("close-task-details").onclick = () => removePopup();
+  document.getElementById("close-task-details").onclick = () => app.view.appViewController.removePopup();
 
   closeDetailsButton.addEventListener("click", function () {
     removePopup();
