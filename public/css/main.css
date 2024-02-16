@@ -422,6 +422,7 @@
   }
   
   .darken {
+    pointer-events: none;
     opacity: 0.5;
   }
   
@@ -670,12 +671,20 @@
   
   .content-main {
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
   }
   
   .ellipse:hover {
     opacity: 0.65;
+  }
+
+  .ellipse {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
   }
   
   .content-inner {

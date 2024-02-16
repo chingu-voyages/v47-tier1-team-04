@@ -28,7 +28,9 @@ export default class ContentViewController {
     } else this.renderContent();
   }
   clearContentGroup(group) {
-    const groupElement = document.getElementById(`content_${app.controller.formatString(group)}`);
+    const groupElement = document.getElementById(
+      `content_${app.controller.formatString(group)}`
+    );
     if (groupElement) groupElement.innerHTML = "";
     else document.getElementById(`content`).innerHTML = "";
   }
@@ -57,21 +59,28 @@ export default class ContentViewController {
     });
   }
   clearContentCategory(category) {
-    document.getElementById(`category_${app.controller.formatString(category)}`).innerHTML = "";
+    document.getElementById(
+      `category_${app.controller.formatString(category)} .content-inner`
+    ).innerHTML = "";
   }
   updateContentCategory(group, category) {
     this.clearContentCategory(category);
-    this.renderContentCategory(group, category);    
+    this.renderContentCategory(group, category);
   }
   renderContentCategory(group, category) {
+    const catTasks = app.tasks.filter((task) => task.category === category);
+    const completeCategory =
+      catTasks.filter((task) => task.complete).length === catTasks.length;
     app.view.createElement(
       "div",
       `
       <div class="content-main">
-          <img src="./img/Ellipse8.svg" alt="ellipse checkbox" class="ellipse" id="ellipse_${app.controller.formatString(
-            group
-          )}_${app.controller.formatString(category)}">
-          <div class="content-inner">
+          <img src="${
+            completeCategory ? `./img/favicon.png` : `./img/Ellipse8.svg`
+          }" alt="ellipse checkbox" class="ellipse" id="ellipse_${app.controller.formatString(
+        group
+      )}_${app.controller.formatString(category)}">
+          <div class="content-inner ${completeCategory ? `darken` : ""}" id="">
               <div class="content-task">
                   <h3 class="activity">${category}</h3> 
   
@@ -109,7 +118,7 @@ export default class ContentViewController {
               category,
               days: new Array(),
               description: "",
-              priority: 3
+              priority: 3,
             };
             app.controller.addTask(task);
             inputElement.style.display = "none";
