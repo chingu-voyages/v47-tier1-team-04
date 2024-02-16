@@ -28,10 +28,11 @@ export default class ContentViewController {
       app.tasks = temp;
     } else this.renderContent();
   }
-//   clearContentGroup(group) {
-//     document.getElementById(`content_${kebabCase(group)}`).innerHTML = "";
-//   }
-
+  clearContentGroup(group) {
+    const groupElement = document.getElementById(`content_${kebabCase(group)}`);
+    if (groupElement) groupElement.innerHTML = "";
+    else document.getElementById(`content`).innerHTML = "";
+  }
   updateContentGroup(group) {
     this.clearContentGroup(group);
     this.renderContentGroup(group);
