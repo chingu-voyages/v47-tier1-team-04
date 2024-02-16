@@ -1,5 +1,4 @@
 import app from "../app.js";
-import { kebabCase } from "../utilities/utilities.js";
 import renderTaskDetailsPopup from "./modals/add-edit-task.js";
 import renderViewTaskDetailsPopup from "./modals/view-task.js";
 
@@ -18,12 +17,12 @@ export default class TaskViewController {
     this.renderContentTask(task);
   }
   addTask(task) {
-    if (!document.querySelector(`#content_${kebabCase(task.group)}`)) {
+    if (!document.querySelector(`#content_${app.controller.formatString(task.group)}`)) {
       app.view.contentViewController.clearContentGroup(task.group);
       app.view.contentViewController.renderContentGroup(task.group);
     }
 
-    if (!document.querySelector(`#category_${kebabCase(task.category)}`)) {
+    if (!document.querySelector(`#category_${app.controller.formatString(task.category)}`)) {
       app.view.appViewController.updateApp();
     } else {
       this.renderContentTask(task);
@@ -86,36 +85,36 @@ export default class TaskViewController {
       `<i class="fa fa-circle task-priority-${
         task.priority
       }" aria-hidden="true"></i>
-          <i class="fa-solid fa-circle-info fa-2x detail" id="view_${kebabCase(
+          <i class="fa-solid fa-circle-info fa-2x detail" id="view_${app.controller.formatString(
             task.name
           )}"></i>
-          <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${kebabCase(
+          <img src="./img/mynaui_pencil.svg" alt="edit pencil image" class="icon-update" id="edit_${app.controller.formatString(
             task.name
           )}">
-          <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${kebabCase(
+          <img src="./img/ph_trash.svg" alt="delect trash can image" class="icon-edit" id="task_remove_${app.controller.formatString(
             task.name
           )}">`,
       anchor,
-      `task_options_${kebabCase(task.name)}`,
+      `task_options_${app.controller.formatString(task.name)}`,
       "task-icons"
     );
-    document.getElementById(`view_${kebabCase(task.name)}`).onclick = () => {
+    document.getElementById(`view_${app.controller.formatString(task.name)}`).onclick = () => {
       renderViewTaskDetailsPopup(task);
     };
 
     if (
       document.querySelector(
-        `#task_options_${kebabCase(task.name)} i.fa-circle`
+        `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
       )
     )
       document.querySelector(
-        `#task_options_${kebabCase(task.name)} i.fa-circle`
+        `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
       ).onclick = () => app.controller.cyclePriority(task);
 
-    document.getElementById(`edit_${kebabCase(task.name)}`).onclick = () =>
+    document.getElementById(`edit_${app.controller.formatString(task.name)}`).onclick = () =>
       renderTaskDetailsPopup(task);
 
-    document.getElementById(`task_remove_${kebabCase(task.name)}`).onclick =
+    document.getElementById(`task_remove_${app.controller.formatString(task.name)}`).onclick =
       () => app.controller.removeTask(task);
   };
   renderContentTask = (task) => {
@@ -123,9 +122,9 @@ export default class TaskViewController {
       "div",
       ``,
       document.querySelector(
-        `#category_${kebabCase(task.category)} .content-inner`
+        `#category_${app.controller.formatString(task.category)} .content-inner`
       ),
-      `task_${kebabCase(task.name)}`,
+      `task_${app.controller.formatString(task.name)}`,
       "content-description"
     ).container;
 
@@ -143,18 +142,18 @@ export default class TaskViewController {
 
     if (
       document.querySelectorAll(
-        `#category_${kebabCase(
+        `#category_${app.controller.formatString(
           task.category
         )} .content-inner .content-description`
       ).length < 2
     ) {
-      document.querySelector(`#category_${kebabCase(task.category)}`).remove();
+      document.querySelector(`#category_${app.controller.formatString(task.category)}`).remove();
     }
     if (
-      document.querySelector(`#content_${kebabCase(task.group)}`)
+      document.querySelector(`#content_${app.controller.formatString(task.group)}`)
         .childElementCount < 2
     ) {
-      document.querySelector(`#content_${kebabCase(task.group)}`).remove();
+      document.querySelector(`#content_${app.controller.formatString(task.group)}`).remove();
     }
   };
 }

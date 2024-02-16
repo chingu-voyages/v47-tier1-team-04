@@ -1,6 +1,5 @@
 import app from "../app.js";
 import renderSettings from "./utils/renderSettings.js";
-import { kebabCase } from "../utilities/utilities.js";
 
 export default class AsideViewController {
   init = (title) => {
@@ -53,7 +52,7 @@ export default class AsideViewController {
     app.view.createElement(
       "div",
       `<h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
-                <ul id="sidebar_${kebabCase(group)}">
+                <ul id="sidebar_${app.controller.formatString(group)}">
                     
                 </ul>
               `,
@@ -64,7 +63,7 @@ export default class AsideViewController {
     app.view.createElement(
       "li",
       category,
-      document.getElementById(`sidebar_${kebabCase(group)}`)
+      document.getElementById(`sidebar_${app.controller.formatString(group)}`)
     );
     return `rendered category ${category} in the aside view`;
   };
