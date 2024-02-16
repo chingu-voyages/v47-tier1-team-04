@@ -59,27 +59,42 @@ export default class TaskViewController {
       }
     };
     // Complete Project toggle
-    const ellipses = document.querySelectorAll(".ellipse");
+    const ellipse = document.querySelector(
+      `#ellipse_${app.controller.formatString(
+        task.group
+      )}_${app.controller.formatString(task.category)}`
+    );
+    ellipse.onclick = () => {
+      if (ellipse.src.includes("Ellipse8.svg")) {
+        ellipse.src = "./img/favicon.png";
+        ellipse.style.width = "55px";
+        ellipse.style.height = "55px";
+        ellipse.parentElement.style.display = "flex";
+        ellipse.parentElement.style.justifyContent = "center";
+        ellipse.parentElement.style.alignItems = "center";
+        app.tasks
+        .filter((taskFilter) => taskFilter.category === task.category)
+        .map((filteredTask) => {
+          filteredTask.setComplete();
+          this.updateTask(filteredTask);
+        });
+      } else {
+        ellipse.src = "./img/Ellipse8.svg";
+        app.tasks
+        .filter((taskFilter) => taskFilter.category === task.category)
+        .map((filteredTask) => {
+          filteredTask.setIncomplete();
+          this.updateTask(filteredTask);
+        });
+      }
 
-    ellipses.forEach(function (ellipse) {
-      ellipse.addEventListener("click", function () {
-        if (this.src.includes("Ellipse8.svg")) {
-          this.src = "./img/favicon.png";
-          this.style.width = "55px";
-          this.style.height = "55px";
-          this.parentElement.style.display = "flex";
-          this.parentElement.style.justifyContent = "center";
-          this.parentElement.style.alignItems = "center";
-        } else {
-          this.src = "./img/Ellipse8.svg";
-        }
+      const contentInner = ellipse
+        .closest(".content-main")
+        .querySelector(".content-inner");
 
-        const contentInner =
-          this.closest(".content-main").querySelector(".content-inner");
-
-        contentInner.classList.toggle("darken");
-      });
-    });
+      contentInner.classList.toggle("darken");
+      
+    };
     this.renderTaskOptionsDiv(task, anchor);
     if (task.complete) {
       taskContainer.container.classList.toggle("complete");
