@@ -17,12 +17,21 @@ export default class TaskViewController {
     this.renderContentTask(task);
   }
   addTask(task) {
-    if (!document.querySelector(`#content_${app.controller.formatString(task.group)}`)) {
+    if (
+      task.group &&
+      !document.querySelector(
+        `#content_${app.controller.formatString(task.group)}`
+      )
+    ) {
       app.view.contentViewController.clearContentGroup(task.group);
       app.view.contentViewController.renderContentGroup(task.group);
     }
 
-    if (!document.querySelector(`#category_${app.controller.formatString(task.category)}`)) {
+    if (
+      !document.querySelector(
+        `#category_${app.controller.formatString(task.category)}`
+      )
+    ) {
       app.view.appViewController.updateApp();
     } else {
       this.renderContentTask(task);
@@ -98,7 +107,9 @@ export default class TaskViewController {
       `task_options_${app.controller.formatString(task.name)}`,
       "task-icons"
     );
-    document.getElementById(`view_${app.controller.formatString(task.name)}`).onclick = () => {
+    document.getElementById(
+      `view_${app.controller.formatString(task.name)}`
+    ).onclick = () => {
       renderViewTaskDetailsPopup(task);
     };
 
@@ -111,11 +122,13 @@ export default class TaskViewController {
         `#task_options_${app.controller.formatString(task.name)} i.fa-circle`
       ).onclick = () => app.controller.cyclePriority(task);
 
-    document.getElementById(`edit_${app.controller.formatString(task.name)}`).onclick = () =>
-      renderTaskDetailsPopup(task);
+    document.getElementById(
+      `edit_${app.controller.formatString(task.name)}`
+    ).onclick = () => renderTaskDetailsPopup(task);
 
-    document.getElementById(`task_remove_${app.controller.formatString(task.name)}`).onclick =
-      () => app.controller.removeTask(task);
+    document.getElementById(
+      `task_remove_${app.controller.formatString(task.name)}`
+    ).onclick = () => app.controller.removeTask(task);
   };
   renderContentTask = (task) => {
     const anchor = app.view.createElement(
@@ -139,7 +152,6 @@ export default class TaskViewController {
   };
   removeTask = (task) => {
     task.view.remove();
-
     if (
       document.querySelectorAll(
         `#category_${app.controller.formatString(
@@ -147,13 +159,20 @@ export default class TaskViewController {
         )} .content-inner .content-description`
       ).length < 2
     ) {
-      document.querySelector(`#category_${app.controller.formatString(task.category)}`).remove();
+      document
+        .querySelector(
+          `#category_${app.controller.formatString(task.category)}`
+        )
+        .remove();
     }
     if (
-      document.querySelector(`#content_${app.controller.formatString(task.group)}`)
-        .childElementCount < 2
+      document.querySelector(
+        `#content_${app.controller.formatString(task.group)}`
+      ).childElementCount < 2
     ) {
-      document.querySelector(`#content_${app.controller.formatString(task.group)}`).remove();
+      document
+        .querySelector(`#content_${app.controller.formatString(task.group)}`)
+        .remove();
     }
   };
 }
