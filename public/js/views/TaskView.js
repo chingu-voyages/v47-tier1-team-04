@@ -1,6 +1,6 @@
 import app from "../app.js";
-import renderTaskDetailsPopup from "./modals/add-edit-task.js";
-import renderViewTaskDetailsPopup from "./modals/view-task.js";
+import renderTaskDetailsPopup from "./modals/addEditTask.js";
+import renderViewTaskDetailsPopup from "./modals/viewTask.js";
 
 // Define the TaskViewController that manages tasks in a task management application. It provides methods to add, update, render, and remove tasks. It also provides methods to render task details and task options.
 

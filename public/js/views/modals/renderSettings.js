@@ -43,6 +43,7 @@ const removeSettingsAndRefresh = (settings) => {
 // Function to render the settings
 const renderSettings = () => {
   // Create the settings element
+  app.view.appViewController.removePopup();
   const settings = app.view.createElement(
     "div",
     settingsTemplate,
