@@ -11,7 +11,9 @@
   * { 
     transition: all .75s;
   }
-
+/* *************************************************************** */
+/* Desktop Styles First -between 769px to 1200px*/
+/* *************************************************************** */
   body {
     font-family: Montserrat, sans-serif;
     font-size: 1rem;
@@ -969,7 +971,9 @@
   .content-inner {
     height: auto;
   }
-  /* Mobile Screens of 768px */
+  /* *************************************************************** */
+  /* Tablet Styles - From 469px to 768px */
+  /* *************************************************************** */
   @media (max-width: 768px) {
     .ellipse {
       display: none;
@@ -1047,6 +1051,7 @@
       width: 55px;
       height: 30px;
       padding: 2px;
+      font-size: 18px;
     }
   
     .navbtn {
@@ -1062,7 +1067,9 @@
     }
   }
   
-  /* Mobile screens  468px  */
+  /* *************************************************************** */
+  /* Mobile Styles -from 0 to 468px*/
+  /* *************************************************************** */
   @media (max-width: 468px) and (max-height: 914px),
     (max-width: 914px) and (max-height: 468px) {
     .container {
