@@ -1,5 +1,5 @@
 import app from "../app.js";
-import renderTaskDetailsPopup from "./modals/add-edit-task.js";
+import renderTaskDetailsPopup from "./modals/addEditTask.js";
 
 // Function to get the search bar element
 const searchBar = () => document.getElementById("search");
