@@ -60,7 +60,7 @@ export default class ContentViewController {
   }
   clearContentCategory(category) {
     document.getElementById(
-      `category_${app.controller.formatString(category)}`
+      `category_${app.controller.formatString(category)} .content-inner`
     ).innerHTML = "";
   }
   updateContentCategory(group, category) {
@@ -80,7 +80,7 @@ export default class ContentViewController {
           }" alt="ellipse checkbox" class="ellipse" id="ellipse_${app.controller.formatString(
         group
       )}_${app.controller.formatString(category)}">
-          <div class="content-inner">
+          <div class="content-inner ${completeCategory ? `darken` : ""}" id="">
               <div class="content-task">
                   <h3 class="activity">${category}</h3> 
   
