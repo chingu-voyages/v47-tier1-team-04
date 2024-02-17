@@ -56,37 +56,39 @@ This project provided an opportunity for the team to gain hands-on experience in
 
 These instructions will guide you to set up and run the project on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
-#### Prerequisites
+#### Dependencies
 
-To install and run the software, you will need the following:
+This project uses `live-server` as a developer dependency. Install it using one of the following commands:
 
-- `live-server`
+- `npm i`
+- `npm install`
+- `yarn install`
 
-#### Installing
+#### Development
 
-Our application does not use any dependencies for deployment, so it does not need to be installed. However, if you like, there is a `package.json` file which leverages a developer dependency of `live-server`.
+Enter the development environment with one of the following commands:
 
-To install this developer dependency, use the command `npm i` or `npm install`. Alternatively, you can use `yarn install` as well.
-
-#### Developing
-
-To enter a development environment, use the command `npm start` or `npm run start`. Alternatively, you can use `yarn run start` if you are using Yarn as the package manager.
+- `npm start`
+- `npm run start`
+- `yarn run start`
 
 #### Deployment
 
-We do not have a deployment build. To deploy the app on a front-end cloud solution such as Netlify, Vercel, AWS, etc., simply set the publish directory as `public`.
+This project doesn't have a deployment level build script. To deploy the app on a front-end cloud solution (Netlify, Vercel, AWS, etc.), set the publish directory as `public`.
 
-## Authors
+#### Authors
 
-- **Amanda Libbey** -- _Developer_ - [Amanda-Libbey](https://github.com/Amanda-Libbey)
-- **Chingu Voyages** - _Initial work_ - [chingu-voyages](https://github.com/chingu-voyages)
-- **egpennington (애멧)** -- _Developer_ - [egpennington](https://github.com/egpennington)
-- **jayanti-neu** -- _Developer_ - [jayanti-neu](https://github.com/jayanti-neu)
-- **Jim Medlock** - _Initial work_ - [jmedlock](https://github.com/jdmedlock)
-- **Mikey Nichols** -- _Product Owner_ - [mnichols08](https://github.com/mnichols08)
-- **Stacy Riley** -- _Developer_ - [Stacy-Riley](https://github.com/Stacy-Riley)
-- **taswakil** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
-- **WillBurroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCBurroughs)
+| Name | Role | GitHub Profile | Term |
+| --- | --- | --- | --- |
+| Amanda Libbey | Developer | [Amanda-Libbey](https://github.com/Amanda-Libbey) | (8 January 2024 - 18 February 2024) |
+| Chingu Voyages | Initial work | [chingu-voyages](https://github.com/chingu-voyages) | (Pre Voyage) |
+| egpennington (애멧) | Developer | [egpennington](https://github.com/egpennington) | (8 January 2024 - 18 February 2024) |
+| jayanti-neu | Developer | [jayanti-neu](https://github.com/jayanti-neu) | (8 January 2024 - 18 February 2024) |
+| Jim Medlock | Initial work | [jmedlock](https://github.com/jdmedlock) | (Pre Voyage) |
+| Mikey Nichols | Product Owner | [mnichols08](https://github.com/mnichols08) | (8 January 2024 - 18 February 2024) |
+| Stacy Riley | Developer | [Stacy-Riley](https://github.com/Stacy-Riley) | (8 January 2024 - 18 February 2024) |
+| taswakil | UI/UX Designer | [taswakil](https://github.com/taswakil) | (8 January 2024 - 18 February 2024) |
+| WillBurroughs | Developer| [WillCburroughs](https://github.com/WillCBurroughs) | (8 January 2024 - 26 January 2024) |
 
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
