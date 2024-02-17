@@ -500,18 +500,15 @@
     background: rgba(151, 70, 201, 0.08);
     border: 1px solid #9746c9;
   }
-  
+
   .btn.active {
-      color: #333;
-      background: rgba(151, 70, 201, 0.08);
-      border: 1px solid #9746c9;
-  }
+    color: #9746c9;
+    background: rgba(151, 70, 201, 0.08);
+    border: 1px solid #9746c9;
+}
   
   .btn:hover {
     opacity: 0.65;
-    color: rgba(151, 70, 201, 0.08);
-    background: #9746c9;
-    color: #fff;
   }
   
   .btn-day:hover,
@@ -525,16 +522,43 @@
   .btn:hover {
     opacity: 0.65;
   }
-  
-  .btn-lite {
-    background: #333;
+
+  .btn-settings {
+    background: rgba(151, 70, 201, 0.08);
+    border: 1px solid #9746c9;
+    color: #333;
     width: 300px;
     height: 50px;
     font-size: 25px;
     font-weight: 500;
+    border-radius: 30px;    
+    padding: 10px 30px;
+  }
+
+  .btn-settings.settings-active {
+    color: #333;
+    background: rgba(151, 70, 201, 0.08);
+    border: 1px solid #9746c9;
+}
+
+  .btn-settings:hover {
+    opacity: 0.65;
+    color: rgba(151, 70, 201, 0.08);
+    background: #9746c9;
+    color: #fff;
+  }
+
+  .btn-lite {
+    background: #333;
+    width: 120px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 500;
     border-radius: 30px;
     color: #fff;
-    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .btn-blue {
@@ -1068,6 +1092,10 @@ i#close-settings-popup,
     margin-bottom: 15px;
   }
 
+  .close-settings-icon:hover {
+    color: red;
+  }
+
   .settings-content-top h2 {
     margin: 0 auto;
   }
@@ -1238,6 +1266,12 @@ i#close-settings-popup,
     }
 
     .task-name {
+      font-size: 1rem;
+    }
+
+    .btn-lite {
+      width: 60px;
+      height: 2rem;
       font-size: 1rem;
     }
   
