@@ -704,6 +704,12 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .ellipse {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+  }
   
   .ellipse:hover {
     opacity: 0.65;
