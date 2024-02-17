@@ -50,6 +50,8 @@ This project provided an opportunity for the team to gain hands-on experience in
 - [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript)
+- [Model View Controller](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
+- [Scrum](https://www.scrumalliance.org/about-scrum)
 
 ### Getting Started
 
@@ -97,7 +99,7 @@ Shout out to [Klesta](https://github.com/klezi10), our wonderful Voyage Guide.
 
 ## About Chingu
 
-If you aren’t yet a member of Chingu, we invite you to join us. We help our members transform what they’ve learned in courses & tutorials into the practical experience employers need and want.
+If you aren’t yet a member of [Chingu](https://chingu.io), we invite you to join us. We help our members transform what they’ve learned in courses & tutorials into the practical experience employers need and want.
 
 ## Contact Us
 
