@@ -20,8 +20,15 @@ export default class View {
     if (classList) {
       container.classList = classList;
     }
-    anchor.append(container); //Where we are appending the container too
-    this.container = container; //Stores container on obj so we can access later
+    anchor.append(container);//Where we are appending the container to
+    this.container = container;//Stores container on obj so we can access later
+  }
+  init(title) {
+    renderAsideGroups(title);
+    renderNavBar();
+    renderContent();
+    renderFooter();
+    renderModalButton();
   }
   // createElement(element (what type of element is is ie div or footer): any, content (what is the inner html): any, anchor (what are we apending it to, where we are putting the element, it goes inside whatever we put here): any, id (optional, sets the id): any, classList (optional, sets the classlist): any): void
   //Function to display the data into HTML:
