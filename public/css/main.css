@@ -308,8 +308,8 @@
     text-align: center;
     background: #fff;
     color: #333;
-    position: relative;
-    height: 100%;
+    position: fixed;
+    top: 0;
   }
   
   .avatar-area {
@@ -703,6 +703,13 @@
     display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .ellipse {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
   }
   
   .ellipse:hover {
@@ -1117,7 +1124,8 @@ i#close-settings-popup,
     }
     .aside {
       display: none;
-      position: absolute;
+      /* position: absolute; */
+      position: fixed;
       top: 0;
       left: 10px;
       width: 100vw;
@@ -1277,7 +1285,8 @@ i#close-settings-popup,
   
     .aside {
       display: none;
-      position: absolute;
+      /* position: absolute; */
+      position: fixed;
       top: 0;
       left: 10px;
       width: 100%;
