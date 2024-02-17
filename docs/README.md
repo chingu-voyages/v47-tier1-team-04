@@ -50,6 +50,8 @@ This project provided an opportunity for the team to gain hands-on experience in
 - [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript)
+- [Model View Controller](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
+- [Scrum](https://www.scrumalliance.org/about-scrum)
 
 ### Getting Started
 
