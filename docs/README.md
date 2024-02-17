@@ -4,7 +4,6 @@
 
 - [Overview](#overview)
   - [The Project](#the-project)
-  - [Project Setup](#project-setup)
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [General Instructions](#general-instructions)
