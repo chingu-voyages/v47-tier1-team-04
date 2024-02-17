@@ -134,14 +134,10 @@ export default class AppViewController {
 
   // Function to filter tasks based on a condition
   filterTasks(condition) {
-    // Store the current tasks in a temporary variable
-    let temp = app.tasks;
     // Filter the tasks based on the provided condition
-    app.tasks = app.tasks.filter(condition);
+    app.state.tasks = app.tasks.filter(condition);
     // Update the content view with the filtered tasks
     app.view.contentViewController.updateContentTasks();
-    // Restore the original tasks
-    app.tasks = temp;
   }
 
   // Function to filter tasks by date
