@@ -502,13 +502,16 @@
   }
   
   .btn.active {
-      color: #9746c9;
+      color: #333;
       background: rgba(151, 70, 201, 0.08);
       border: 1px solid #9746c9;
   }
   
   .btn:hover {
     opacity: 0.65;
+    color: rgba(151, 70, 201, 0.08);
+    background: #9746c9;
+    color: #fff;
   }
   
   .btn-day:hover,
@@ -525,15 +528,13 @@
   
   .btn-lite {
     background: #333;
-    width: 120px;
-    height: 40px;
+    width: 300px;
+    height: 50px;
     font-size: 25px;
     font-weight: 500;
     border-radius: 30px;
     color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px 30px;
   }
   
   .btn-blue {
@@ -1036,6 +1037,7 @@ i#close-settings-popup,
     background-color: #0056b3;
   }
   
+  
   /* Chose days option */
   .day-checkboxes {
     display: flex;
@@ -1052,6 +1054,32 @@ i#close-settings-popup,
   .content-inner {
     height: auto;
   }
+
+  /* Setting popup styles */
+  .settings-content {
+    width: 100%;
+    height: 400px;
+  }
+
+  .settings-content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .settings-content-top h2 {
+    margin: 0 auto;
+  }
+
+  .settings-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
+  }
+
   /* *************************************************************** */
   /* Tablet Styles - From 469px to 768px */
   /* *************************************************************** */
@@ -1205,17 +1233,11 @@ i#close-settings-popup,
       margin-right: auto;
     }
 
-  .content-description {
-    margin-top: 5px;
-  }
+    .content-description {
+      margin-top: 5px;
+    }
 
     .task-name {
-      font-size: 1rem;
-    }
-  
-    .btn-lite {
-      width: 60px;
-      height: 2rem;
       font-size: 1rem;
     }
   

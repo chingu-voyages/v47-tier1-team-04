@@ -5,24 +5,30 @@ import app from "../../app.js";
 const settingsTemplate = `
   <div class="task-details-popup">
     <div class="settings-content">
-      <i class="fa-solid fa-xmark fa-2x close-settings-popup" id="close-settings-popup"></i>
-      <h2>Settings</h2>
+      <div class="settings-content-top">
+          <h2>Settings</h2>
+          <i class="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon" id="close-settings-popup"></i>
+      </div>
       <div class="settings-group">
         <div class="settings">
-          <label for="reset-storage">Reset Local Storage:</label>
-          <input type="button" id="reset-storage" name="reset-storage" value="reset" class="btn btn-lite active">
+  <!--        <label for="reset-storage">Reset Local Storage:</label>
+  -->
+          <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn-settings btn btn-lite active">
         </div>
         <div class="settings">
-          <label for="restore-archive">Restore Archive:</label>
-          <input type="button" id="restore-archive" name="restore-archive" value="restore" class="btn btn-lite active">
+  <!--        <label for="restore-archive">Restore Archive:</label>
+  -->
+          <input type="button" id="restore-archive" name="restore-archive" value="Restore Archive" class="btn btn-lite active">
         </div>
         <div class="settings">
-          <label for="reseed-data">Reseed Data:</label>
-          <input type="button" id="reseed-data" name="reseed-data" value="reseed" class="btn btn-lite active">
+  <!--        <label for="reseed-data">Reseed Data:</label>
+  -->
+          <input type="button" id="reseed-data" name="reseed-data" value="Reseed Data" class="btn btn-lite active">
         </div>
         <div class="settings">
-          <label for="remove-tasks">Remove Tasks:</label>
-          <input type="button" id="remove-tasks" name="remove-tasks" value="remove" class="btn btn-lite active">
+  <!--        <label for="remove-tasks">Remove Tasks:</label>
+  -->
+          <input type="button" id="remove-tasks" name="remove-tasks" value="Remove Tasks" class="btn btn-lite active">
         </div>
       </div>
     </div>
