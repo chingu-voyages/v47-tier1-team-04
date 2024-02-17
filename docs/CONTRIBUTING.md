@@ -26,13 +26,12 @@ Pull requests are the best way to propose changes to the codebase. We actively w
 6. Issue a pull request!
 
 ## Any contributions you make will be under the GPL 3.0 Software License
-In short, when you submit code changes, your submissions are understood to be under the same [GPL License]https://github.com/chingu-voyages/v47-tier1-team-04/blob/alpha/LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
+In short, when you submit code changes, your submissions are understood to be under the same [GPL License](https://github.com/chingu-voyages/v47-tier1-team-04/blob/alpha/LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
 
 ## Report bugs using Github's [issues](https://github.com/briandk/transcriptase-atom/issues)
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/briandk/transcriptase-atom/issues); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
-[This is an example](http://stackoverflow.com/q/12488905/180626) of a bug report I wrote, and I think it's not a bad model. Here's [another example from a project](https://github.com/briandk/transcriptase-atom/issues/14) where I contribute.
 
 **Great Bug Reports** tend to have:
 
@@ -44,7 +43,9 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 - What actually happens
 - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
 
-People *love* thorough bug reports. 
+People *love* thorough bug reports.
+
+This repository has a handy [bug report template](https://github.com/chingu-voyages/v47-tier1-team-04/issues/new?assignees=&labels=bug&projects=&template=bug-report-template.md&title=) you can use to make bug reporting simple and consise.
 
 ## License
 By contributing, you agree that your contributions will be licensed under its GPL License.
