@@ -97,7 +97,7 @@ Shout out to [Klesta](https://github.com/klezi10), our wonderful Voyage Guide.
 
 ## About Chingu
 
-If you aren’t yet a member of Chingu, we invite you to join us. We help our members transform what they’ve learned in courses & tutorials into the practical experience employers need and want.
+If you aren’t yet a member of [Chingu](https://chingu.io), we invite you to join us. We help our members transform what they’ve learned in courses & tutorials into the practical experience employers need and want.
 
 ## Contact Us
 
