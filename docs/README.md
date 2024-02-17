@@ -28,11 +28,8 @@ The Minimum Viable Product of this application should allow a user to create a t
 
 This project is a valuable opportunity for us to gain hands-on experience in web development while handling multi-dimensional datasets. It serves as a grinding stone to hone our skills while working on a practical application, allowing us to delve into the complexities of data manipulation within a web-based environment.
 
-### The Approach
-TBD
 ### Screenshot
-
-![]()
+![Screenshot of application](./assets/screenshot.png)
 
 ### Links
 
@@ -43,10 +40,7 @@ TBD
 - [Beta Testing URL](https://v47-tier1-team-04-beta.netlify.app/)
 - [Alpha Testing URL](https://v47-tier1-team-04-alpha.netlify.app/)
 
-## General Instructions
-
 ### Built with
-
 - [Figma](https://www.figma.com/proto/2meMrjvZwr4FjPYGJsxryo/Chingu-Voyage-47?node-id=91-34&starting-point-node-id=91%3A34&show-proto-sidebar=1&mode=design&t=V6RzzKbhLvmLFLsz-1)
 - [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -87,7 +81,6 @@ We do not have a deployment build. To deploy the app on a front-end cloud soluti
 - **taswakil** -- _UI/UX Designer_ - [taswakil](https://github.com/taswakil)
 - **WillBurroughs** -- _Developer_ - [WillCburroughs](https://github.com/WillCBurroughs)
 
-
 See also the list of [contributors](./CONTRIBUTORS.md) who participated in this project.
 
 ## Acknowledgments
@@ -99,4 +92,4 @@ If you aren’t yet a member of Chingu we invite you to join us. We help our mem
 
 ## Contact Us
 
-Please report any [🐛bug🐛](https://github.com/chingu-voyages/v47-tier1-team-04/issues/new?assignees=&labels=bug&projects=&template=bug-report-template.md) you can find or report any feedback [here](#)
+Please report any [🐛bug🐛](https://github.com/chingu-voyages/v47-tier1-team-04/issues/new?assignees=&labels=bug&projects=&template=bug-report-template.md). Or, feel free to participate in a discussion!
