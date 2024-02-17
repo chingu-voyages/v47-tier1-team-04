@@ -47,46 +47,34 @@ TBD
 
 ### Built with
 
-- []() -
+- [Figma](https://www.figma.com/proto/2meMrjvZwr4FjPYGJsxryo/Chingu-Voyage-47?node-id=91-34&starting-point-node-id=91%3A34&show-proto-sidebar=1&mode=design&t=V6RzzKbhLvmLFLsz-1)
+- [HTML: HyperText Markup Language](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript)
 
 ### Getting started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for [development](#developing) and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software and how to install them.
 
 ```
-
+live-server
 ```
-
 ### Installing
 
-Our application is using npm for package management. To install all the necessary package follow these steps:
+Our application is does not use any dependencies for deployment therefore it does not need to be installed. However if you like there is a package.json file which leverages a developer dependency of `live-server`.
 
-1. Install dependencies
+To install this developer dependency , use the command `npm i` or `npm install`. Alternatively of course this could be donw with `yarn install` as well.
 
-```
-npm install
-```
 
-2. Then launch the server
-
-```
-
-```
-
-3. The page will render in a new window.
-
+### Developing
+In order to enter a development environment use the command `npm start` or `npm run start`, or alternatively `yarn run start` if used as the package manager.
 ### Deployment
 
-To deploy the package, enter the command:
-
-```
-
-```
-
+We do not have a deployment build. To deploy the app on a front-end cloud solution such as Netlify, Vercel, AWS, or etc. simply set the publish directory as `public`. 
 ## Authors
 
 - **Amanda Libbey** -- _Developer_ - [Amanda-Libbey](https://github.com/Amanda-Libbey)
