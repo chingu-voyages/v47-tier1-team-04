@@ -11,23 +11,15 @@ const settingsTemplate = `
       </div>
       <div class="settings-group">
         <div class="settings">
-  <!--        <label for="reset-storage">Reset Local Storage:</label>
-  -->
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
         </div>
         <div class="settings">
-  <!--        <label for="restore-archive">Restore Archive:</label>
-  -->
           <input type="button" id="restore-archive" name="restore-archive" value="Restore Archive" class="btn btn-settings setting-active">
         </div>
         <div class="settings">
-  <!--        <label for="reseed-data">Reseed Data:</label>
-  -->
           <input type="button" id="reseed-data" name="reseed-data" value="Reseed Data" class="btn btn-settings setting-active">
         </div>
         <div class="settings">
-  <!--        <label for="remove-tasks">Remove Tasks:</label>
-  -->
           <input type="button" id="remove-tasks" name="remove-tasks" value="Remove Tasks" class="btn btn-settings setting-active">
         </div>
       </div>
