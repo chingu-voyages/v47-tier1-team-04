@@ -108,6 +108,8 @@ export default class AppViewController {
                         <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                         <div id="date" class="date">Today: ${new Date().toLocaleDateString()}</div>
                         <div class="btn-undo">
+                            <a id="mode-switch" href="#" class="btn btn-mode-switch"><i class="fa-solid fa-circle-half-stroke"></i></a>
+                            
                             <a id="save-all" href="#" class="btn btn-save">Save</a>
                         </div>
                     </div>            
@@ -130,7 +132,33 @@ export default class AppViewController {
       "element-el",
       "navbar"
     );
-  }
+
+      // Toggle for light dark mode
+      const modeSwitch = document.getElementById("mode-switch");
+      modeSwitch.addEventListener("click", function() {
+          console.log("dark");
+
+          modeSwitch.classList.toggle('btn-mode-switch-lite');
+
+          const dateElement = document.getElementById('date');
+          dateElement.classList.toggle('dark-mode');
+
+          // can't get the toggle dark mode for task details content to work
+          // const taskDetailsPopup = document.getElementsByClassName('task-details-popup');
+          // taskDetailsPopup.classList.toggle('dark-mode');
+          
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              modal.classList.toggle('dark-mode');
+          });
+      });
+
+
+    const toggleDarkMode = () => {
+      document.body.classList.toggle('dark-mode');
+    }
+    document.getElementById('mode-switch').addEventListener('click', toggleDarkMode);
+    }
 
   // Function to filter tasks based on a condition
   filterTasks(condition) {
