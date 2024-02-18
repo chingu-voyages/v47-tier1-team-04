@@ -292,9 +292,15 @@
     flex-wrap: wrap;
   }
   
-  .footer {
+  footer {
     border-radius: 10px;
     grid-column: 1 / span 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: red;
+    width: 100%;
   }
   
   /* grid assignment */
@@ -835,32 +841,57 @@
   align-items: center;
 }
 
-footer {
+.footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: #000;
-  opacity: 0.5;
+  background-color: #f07167;
   width: 100%;
   padding: 5px 20px;
   position: relative;
 }
 
-.copyright:hover {
-  color: #ffbe0b;
-  font-size: 1.2rem;
-  box-shadow: #184aac 5px;
+.footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 20px;
+  background-color: blue;
+  opacity: 0,5;
+  z-index: -1;
+}
+
+.footer a {  
+  z-index: 1;
+}
+
+.copyright:hover,
+.footer-right:hover {
+  font-size: 1.1rem;
+  box-shadow: 1px 1px 2px #02a4ff;;
 }
 
 .chingu-logo {
-  height: 50px;
+  height: 40px;
 }
 
-.footer-right {
+.footer-middle {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  align-items: center;  
+}
+
+
+.chingu-logo {
+  height: 40px;
+}
+
+.footer-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
 }
 
 /* Detail popup window  */
@@ -1440,6 +1471,10 @@ i#close-settings-popup,
       display: flex;
       align-items: center;
       margin-right: 20px;
-    }  
+    }
+
+    .footer-right {
+      display: none;
+    }
   }
   

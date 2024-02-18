@@ -356,13 +356,16 @@ export default class AppViewController {
     const footerHTML = `
       <div class="footer">
         <div class="footer-left">
-          <a href="https://github.com/chingu-voyages/v47-tier1-team-04">
-            <p class="copyright">© Chingu Team 04 Github</p>
+          <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
+            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github</p>
           </a>
         </div>
-        <a href="https://www.chingu.io" class="footer-right">          
+        <a href="https://www.chingu.io" class="footer-middle" target="_blank">
+          <img class="chingu-logo" src="./img/chingo-logo.png">         
           <p class="copyright">Chingu</p>
-          <img class="chingu-logo" src="./img/chingo-logo.png" />
+        </a>
+        <a href="https://v47-tier1-team-04-alpha.netlify.app/" class="footer-right" target="_blank">
+          <p><i class="fa-solid fa-mobile-screen-button fa-xl"></i> Deployed App &copy; 2024</p>
         </a>
       </div>`;
 
