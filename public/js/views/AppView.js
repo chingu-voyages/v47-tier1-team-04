@@ -23,7 +23,7 @@ const resetButtons = (target) => {
 };
 
 // Function to format a date into YYYY-MM-DD format
-const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
+const formatDate = (date = new Date().now) => new Date(date).toISOString().slice(0, 10);
 
 // Class definition for AppViewController
 export default class AppViewController {
