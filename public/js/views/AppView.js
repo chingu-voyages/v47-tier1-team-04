@@ -23,7 +23,7 @@ const resetButtons = (target) => {
 };
 
 // Function to format a date into YYYY-MM-DD format
-const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
+const formatDate = (date = new Date().now) => new Date(date).toISOString().slice(0, 10);
 
 // Class definition for AppViewController
 export default class AppViewController {
@@ -357,15 +357,12 @@ export default class AppViewController {
       <div class="footer">
         <div class="footer-left">
           <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
-            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github</p>
+            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github &copy; 2024</p>
           </a>
         </div>
         <a href="https://www.chingu.io" class="footer-middle" target="_blank">
           <img class="chingu-logo" src="./img/chingo-logo.png">         
-          <p class="copyright">Chingu</p>
-        </a>
-        <a href="https://v47-tier1-team-04-alpha.netlify.app/" class="footer-right" target="_blank">
-          <p><i class="fa-solid fa-mobile-screen-button fa-xl"></i> Deployed App &copy; 2024</p>
+          <p class="copyright">Chingu V47</p>
         </a>
       </div>`;
 
