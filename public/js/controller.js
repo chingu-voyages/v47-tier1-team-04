@@ -14,7 +14,8 @@ export default class Controller {
    * @param {string} title - The title of the application.
    */
   init(title) {
-    app.view.appViewController.init(title);
+    app.state.title = title;
+    app.view.appViewController.init();
   }
 
   /**
@@ -29,6 +30,10 @@ export default class Controller {
    */
   resetState() {
     app.tasks = [];
+  }
+
+  toggleDarkMode() {
+    app.state.darkMode = !app.state.darkMode;
   }
 
   /**

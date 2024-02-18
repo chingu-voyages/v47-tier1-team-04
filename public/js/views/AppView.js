@@ -97,6 +97,8 @@ export default class AppViewController {
     this.addSaveAllButtonListener();
     // Add listeners to the priority buttons
     this.addPriorityButtonListeners();
+    // Add listener to darkMode switch button
+    document.getElementById('mode-switch').addEventListener('click', toggleDarkModeView);
   }
 
   // Function to create the navigation bar
@@ -133,33 +135,15 @@ export default class AppViewController {
       "navbar"
     );
 
-      // Toggle for light dark mode
-      const modeSwitch = document.getElementById("mode-switch");
-      modeSwitch.addEventListener("click", function() {
-          console.log("dark");
-
-          modeSwitch.classList.toggle('btn-mode-switch-lite');
-
-          const dateElement = document.getElementById('date');
-          dateElement.classList.toggle('dark-mode');
-
-          // can't get the toggle dark mode for task details content to work
-          // const taskDetailsPopup = document.getElementsByClassName('task-details-popup');
-          // taskDetailsPopup.classList.toggle('dark-mode');
-          
-          const modals = document.querySelectorAll('.modal');
-          modals.forEach(modal => {
-              modal.classList.toggle('dark-mode');
-          });
-      });
 
 
-    const toggleDarkMode = () => {
-      document.body.classList.toggle('dark-mode');
-    }
-    document.getElementById('mode-switch').addEventListener('click', toggleDarkMode);
-    }
-
+  }
+  toggleDarkModeView() {
+    app.controller.toggleDarkMode();
+    document.body.classList.toggle('dark-mode');
+    document.getElementById("mode-switch").classList.toggle('btn-mode-switch-lite');
+    document.getElementById('date').classList.toggle('dark-mode');
+  }
   // Function to filter tasks based on a condition
   filterTasks(condition) {
     // Filter the tasks based on the provided condition

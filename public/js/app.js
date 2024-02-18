@@ -3,6 +3,11 @@ import View from "./views/View.index.js";
 
 class Model {
   constructor() {
+    this.state = {
+      darkMode: false,
+      title: "Daily Tasks",
+      lastModified: new Date().toLocaleString(),
+    }; //Creates an empty state object
     this.tasks = []; //Creates an empty tasks array
     this.archive = []; //Creates an empty archive
     this.view = new View(

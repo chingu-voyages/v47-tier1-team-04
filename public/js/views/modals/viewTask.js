@@ -5,7 +5,7 @@ export const renderViewTaskDetailsPopup = (task) => {
   app.view.appViewController.removePopup();
   const detailsPopup = app.view.createElement(
     "div",
-    `<div class="task-details-popup">
+    `<div class="task-details-popup ${app.state.darkMode ? 'dark-mode' : ''}">
           <div class="task-details-content">
               <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>
               <label style="text-align:left">Priority:</label>

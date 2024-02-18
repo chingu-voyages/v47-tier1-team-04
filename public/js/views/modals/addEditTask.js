@@ -30,7 +30,7 @@ const renderTaskDetailsPopup = (oldTask) => {
   app.view.appViewController.removePopup();
   const detailsPopup = app.view.createElement(
     "div",
-    `<form class="task-details-popup" id="edit_details">
+    `<form class="task-details-popup ${app.state.darkMode ? 'dark-mode' : ''}" id="edit_details">
           <div class="task-details-content">
             <i class="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>            
               <h2>${oldTask ? "Edit" : "Add"} Task</h2>

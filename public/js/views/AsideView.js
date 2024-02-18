@@ -2,8 +2,8 @@ import app from "../app.js";
 import renderSettings from "./modals/renderSettings.js";
 
 // Template for the avatar section
-const avatarTemplate = (title) => `
-  <div class="avatar-area">
+const avatarTemplate = () => `
+  <div class="avatar-area ${app.state.darkMode ? 'dark-mode' : ''}">
     <div class="avatar">
       <img src="./img/Friendly Ones Avatar and Backdrop.png" alt="avatar pict">
     </div>
@@ -11,7 +11,7 @@ const avatarTemplate = (title) => `
       <img src="./img/solar_settings-linear.svg" alt="gear icon" id="settings-icon">
     </div>
   </div>            
-  <h2>${title}</h2>
+  <h2>${app.state.title}</h2>
   <div id="daily-checklist"></div>
 `;
 
