@@ -34,6 +34,8 @@ This project provided an opportunity for the team to gain hands-on experience in
 
 ![Screenshot of the application](./assets/screenshot.png)
 
+### [Video Showcase](https://www.veed.io/view/30855dda-33a1-4c9b-88df-84e3ef15774d?panel=share)
+
 ### Links
 
 - [Repository](https://github.com/chingu-voyages/v47-tier1-team-04)
