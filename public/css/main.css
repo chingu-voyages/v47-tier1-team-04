@@ -1140,7 +1140,6 @@ i#close-settings-popup,
       top: 10px;
       left: 25px;
       z-index:2000;
-      border: 1px blue solid;
     }
   
     .nav,
