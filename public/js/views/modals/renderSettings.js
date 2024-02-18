@@ -2,7 +2,7 @@
 import app from "../../app.js";
 
 // Define the HTML template for the settings
-const settingsTemplate = `
+const settingsTemplate = () => `
   <div class="task-details-popup ${app.state.darkMode ? 'dark-mode' : ''}">
     <div class="settings-content">
       <div class="settings-content-top">
@@ -44,7 +44,7 @@ const renderSettings = () => {
   app.view.appViewController.removePopup();
   const settings = app.view.createElement(
     "div",
-    settingsTemplate,
+    settingsTemplate(),
     document.getElementById("app"),
     "settings-popup"
   );
