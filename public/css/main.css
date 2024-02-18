@@ -565,9 +565,9 @@
   }
 
   .btn-settings {
-    background: rgba(151, 70, 201, 0.08);
-    border: 1px solid var(--accent-color-lite);
-    color: var(--text-color-light);
+    background: var(--accent-color-light);
+    border: 1px solid var(--accent-color-dark);
+    color: var(--text-color-dark);
     width: 300px;
     height: 50px;
     font-size: 25px;
@@ -990,6 +990,11 @@
   margin-bottom: 20px;
 }
 
+.task-details p {
+  word-wrap: break-word;
+  /* overflow-wrap: normal; */
+}
+
 .task-details-content .close-details-popup {
   position: absolute;
   top: 20px;
@@ -1277,7 +1282,8 @@ i#close-settings-popup,
       margin-left: 5px;
     }
   
-    .btn-save {
+    .btn-save,
+    .btn-mode-switch {
       width: 55px;
       height: 30px;
       padding: 2px;
@@ -1398,11 +1404,6 @@ i#close-settings-popup,
       border-radius: 0;
     }
   
-    .date {
-      font-size: 1.125rem;
-      font-weight: 500;
-    }
-  
     .btn-day,
     .btn-month,
     .btn-year {
@@ -1416,18 +1417,18 @@ i#close-settings-popup,
     }
   
     .navbar-top {
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      padding-left: 20px;
+      justify-content: space-between;
+      margin-left: 80px;
     }
-  
+
     .date {
-      font-size: 1.5rem;
-      margin-left: 5px;
+      font-size: 0.9rem;
+      font-weight: 500;      
+      margin-top: 5px;
     }
   
-    .btn-save {
+    .btn-save,
+    .btn-mode-switch {
       width: 55px;
       height: 30px;
       font-size: 18px;
