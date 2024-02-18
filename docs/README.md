@@ -2,20 +2,19 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-  - [The Project](#the-project)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [General Instructions](#general-instructions)
-  - [Built with](#built-with)
-  - [Getting Started](#getting-started)
-  - [Dependencies](#dependencies)
-  - [Development](#development)
-  - [Deployment](#deployment)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
-- [About Chingu](#about-chingu)
-- [Contact Us](#contact-us)
+- [Overview]()
+  - [The Project](#overview)
+  - [Screenshot](#the-project)
+  - [Links](#screenshot)
+  - [Built with](#links)
+- [Getting Started](#built-with)
+  - [Dependencies](#getting-started)
+  - [Development](#dependencies)
+  - [Deployment](#development)
+- [Authors](#deployment)
+- [Acknowledgments](#authors)
+- [About Chingu](#acknowledgements)
+- [Contact Us](#about-chingu)
 
 ## Overview
 
