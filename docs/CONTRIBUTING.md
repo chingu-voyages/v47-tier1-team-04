@@ -15,7 +15,7 @@ We want to make contributing to this project as easy and transparent as possible
 ## We Develop with Github
 We use github to host code, to track issues and feature requests, as well as accept pull requests.
 
-## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
+## We Use [Github Flow](https://github.com/chingu-voyages/v47-tier1-team-04/wiki/Work-Flow), So All Code Changes Happen Through Pull Requests
 Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
 1. Fork the repo and create your branch from `alpha`.
