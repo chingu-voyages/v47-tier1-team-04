@@ -98,7 +98,7 @@ export default class AppViewController {
     // Add listeners to the priority buttons
     this.addPriorityButtonListeners();
     // Add listener to darkMode switch button
-    document.getElementById('mode-switch').addEventListener('click', toggleDarkModeView);
+    document.getElementById('mode-switch').addEventListener('click', this.toggleDarkModeView);
   }
 
   // Function to create the navigation bar
