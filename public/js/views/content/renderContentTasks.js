@@ -1,6 +1,6 @@
 import app from "../../app.js";
 import { kebabCase } from "../../utilities/utilities.js";
-import renderEditTaskDetailsPopup from "../modals/edit-task.js";
+import renderTaskDetailsPopup from "../modals/add-edit-task.js";
 import renderViewTaskDetailsPopup from "../modals/view-task.js";
 
 export const renderContentTask = (task) => {
@@ -42,7 +42,7 @@ export const renderContentTask = (task) => {
     renderViewTaskDetailsPopup(task);
   };
   document.getElementById(`edit_${kebabCase(task.name)}`).onclick = () =>
-    renderEditTaskDetailsPopup(task);
+    renderTaskDetailsPopup(task);
 
   document.getElementById(`task_remove_${kebabCase(task.name)}`).onclick = () =>
     app.controller.removeTask(task);

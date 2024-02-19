@@ -5,16 +5,8 @@ const renderNavBar = () => {
     "nav",
     `<div class="navbar-top">
                 <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
-                <div id="date" class="date">Today:</div>
+                <div id="date" class="date">Today: ${new Date().toLocaleDateString()}</div>
                 <div class="btn-undo">
-                    <button class="btn undo">
-                        <img src="./img/ci_undo.svg" alt="undo button">
-                        undo
-                    </button>
-                    <button class="btn undo">
-                        <img src="./img/ci_redo.svg" alt="redo button">
-                        redo
-                    </button>
                     <a id="save-all" href="#" class="btn btn-save">Save</a>
                 </div>
             </div>            
@@ -100,10 +92,10 @@ const renderNavBar = () => {
     .addEventListener("click", app.controller.saveData);
 
   document.getElementById("priority_low").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "3"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 3));
   document.getElementById("priority_med").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "2"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 2));
   document.getElementById("high").onclick = () =>
-    renderFilteredTasks(app.tasks.filter((task) => task.priority === "1"));
+    renderFilteredTasks(app.tasks.filter((task) => task.priority == 1));
 };
 export default renderNavBar;

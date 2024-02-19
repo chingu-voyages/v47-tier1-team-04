@@ -17,27 +17,16 @@ export default class Controller {
   async seed() {
     await fetch("./js/data/data.model.json")
       .then((res) => res.json())
-      .then((data) =>
-        data.map(
-          (task) =>
-            new Task(
-              task
-            )
-        )
-      );
+      .then((data) => data.map((task) => new Task(task)));
     this.saveData(false);
   }
   async loadData() {
     let storage, parsedStorage;
-    if (localStorage) storage = localStorage.getItem('savedUserData');
+    if (localStorage) storage = localStorage.getItem("savedUserData");
     if (storage) parsedStorage = JSON.parse(storage).tasks;
 
-    parsedStorage ? parsedStorage.map(
-      (task) =>
-        new Task(
-          task
-        )
-    )
+    parsedStorage
+      ? parsedStorage.map((task) => new Task(task))
       : await this.seed();
   }
 
@@ -46,18 +35,26 @@ export default class Controller {
     if (bool) renderSuccessfulSave();
   }
 
+  addTask(task) {
+    new Task(task);
+    app.view.updateView();
+    this.saveData(false);
+  }
+
   removeTask(task) {
     task.archive();
-    app.view.updateView()
+    app.view.updateView();
     this.saveData(false);
   }
 
   updateTask(task, updatedTask) {
     task.update(updatedTask);
-    app.view.updateView()
+    app.view.updateView();
     this.saveData(false);
   }
-
+  toggleCategory(group, category) {
+    app.view.toggleCategory(group, category);
+  }
   returnUniqueGroupNames() {
     return [...new Set(app.tasks.map((task) => task.group))];
   }
