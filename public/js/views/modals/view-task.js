@@ -1,5 +1,4 @@
 import app from "../../app.js";
-import { kebabCase } from "../../utilities/utilities.js";
 import label from "../utils/labels.js";
 
 export const removePopup = () => {
@@ -23,13 +22,26 @@ export const renderViewTaskDetailsPopup = (task) => {
               <h2>Task Details</h2>
               <div class="task-details-group border-shadow">
                 <div class="task-details">
+                  ${
+                    task.group === "Ungrouped" || task.group === ""
+                      ? `
+                  <label>Ungrouped</label>
+                  <h3>&nbsp;</h3>
+                  `
+                      : `
                   <label>Group:</label>
-                  <h3>${task.group}</h3>
+                  <h3>${task.group}</h3>`
+                  }
                 </div>
 
                 <div class="task-details">
-                <label>Category:</label>
-                <h4>${task.category}</h4>
+                ${
+                  task.category === "Uncategorized" || task.category === ""
+                    ? `<label>Uncategorized</label>
+                <h4>&nbsp;</h4>`
+                    : `<label>Category:</label>
+                <h4>${task.category}</h4>`
+                }
               </div>
             </div>
 
@@ -55,7 +67,16 @@ export const renderViewTaskDetailsPopup = (task) => {
         task.days.length > 0
           ? `<div class="task-details">
       <label>Day${task.days.length > 1 ? "s" : ""}:</label>
-      <p>${task.days}</p>
+      <p>${
+        task.days.toString() === "Monday,Tuesday,Wednesday,Thursday,Friday"
+          ? "Weekdays"
+          : task.days.toString() ===
+            "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+          ? "Everyday"
+          : task.days.toString() === "Saturday,Sunday"
+          ? "Weekends"
+          : task.days.toString()
+      }</p>
     </div>`
           : `<div class="task-details">
              <label>No Days Selected</label>
