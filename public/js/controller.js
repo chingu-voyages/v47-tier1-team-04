@@ -34,6 +34,7 @@ export default class Controller {
 
   toggleDarkMode() {
     app.state.darkMode = !app.state.darkMode;
+    this.saveData(false);
   }
 
   /**
@@ -61,10 +62,14 @@ export default class Controller {
    * @returns {Promise} A promise that resolves when the data is loaded or seeded.
    */
   async loadData() {
-    let storage, parsedStorage; // Defining some temp variables
-    if (localStorage) storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
+    let storage, darkMode, parsedStorage; // Defining some temp variables
+    if (localStorage) {
+      storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
+      if (JSON.parse(storage).state.darkMode) darkMode = JSON.parse(storage).state.darkMode;
+      app.state.darkMode = darkMode || false;
+      if (app.state.darkMode) document.body.classList.add("dark-mode");
+    }
     if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
-
     // This is a ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
     parsedStorage
       ? parsedStorage.map((task) => this.newTask(task))
