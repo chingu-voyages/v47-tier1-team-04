@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "live-server ./public"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -36,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/chingu-voyages/v47-tier1-team-04/issues"
   },
-  "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme",
-  "devDependencies": {
-    "live-server": "^1.2.2"
-  }
+  "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme"
 }
