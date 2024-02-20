@@ -3,7 +3,7 @@ import renderSettings from "./modals/renderSettings.js";
 
 // Template for the avatar section
 const avatarTemplate = () => `
-  <div class="avatar-area ${app.state.darkMode ? 'dark-mode' : ''}">
+  <div class="avatar-area">
     <div class="avatar">
       <img src="./img/Friendly Ones Avatar and Backdrop.png" alt="avatar pict">
     </div>
