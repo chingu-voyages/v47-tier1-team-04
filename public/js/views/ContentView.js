@@ -8,7 +8,7 @@ export default class ContentViewController {
 
   // Initializes the content view by creating an element and rendering the content
   init() {
-    this.createElement("content", "", "contentAnchor", "content", `content ${app.state.darkMode ? 'dark-mode' : ''}`);
+    this.createElement("content", "", "contentAnchor", "content", `content`);
     this.renderContent();
   }
 
@@ -93,7 +93,7 @@ export default class ContentViewController {
   // Creates the main HTML content for a specific group and category
   createContentMainHTML(group, category, completeCategory) {
     return `
-      <div class="content-main ${app.state.darkMode ? 'dark-mode' : ''}">
+      <div class="content-main">
           <img src="${completeCategory ? `./img/favicon.png` : `./img/Ellipse8.svg`}" alt="ellipse checkbox" class="ellipse" id="ellipse_${this.formatString(group)}_${this.formatString(category)}">
           <div class="content-inner ${completeCategory ? `darken` : ""}" id="">
               <div class="content-task">
