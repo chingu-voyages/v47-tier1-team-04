@@ -456,6 +456,11 @@ footer {
 .darken {
   opacity: 0.5;
 }
+@media only screen and (min-width: 767px) {
+  .darken {
+    pointer-events: none;
+  }
+}
 
 .complete {
   color: red;
