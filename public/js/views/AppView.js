@@ -1,6 +1,7 @@
 import app from "../app.js";
 import renderTaskDetailsPopup from "./modals/addEditTask.js";
 
+
 // Function to get the search bar element
 const searchBar = () => document.getElementById("search");
 
@@ -23,8 +24,17 @@ const resetButtons = (target) => {
 };
 
 // Function to format a date into YYYY-MM-DD format
-const formatDate = (date = new Date().now) => new Date(date).toISOString().slice(0, 10);
+function formatDate(date) {
+  let d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
 
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
 // Class definition for AppViewController
 export default class AppViewController {
   // Initialize the view controller
@@ -98,56 +108,75 @@ export default class AppViewController {
     // Add listeners to the priority buttons
     this.addPriorityButtonListeners();
     // Add listener to darkMode switch button
-    document.getElementById('mode-switch').addEventListener('click', this.toggleDarkModeView);
+    document
+      .getElementById("mode-switch")
+      .addEventListener("click", this.toggleDarkModeView);
   }
 
   // Function to create the navigation bar
   createNavBar() {
-    // Create a new navigation bar element with the specified HTML and append it to the 'app' element
+    const navbarTop = this.createNavbarTop();
+    const navbtn = this.createNavbtn();
+    const navdays = this.createNavdays();
+
+    const navbarHTML = `<div class="navbar">${navbarTop}${navbtn}${navdays}</div>`;
+
     app.view.createElement(
       "nav",
-      `<div class="navbar-top">
-                        <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
-                        <div id="date" class="date">Today: ${new Date().toLocaleDateString()}</div>
-                        <div class="btn-undo">
-                            <a id="mode-switch" href="#" class="btn btn-mode-switch"><i class="fa-solid fa-circle-half-stroke"></i></a>
-                            
-                            <a id="save-all" href="#" class="btn btn-save">Save</a>
-                        </div>
-                    </div>            
-                    <div class="navbtn">
-                        <a id="btn-day" class="btn btn-day">Today</a>
-                        <a id="btn-month" class="btn btn-month">Month</a>
-                        <a id="btn-all" class="btn btn-year active">All</a>  
-                    </div>
-                    <div class="navday">
-                        <a id="btn-mon" class="btn btn-week">Monday</a>
-                        <a id="btn-tue" class="btn btn-week">Tuesday</a>
-                        <a id="btn-wed" class="btn btn-week">Wednesday</a> 
-                        <a id="btn-thur" class="btn btn-week">Thursday</a>      
-                        <a id="btn-fri" class="btn btn-week">Friday</a>  
-                        <a id="btn-sat" class="btn btn-week">Saturday</a>  
-                        <a id="btn-sun" class="btn btn-week">Sunday</a>  
-                    </div>
-                    `,
+      navbarHTML,
       document.getElementById("app"),
       "element-el",
       "navbar"
     );
+  }
 
+  createNavbarTop() {
+    return `
+      <div class="navbar-top">
+        <i class="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
+        <div id="date" class="date">Today: ${new Date().toLocaleDateString()}</div>
+        <div class="btn-undo">
+          <a id="mode-switch" href="#" class="btn btn-mode-switch"><i class="fa-solid fa-circle-half-stroke"></i></a>
+          <a id="save-all" href="#" class="btn btn-save">Save</a>
+        </div>
+      </div>
+    `;
+  }
 
+  createNavbtn() {
+    return `
+      <div class="navbtn">
+        <a id="btn-day" class="btn btn-day">Today</a>
+        <a id="btn-month" class="btn btn-month">Month</a>
+        <a id="btn-all" class="btn btn-year active">All</a>  
+      </div>
+    `;
+  }
+  createNavdays() {
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+    // Map each day of the week to a button
+    const navdayHTML = daysOfWeek.map(day => {
+      const btnId = `btn-${day.toLowerCase().substring(0, 3)}`;
+      return `<a id="${btnId}" class="btn btn-week">${day}</a>`;
+    }).join('');
+
+    // Return the complete navigation bar
+    return `<div class="navday">${navdayHTML}</div>`;
   }
   toggleDarkModeView() {
     app.controller.toggleDarkMode();
-    document.body.classList.toggle('dark-mode');
-    document.getElementById("mode-switch").classList.toggle('btn-mode-switch-lite');
-    document.getElementById('date').classList.toggle('dark-mode');
+    document.body.classList.toggle("dark-mode");
+    document
+      .getElementById("mode-switch")
+      .classList.toggle("btn-mode-switch-lite");
+    document.getElementById("date").classList.toggle("dark-mode");
   }
   // Function to filter tasks based on a condition
-  filterTasks(condition) {
+  filterTasks(tasks) {
     // Filter the tasks based on the provided condition
-    app.state.tasks = app.tasks.filter(condition);
+    console.log(tasks)
+    app.state.tasks = app.tasks.filter(tasks)
     // Update the content view with the filtered tasks
     app.view.contentViewController.updateContentTasks();
   }
@@ -198,7 +227,7 @@ export default class AppViewController {
         // Get the day of the week from the button's innerHTML
         const today = e.target.innerHTML;
         // Filter tasks to only include tasks for the selected day of the week
-        this.filterTasks((task) => task.days.includes(today));
+        this.filterTasks(app.tasks.filter((task) => task.days.includes(today)));
       })
     );
   }
@@ -245,7 +274,8 @@ export default class AppViewController {
       // Get the current date formatted as YYYY-MM-DD
       const today = formatDate(new Date());
       // Filter tasks to only include tasks for today
-      this.filterTasks((task) => formatDate(task.date) === today);
+      const filteredTasks = this.filterTasks((task) => formatDate(task.date) === today);
+      console.log({output: e.target, today, filteredTasks})
     });
   }
 
@@ -357,7 +387,7 @@ export default class AppViewController {
       <div class="footer">
         <div class="footer-left">
           <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
-            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github &copy; 2024</p>
+            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github &copy; ${new Date().getFullYear()}</p>
           </a>
         </div>
         <a href="https://www.chingu.io" class="footer-middle" target="_blank">
