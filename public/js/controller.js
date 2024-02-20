@@ -65,7 +65,7 @@ export default class Controller {
     let storage, darkMode, parsedStorage; // Defining some temp variables
     if (localStorage) {
       storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
-      if (JSON.parse(storage).state.darkMode) darkMode = JSON.parse(storage).state.darkMode;
+      if (storage && JSON.parse(storage).state && JSON.parse(storage).state.darkMode) darkMode = JSON.parse(storage).state.darkMode;
       app.state.darkMode = darkMode || false;
       if (app.state.darkMode) document.body.classList.add("dark-mode");
     }
