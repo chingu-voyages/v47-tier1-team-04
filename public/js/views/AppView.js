@@ -167,18 +167,16 @@ export default class AppViewController {
   toggleDarkModeView() {
     app.controller.toggleDarkMode();
     document.body.classList.toggle("dark-mode");
-    document
-      .getElementById("mode-switch")
-      .classList.toggle("btn-mode-switch-lite");
-    document.getElementById("date").classList.toggle("dark-mode");
   }
   // Function to filter tasks based on a condition
   filterTasks(tasks) {
     // Filter the tasks based on the provided condition
     console.log(tasks)
-    app.state.tasks = app.tasks.filter(tasks)
+    let temp = app.tasks;
+    app.tasks = app.tasks.filter(tasks)
     // Update the content view with the filtered tasks
     app.view.contentViewController.updateContentTasks();
+    app.tasks = temp;
   }
 
   // Function to filter tasks by date
@@ -227,7 +225,10 @@ export default class AppViewController {
         // Get the day of the week from the button's innerHTML
         const today = e.target.innerHTML;
         // Filter tasks to only include tasks for the selected day of the week
-        this.filterTasks(app.tasks.filter((task) => task.days.includes(today)));
+        let temp = app.tasks;
+        app.tasks = app.tasks.filter((task) => task.days.includes(today));
+        app.view.contentViewController.updateContentTasks();
+        app.tasks = temp;
       })
     );
   }
@@ -274,7 +275,7 @@ export default class AppViewController {
       // Get the current date formatted as YYYY-MM-DD
       const today = formatDate(new Date());
       // Filter tasks to only include tasks for today
-      const filteredTasks = this.filterTasks((task) => formatDate(task.date) === today);
+      const filteredTasks = this.filterTasks((task) => task);
       console.log({output: e.target, today, filteredTasks})
     });
   }
