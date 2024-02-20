@@ -3,7 +3,7 @@ import app from "../../app.js";
 
 // Define the HTML template for the settings
 const settingsTemplate = () => `
-  <div class="task-details-popup ${app.state.darkMode ? 'dark-mode' : ''}">
+  <div class="task-details-popup">
     <div class="settings-content">
       <div class="settings-content-top">
           <h2>Settings</h2>
