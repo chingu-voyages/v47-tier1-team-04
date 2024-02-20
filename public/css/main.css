@@ -66,6 +66,10 @@
     border: 1px solid var(--main-bg-dark);
     background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
   }
+  .dark-mode .border-shadow:hover, .dark-mode .border-shadow-sub:hover {
+    border: 1px solid var(--main-bg-dark);
+    background: linear-gradient(to bottom right, #0000006f, #0f0f0f6f);
+  }
   
   .task-details-content {
     /* background-color: var(--text-color-dark); */
@@ -580,6 +584,11 @@
     background: #9746c93b;
     color: #eee;
   }
+  @media screen and (max-width: 768px) {
+    .dark-mode aside {
+      display: none;
+    }
+  }
   
   .dark-mode .date{
       color: var(--text-color-dark);
@@ -661,7 +670,7 @@
   }
   
   
-  .dark-mode input, .dark-mode select, .dark-mode textarea, .dark-mode option, .dark-mode .btn, .dark-mode  {
+  .dark-mode input, .dark-mode select, .dark-mode textarea, .dark-mode option, .dark-mode  {
     background: #421769ba;
     color: var(--text-color-dark);
     color-scheme: dark;
