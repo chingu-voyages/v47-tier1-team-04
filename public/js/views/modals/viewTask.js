@@ -1,17 +1,8 @@
 import app from "../../app.js";
 import label from "../utils/labels.js";
 
-export const removePopup = () => {
-  let popup = document.querySelector(".task-details-popup");
-
-  if (popup) {
-    popup.remove();
-  }
-};
-
 export const renderViewTaskDetailsPopup = (task) => {
-  removePopup();
-  console.log(task);
+  app.view.appViewController.removePopup();
   const detailsPopup = app.view.createElement(
     "div",
     `<div class="task-details-popup">
@@ -44,20 +35,21 @@ export const renderViewTaskDetailsPopup = (task) => {
                 }
               </div>
             </div>
-
-            <div class="task-details border-shadow-sub">
-                <label>Name:</label>
-                <p>${task.name}</p>
-            </div>
+            <div class="task-details-group border-shadow">
+              <div class="task-details border-shadow-sub">
+                  <label>Name:</label>
+                  <p>${task.name}</p>
+              </div>
 
                  ${
                    task.description
                      ? `<div class="task-details border-shadow-sub">
-            <label>Description:</label>
-            <p>${task.description}</p>
-            </div>`
+              <label>Description:</label>
+              <p>${task.description}</p>
+              </div>`
                      : ""
                  }
+            </div>
             ${`<div class="task-details-group border-shadow-sub">
       <div class="task-details">
         <label>${task.frequency ? "Frequency:" : "No Frequency Set"}</label>
@@ -70,8 +62,7 @@ export const renderViewTaskDetailsPopup = (task) => {
       <p>${
         task.days.toString() === "Monday,Tuesday,Wednesday,Thursday,Friday"
           ? "Weekdays"
-          : task.days.toString() ===
-            "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+          : task.days.length === 7
           ? "Everyday"
           : task.days.toString() === "Saturday,Sunday"
           ? "Weekends"
@@ -110,10 +101,10 @@ export const renderViewTaskDetailsPopup = (task) => {
   ).container;
 
   const closeDetailsButton = document.getElementById("close-details-popup");
-  document.getElementById("close-task-details").onclick = () => removePopup();
+  document.getElementById("close-task-details").onclick = () => app.view.appViewController.removePopup();
 
   closeDetailsButton.addEventListener("click", function () {
-    removePopup();
+    app.view.appViewController.removePopup();
   });
 
   return detailsPopup;
