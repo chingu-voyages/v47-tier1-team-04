@@ -1,7 +1,6 @@
 import app from "../app.js";
 import renderTaskDetailsPopup from "./modals/addEditTask.js";
 
-
 // Function to get the search bar element
 const searchBar = () => document.getElementById("search");
 
@@ -153,13 +152,23 @@ export default class AppViewController {
     `;
   }
   createNavdays() {
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const daysOfWeek = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
 
     // Map each day of the week to a button
-    const navdayHTML = daysOfWeek.map(day => {
-      const btnId = `btn-${day.toLowerCase().substring(0, 3)}`;
-      return `<a id="${btnId}" class="btn btn-week">${day}</a>`;
-    }).join('');
+    const navdayHTML = daysOfWeek
+      .map((day) => {
+        const btnId = `btn-${day.toLowerCase().substring(0, 3)}`;
+        return `<a id="${btnId}" class="btn btn-week">${day}</a>`;
+      })
+      .join("");
 
     // Return the complete navigation bar
     return `<div class="navday">${navdayHTML}</div>`;
@@ -171,9 +180,9 @@ export default class AppViewController {
   // Function to filter tasks based on a condition
   filterTasks(tasks) {
     // Filter the tasks based on the provided condition
-    console.log(tasks)
+    console.log(tasks);
     let temp = app.tasks;
-    app.tasks = app.tasks.filter(tasks)
+    app.tasks = app.tasks.filter(tasks);
     // Update the content view with the filtered tasks
     app.view.contentViewController.updateContentTasks();
     app.tasks = temp;
@@ -276,7 +285,7 @@ export default class AppViewController {
       const today = formatDate(new Date());
       // Filter tasks to only include tasks for today
       const filteredTasks = this.filterTasks((task) => task);
-      console.log({output: e.target, today, filteredTasks})
+      console.log({ output: e.target, today, filteredTasks });
     });
   }
 
@@ -380,13 +389,16 @@ export default class AppViewController {
       );
     };
   }
-
   // Function to render the footer
   renderFooter() {
     // Define the HTML for the footer
     const footerHTML = `
-      <div class="footer">
         <div class="footer-left">
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/subscription" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch chingu-voyages/v47-tier1-team-04 on GitHub">Watch</a>     
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star chingu-voyages/v47-tier1-team-04 on GitHub">Star</a>
+         <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/fork" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork chingu-voyages/v47-tier1-team-04 on GitHub">Fork</a>
+         <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/issues" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="Issue chingu-voyages/v47-tier1-team-04 on GitHub">Issue</a> 
+        
           <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
             <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github &copy; ${new Date().getFullYear()}</p>
           </a>
@@ -395,7 +407,7 @@ export default class AppViewController {
           <img class="chingu-logo" src="./img/chingo-logo.png">         
           <p class="copyright">Chingu V47</p>
         </a>
-      </div>`;
+`;
 
     // Create a new footer element with the specified HTML and append it to the 'app' element
     app.view.createElement(
@@ -405,5 +417,12 @@ export default class AppViewController {
       "element-el",
       "footer"
     );
+    this.loadGithubButtons();
+  }
+  loadGithubButtons() {
+    const script = document.createElement("script");
+    script.src = "https://buttons.github.io/buttons.js"
+    script.async = true;
+    document.body.appendChild(script);
   }
 }
