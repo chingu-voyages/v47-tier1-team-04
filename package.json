@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "live-server ./public"
+    "dev": "live-server ./public"
   },
   "repository": {
     "type": "git",
