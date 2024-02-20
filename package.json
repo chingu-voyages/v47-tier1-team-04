@@ -1,6 +1,6 @@
 {
   "name": "v47-tier1-team-04",
-  "version": "1.0.1-0",
+  "version": "1.0.1",
   "description": "A task app created by a group of individuals brought together by Chingu for a six-week \"Voyage\". A day2day task app.",
   "main": "./public/index.html",
   "directories": {
