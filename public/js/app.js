@@ -27,8 +27,12 @@ class Model {
   }
 }
 const app = new Model(); //Creating a new data model and naming it 'app'
-export default app;
+export default app;//This line exports the app object to be used in other files
 
+app.init("Chingu Task Tracker"); // This line initializes the app
+//Value of 'Chingu Task Tracker' passes title into app, default is 'Daily Checklist'
+console.log(app); //Provides user with app level information inside of the console
+//Should remove console.log before going live
 
 // Everything in JavaScript is an object.
 // defining anything and everything itself is an object
