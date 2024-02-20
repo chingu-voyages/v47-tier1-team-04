@@ -1,12 +1,5 @@
 import app from "../../app.js";
-
-export const removePopup = () => {
-  let popup = document.querySelector(".task-details-popup");
-
-  if (popup) {
-    popup.remove();
-  }
-};
+import processInputs from "../../utilities/validateInput.js";
 
 const renderTaskDetailsPopup = (oldTask) => {
   let task;
@@ -34,7 +27,7 @@ const renderTaskDetailsPopup = (oldTask) => {
     date,
     scheduledTime,
   } = task;
-  removePopup();
+  app.view.appViewController.removePopup();
   const detailsPopup = app.view.createElement(
     "div",
     `<form class="task-details-popup" id="edit_details">
@@ -51,7 +44,7 @@ const renderTaskDetailsPopup = (oldTask) => {
                   <input type="text" placeholder="Uncategorized" value="${category}" name="category" required>
               </div>
             </div>
-
+            <div class="task-details-group task-details-due">
               <div class="task-details">
                   <label for="name">Name:</label>
                   <input type="text"  value="${name}" name="name" placeholder="Enter a task name" required size="50">
@@ -60,7 +53,7 @@ const renderTaskDetailsPopup = (oldTask) => {
               <label for="description">Description:</label>
               <input type="text"  value="${description}"  name="description" size="50">
           </div> 
-
+            </div>
           <div class="block">
           <label class="block" for="days">Days:</label>
               <div class="day-checkboxes" id="checkboxes">
@@ -160,32 +153,7 @@ const renderTaskDetailsPopup = (oldTask) => {
       .filter((input) => input.type === "checkbox" && input.checked)
       .map((input) => input.value);
     updatedTask.priority = document.getElementById("priority-select").value;
-
-    const validateInput = (input) => {
-      if (
-        input.value !== task.name && input.name === "name" &&
-        app.tasks.filter((task) => task.name === input.value).length
-      ) {
-        input.style.border = "1px solid red";
-        input.value = "";
-        input.placeholder = "Please enter a unique task name";
-        return false;
-      }
-      if (input.required && input.value === "") {
-        input.style.border = "1px solid red";
-        input.placeholder = `Please provide a ${input.name}`;
-
-        if (input.name === "group" || input.name === "category") return;
-        return false;
-      }
-    };
-    const validateInputs = () =>
-      formInputs.map((input) => validateInput(input));
-    if (validateInputs().includes(false)) return;
-    else {
-      if (oldTask) app.controller.updateTask(oldTask, updatedTask);
-      else app.controller.addTask(updatedTask);
-    }
+    processInputs(formInputs, oldTask, updatedTask);
   };
 
   const closeDetailsButton = document.querySelector("#close-details-popup");
