@@ -17,7 +17,7 @@ const settingsTemplate = () => `
         </div>
         <div class="settings">
         <label for="avatarImg">Change Avatar (input Github Username):</label>
-          <input value="${app.state.gitHubData.login}" id="avatar" type="text"><input value="Submit" type="button" id="changeAvatar">
+          <input value="${app.state.gitHubData && app.state.gitHubData.login}" id="avatar" type="text"><input value="Submit" type="button" id="changeAvatar">
         </div>
         <div class="settings">
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
