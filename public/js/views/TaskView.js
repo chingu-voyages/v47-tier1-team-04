@@ -66,7 +66,7 @@ export default class TaskViewController {
       "p",
       `<i class="fa-regular fa-square checkbox"></i> ${task.name}`,
       anchor,
-      null,
+      `taskContainer_${app.controller.formatString(task.name)}`,
       "task-name"
     );
     task.view = anchor;
@@ -172,6 +172,15 @@ export default class TaskViewController {
 
     if (cyclePriorityButton) {
       cyclePriorityButton.onclick = () => {
+        if (task.complete) {
+          const taskContainer = document.getElementById(
+            `taskContainer_${app.controller.formatString(task.name)}`
+          );
+          taskContainer.classList.remove("complete");
+          const taskCheckbox = taskContainer.querySelector("i");
+          taskCheckbox.classList.remove("fa-square-check");
+          taskCheckbox.classList.add("fa-square");
+        }
         app.controller.cyclePriority(task);
         const priorityButton = task.view.querySelector(".fa-circle");
         priorityButton.classList.remove(
