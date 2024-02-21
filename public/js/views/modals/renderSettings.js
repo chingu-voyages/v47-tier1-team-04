@@ -13,7 +13,11 @@ const settingsTemplate = () => `
       <div class="settings">
       <label for="newTitle">Change Title:</label>
           <input id="newTitle" type="text" value="${app.state.title}">
-          <input value="Submit" type="button" id="changeTitle" >
+          <input value="Submit" type="button" id="changeTitle">
+        </div>
+        <div class="settings">
+        <label for="avatarImg">Change Avatar (input Github Username):</label>
+          <input id="avatarImg" type="url"><input value="Submit" type="button" id="changeAvatar">
         </div>
         <div class="settings">
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
