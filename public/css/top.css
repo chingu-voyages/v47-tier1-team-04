@@ -340,7 +340,6 @@ footer {
   background: #fff;
   color: var(--main-bg-dark);
   position: fixed;
-top: 0;
   z-index: 1;
   padding: 2em;
 }
