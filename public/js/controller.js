@@ -68,8 +68,7 @@ export default class Controller {
       if (storage && JSON.parse(storage).state && JSON.parse(storage).state) {
         state = JSON.parse(storage).state;
         app.state = state || {} // If we have state, we set it to the app state
-        console.log(app.state)
-      }
+         }
       if (app.state.darkMode) document.body.classList.add("dark-mode");
     }
     if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
