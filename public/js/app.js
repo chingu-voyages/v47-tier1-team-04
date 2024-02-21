@@ -26,7 +26,9 @@ class Model {
     return this;
   }
   resetState() {
-    app.state = {};
+    this.state = {};
+    this.tasks = [];
+    this.archive = [];
   }
 }
 const app = new Model(); //Creating a new data model and naming it 'app'
