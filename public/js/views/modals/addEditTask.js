@@ -37,25 +37,25 @@ const renderTaskDetailsPopup = (oldTask) => {
             <div class="task-details-group">
               <div class="task-details">
                   <label for="group">Group:</label>
-                  <input type="text" placeholder="Ungrouped" value="${group}" name="group" required>
+                  <input id="group" type="text" placeholder="Ungrouped" value="${group}" name="group" required>
               </div>
               <div class="task-details">
                   <label for="category">Category:</label>
-                  <input type="text" placeholder="Uncategorized" value="${category}" name="category" required>
+                  <input id="category" type="text" placeholder="Uncategorized" value="${category}" name="category" required>
               </div>
             </div>
             <div class="task-details-group task-details-due">
               <div class="task-details">
                   <label for="name">Name:</label>
-                  <input type="text"  value="${name}" name="name" placeholder="Enter a task name" required size="50">
+                  <input id="name" type="text"  value="${name}" name="name" placeholder="Enter a task name" required size="50">
               </div>              
               <div class="task-details">
               <label for="description">Description:</label>
-              <input type="text"  value="${description}"  name="description" size="50">
+              <input id="description" type="text"  value="${description}"  name="description" size="50">
           </div> 
             </div>
           <div class="block">
-          <label class="block" for="days">Days:</label>
+          <label class="block" for="Monday">Days:</label>
               <div class="day-checkboxes" id="checkboxes">
                   <div class="checkbox-container">
                       <input type="checkbox" id="Monday" name="Monday" value="Monday" class="days" ${
@@ -105,10 +105,10 @@ const renderTaskDetailsPopup = (oldTask) => {
           <div class="task-details-group task-details-due">
                <div class="task-details">
                  <label for="frequency">Frequency:</label>
-                 <input type="text" value="${frequency}" name="frequency" size="50">                 
+                 <input id="frequency" type="text" value="${frequency}" name="frequency" size="50">                 
                </div>
                <div class="task-details-days">             
-                  <label style="text-align:left" for="priority">Priority:</label>
+                  <label style="text-align:left" for="priority-select">Priority:</label>
                   <select id="priority-select" name="priority">
                     <option value=3 ${
                       priority == 3 || !priority ? "selected" : ""
@@ -125,11 +125,11 @@ const renderTaskDetailsPopup = (oldTask) => {
 
           <div class="task-details-group" id="calander">
               <div class="task-details">
-                  <label for="date">Due Date:</label>
+                  <label for="modal-date">Due Date:</label>
                   <input type="date"  id="modal-date" name="date" value=${date}>
               </div>
               <div class="task-details">
-                  <label for="scheduledTime">Time:</label>
+                  <label for="modal-time">Time:</label>
                   <input type="time" id="modal-time" name="scheduledTime" value=${scheduledTime}>
               </div>
             </div>            
