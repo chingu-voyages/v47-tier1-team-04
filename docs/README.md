@@ -60,6 +60,9 @@ These instructions will guide you to set up and run the project on your local ma
 
 #### Dependencies
 
+First you should clone the repository if you have not done this yet.
+`git clone https://github.com/chingu-voyages/v47-tier1-team-04.git`
+
 This project uses `live-server` as a developer dependency. Install it using one of the following commands:
 
 - `npm i`
@@ -70,9 +73,8 @@ This project uses `live-server` as a developer dependency. Install it using one 
 
 Enter the development environment with one of the following commands:
 
-- `npm start`
-- `npm run start`
-- `yarn run start`
+- `npm run dev`
+- `yarn run dev`
 
 #### Deployment
 
