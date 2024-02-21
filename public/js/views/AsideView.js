@@ -5,7 +5,7 @@ import renderSettings from "./modals/renderSettings.js";
 const avatarTemplate = () => `
   <div class="avatar-area">
     <div class="avatar">
-      <img src="${app.state.gitHubData && app.state.gitHubData.avatar_url || './img/Friendly Ones Avatar and Backdrop.png'}" alt="avatar pict">
+      <img src="${app.state.gitHubData && app.state.gitHubData.avatar_url || './img/Friendly Ones Avatar and Backdrop.png'}" alt="avatar pict" class="avatar-pict">
     </div>
     <div class="gear-icon">
       <img src="./img/solar_settings-linear.svg" alt="gear icon" id="settings-icon">
