@@ -180,7 +180,6 @@ export default class AppViewController {
   // Function to filter tasks based on a condition
   filterTasks(tasks) {
     // Filter the tasks based on the provided condition
-    console.log(tasks);
     let temp = app.tasks;
     app.tasks = app.tasks.filter(tasks);
     // Update the content view with the filtered tasks
@@ -202,6 +201,7 @@ export default class AppViewController {
     filterTasks((task) => {
       // Convert the task date to a Date object
       const taskDate = new Date(task.date);
+      console.log(taskDate);
       // Return true if the task date is between today and the future date
       return taskDate >= today && taskDate < futureDate;
     });
@@ -284,8 +284,10 @@ export default class AppViewController {
       // Get the current date formatted as YYYY-MM-DD
       const today = formatDate(new Date());
       // Filter tasks to only include tasks for today
-      const filteredTasks = this.filterTasks((task) => task);
-      console.log({ output: e.target, today, filteredTasks });
+      this.filterTasks(task => {
+        const taskDate = task.date;
+        return taskDate === today;
+      })
     });
   }
 
@@ -421,7 +423,7 @@ export default class AppViewController {
   }
   loadGithubButtons() {
     const script = document.createElement("script");
-    script.src = "https://buttons.github.io/buttons.js"
+    script.src = "https://buttons.github.io/buttons.js";
     script.async = true;
     document.body.appendChild(script);
   }
