@@ -10,6 +10,11 @@ const settingsTemplate = () => `
           <i class="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon" id="close-settings-popup"></i>
       </div>
       <div class="settings-group">
+      <div class="settings">
+      <label for="newTitle">Change Title:</label>
+          <input id="newTitle" type="text" value="${app.state.title}">
+          <input value="Submit" type="button" id="changeTitle" >
+        </div>
         <div class="settings">
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
         </div>
@@ -51,22 +56,32 @@ const renderSettings = () => {
 
   // Add event listeners to the settings buttons
   addEventListener("close-settings-popup", () => settings.container.remove());
-  addEventListener("reset-storage", () => {
-    localStorage.clear();
-    app.controller.resetState();
+  addEventListener("changeTitle", () => {
+    app.state.title = document.getElementById("newTitle").value;
     removeSettingsAndRefresh(settings);
+  });
+  addEventListener("reset-storage", async () => {
+    if (window.confirm('WARNING: This will clear all application data and reload it with a new reseed. This cannot be undone.')) {
+    localStorage.clear();
+    app.resetState();
+    app.view.container.innerHTML = "";
+    const title = window.prompt('What is the title of your app?')
+    await app.init(title);
+    
+    removeSettingsAndRefresh(settings);}
   });
   addEventListener("restore-archive", () => {
-    app.controller.restoreArchivedTasks();
-    removeSettingsAndRefresh(settings);
+    if (window.confirm('WARNING: This will populate your rendered tasks with previously "trashed" / "archived" tasks')) {app.controller.restoreArchivedTasks();
+    removeSettingsAndRefresh(settings);}
   });
   addEventListener("reseed-data", async () => {
-    await app.controller.seed();
-    removeSettingsAndRefresh(settings);
+   if (window.confirm('WARNING: This will potentially duplicate or add unwanted data to your data. This cannot be undone.')) {await app.controller.seed();
+    
+    removeSettingsAndRefresh(settings);}
   });
   addEventListener("remove-tasks", () => {
-    app.controller.resetState();
-    removeSettingsAndRefresh(settings);
+    if (window.confirm('WARNING: This will clear all of your tasks allowing you to start fresh This cannot be undone.'))  {app.controller.resetState();
+    removeSettingsAndRefresh(settings);}
   });
 };
 

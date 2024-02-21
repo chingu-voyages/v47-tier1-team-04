@@ -11,7 +11,7 @@ const avatarTemplate = () => `
       <img src="./img/solar_settings-linear.svg" alt="gear icon" id="settings-icon">
     </div>
   </div>            
-  <h2>${app.state.title}</h2>
+  <h2>${app.state.title || 'Daily Tasks'}</h2>
   <div id="daily-checklist"></div>
 `;
 
@@ -55,8 +55,8 @@ export default class AsideViewController {
 
   // Update the aside view
   updateAside = () => {
-    const aside = document.getElementById("daily-checklist");
-    aside.innerHTML = "";
+    document.getElementById("aside-el").innerHTML = avatarTemplate();
+    document.getElementById("settings-icon").onclick = () => renderSettings()
     app.controller.returnUniqueGroupNames().forEach((group) => {
       this.renderAsideGroup(group);
       app.controller
