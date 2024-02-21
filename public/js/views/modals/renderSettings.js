@@ -62,6 +62,7 @@ const renderSettings = () => {
   addEventListener("close-settings-popup", () => settings.container.remove());
   addEventListener("changeTitle", () => {
     app.state.title = document.getElementById("newTitle").value;
+    app.controller.saveData();
     removeSettingsAndRefresh(settings);
   });
   addEventListener("reset-storage", async () => {
@@ -77,6 +78,7 @@ const renderSettings = () => {
       const github = window.prompt("What is your GitHub username?");
       await app.init(title);
       app.state.gitHubData = await getGithubData(github);
+      this.controller.saveData();
       removeSettingsAndRefresh(settings);
     }
   });
@@ -115,6 +117,7 @@ const renderSettings = () => {
     const gitHubUrl = document.getElementById("avatar").value;
     const gitHubData = await getGithubData(gitHubUrl);
     app.state.gitHubData = gitHubData;
+    app.controller.saveData();
     removeSettingsAndRefresh(settings);
   });
 };
