@@ -114,7 +114,6 @@ export default class Controller {
    */
   cyclePriority(task) {
     task.cyclePriority();
-    app.view.taskViewController.updateTask(task);
     this.saveData(false);
   }
 
