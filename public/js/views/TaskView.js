@@ -6,9 +6,15 @@ import renderViewTaskDetailsPopup from "./modals/viewTask.js";
 
 export default class TaskViewController {
   // Method to clear all tasks from a category
-  clearTasks(group,category) {
-    if (group) document.querySelector(`#content_${app.controller.formatString(group)}`).innerHTML = "";
-    if (category) document.querySelector(`#category_${app.controller.formatString(category)} .content-inner`).innerHTML = "";
+  clearTasks(group, category) {
+    if (group)
+      document.querySelector(
+        `#content_${app.controller.formatString(group)}`
+      ).innerHTML = "";
+    if (category)
+      document.querySelector(
+        `#category_${app.controller.formatString(category)} .content-inner`
+      ).innerHTML = "";
   }
 
   // Method to clear a specific task
@@ -165,7 +171,16 @@ export default class TaskViewController {
     }
 
     if (cyclePriorityButton) {
-      cyclePriorityButton.onclick = () => app.controller.cyclePriority(task);
+      cyclePriorityButton.onclick = () => {
+        app.controller.cyclePriority(task);
+        const priorityButton = task.view.querySelector(".fa-circle");
+        priorityButton.classList.remove(
+          "task-priority-1",
+          "task-priority-2",
+          "task-priority-3"
+        );
+        priorityButton.classList.add(`task-priority-${task.priority}`);
+      };
     }
 
     if (editButton) {
