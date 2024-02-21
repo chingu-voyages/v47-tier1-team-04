@@ -409,7 +409,7 @@ max-width: 100px;
   margin-top: 20px;
 }
 
-.category-name {
+.category-name, .group-name {
   margin-left: 80px;
   font-size: 30px;
   font-weight: 500;
