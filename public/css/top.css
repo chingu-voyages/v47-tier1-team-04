@@ -1,6 +1,6 @@
 :root {
   --main-bg-light: #f4f4f4;
-  --main-bg-dark: linear-gradient(45deg,#0c0b0c,#200010);
+  --main-bg-dark: #333;
   --text-color-light: #333;
   --text-color-dark: #fff;
   --accent-color-light: #9746c9;
@@ -37,7 +37,6 @@ body {
 body.dark-mode {
   background: var(--main-bg-dark);
   color: var(--text-color-dark);
-  background-attachment:fixed;
 }
 
 /* Modal styles */
@@ -313,9 +312,6 @@ footer {
 aside {
   grid-area: aside;
   border-radius: 30px;
-  top:50%;
-  z-index: 1;
-  transform: translate(0,-50%);
 }
 nav {
   grid-area: nav;
@@ -340,8 +336,8 @@ footer {
   background: #fff;
   color: var(--main-bg-dark);
   position: fixed;
+  top: 0;
   z-index: 1;
-  padding: 2em;
 }
 
 .avatar-area {
@@ -354,6 +350,16 @@ footer {
   background: tan;
   border-radius: 50%;
   margin: 0 auto;
+  max-width: 100px;
+  max-height: 110px;
+  overflow: hidden;
+}
+
+.avatar-pict {
+  width: 100px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .gear-icon {
