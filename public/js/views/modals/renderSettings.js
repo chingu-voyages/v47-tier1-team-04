@@ -87,6 +87,10 @@ const renderSettings = () => {
     if (window.confirm('WARNING: This will clear all of your tasks allowing you to start fresh This cannot be undone.'))  {app.controller.resetState();
     removeSettingsAndRefresh(settings);}
   });
+  addEventListener("changeAvatar", () => {
+    app.state.avatar = document.getElementById("avatarImg").value;
+    removeSettingsAndRefresh(settings);
+  });
 };
 
 // Export the renderSettings function
