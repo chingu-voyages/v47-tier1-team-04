@@ -1,13 +1,13 @@
 {
   "name": "v47-tier1-team-04",
-  "version": "1.0.0",
+  "version": "1.3.2",
   "description": "A task app created by a group of individuals brought together by Chingu for a six-week \"Voyage\". A day2day task app.",
   "main": "./public/index.html",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "live-server ./public"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/chingu-voyages/v47-tier1-team-04/issues"
   },
-  "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme"
+  "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
 }
