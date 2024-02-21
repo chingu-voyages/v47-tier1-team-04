@@ -17,7 +17,7 @@ const settingsTemplate = () => `
         </div>
         <div class="settings">
         <label for="avatarImg">Change Avatar (input Github Username):</label>
-          <input id="avatarImg" type="url"><input value="Submit" type="button" id="changeAvatar">
+          <input value="${app.state.gitHubData.login}" id="avatar" type="text"><input value="Submit" type="button" id="changeAvatar">
         </div>
         <div class="settings">
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
@@ -65,33 +65,63 @@ const renderSettings = () => {
     removeSettingsAndRefresh(settings);
   });
   addEventListener("reset-storage", async () => {
-    if (window.confirm('WARNING: This will clear all application data and reload it with a new reseed. This cannot be undone.')) {
-    localStorage.clear();
-    app.resetState();
-    app.view.container.innerHTML = "";
-    const title = window.prompt('What is the title of your app?')
-    await app.init(title);
-    
-    removeSettingsAndRefresh(settings);}
+    if (
+      window.confirm(
+        "WARNING: This will clear all application data and reload it with a new reseed. This cannot be undone."
+      )
+    ) {
+      localStorage.clear();
+      app.resetState();
+      app.view.container.innerHTML = "";
+      const title = window.prompt("What is the title of your app?");
+      const github = window.prompt("What is your GitHub username?");
+      await app.init(title);
+      app.state.gitHubData = await getGithubData(github);
+      removeSettingsAndRefresh(settings);
+    }
   });
   addEventListener("restore-archive", () => {
-    if (window.confirm('WARNING: This will populate your rendered tasks with previously "trashed" / "archived" tasks')) {app.controller.restoreArchivedTasks();
-    removeSettingsAndRefresh(settings);}
+    if (
+      window.confirm(
+        'WARNING: This will populate your rendered tasks with previously "trashed" / "archived" tasks. This can only be undone by immediately refreshing the page.'
+      )
+    ) {
+      app.controller.restoreArchivedTasks();
+      removeSettingsAndRefresh(settings);
+    }
   });
   addEventListener("reseed-data", async () => {
-   if (window.confirm('WARNING: This will potentially duplicate or add unwanted data to your data. This cannot be undone.')) {await app.controller.seed();
-    
-    removeSettingsAndRefresh(settings);}
+    if (
+      window.confirm(
+        "WARNING: This will potentially duplicate or add unwanted data to your data. This can only be undone by immediately refreshing the page."
+      )
+    ) {
+      await app.controller.seed();
+
+      removeSettingsAndRefresh(settings);
+    }
   });
   addEventListener("remove-tasks", () => {
-    if (window.confirm('WARNING: This will clear all of your tasks allowing you to start fresh This cannot be undone.'))  {app.controller.resetState();
-    removeSettingsAndRefresh(settings);}
+    if (
+      window.confirm(
+        "WARNING: This will clear all of your tasks allowing you to start fresh This can only be undone by immediately refreshing the page."
+      )
+    ) {
+      app.controller.resetState();
+      removeSettingsAndRefresh(settings);
+    }
   });
-  addEventListener("changeAvatar", () => {
-    app.state.avatar = document.getElementById("avatarImg").value;
+  addEventListener("changeAvatar", async () => {
+    const gitHubUrl = document.getElementById("avatar").value;
+    const gitHubData = await getGithubData(gitHubUrl);
+    app.state.gitHubData = gitHubData;
     removeSettingsAndRefresh(settings);
   });
 };
+const getGithubData = async (username) =>
+  await fetch(`https://api.github.com/users/${username}`)
+    .then((data) => data.json())
+    .then((json) => json); // function to fetch a github user profile and return it
 
 // Export the renderSettings function
 export default renderSettings;
