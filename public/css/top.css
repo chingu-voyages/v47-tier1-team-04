@@ -18,7 +18,7 @@
 }
 
 * {
-  transition: all 0.75s;
+  transition: all 0.25s;
 }
 /* *************************************************************** */
 /* Desktop Styles First -between 769px to 1200px*/
@@ -305,6 +305,7 @@ footer {
   gap: 20px;
   background: red;
   width: 100%;
+  margin-top:75px;
 }
 
 /* grid assignment */
@@ -336,6 +337,7 @@ footer {
   color: var(--main-bg-dark);
   position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 .avatar-area {
@@ -455,6 +457,11 @@ footer {
 
 .darken {
   opacity: 0.5;
+}
+@media only screen and (min-width: 767px) {
+  .darken {
+    pointer-events: none;
+  }
 }
 
 .complete {
@@ -698,6 +705,7 @@ h2 {
 /* Content */
 .content {
   color: var(--text-color-light);
+  margin-bottom:75px;
 }
 
 .content-search {

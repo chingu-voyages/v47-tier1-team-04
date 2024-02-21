@@ -14,8 +14,8 @@ export default class Controller {
    * @param {string} title - The title of the application.
    */
   init(title) {
-    app.state.title = title;
-    app.view.appViewController.init();
+    app.state.title ? app.state.title : app.state.title = title; // If we have a title, we set it to the app state
+    app.view.appViewController.init(); // Initializes the app view
   }
 
   /**
@@ -62,11 +62,13 @@ export default class Controller {
    * @returns {Promise} A promise that resolves when the data is loaded or seeded.
    */
   async loadData() {
-    let storage, darkMode, parsedStorage; // Defining some temp variables
+    let storage, parsedStorage, state; // Defining some temp variables
     if (localStorage) {
       storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
-      if (JSON.parse(storage).state.darkMode) darkMode = JSON.parse(storage).state.darkMode;
-      app.state.darkMode = darkMode || false;
+      if (storage && JSON.parse(storage).state && JSON.parse(storage).state) {
+        state = JSON.parse(storage).state;
+        app.state = state || {} // If we have state, we set it to the app state
+         }
       if (app.state.darkMode) document.body.classList.add("dark-mode");
     }
     if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
