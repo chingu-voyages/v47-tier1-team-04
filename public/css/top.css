@@ -305,6 +305,7 @@ footer {
   gap: 20px;
   background: red;
   width: 100%;
+  margin-top:75px;
 }
 
 /* grid assignment */
@@ -336,6 +337,7 @@ footer {
   color: var(--main-bg-dark);
   position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 .avatar-area {
@@ -703,6 +705,7 @@ h2 {
 /* Content */
 .content {
   color: var(--text-color-light);
+  margin-bottom:75px;
 }
 
 .content-search {
