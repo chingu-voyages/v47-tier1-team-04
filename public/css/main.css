@@ -25,6 +25,9 @@
   }
 }
 
+.hide {
+  display: none;
+}
 .task-details-group {
   display: flex;
   justify-content: space-around;
@@ -407,7 +410,7 @@ i#close-settings-popup,
     justify-content: center;
     margin-right: 5px;
   }
-  .category-name {
+  .category-name, .group-name {
     margin-left: 30px;
   }
 }
@@ -553,7 +556,7 @@ i#close-settings-popup,
     margin-right: 5px;
   }
 
-  .category-name {
+  .category-name, .group-name {
     margin-left: 10px;
     margin-top: 30px;
   }

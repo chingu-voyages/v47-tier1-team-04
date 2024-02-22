@@ -40,7 +40,7 @@ export default class Task {
     priority,
     complete,
   }) {
-    this.name = name;
+    this.name = name || 'New Task';
     this.group = group || "Ungrouped";
     this.category = category || "Uncategorized";
     this.frequency = frequency || this.frequency;
