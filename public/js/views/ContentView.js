@@ -91,6 +91,7 @@ export default class ContentViewController {
       `category_${this.formatString(category)}`
     );
     this.addTaskEventListeners();
+    this.addCategoryEventListeners();
     this.addGroupEventListeners();
   }
 
@@ -128,7 +129,7 @@ export default class ContentViewController {
     )}_${this.formatString(category)}">
           <div class="content-inner ${completeCategory ? `darken` : ""}" id="">
               <div class="content-task">
-                  <h3 class="activity">${category}</h3> 
+                  <h3 class="activity">${category}</h3><i class="fa-solid fa-pencil"></i>
                   <i class="fa-solid fa-plus add-task"></i>
               </div>
               <div class="content-description"></div>                        
@@ -142,11 +143,38 @@ export default class ContentViewController {
         for (let contentInner of e.target.parentElement.children) {
           if (contentInner.classList.contains("group-name")) {
             const icon = contentInner.querySelector("i");
-              icon.classList.toggle("fa-circle-chevron-down");
+            icon.classList.toggle("fa-circle-chevron-down");
           } else {
             contentInner.classList.toggle("hide");
           }
         }
+      };
+    });
+  }
+  addCategoryEventListeners() {
+    document.querySelectorAll("h3.activity").forEach((ele) => {
+      const oldCategory = ele.innerHTML;
+      ele.nextElementSibling.onclick = (e) => {
+        e.target.previousElementSibling.contentEditable = "true";
+        e.target.previousElementSibling.focus();
+        e.target.previousElementSibling.onkeypress = (e) => {
+          if (e.key === "Enter") {
+            e.target.contentEditable = "false";
+            const newCategory = e.target.innerHTML;
+            console.log (
+              e.target.parentElement.parentElement.parentElement.parentElement
+            )
+              e.target.parentElement.parentElement.parentElement.parentElement.id = `category_${app.controller.formatString(
+                newCategory
+              )}`;
+            console.log(oldCategory, newCategory);
+            app.controller.updateCategory(oldCategory, newCategory);
+            app.view.asideViewController.updateAsideCategoryWithoutReRender(
+              oldCategory,
+              newCategory
+            );
+          }
+        };
       };
     });
   }
