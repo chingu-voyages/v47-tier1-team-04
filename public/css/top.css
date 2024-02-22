@@ -1,6 +1,6 @@
 :root {
   --main-bg-light: #f4f4f4;
-  --main-bg-dark: linear-gradient(45deg,#0c0b0c,#200010);
+  --main-bg-dark: linear-gradient(45deg, #0c0b0c, #200010);
   --text-color-light: #333;
   --text-color-dark: #fff;
   --accent-color-light: #9746c9;
@@ -19,6 +19,7 @@
 
 * {
   transition: all 0.25s;
+  scroll-behavior: smooth;
 }
 /* *************************************************************** */
 /* Desktop Styles First -between 769px to 1200px*/
@@ -39,7 +40,7 @@ body {
 body.dark-mode {
   background: var(--main-bg-dark);
   color: var(--text-color-dark);
-  background-attachment:fixed;
+  background-attachment: fixed;
 }
 
 /* Modal styles */
@@ -308,7 +309,7 @@ footer {
   gap: 20px;
   background: red;
   width: 100%;
-  margin-top:75px;
+  margin-top: 75px;
 }
 
 /* grid assignment */
@@ -317,7 +318,7 @@ aside {
   border-radius: 30px;
   top: 10%;
   max-height: 85vh;
-  transform: translate(0,-10%);
+  transform: translate(0, -10%);
   overflow: overlay;
   scrollbar-width: thin;
 }
@@ -325,19 +326,18 @@ nav {
   grid-area: nav;
   border-radius: 30px;
 }
-content#contentAnchor{
-  margin-bottom:50px;
-  padding-bottom:10px;
+content#contentAnchor {
+  margin-bottom: 50px;
+  padding-bottom: 10px;
   margin-left: -6%;
 }
-@media screen and (max-width: 468px){
+@media screen and (max-width: 468px) {
   content#contentAnchor {
     padding: 0;
-    margin: 0 0 125px 0
+    margin: 0 0 125px 0;
   }
   .add-icon {
     bottom: 12%;
-    
   }
 }
 content {
@@ -374,7 +374,7 @@ footer {
   background: tan;
   border-radius: 50%;
   margin: 0 auto;
-max-width: 100px;
+  max-width: 100px;
   max-height: 110px;
   overflow: hidden;
 }
@@ -409,7 +409,8 @@ max-width: 100px;
   margin-top: 20px;
 }
 
-.category-name, .group-name {
+.category-name,
+.group-name {
   margin-left: 80px;
   font-size: 30px;
   font-weight: 500;
@@ -479,6 +480,9 @@ max-width: 100px;
 }
 
 /* utilities */
+i.fa {
+  cursor: pointer;
+}
 .block {
   display: flex;
   flex-direction: column;
@@ -727,7 +731,6 @@ h2 {
   margin-left: 15px;
 }
 
-
 .navbtn {
   display: flex;
   justify-content: space-around;
@@ -893,17 +896,16 @@ h2 {
   justify-content: space-evenly;
   align-items: center;
   background-color: #f07167;
-  
+
   padding: 5px 20px;
   position: fixed;
-  bottom:0;;
-  left:50%;
-  transform:translate(-50%,0);
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
-@media only screen and (max-width: 767px){
-
+@media only screen and (max-width: 767px) {
 }
-@media only screen and (min-width:768px){
+@media only screen and (min-width: 768px) {
   .footer {
     width: 50%;
   }
