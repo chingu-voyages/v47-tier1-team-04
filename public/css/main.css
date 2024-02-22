@@ -25,6 +25,9 @@
   }
 }
 
+.hide {
+  display: none;
+}
 .task-details-group {
   display: flex;
   justify-content: space-around;
