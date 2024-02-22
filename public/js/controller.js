@@ -14,7 +14,7 @@ export default class Controller {
    * @param {string} title - The title of the application.
    */
   init(title) {
-    app.state.title ? app.state.title : app.state.title = title; // If we have a title, we set it to the app state
+    app.state.title ? app.state.title : (app.state.title = title); // If we have a title, we set it to the app state
     app.view.appViewController.init(); // Initializes the app view
   }
 
@@ -67,8 +67,8 @@ export default class Controller {
       storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
       if (storage && JSON.parse(storage).state && JSON.parse(storage).state) {
         state = JSON.parse(storage).state;
-        app.state = state || {} // If we have state, we set it to the app state
-         }
+        app.state = state || {}; // If we have state, we set it to the app state
+      }
       if (app.state.darkMode) document.body.classList.add("dark-mode");
     }
     if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
@@ -128,7 +128,15 @@ export default class Controller {
     this.saveData(false);
     app.view.appViewController.removePopup();
   }
-
+  updateCategory(oldCategory, newCategory) {
+    if (oldCategory === newCategory) return;
+    app.tasks = app.tasks.forEach((task) => {
+      if (task.category === oldCategory) {
+        task.category = newCategory;
+      }
+      this.saveData(false);
+    });
+  }
   /**
    * Formats a string to be safe for use as an id or class name.
    * @param {string} str - The string to be formatted.
