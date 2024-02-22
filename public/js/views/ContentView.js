@@ -49,7 +49,9 @@ export default class ContentViewController {
   renderContentGroup(group) {
     this.createElement(
       "div",
-      `<h2 class="group-name">${group}</h2>`,
+      `<h2 class="group-name">${group}<i id="content_group_chevron_${app.controller.formatString(
+        group
+      )}" class="fa-solid" ></i></h2>`,
       "content",
       `content_${this.formatString(group)}`,
       "content-activity"
@@ -138,9 +140,9 @@ export default class ContentViewController {
     document.querySelectorAll(".group-name").forEach((ele) => {
       ele.onclick = (e) => {
         for (let contentInner of e.target.parentElement.children) {
-          console.log(contentInner.classList)
           if (contentInner.classList.contains("group-name")) {
-            contentInner.classList.toggle("group-name-active")
+            const icon = contentInner.querySelector("i");
+              icon.classList.toggle("fa-circle-chevron-down");
           } else {
             contentInner.classList.toggle("hide");
           }
