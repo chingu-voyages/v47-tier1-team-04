@@ -49,9 +49,9 @@ export default class ContentViewController {
   renderContentGroup(group) {
     this.createElement(
       "div",
-      `<h2 class="group-name">${group}<i id="content_group_chevron_${app.controller.formatString(
+      `<h2 class="group-name">${group} <i id="content_group_chevron_${app.controller.formatString(
         group
-      )}" class="fa-solid" ></i></h2>`,
+      )}" class="fa-solid" ></i> <i class="fa fa-solid fa-edit"></i></h2>`,
       "content",
       `content_${this.formatString(group)}`,
       "content-activity"
@@ -138,12 +138,29 @@ export default class ContentViewController {
     `;
   }
   addGroupEventListeners() {
+    document.querySelectorAll(".fa-edit").forEach((ele) => {
+      const oldGroup = ele.parentElement.innerHTML;
+      ele.onclick = (e) => {
+        e.target.parentElement.contentEditable = "true";
+        e.target.parentElement.focus();
+        e.target.parentElement.onkeypress = (e) => {
+          if (e.key === "Enter") {
+            e.target.contentEditable = "false";
+            const newGroup = e.target.innerHTML;
+            app.controller.updateGroup(oldGroup,newGroup);
+            app.view.asideViewController.updateAsideGroupWithoutReRender(
+              oldGroup,newGroup
+            );
+          }
+        };
+      }
+    });
     document.querySelectorAll(".group-name").forEach((ele) => {
       ele.onclick = (e) => {
         for (let contentInner of e.target.parentElement.children) {
           if (contentInner.classList.contains("group-name")) {
             const icon = contentInner.querySelector("i");
-            icon.classList.toggle("fa-circle-chevron-down");
+            //icon.classList.toggle("fa-circle-chevron-down");
           } else {
             contentInner.classList.toggle("hide");
           }
@@ -161,12 +178,12 @@ export default class ContentViewController {
           if (e.key === "Enter") {
             e.target.contentEditable = "false";
             const newCategory = e.target.innerHTML;
-            console.log (
+            console.log(
               e.target.parentElement.parentElement.parentElement.parentElement
-            )
-              e.target.parentElement.parentElement.parentElement.parentElement.id = `category_${app.controller.formatString(
-                newCategory
-              )}`;
+            );
+            e.target.parentElement.parentElement.parentElement.parentElement.id = `category_${app.controller.formatString(
+              newCategory
+            )}`;
             console.log(oldCategory, newCategory);
             app.controller.updateCategory(oldCategory, newCategory);
             app.view.asideViewController.updateAsideCategoryWithoutReRender(

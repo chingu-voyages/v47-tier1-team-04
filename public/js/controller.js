@@ -122,6 +122,19 @@ export default class Controller {
    * @param {Task} task - The task to be updated.
    * @param {object} updatedTask - The updated task object.
    */
+  updateGroup(oldGroup, newGroup) {
+    if (oldGroup === newGroup) return;
+    try {
+      app.tasks = app.tasks.map((task) => {
+        if (task.group === oldGroup) {
+          task.group = newGroup;
+        }
+        this.saveData(false);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
   updateTask(task, updatedTask) {
     task.update(updatedTask);
     app.view.taskViewController.updateTask(task);

@@ -72,9 +72,9 @@ export default class AsideViewController {
     });
   };
   updateAsideGroupWithoutReRender(oldGroup, newGroup) {
-    document.querySelectorAll("#daily-checklist h3").forEach((ele) => {
-      if (ele.innerHTML === oldGroup) {
-        ele.innerHTML = newGroup;
+    document.querySelectorAll("#daily-checklist h3 a").forEach((ele) => {
+      if (ele.innerHTML === oldGroup.innerHTML) {
+        ele.innerHTML = newGroup.innerHTML;
       }
     });
   }
