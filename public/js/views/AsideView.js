@@ -22,7 +22,9 @@ const avatarTemplate = () => `
 const groupTemplate = (group) => `
   <h3 id="sidebar_group_${app.controller.formatString(
     group
-  )}">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+  )}"><a href="#content_${app.controller.formatString(
+  group
+)}"> ${group} <i class="fa-solid fa-circle-chevron-down"></i></a></h3>
   <ul id="sidebar_${app.controller.formatString(group)}"></ul>
 `;
 
@@ -69,6 +71,29 @@ export default class AsideViewController {
         .forEach((category) => this.renderAsideCategory(category, group));
     });
   };
+  updateAsideGroupWithoutReRender(oldGroup, newGroup) {
+    document.querySelectorAll("#daily-checklist h3").forEach((ele) => {
+      if (ele.innerHTML === oldGroup) {
+        ele.innerHTML = newGroup;
+      }
+    });
+  }
+  updateAsideCategoryWithoutReRender(oldCategory, newCategory) {
+    document
+      .querySelectorAll(`#sidebar_routine-activities li`)
+      .forEach((ele) => {
+        if (
+          ele.innerHTML ===
+          `<a href="#category_${app.controller.formatString(
+            oldCategory
+          )}">${oldCategory}</a>`
+        ) {
+          ele.innerHTML = `<a href="#category_${app.controller.formatString(
+            newCategory
+          )}">${newCategory}</a>`;
+        }
+      });
+  }
 
   // Render a group in the aside view
   renderAsideGroup = (group) => {
@@ -79,12 +104,13 @@ export default class AsideViewController {
     );
   };
   addAsideGroupEventListeners = () => {
-    document.querySelectorAll("#daily-checklist h3").forEach((ele) => {
+    document.querySelectorAll("#daily-checklist h3 i").forEach((ele) => {
       ele.onclick = (e) => {
-        const icon = e.target.querySelector("i");
+        const icon = e.target;
         icon.classList.toggle("fa-circle-chevron-down");
         icon.classList.toggle("fa-circle-chevron-left");
-        e.target.nextElementSibling.classList.toggle("hide");
+        console.log(e.target.parentElement);
+        e.target.parentElement.parentElement.nextElementSibling.classList.toggle("hide");
       };
     });
   };
@@ -92,10 +118,11 @@ export default class AsideViewController {
   renderAsideCategory = (category, group) => {
     app.view.createElement(
       "li",
-      category,
+      `<a href="#category_${app.controller.formatString(
+        category
+      )}">${category}</a>`,
       document.getElementById(`sidebar_${app.controller.formatString(group)}`)
     );
     this.addAsideGroupEventListeners();
-    return `rendered category ${category} in the aside app.view`;
   };
 }
