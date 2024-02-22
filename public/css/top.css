@@ -480,7 +480,7 @@ footer {
 }
 
 /* utilities */
-i.fa {
+i {
   cursor: pointer;
 }
 .block {
@@ -523,8 +523,16 @@ li {
 
 a {
   text-decoration: none;
+  color: var(--text-color-light)
+}
+.dark-mode a {
   color: var(--text-color-dark);
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
 
 h2 {
   margin-top: 10px;
