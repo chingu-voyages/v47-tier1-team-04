@@ -5,19 +5,24 @@ import renderSettings from "./modals/renderSettings.js";
 const avatarTemplate = () => `
   <div class="avatar-area">
     <div class="avatar">
-      <img src="${app.state.gitHubData && app.state.gitHubData.avatar_url || './img/Friendly Ones Avatar and Backdrop.png'}" alt="avatar pict" class="avatar-pict">
+      <img src="${
+        (app.state.gitHubData && app.state.gitHubData.avatar_url) ||
+        "./img/Friendly Ones Avatar and Backdrop.png"
+      }" alt="avatar pict" class="avatar-pict">
     </div>
     <div class="gear-icon">
       <img src="./img/solar_settings-linear.svg" alt="gear icon" id="settings-icon">
     </div>
   </div>            
-  <h2>${app.state.title || 'Daily Tasks'}</h2>
+  <h2>${app.state.title || "Daily Tasks"}</h2>
   <div id="daily-checklist"></div>
 `;
 
 // Template for the group section
 const groupTemplate = (group) => `
-  <h3>${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
+  <h3 id="sidebar_group_${app.controller.formatString(
+    group
+  )}">${group} <i class="fa-solid fa-circle-chevron-down"></i></h3>
   <ul id="sidebar_${app.controller.formatString(group)}"></ul>
 `;
 
@@ -56,7 +61,7 @@ export default class AsideViewController {
   // Update the aside view
   updateAside = () => {
     document.getElementById("aside-el").innerHTML = avatarTemplate();
-    document.getElementById("settings-icon").onclick = () => renderSettings()
+    document.getElementById("settings-icon").onclick = () => renderSettings();
     app.controller.returnUniqueGroupNames().forEach((group) => {
       this.renderAsideGroup(group);
       app.controller
@@ -73,7 +78,16 @@ export default class AsideViewController {
       document.getElementById("daily-checklist", null, "activity")
     );
   };
-
+  addAsideGroupEventListeners = () => {
+    document.querySelectorAll("#daily-checklist h3").forEach((ele) => {
+      ele.onclick = (e) => {
+        const icon = e.target.querySelector("i");
+        icon.classList.toggle("fa-circle-chevron-down");
+        icon.classList.toggle("fa-circle-chevron-left");
+        e.target.nextElementSibling.classList.toggle("hide");
+      };
+    });
+  };
   // Render a category in the aside view
   renderAsideCategory = (category, group) => {
     app.view.createElement(
@@ -81,6 +95,7 @@ export default class AsideViewController {
       category,
       document.getElementById(`sidebar_${app.controller.formatString(group)}`)
     );
+    this.addAsideGroupEventListeners();
     return `rendered category ${category} in the aside app.view`;
   };
 }
