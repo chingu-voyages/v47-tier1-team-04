@@ -24,7 +24,7 @@ const groupTemplate = (group) => `
     group
   )}"><a href="#content_${app.controller.formatString(
   group
-)}"> ${group} <i class="fa-solid fa-circle-chevron-down"></i></a></h3>
+)}"> ${group} </a><i class="fa-solid fa-circle-chevron-down"></i></h3>
   <ul id="sidebar_${app.controller.formatString(group)}"></ul>
 `;
 
@@ -109,8 +109,10 @@ export default class AsideViewController {
         const icon = e.target;
         icon.classList.toggle("fa-circle-chevron-down");
         icon.classList.toggle("fa-circle-chevron-left");
-        console.log(e.target.parentElement);
-        e.target.parentElement.parentElement.nextElementSibling.classList.toggle("hide");
+        icon.style.cursor = "pointer";
+        e.target.parentElement.parentElement.children[1].classList.toggle(
+          "hide"
+        );
       };
     });
   };
