@@ -130,12 +130,16 @@ export default class Controller {
   }
   updateCategory(oldCategory, newCategory) {
     if (oldCategory === newCategory) return;
-    app.tasks = app.tasks.forEach((task) => {
-      if (task.category === oldCategory) {
-        task.category = newCategory;
-      }
-      this.saveData(false);
-    });
+    try {
+      app.tasks = app.tasks.map((task) => {
+        if (task.category === oldCategory) {
+          task.category = newCategory;
+        }
+        this.saveData(false);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
   /**
    * Formats a string to be safe for use as an id or class name.
