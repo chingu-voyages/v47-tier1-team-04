@@ -481,6 +481,10 @@ footer {
 }
 
 /* utilities */
+.mr-l-10 {
+  margin-left: 10px;
+}
+
 i {
   cursor: pointer;
 }

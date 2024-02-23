@@ -11,23 +11,36 @@ const settingsTemplate = () => `
       </div>
       <div class="settings-group">
       <div class="settings">
-      <label for="newTitle">Change Title:</label>
-          <input id="newTitle" type="text" value="${app.state.title}">
-          <input value="Submit" type="button" id="changeTitle">
+        <div class="settings-changes">
+            <label for="newTitle">Change Title:</label>
+            <div class="settings-changes-inputs">
+              <input id="newTitle" type="text" value="${app.state.title}">
+              <input value="Submit" type="button" id="changeTitle" class="change-input-btn mr-l-10">
+            </div>
+          </div>
         </div>
+
         <div class="settings">
-        <label for="avatarImg">Change Avatar (input Github Username):</label>
-          <input value="${app.state.gitHubData && app.state.gitHubData.login}" id="avatar" type="text"><input value="Submit" type="button" id="changeAvatar">
+          <div class="settings-changes">
+            <label for="avatarImg">Change Avatar (input Github Username):</label>
+            <div class="settings-changes-inputs">
+              <input value="${app.state.gitHubData && app.state.gitHubData.login}" id="avatar" type="text"><input value="Submit" type="button" id="changeAvatar" class="change-input-btn">
+            </div>
+          </div>
         </div>
+
         <div class="settings">
           <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active">
         </div>
+
         <div class="settings">
           <input type="button" id="restore-archive" name="restore-archive" value="Restore Archive" class="btn btn-settings setting-active">
         </div>
+
         <div class="settings">
           <input type="button" id="reseed-data" name="reseed-data" value="Reseed Data" class="btn btn-settings setting-active">
         </div>
+
         <div class="settings">
           <input type="button" id="remove-tasks" name="remove-tasks" value="Remove Tasks" class="btn btn-settings setting-active">
         </div>
