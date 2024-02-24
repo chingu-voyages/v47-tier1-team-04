@@ -915,6 +915,10 @@ h2 {
   margin-left: 30%;
 }
 
+.footer a {
+  color: #fff;
+}
+
 .footer-top {
   display: flex;
   justify-content: center;
@@ -932,7 +936,6 @@ h2 {
   z-index: 1;
   text-decoration: none;
 }
-
 
 .copyright:hover,
 .footer-bottom:hover {
