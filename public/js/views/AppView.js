@@ -395,20 +395,26 @@ export default class AppViewController {
   renderFooter() {
     // Define the HTML for the footer
     const footerHTML = `
-        <div class="footer-left">
-        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/subscription" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch chingu-voyages/v47-tier1-team-04 on GitHub">Watch</a>     
-        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star chingu-voyages/v47-tier1-team-04 on GitHub">Star</a>
-         <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/fork" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork chingu-voyages/v47-tier1-team-04 on GitHub">Fork</a>
-         <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/issues" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="Issue chingu-voyages/v47-tier1-team-04 on GitHub">Issue</a> 
-        
-          <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
-            <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Chingu Team 04 Github &copy; ${new Date().getFullYear()}</p>
-          </a>
-        </div>
-        <a href="https://www.chingu.io" class="footer-middle" target="_blank">
-          <img class="chingu-logo" src="./img/chingo-logo.png">         
-          <p class="copyright">Chingu V47</p>
-        </a>
+    <a href="https://www.chingu.io" class="footer-top" target="_blank">
+    <img class="chingu-logo" src="./img/chingo-logo.png">        
+    <p class="copyright">Chingu Voyage 47</p>
+  </a>
+  <div class="footer-bottom">
+    <a href="https://github.com/chingu-voyages/v47-tier1-team-04" target="_blank">
+      <p class="copyright"><i class="fa-brands fa-github fa-xl"></i> Team 04 Github &copy; ${new Date().getFullYear()}</p>
+    </a>
+
+    <class="github-buttons">
+
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/subscription" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-eye" data-show-count="true" aria-label="Watch chingu-voyages/v47-tier1-team-04 on GitHub">Watch</a>
+
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-star" data-show-count="true" aria-label="Star chingu-voyages/v47-tier1-team-04 on GitHub">Star</a>
+
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/fork" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork chingu-voyages/v47-tier1-team-04 on GitHub">Fork</a>
+
+        <a class="github-button" href="https://github.com/chingu-voyages/v47-tier1-team-04/issues" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-issue-opened" data-show-count="true" aria-label="Issue chingu-voyages/v47-tier1-team-04 on GitHub">Issue</a>
+    </div>
+  </div>
 `;
 
     // Create a new footer element with the specified HTML and append it to the 'app' element

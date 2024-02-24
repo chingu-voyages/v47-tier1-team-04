@@ -1,6 +1,6 @@
 :root {
   --main-bg-light: #f4f4f4;
-  --main-bg-dark: linear-gradient(45deg,#0c0b0c,#200010);
+  --main-bg-dark: linear-gradient(45deg, #0c0b0c, #200010);
   --text-color-light: #333;
   --text-color-dark: #fff;
   --accent-color-light: #9746c9;
@@ -19,6 +19,7 @@
 
 * {
   transition: all 0.25s;
+  scroll-behavior: smooth;
 }
 /* *************************************************************** */
 /* Desktop Styles First -between 769px to 1200px*/
@@ -39,7 +40,7 @@ body {
 body.dark-mode {
   background: var(--main-bg-dark);
   color: var(--text-color-dark);
-  background-attachment:fixed;
+  background-attachment: fixed;
 }
 
 /* Modal styles */
@@ -282,7 +283,7 @@ body.dark-mode {
     "aside nav nav"
     "aside content content"
     "aside content content"
-    "footer footer footer";
+    "aside footer footer";
   grid-template-columns: 30% 70%;
   grid-template-rows: 15rem 2fr auto;
   gap: 0.6rem;
@@ -306,9 +307,9 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background: red;
+  background: #ea858f;
   width: 100%;
-  margin-top:75px;
+  margin-top: 75px;
 }
 
 /* grid assignment */
@@ -317,27 +318,27 @@ aside {
   border-radius: 30px;
   top: 10%;
   max-height: 85vh;
-  transform: translate(0,-10%);
+  transform: translate(0, -10%);
   overflow: overlay;
   scrollbar-width: thin;
+  flex: 1;
 }
 nav {
   grid-area: nav;
   border-radius: 30px;
 }
-content#contentAnchor{
-  margin-bottom:50px;
-  padding-bottom:10px;
+content#contentAnchor {
+  margin-bottom: 50px;
+  padding-bottom: 10px;
   margin-left: -6%;
 }
-@media screen and (max-width: 468px){
+@media screen and (max-width: 468px) {
   content#contentAnchor {
     padding: 0;
-    margin: 0 0 125px 0
+    margin: 0 0 125px 0;
   }
   .add-icon {
     bottom: 12%;
-    
   }
 }
 content {
@@ -374,7 +375,7 @@ footer {
   background: tan;
   border-radius: 50%;
   margin: 0 auto;
-max-width: 100px;
+  max-width: 100px;
   max-height: 110px;
   overflow: hidden;
 }
@@ -409,7 +410,8 @@ max-width: 100px;
   margin-top: 20px;
 }
 
-.category-name {
+.category-name,
+.group-name {
   margin-left: 80px;
   font-size: 30px;
   font-weight: 500;
@@ -479,6 +481,13 @@ max-width: 100px;
 }
 
 /* utilities */
+.mr-l-10 {
+  margin-left: 10px;
+}
+
+i {
+  cursor: pointer;
+}
 .block {
   display: flex;
   flex-direction: column;
@@ -491,11 +500,6 @@ max-width: 100px;
 
 .darken {
   opacity: 0.5;
-}
-@media only screen and (min-width: 767px) {
-  .darken {
-    pointer-events: none;
-  }
 }
 
 .complete {
@@ -519,8 +523,16 @@ li {
 
 a {
   text-decoration: none;
+  color: var(--text-color-light)
+}
+.dark-mode a {
   color: var(--text-color-dark);
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
 
 h2 {
   margin-top: 10px;
@@ -727,7 +739,6 @@ h2 {
   margin-left: 15px;
 }
 
-
 .navbtn {
   display: flex;
   justify-content: space-around;
@@ -890,63 +901,66 @@ h2 {
 
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #f07167;
-  
+  font-weight: 600;
+  background-color: #ea858f;
   padding: 5px 20px;
-  position: fixed;
-  bottom:0;;
-  left:50%;
-  transform:translate(-50%,0);
-}
-@media only screen and (max-width: 767px){
-
-}
-@media only screen and (min-width:768px){
-  .footer {
-    width: 50%;
-  }
+  position: relative;
+  bottom: 0;
+  right: 5%;
+  width: 75%;
+  border-radius: 10px;
+  margin-left: 30%;
 }
 
-.footer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-radius: 20px;
-  background-color: blue;
-  opacity: 0, 5;
-  z-index: -1;
+.footer-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .footer a {
   z-index: 1;
+  text-decoration: none;
 }
+
 
 .copyright:hover,
-.footer-right:hover {
+.footer-bottom:hover {
   font-size: 1.1rem;
-  box-shadow: 1px 1px 2px #02a4ff;
+  color: #ffd700;
 }
 
 .chingu-logo {
   height: 40px;
 }
 
-.footer-middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* mobile styles */
+@media only screen and (min-width: 767px) {
+  .darken {
+    pointer-events: none;
+  }  
 }
 
-.chingu-logo {
-  height: 40px;
-}
+@media(max-width: 468px) {
+  .footer {
+    right: 0;
+    width: 100%;
+    border-radius: 10px;
+    margin-left: 0;
+  }
 
-.footer-middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .footer-bottom {
+    flex-direction: column;
+  }
+
 }
