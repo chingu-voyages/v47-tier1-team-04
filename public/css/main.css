@@ -303,11 +303,41 @@ i#close-settings-popup,
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 300px;
+  gap: 5px;
+  height: auto;
+  z-index: 100;
+}
+
+.settings-changes {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.settings-changes-inputs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.change-input-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border-color-light);
+}
+
+.change-input-btn:hover {
+  opacity: 0.65;
+  color: var(--text-color-dark);
+  background: var(--accent-color-light);
+  cursor: pointer;
 }
 
 .settings input[type="text"] {
   padding: 8px;
+  border-radius: 10px;
+  border: 1px var(--border-color-dark) solid;
 }
 
 /* *************************************************************** */
