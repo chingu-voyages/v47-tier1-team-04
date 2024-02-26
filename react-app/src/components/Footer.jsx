@@ -1,11 +1,12 @@
 import GitHubButton from "react-github-btn";
+import chinguLogo from '../images/chingo-logo.png';
 function Footer() {
   return (
     <footer id="element-el" className="footer">
       <a href="https://www.chingu.io" className="footer-top" target="_blank">
         <img
           className="chingu-logo"
-          src="./img/chingo-logo.png"
+          src={chinguLogo}
           alt="Chingu Logo"
         />
         <p className="copyright">Chingu Voyage 47</p>
