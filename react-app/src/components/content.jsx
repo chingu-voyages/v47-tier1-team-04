@@ -24,3 +24,5 @@ function Content () {
     </div></div></content>
     )
 }
+
+export default Content;
