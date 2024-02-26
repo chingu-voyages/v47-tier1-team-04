@@ -1,8 +1,8 @@
 //import './styles/css/main.css';
 import Aside from './components/aside';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 // // // import Content from './components/content';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import chinguLogo from './images/chingo-logo.png';
 function App() {
   return (
