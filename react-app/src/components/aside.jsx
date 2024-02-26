@@ -1,5 +1,5 @@
-import avatar from './images/img/Friendly Ones Avatar and Backdrop.png';
-import settingsicon from './images/img/solar_settings.svg';
+import avatar from '../images/Friendly Ones Avatar and Backdrop.png';
+import settingsicon from '../images/solar_settings-linear.svg';
 
 function Aside () {
     return (
