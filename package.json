@@ -40,7 +40,5 @@
   "devDependencies": {
     "live-server": "^1.2.2"
   },
-  "dependencies": {
-    "react-github-btn": "^1.4.0"
-  }
+
 }
