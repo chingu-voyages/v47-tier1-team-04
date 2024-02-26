@@ -1,10 +1,11 @@
-import avatar from '../images/Friendly Ones Avatar and Backdrop.png';
-import settingsicon from '../images/solar_settings-linear.svg';
+// import avatar from '../images/Friendly Ones Avatar and Backdrop.png';
+// import settingsicon from '../images/solar_settings-linear.svg';
 
 function Aside () {
     return (
         <aside id="aside-el" className="aside">
-            <div className="avatar-area">
+            Aside
+            {/* <div className="avatar-area">
                 <div className="avatar">
                 <img src={avatar} alt="avatar pict" className="avatar-pict" />
                 </div>
@@ -17,7 +18,7 @@ function Aside () {
             <h3 id="sidebar_group_grop"><a href="#content_grop"> grop </a><i className="fa-solid fa-circle-chevron-down"></i></h3>
             <ul id="sidebar_grop"><li id="view_16"><a href="#category_cat">cat</a></li></ul>
         </div>
-        </div>
+        </div> */}
     </aside>
     )
 }

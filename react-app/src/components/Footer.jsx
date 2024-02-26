@@ -3,7 +3,8 @@ import chinguLogo from '../images/chingo-logo.png';
 function Footer() {
   return (
     <footer id="element-el" className="footer">
-      <a href="https://www.chingu.io" className="footer-top" target="_blank">
+      Footer
+      {/* <a href="https://www.chingu.io" className="footer-top" target="_blank">
         <img
           className="chingu-logo"
           src={chinguLogo}
@@ -58,7 +59,7 @@ function Footer() {
             Issue
           </GitHubButton>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }

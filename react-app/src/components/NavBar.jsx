@@ -1,7 +1,8 @@
 function NavBar() {
     return (
         <nav id="element-el" className="navbar">
-            <div className="navbar">
+            navbar
+            {/* <div className="navbar">
                 <div className="navbar-top">
                     <i className="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
                     <div id="date" className="date">
@@ -51,7 +52,7 @@ function NavBar() {
                         Sunday
                     </a>
                 </div>
-            </div>
+            </div> */}
         </nav>
     );
 }

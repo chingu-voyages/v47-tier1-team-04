@@ -4,7 +4,7 @@ import trash from '../images/ph_trash.svg';
 
 function Content () {
     return (
-        <content id="content" className="content">
+        <div id="content" className="content">
             <div id="content_grop" className="content-activity">
                 <h2 className="group-name">group <i id="content_group_chevron_grop" className="fa-solid"></i> <i className="fa fa-solid fa-edit"></i></h2>
                 <div id="category_cat">
@@ -21,7 +21,7 @@ function Content () {
           <img src={pencil} alt="edit pencil image" className="icon-update" id="edit_name" />
           <img src={trash} alt="delete trash can image" className="icon-edit" id="task_remove_name" /></div></div></div>
       </div>               
-    </div></div></content>
+    </div></div></div>
     )
 }
 
