@@ -1,4 +1,4 @@
-import './styles/css/main.css';
+//import './styles/css/main.css';
 // import Aside from './components/aside';
  // // // //import NavBar from './components/NavBar';
 import Content from './components/content';
