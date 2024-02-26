@@ -39,5 +39,8 @@
   "homepage": "https://github.com/chingu-voyages/v47-tier1-team-04#readme",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "react-github-btn": "^1.4.0"
   }
 }
