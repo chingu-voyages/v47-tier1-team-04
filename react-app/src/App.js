@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="App">
       <Aside />
-      <NavBar />
+      {/* <NavBar /> */}
       <h1>Testing 1234</h1>
       <img src={chinguLogo} alt="Chingu Logo" />
        {/* <Content /> */}
-     <Footer />
+     {/* <Footer /> */}
     </div>
   );
 }
