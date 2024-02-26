@@ -1,6 +1,6 @@
-import ellipse from './images/img/Ellipse8.svg';
-import pencil from './images/img/mynaui_pencil.svg';
-import trash from '.images/img/ph_trash.svg';
+import ellipse from '../images/Ellipse8.svg';
+import pencil from '../images/mynaui_pencil.svg';
+import trash from '../images/ph_trash.svg';
 
 function Content () {
     return (
