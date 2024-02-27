@@ -40,10 +40,22 @@ class App extends Component {
     this.setGroups(data);
     this.setCategories(data);
   }
+  async loadData() {
+    let storage, parsedStorage, state; // Defining some temp variables
+    if (localStorage) {
+      storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
+      if (storage && JSON.parse(storage).state && JSON.parse(storage).state) {
+        state = JSON.parse(storage).state;
+        this.state = state; // If we have state, we set it to the app state
+      }
+      if (this.state.darkMode) document.body.classList.add("dark-mode");
+    }
+    if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
+    // This is a ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
+    parsedStorage ? this.setState({ tasks: parsedStorage }) : await this.seed();
+  }
   componentDidMount() {
-    this.seed();
-
-    console.log(this.state);
+    this.loadData();
   }
   render() {
     return (
