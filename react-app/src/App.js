@@ -10,10 +10,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tasks: [{ group: "Ungrouped", category: "Uncategorized", name: "" }],
+      groups: [],
+      categories: [],
       darkMode: false,
     };
   }
   toggleDarkMode = () => {
+    console.log(this.state);
     this.setState({ darkMode: !this.state.darkMode });
     if (this.state.darkMode) {
       document.body.classList.add("dark-mode");
@@ -21,12 +25,32 @@ class App extends Component {
       document.body.classList.remove("dark-mode");
     }
   };
+  setGroups = (tasks) =>
+    this.setState({
+      groups: [...new Set(tasks.map((task) => task.group))],
+    });
+  setCategories = (tasks) =>
+    this.setState({
+      categories: [...new Set(tasks.map((task) => task.category))],
+    });
+  async seed() {
+    const response = await fetch("./data/data.model.json");
+    const data = await response.json();
+    this.setState({ tasks: data });
+    this.setGroups(data);
+    this.setCategories(data);
+  }
+  componentDidMount() {
+    this.seed();
+
+    console.log(this.state);
+  }
   render() {
     return (
       <div className="container">
-        <Aside />
+        <Aside groups={this.state.groups} />
         <NavBar toggleDarkMode={this.toggleDarkMode} />
-        <Content />
+        <Content tasks={this.state.tasks} />
         <Footer />
         <AddTaskButton />
       </div>
