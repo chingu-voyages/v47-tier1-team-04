@@ -10,8 +10,8 @@ function NavBar({ toggleDarkMode }) {
             Today: {new Date().toDateString()}
           </div>
           <div className="btn-undo">
-            <a id="mode-switch" href="#" className="btn btn-mode-switch">
-              <MdOutlineDarkMode onClick={() => toggleDarkMode()}/>
+            <a id="mode-switch" href="#" className="btn btn-mode-switch" onClick={() => toggleDarkMode()}>
+              <MdOutlineDarkMode />
             </a>
             <a id="save-all" href="#" className="btn btn-save">
               Save
