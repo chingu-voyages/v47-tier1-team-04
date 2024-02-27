@@ -1,6 +1,7 @@
 import { MdOutlineDarkMode } from "react-icons/md";
 
-function NavBar() {
+function NavBar({ toggleDarkMode }) {
+    console.log(toggleDarkMode);
   return (
     <nav id="element-el" className="navbar">
       <div className="navbar">
@@ -11,7 +12,7 @@ function NavBar() {
           </div>
           <div className="btn-undo">
             <a id="mode-switch" href="#" className="btn btn-mode-switch">
-              <MdOutlineDarkMode />
+              <MdOutlineDarkMode onClick={() => toggleDarkMode()}/>
             </a>
             <a id="save-all" href="#" className="btn btn-save">
               Save
