@@ -1,15 +1,10 @@
 import GitHubButton from "react-github-btn";
-import chinguLogo from '../images/chingo-logo.png';
+import chinguLogo from "../images/chingo-logo.png";
 function Footer() {
   return (
     <footer id="element-el" className="footer">
-      Footer
-      {/* <a href="https://www.chingu.io" className="footer-top" target="_blank">
-        <img
-          className="chingu-logo"
-          src={chinguLogo}
-          alt="Chingu Logo"
-        />
+      <a href="https://www.chingu.io" className="footer-top" target="_blank">
+        <img className="chingu-logo" src={chinguLogo} alt="Chingu Logo" />
         <p className="copyright">Chingu Voyage 47</p>
       </a>
       <div className="footer-bottom">
@@ -18,7 +13,8 @@ function Footer() {
           target="_blank"
         >
           <p className="github-link">
-            <i className="fab fa-github fa-xl"></i> Team 04 Github © {new Date().getFullYear()}
+            <i className="fab fa-github fa-xl"></i> Team 04 Github ©{" "}
+            {new Date().getFullYear()}
           </p>
         </a>
         <div className="github-buttons">
@@ -59,7 +55,7 @@ function Footer() {
             Issue
           </GitHubButton>
         </div>
-      </div> */}
+      </div>
     </footer>
   );
 }
