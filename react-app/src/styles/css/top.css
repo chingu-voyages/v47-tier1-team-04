@@ -327,13 +327,13 @@ nav {
   grid-area: nav;
   border-radius: 30px;
 }
-content#contentAnchor {
+.content#contentAnchor {
   margin-bottom: 50px;
   padding-bottom: 10px;
   margin-left: -6%;
 }
 @media screen and (max-width: 468px) {
-  content#contentAnchor {
+  .content#contentAnchor {
     padding: 0;
     margin: 0 0 125px 0;
   }
@@ -341,13 +341,13 @@ content#contentAnchor {
     bottom: 12%;
   }
 }
-content {
+.content {
   grid-area: content;
   border-radius: 30px;
 }
 
 aside,
-content,
+.content,
 footer {
   background: var(--main-color);
   color: var(--text-color-dark);
