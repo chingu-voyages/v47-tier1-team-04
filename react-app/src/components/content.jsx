@@ -21,7 +21,8 @@ function Content () {
           <img src={pencil} alt="edit pencil image" className="icon-update" id="edit_name" />
           <img src={trash} alt="delete trash can image" className="icon-edit" id="task_remove_name" /></div></div></div>
       </div>               
-    </div></div></div>
+    </div></div>
+    </div>
     )
 }
 
