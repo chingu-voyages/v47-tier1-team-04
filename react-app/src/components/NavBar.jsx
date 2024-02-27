@@ -7,7 +7,7 @@ function NavBar() {
         <div className="navbar-top">
           <i className="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
           <div id="date" className="date">
-            Today: 2/25/2024
+            Today: {new Date().toDateString()}
           </div>
           <div className="btn-undo">
             <a id="mode-switch" href="#" className="btn btn-mode-switch">
