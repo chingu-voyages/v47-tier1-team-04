@@ -34,7 +34,7 @@ class App extends Component {
       categories: [...new Set(tasks.map((task) => task.category))],
     });
   async seed() {
-    const response = await fetch(".assets/data/data.model.json");
+    const response = await fetch("./assets/data/data.model.json");
     const data = await response.json();
     this.setState({ tasks: data });
     this.setGroups(data);
