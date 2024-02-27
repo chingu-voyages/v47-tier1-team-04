@@ -5,7 +5,7 @@ function AddEditModal({ closeModal}) {
     <div id="edit-task-details-popup" className="task-details-popup">
       <form className="task-details-popup" id="edit_details">
         <div className="task-details-content">
-        <FaWindowClose onClick={() => closeModal()} />
+        <FaWindowClose onClick={() => closeModal()} className="fa-solid fa-xmark fa-2x close-details-popup" />
 
           <h2>Add Task</h2>
           <div className="task-details-group">
