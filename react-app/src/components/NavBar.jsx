@@ -53,6 +53,19 @@ function NavBar({ toggleDarkMode }) {
             Sunday
           </a>
         </div>
+
+        <div className="content-search">
+            <div className="priority">
+                <a id="priority_low" className="btn btn-lite btn-blue" href="#">Low</a>
+                <a id="priority_med" className="btn btn-lite btn-orange" href="#">Med</a>
+                <a id="priority_high" className="btn btn-lite btn-red" href="#">High</a>
+        
+                <div className="search">
+                    <input type="text" placeholder="Search by task name, category, group, etc..." id="search" className="btn" />
+                    <i className="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
+                </div>
+            </div>               
+        </div>
       </div>
     </nav>
   );
