@@ -4,7 +4,7 @@ import trash from '../images/ph_trash.svg';
 
 function Content ({tasks}) {
     return (
-        <div id="content" className="content">
+        <div id="contentAnchor" className="content">
             <div id="content_grop" className="content-activity">
                 <h2 className="group-name">{tasks[0].group} <i id="content_group_chevron_grop" className="fa-solid"></i> <i className="fa fa-solid fa-edit"></i></h2>
                 <div id="category_cat">
