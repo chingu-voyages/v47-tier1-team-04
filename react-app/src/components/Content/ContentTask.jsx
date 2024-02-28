@@ -9,7 +9,7 @@ function ContentTask({ task }) {
           className={`fa-regular checkbox ${
             task.complete ? "fa-square-check" : "fa-square"
           }`}
-        />
+        />{" "}
         {task.name}
       </p>
       <div className="task-icons">
