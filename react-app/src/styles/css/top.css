@@ -939,7 +939,7 @@ h2 {
 }
 
 .copyright:hover,
-.footer-bottom a:not(i):hover {
+.footer-bottom a:hover {
   font-size: 1.1rem;
   color: #ffd700;
 }
