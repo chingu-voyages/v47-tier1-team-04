@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import defaultAvatar from "../images/Friendly Ones Avatar and Backdrop.png";
 import settingsicon from "../images/solar_settings-linear.svg";
-import { FaCircleChevronDown } from "react-icons/fa6";
 import Settings from "./SettingsModal";
 
 function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {

@@ -1,11 +1,9 @@
-import { FaWindowClose } from "react-icons/fa";
-
 function ViewTaskModal({closeModal}){
         return (
                 <div id="view-task-details-popup" className="task-details-popup">
                     <div className="task-details-popup">
                         <div className="task-details-content">
-                            <FaWindowClose className="fa-solid fa-xmark fa-2x close-details-popup" onClick={() => closeModal()} />
+                        <i class="fa-solid fa-xmark fa-2x close-details-popup" onClick={() => closeModal()} />
                             <label style={{textAlign: 'left'}}>Priority:</label>
                             <a href="#" className="btn btn-lite btn-blue">Low</a>
                             <h2>Task Details</h2>

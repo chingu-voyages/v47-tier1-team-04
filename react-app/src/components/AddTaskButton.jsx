@@ -13,7 +13,7 @@ function AddTaskButton() {
 
   return (
     <>
-      <div className="fa fa-plus add-icon" onClick={renderAddEditModal}>
+      <div className="add-icon" onClick={renderAddEditModal}>
         <FaPlus />
       </div>
       {showModal && <AddEditModal closeModal={closeModal} />}

@@ -1,7 +1,5 @@
 import ContentTask from "./ContentTask";
 import ellipse from "../../images/Ellipse8.svg";
-import { FaPlus } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
 
 function ContentCategory({ categoryTasks }) {
   return (
@@ -14,10 +12,9 @@ function ContentCategory({ categoryTasks }) {
       <div className="content-inner">
         <div className="content-task">
           <h3 className="activity">{categoryTasks[0].category}</h3>
-          <FaPencil />
-          <div className="add-task">
-            <FaPlus />
-          </div>
+    
+          <i class="fa-solid fa-plus add-task" />
+
         </div>
         {categoryTasks.map((task, index) => (
           <ContentTask key={index} task={task} />

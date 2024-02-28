@@ -1,13 +1,9 @@
-import { MdOutlineDarkMode } from "react-icons/md";
-import { FaBars } from "react-icons/fa";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-
 function NavBar({ toggleDarkMode, saveApp }) {
   return (
     <nav id="element-el" className="navbar">
       <div className="navbar">
         <div className="navbar-top">
-          <FaBars className="fa-solid fa-bars menu-btn fa-2x" id="menu-btn" />
+        <i class="fa-solid fa-bars menu-btn fa-2x" />
           <div id="date" className="date">
             Today: {new Date().toDateString()}
           </div>
@@ -18,7 +14,7 @@ function NavBar({ toggleDarkMode, saveApp }) {
               className="btn btn-mode-switch"
               onClick={() => toggleDarkMode()}
             >
-              <MdOutlineDarkMode />
+              <i class="fa-solid fa-circle-half-stroke" />
             </a>
             <a
               id="save-all"
@@ -85,7 +81,7 @@ function NavBar({ toggleDarkMode, saveApp }) {
                 id="search"
                 className="btn"
               />
-              <FaMagnifyingGlass className="fa-solid fa-magnifying-glass fa-lg search-icon" />
+              <i class="fa-solid fa-magnifying-glass fa-lg search-icon" />
             </div>
           </div>
         </div>

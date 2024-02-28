@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { FaWindowClose } from "react-icons/fa";
 
 const Settings = ({ closeModal, title, setTitle, avatar, setAvatar }) => {
   const [newTitle, setNewTitle] = useState(title);
+  console.log({title, setTitle, avatar, setAvatar})
   const [newAvatar, setNewAvatar] = useState(avatar);
   const changeTitle = () => {
     setTitle(newTitle);
@@ -21,12 +21,9 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar }) => {
             <h2>Settings</h2>
             <i
               className="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon"
-              id="close-settings-popup"
-            ></i>
-            <FaWindowClose
-              onClick={() => closeModal()}
-              className="fa-solid fa-xmark fa-2x close-details-popup"
+              id="close-settings-popup" onClick={() => closeModal()}
             />
+    
           </div>
           <div className="settings-group">
             <div className="settings">
