@@ -3,7 +3,7 @@ import settingsicon from '../images/solar_settings-linear.svg';
 import { useState } from "react";
 import Settings from './SettingsModal';
 
-function Aside () {
+function Aside ({groups, tasks}) {
     const [showModal, setShowModal] = useState(false);
 
     function gearIconClickHandler(){
@@ -26,10 +26,12 @@ function Aside () {
                 </div>
             </div>            
             <h2>Daily Tasks</h2>
-            <div id="daily-checklist"><div id="view_15">
-            <h3 id="sidebar_group_grop"><a href="#content_grop"> grop </a><i className="fa-solid fa-circle-chevron-down"></i></h3>
-            <ul id="sidebar_grop"><li id="view_16"><a href="#category_cat">cat</a></li></ul>
-        </div>
+            <div id="daily-checklist">
+                {
+                    groups.map(group => (
+                        <AsideGroup group = {group} tasks = {tasks}/>
+                    ))
+                }
         </div>
     </aside>
     {showModal && <Settings closeModal={closeModal} />}
@@ -37,4 +39,33 @@ function Aside () {
     )
 }
 
+
+const AsideGroup = ({group, tasks}) => {
+    const tasksWithSameGroup = 
+        tasks.filter(task => ( 
+            (task.group === group)
+        ))
+    const cateogryList = new Set(tasksWithSameGroup.map(task => task.category))
+return (
+    <div id="view_15">
+            <h3 id="sidebar_group_grop">
+                <a href="#content_grop"> {group} </a>
+                <i className="fa-solid fa-circle-chevron-down"></i>
+            </h3>
+            <AsideCategory categoryList={Array.from(cateogryList)}/>
+        </div>
+)
+}
+
+const AsideCategory = ({categoryList}) => {
+    return (
+        <ul id="sidebar_grop">
+        {
+            categoryList.map(category => (
+                <li id="view_16"><a href="#category_cat">{category}</a></li>    
+            ))
+        }
+        </ul>
+    )
+}
 export default Aside;
