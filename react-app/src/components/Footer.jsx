@@ -1,5 +1,6 @@
 import GitHubButton from "react-github-btn";
 import chinguLogo from "../images/chingo-logo.png";
+import { FaGithub } from "react-icons/fa";
 function Footer() {
   return (
     <footer id="element-el" className="footer">
@@ -13,7 +14,7 @@ function Footer() {
           target="_blank"
         >
           <p className="github-link">
-            <i className="fab fa-github fa-xl"></i> Team 04 Github ©{" "}
+          <FaGithub /> Team 04 Github ©{" "}
             {new Date().getFullYear()}
           </p>
         </a>

@@ -1,7 +1,6 @@
 import { FaWindowClose } from "react-icons/fa";
 
 const Settings = ({closeModal}) => {
-  {console.log('is it coming here:' + closeModal)}
   
   return (
     <div id="settings-popup">
@@ -9,7 +8,6 @@ const Settings = ({closeModal}) => {
     <div class="settings-content">
       <div class="settings-content-top">
           <h2>Settings</h2>
-          <i class="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon" id="close-settings-popup"></i>
           <FaWindowClose onClick={() => closeModal()} className="fa-solid fa-xmark fa-2x close-details-popup" />
 
       </div>
