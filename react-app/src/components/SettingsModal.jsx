@@ -1,56 +1,122 @@
+import { useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 
-const Settings = ({closeModal}) => {
-  
+const Settings = ({ closeModal, title, setTitle, avatar, setAvatar }) => {
+  const [newTitle, setNewTitle] = useState(title);
+  const [newAvatar, setNewAvatar] = useState(avatar);
+  const changeTitle = () => {
+    setTitle(newTitle);
+    closeModal();
+  };
+  const changeAvatar = async () => {
+    setAvatar(newAvatar);
+    closeModal();
+  };
+
   return (
     <div id="settings-popup">
-<div class="task-details-popup">
-    <div class="settings-content">
-      <div class="settings-content-top">
-          <h2>Settings</h2>
-          <FaWindowClose onClick={() => closeModal()} className="fa-solid fa-xmark fa-2x close-details-popup" />
+      <div className="task-details-popup">
+        <div className="settings-content">
+          <div className="settings-content-top">
+            <h2>Settings</h2>
+            <i
+              className="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon"
+              id="close-settings-popup"
+            ></i>
+            <FaWindowClose
+              onClick={() => closeModal()}
+              className="fa-solid fa-xmark fa-2x close-details-popup"
+            />
+          </div>
+          <div className="settings-group">
+            <div className="settings">
+              <div className="settings-changes">
+                <label htmlFor="newTitle">Change Title:</label>
+                <div className="settings-changes-inputs">
+                  <input
+                    id="newTitle"
+                    type="text"
+                    defaultValue={title}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                  />
+                  <input
+                    value="Submit"
+                    type="button"
+                    id="changeTitle"
+                    className="change-input-btn mr-l-10"
+                    onClick={() => changeTitle()}
+                  />
+                </div>
+              </div>
+            </div>
 
-      </div>
-      <div class="settings-group">
-      <div class="settings">
-        <div class="settings-changes">
-            <label for="newTitle">Change Title:</label>
-            <div class="settings-changes-inputs">
-              <input id="newTitle" type="text" value="Daily Tasks" />
-              <input value="Submit" type="button" id="changeTitle" class="change-input-btn mr-l-10" />
+            <div className="settings">
+              <div className="settings-changes">
+                <label htmlFor="avatarImg">
+                  Change Avatar (input Github Username):
+                </label>
+                <div className="settings-changes-inputs">
+                  <input
+                    defaultValue={avatar}
+                    id="avatar"
+                    type="text"
+                    onChange={(e) => setNewAvatar(e.target.value)}
+                  />
+                  <input
+                    value="Submit"
+                    type="button"
+                    id="changeAvatar"
+                    className="change-input-btn"
+                    onClick={() => changeAvatar()}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="settings">
+              <input
+                type="button"
+                id="reset-storage"
+                name="reset-storage"
+                value="Reset Local Storage"
+                className="btn btn-settings setting-active"
+              />
+            </div>
+
+            <div className="settings">
+              <input
+                type="button"
+                id="restore-archive"
+                name="restore-archive"
+                value="Restore Archive"
+                className="btn btn-settings setting-active"
+              />
+            </div>
+
+            <div className="settings">
+              <input
+                type="button"
+                id="reseed-data"
+                name="reseed-data"
+                value="Reseed Data"
+                className="btn btn-settings setting-active"
+              />
+            </div>
+
+            <div className="settings">
+              <input
+                type="button"
+                id="remove-tasks"
+                name="remove-tasks"
+                value="Remove Tasks"
+                className="btn btn-settings setting-active"
+              />
             </div>
           </div>
-        </div>
-
-        <div class="settings">
-          <div class="settings-changes">
-            <label for="avatarImg">Change Avatar (input Github Username):</label>
-            <div class="settings-changes-inputs">
-              <input value="undefined" id="avatar" type="text" /><input value="Submit" type="button" id="changeAvatar" class="change-input-btn" />
-            </div>
-          </div>
-        </div>
-
-        <div class="settings">
-          <input type="button" id="reset-storage" name="reset-storage" value="Reset Local Storage" class="btn btn-settings setting-active" />
-        </div>
-
-        <div class="settings">
-          <input type="button" id="restore-archive" name="restore-archive" value="Restore Archive" class="btn btn-settings setting-active" />
-        </div>
-
-        <div class="settings">
-          <input type="button" id="reseed-data" name="reseed-data" value="Reseed Data" class="btn btn-settings setting-active" />
-        </div>
-
-        <div class="settings">
-          <input type="button" id="remove-tasks" name="remove-tasks" value="Remove Tasks" class="btn btn-settings setting-active" />
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  )
-}
+  );
+};
 
 export default Settings;

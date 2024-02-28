@@ -7,13 +7,13 @@ import Footer from "./components/Footer";
 import AddTaskButton from "./components/AddTaskButton";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    { group: "", category: "", name: "" },
-  ]);
+  const [title, setTitle] = useState("Daily Checklist");
+  const [avatar, setAvatar] = useState('');
+  const [tasks, setTasks] = useState([{ group: "", category: "", name: "" }]);
   const [groups, setGroups] = useState([]);
   const [categories, setCategories] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
-
+  const state = { title, avatar, tasks, darkMode };
   const toggleDarkMode = () => {
     if (!darkMode) {
       document.body.classList.add("dark-mode");
@@ -46,6 +46,8 @@ const App = () => {
         const state = JSON.parse(storage);
         if (state.tasks) {
           setTasks(state.tasks);
+          setTitle(state.title);
+          setAvatar(state.avatar);
           updateGroups(state.tasks);
           updateCategories(state.tasks);
         }
@@ -63,8 +65,7 @@ const App = () => {
   };
 
   const saveData = () => {
-    alert("saved data");
-    localStorage.setItem("savedUserData", JSON.stringify({ tasks, darkMode }));
+    localStorage.setItem("savedUserData", JSON.stringify(state));
   };
 
   useEffect(() => {
@@ -73,7 +74,14 @@ const App = () => {
 
   return (
     <div className="container">
-      <Aside groups={groups} categories={categories} />
+      <Aside
+        title={title}
+        setTitle={setTitle}
+        groups={groups}
+        categories={categories}
+        avatar={avatar}
+        setAvatar={setAvatar}
+      />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />
