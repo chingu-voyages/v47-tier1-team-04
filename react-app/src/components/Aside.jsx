@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import defaultAvatar from "../images/Friendly Ones Avatar and Backdrop.png";
 import settingsicon from "../images/solar_settings-linear.svg";
-import { useEffect, useState } from "react";
+import { FaCircleChevronDown } from "react-icons/fa6";
 import Settings from "./SettingsModal";
 
 function Aside({ title, setTitle, avatar, setAvatar }) {
@@ -27,11 +28,7 @@ function Aside({ title, setTitle, avatar, setAvatar }) {
         <div className="avatar-area">
           <div className="avatar">
             <img
-              src={
-                avatar
-                  ? avatarUrl
-                  : defaultAvatar
-              }
+              src={avatar ? avatarUrl : defaultAvatar}
               alt="avatar pict"
               className="avatar-pict"
             />
@@ -50,7 +47,7 @@ function Aside({ title, setTitle, avatar, setAvatar }) {
           <div id="view_15">
             <h3 id="sidebar_group_grop">
               <a href="#content_grop"> grop </a>
-              <i className="fa-solid fa-circle-chevron-down"></i>
+              <FaCircleChevronDown />
             </h3>
             <ul id="sidebar_grop">
               <li id="view_16">

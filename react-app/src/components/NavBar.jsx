@@ -1,19 +1,31 @@
 import { MdOutlineDarkMode } from "react-icons/md";
+import { FaBars } from "react-icons/fa";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 function NavBar({ toggleDarkMode, saveApp }) {
   return (
     <nav id="element-el" className="navbar">
       <div className="navbar">
         <div className="navbar-top">
-          <i className="fa-solid fa-bars menu-btn fa-2x" id="menu-btn"></i>
+          <FaBars className="fa-solid fa-bars menu-btn fa-2x" id="menu-btn" />
           <div id="date" className="date">
             Today: {new Date().toDateString()}
           </div>
           <div className="btn-undo">
-            <a id="mode-switch" href="#" className="btn btn-mode-switch" onClick={() => toggleDarkMode()}>
+            <a
+              id="mode-switch"
+              href="#"
+              className="btn btn-mode-switch"
+              onClick={() => toggleDarkMode()}
+            >
               <MdOutlineDarkMode />
             </a>
-            <a id="save-all" href="#" className="btn btn-save" onClick={() => saveApp()}>
+            <a
+              id="save-all"
+              href="#"
+              className="btn btn-save"
+              onClick={() => saveApp()}
+            >
               Save
             </a>
           </div>
@@ -55,16 +67,27 @@ function NavBar({ toggleDarkMode, saveApp }) {
         </div>
 
         <div className="content-search">
-            <div className="priority">
-                <a id="priority_low" className="btn btn-lite btn-blue" href="#">Low</a>
-                <a id="priority_med" className="btn btn-lite btn-orange" href="#">Med</a>
-                <a id="priority_high" className="btn btn-lite btn-red" href="#">High</a>
-        
-                <div className="search">
-                    <input type="text" placeholder="Search by task name, category, group, etc..." id="search" className="btn" />
-                    <i className="fa-solid fa-magnifying-glass fa-lg search-icon"></i>
-                </div>
-            </div>               
+          <div className="priority">
+            <a id="priority_low" className="btn btn-lite btn-blue" href="#">
+              Low
+            </a>
+            <a id="priority_med" className="btn btn-lite btn-orange" href="#">
+              Med
+            </a>
+            <a id="priority_high" className="btn btn-lite btn-red" href="#">
+              High
+            </a>
+
+            <div className="search">
+              <input
+                type="text"
+                placeholder="Search by task name, category, group, etc..."
+                id="search"
+                className="btn"
+              />
+              <FaMagnifyingGlass className="fa-solid fa-magnifying-glass fa-lg search-icon" />
+            </div>
+          </div>
         </div>
       </div>
     </nav>
