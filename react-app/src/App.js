@@ -8,7 +8,7 @@ import AddTaskButton from "./components/AddTaskButton";
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    { group: "Ungrouped", category: "Uncategorized", name: "" },
+    { group: "", category: "", name: "" },
   ]);
   const [groups, setGroups] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -42,18 +42,23 @@ const App = () => {
   const loadData = async () => {
     if (localStorage && localStorage.savedUserData) {
       const storage = localStorage.getItem("savedUserData");
-      if (storage) {
+      if (JSON.parse(storage)) {
         const state = JSON.parse(storage);
-        setTasks(state.tasks);
+        if (state.tasks) {
+          setTasks(state.tasks);
+          updateGroups(state.tasks);
+          updateCategories(state.tasks);
+        }
         setDarkMode(state.darkMode);
-        updateGroups(state.tasks);
-        updateCategories(state.tasks);
+
         if (state.darkMode) document.body.classList.add("dark-mode");
       }
     }
-    const parsedStorage = JSON.parse(
-      localStorage.getItem("savedUserData")
-    ).tasks;
+
+    const parsedStorage = localStorage.savedUserData
+      ? JSON.parse(localStorage.getItem("savedUserData")).tasks
+      : null;
+
     parsedStorage ? setTasks(parsedStorage) : await seed();
   };
 
