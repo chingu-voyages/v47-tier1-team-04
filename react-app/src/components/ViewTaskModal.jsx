@@ -5,7 +5,6 @@ function ViewTaskModal({closeModal}){
                 <div id="view-task-details-popup" className="task-details-popup">
                     <div className="task-details-popup">
                         <div className="task-details-content">
-                            {/* <i className="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i> */}
                             <FaWindowClose className="fa-solid fa-xmark fa-2x close-details-popup" onClick={() => closeModal()} />
                             <label style={{textAlign: 'left'}}>Priority:</label>
                             <a href="#" className="btn btn-lite btn-blue">Low</a>
