@@ -73,7 +73,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <Aside groups={groups} categories={categories} />
+      <Aside groups={groups} tasks={tasks} />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />
