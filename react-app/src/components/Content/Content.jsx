@@ -5,7 +5,7 @@ function Content({ tasks }) {
     <div id="contentAnchor" className="content">
       {groups.map((group, index) => {
         const groupTasks = tasks.filter((task) => task.group === group);
-        return <ContentGroup key={index} tasks={groupTasks} />;
+        return <ContentGroup key={index} groupTasks={groupTasks} />;
       })}
     </div>
   );
