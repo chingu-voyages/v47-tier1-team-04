@@ -3,7 +3,7 @@ import ellipse from "../../images/Ellipse8.svg";
 import { FaPlus } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 
-function ContentCategory({ tasks }) {
+function ContentCategory({ categoryTasks }) {
   return (
     <div className="content-main">
       <img
@@ -13,13 +13,13 @@ function ContentCategory({ tasks }) {
       />
       <div className="content-inner">
         <div className="content-task">
-          <h3 className="activity">{tasks[0].category}</h3>
+          <h3 className="activity">{categoryTasks[0].category}</h3>
           <FaPencil />
           <div className="add-task">
             <FaPlus />
           </div>
         </div>
-        {tasks.map((task, index) => (
+        {categoryTasks.map((task, index) => (
           <ContentTask key={index} task={task} />
         ))}
       </div>
