@@ -74,14 +74,8 @@ const App = () => {
 
   return (
     <div className="container">
-      <Aside
-        title={title}
-        setTitle={setTitle}
-        groups={groups}
-        categories={categories}
-        avatar={avatar}
-        setAvatar={setAvatar}
-      />
+
+      <Aside groups={groups} tasks={tasks} />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />

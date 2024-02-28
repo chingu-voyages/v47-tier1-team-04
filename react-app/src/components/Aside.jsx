@@ -44,17 +44,11 @@ function Aside({ title, setTitle, avatar, setAvatar }) {
         </div>
         <h2>{title}</h2>
         <div id="daily-checklist">
-          <div id="view_15">
-            <h3 id="sidebar_group_grop">
-              <a href="#content_grop"> grop </a>
-              <FaCircleChevronDown />
-            </h3>
-            <ul id="sidebar_grop">
-              <li id="view_16">
-                <a href="#category_cat">cat</a>
-              </li>
-            </ul>
-          </div>
+          {
+                    groups.map(group => (
+                        <AsideGroup group = {group} tasks = {tasks}/>
+                    ))
+                }
         </div>
       </aside>
       {showModal && (
@@ -70,4 +64,33 @@ function Aside({ title, setTitle, avatar, setAvatar }) {
   );
 }
 
+
+const AsideGroup = ({group, tasks}) => {
+    const tasksWithSameGroup = 
+        tasks.filter(task => ( 
+            (task.group === group)
+        ))
+    const cateogryList = new Set(tasksWithSameGroup.map(task => task.category))
+return (
+    <div id="view_15">
+            <h3 id="sidebar_group_grop">
+                <a href="#content_grop"> {group} </a>
+                <i className="fa-solid fa-circle-chevron-down"></i>
+            </h3>
+            <AsideCategory categoryList={Array.from(cateogryList)}/>
+        </div>
+)
+}
+
+const AsideCategory = ({categoryList}) => {
+    return (
+        <ul id="sidebar_grop">
+        {
+            categoryList.map(category => (
+                <li id="view_16"><a href="#category_cat">{category}</a></li>    
+            ))
+        }
+        </ul>
+    )
+}
 export default Aside;
