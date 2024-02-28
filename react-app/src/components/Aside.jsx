@@ -4,7 +4,7 @@ import settingsicon from "../images/solar_settings-linear.svg";
 import { FaCircleChevronDown } from "react-icons/fa6";
 import Settings from "./SettingsModal";
 
-function Aside({ title, setTitle, avatar, setAvatar }) {
+function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
   const [showModal, setShowModal] = useState(false);
   const gearIconClickHandler = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -72,9 +72,9 @@ const AsideGroup = ({group, tasks}) => {
         ))
     const cateogryList = new Set(tasksWithSameGroup.map(task => task.category))
 return (
-    <div id="view_15">
-            <h3 id="sidebar_group_grop">
-                <a href="#content_grop"> {group} </a>
+    <div>
+            <h3>
+                <a href="#"> {group} </a>
                 <i className="fa-solid fa-circle-chevron-down"></i>
             </h3>
             <AsideCategory categoryList={Array.from(cateogryList)}/>
