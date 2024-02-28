@@ -1,13 +1,13 @@
 import ContentCategory from "./ContentCategory";
-function ContentGroup({ tasks }) {
-  const categories = [...new Set(tasks.map((task) => task.category))];
+function ContentGroup({ groupTasks }) {
+  const categories = [...new Set(groupTasks.map((task) => task.category))];
   return (
     <div className="content-activity">
       {categories.map((category, index) => {
-        const categoryTasks = tasks.filter(
+        const categoryTasks = groupTasks.filter(
           (task) => task.category === category
         );
-        return <ContentCategory key={index} tasks={categoryTasks} />;
+        return <ContentCategory key={index} categoryTasks={categoryTasks} />;
       })}
     </div>
   );
