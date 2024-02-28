@@ -1,12 +1,9 @@
-import { FaWindowClose } from "react-icons/fa";
-
 function AddEditModal({ closeModal}) {
   return (
     <div id="edit-task-details-popup" className="task-details-popup">
       <form className="task-details-popup" id="edit_details">
         <div className="task-details-content">
-        <FaWindowClose onClick={() => closeModal()} className="fa-solid fa-xmark fa-2x close-details-popup" />
-
+        <i onClick={() => closeModal()} className="fa-solid fa-xmark fa-2x close-details-popup" id="close-details-popup"></i>
           <h2>Add Task</h2>
           <div className="task-details-group">
             <div className="task-details">
