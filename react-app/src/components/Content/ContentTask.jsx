@@ -9,20 +9,18 @@ function ContentTask({ task }) {
       <p className="task-name">
         <FaSquare className="checkbox" /> {task.name}
       </p>
-      <div id="task_options_name" className="task-icons">
+      <div className="task-icons">
         <FaCircle className={`task-priority-${task.priority}`} />
         <FaCircleInfo size={28} className="detail" />
         <img
           src={pencil}
-          alt="edit pencil image"
+          alt="edit pencil"
           className="icon-update"
-          id="edit_name"
         />
         <img
           src={trash}
-          alt="delete trash can image"
+          alt="delete trash can"
           className="icon-edit"
-          id="task_remove_name"
         />
       </div>
     </div>
