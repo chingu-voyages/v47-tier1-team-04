@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./styles/css/main.css";
 import Aside from "./components/Aside";
 import NavBar from "./components/NavBar";
-import Content from "./components/Content";
+import Content from "./components/Content/Content";
 import Footer from "./components/Footer";
 import AddTaskButton from "./components/AddTaskButton";
 
