@@ -8,7 +8,6 @@ function Aside () {
 
     function gearIconClickHandler(){
         setShowModal(true);
-        console.log('something happened');
     }
 
     const closeModal = () => setShowModal(false);
