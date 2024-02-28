@@ -1,15 +1,29 @@
 import avatar from '../images/Friendly Ones Avatar and Backdrop.png';
 import settingsicon from '../images/solar_settings-linear.svg';
+import { useState } from "react";
+import Settings from './SettingsModal';
 
 function Aside () {
+    const [showModal, setShowModal] = useState(false);
+
+    function gearIconClickHandler(){
+        setShowModal(true);
+        console.log('something happened');
+    }
+
+    const closeModal = () => setShowModal(false);
+
     return (
+        <>
         <aside id="aside-el" className="aside">
             <div className="avatar-area">
                 <div className="avatar">
                 <img src={avatar} alt="avatar pict" className="avatar-pict" />
                 </div>
                 <div className="gear-icon">
-                <img src={settingsicon} alt="gear icon" id="settings-icon" />
+                <img src={settingsicon} alt="gear icon" id="settings-icon" onClick={gearIconClickHandler}/>
+                
+
                 </div>
             </div>            
             <h2>Daily Tasks</h2>
@@ -19,6 +33,8 @@ function Aside () {
         </div>
         </div>
     </aside>
+    {showModal && <Settings closeModal={closeModal} />}
+    </>
     )
 }
 
