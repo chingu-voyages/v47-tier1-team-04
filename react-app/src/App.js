@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./styles/css/main.css";
 import Aside from "./components/Aside";
 import NavBar from "./components/NavBar";
 import Content from "./components/Content/Content";
@@ -11,7 +10,6 @@ const App = () => {
   const [avatar, setAvatar] = useState('');
   const [tasks, setTasks] = useState([{ group: "", category: "", name: "" }]);
   const [groups, setGroups] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const state = { title, avatar, tasks, darkMode };
   const toggleDarkMode = () => {
@@ -27,16 +25,11 @@ const App = () => {
     setGroups([...new Set(tasks.map((task) => task.group))]);
   };
 
-  const updateCategories = (tasks) => {
-    setCategories([...new Set(tasks.map((task) => task.category))]);
-  };
-
   const seed = async () => {
     const response = await fetch("./assets/data/data.model.json");
     const data = await response.json();
     setTasks(data);
     updateGroups(data);
-    updateCategories(data);
   };
 
   const loadData = async () => {
@@ -49,7 +42,6 @@ const App = () => {
           setTitle(state.title);
           setAvatar(state.avatar);
           updateGroups(state.tasks);
-          updateCategories(state.tasks);
         }
         setDarkMode(state.darkMode);
 
@@ -75,7 +67,7 @@ const App = () => {
   return (
     <div className="container">
 
-      <Aside groups={groups} tasks={tasks} />
+      <Aside groups={groups} tasks={tasks} title={title} setTitle={setTitle} avatar={avatar} setAvatar={setAvatar} />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />
