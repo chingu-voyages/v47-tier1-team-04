@@ -17,13 +17,13 @@ class App extends Component {
     };
   }
   toggleDarkMode = () => {
-    console.log(this.state);
-    this.setState({ darkMode: !this.state.darkMode });
-    if (this.state.darkMode) {
+    
+    if (!this.state.darkMode) {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
+    this.setState({ darkMode: !this.state.darkMode });
   };
   setGroups = (tasks) =>
     this.setState({
@@ -40,20 +40,30 @@ class App extends Component {
     this.setGroups(data);
     this.setCategories(data);
   }
-  async loadData() {
+  loadData = async () => {
     let storage, parsedStorage, state; // Defining some temp variables
-    if (localStorage) {
+    if (localStorage && localStorage.savedUserData) {
       storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
-      if (storage && JSON.parse(storage).state && JSON.parse(storage).state) {
-        state = JSON.parse(storage).state;
-        this.state = state; // If we have state, we set it to the app state
+      if (storage && JSON.parse(storage)) {
+        state = JSON.parse(storage);
+        console.log(this.state)
+        this.setState({tasks: state.tasks, darkMode: state.darkMode})
+        this.setGroups(state.tasks);
+        this.setCategories(state.tasks);
+        if (state.darkMode) document.body.classList.add("dark-mode");
+        console.log(this.state)
       }
       if (this.state.darkMode) document.body.classList.add("dark-mode");
     }
     if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
     // This is a ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
     parsedStorage ? this.setState({ tasks: parsedStorage }) : await this.seed();
-  }
+  };
+  saveData = () => {
+    alert('saved data')
+    localStorage.setItem("savedUserData", JSON.stringify(this.state)); // Storing the entire app, including any user settings
+    console.log(this.state)
+  };
   componentDidMount() {
     this.loadData();
   }
@@ -61,7 +71,7 @@ class App extends Component {
     return (
       <div className="container">
         <Aside groups={this.state.groups} />
-        <NavBar toggleDarkMode={this.toggleDarkMode} />
+        <NavBar toggleDarkMode={this.toggleDarkMode} saveApp={this.saveData} />
         <Content tasks={this.state.tasks} />
         <Footer />
         <AddTaskButton />
