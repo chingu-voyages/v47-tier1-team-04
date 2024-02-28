@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import "./styles/css/main.css";
 import Aside from "./components/Aside";
 import NavBar from "./components/NavBar";
@@ -6,78 +6,75 @@ import Content from "./components/Content";
 import Footer from "./components/Footer";
 import AddTaskButton from "./components/AddTaskButton";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [{ group: "Ungrouped", category: "Uncategorized", name: "" }],
-      groups: [],
-      categories: [],
-      darkMode: false,
-    };
-  }
-  toggleDarkMode = () => {
-    
-    if (!this.state.darkMode) {
+const App = () => {
+  const [tasks, setTasks] = useState([
+    { group: "Ungrouped", category: "Uncategorized", name: "" },
+  ]);
+  const [groups, setGroups] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    if (!darkMode) {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
-    this.setState({ darkMode: !this.state.darkMode });
+    setDarkMode(!darkMode);
   };
-  setGroups = (tasks) =>
-    this.setState({
-      groups: [...new Set(tasks.map((task) => task.group))],
-    });
-  setCategories = (tasks) =>
-    this.setState({
-      categories: [...new Set(tasks.map((task) => task.category))],
-    });
-  async seed() {
+
+  const updateGroups = (tasks) => {
+    setGroups([...new Set(tasks.map((task) => task.group))]);
+  };
+
+  const updateCategories = (tasks) => {
+    setCategories([...new Set(tasks.map((task) => task.category))]);
+  };
+
+  const seed = async () => {
     const response = await fetch("./assets/data/data.model.json");
     const data = await response.json();
-    this.setState({ tasks: data });
-    this.setGroups(data);
-    this.setCategories(data);
-  }
-  loadData = async () => {
-    let storage, parsedStorage, state; // Defining some temp variables
+    setTasks(data);
+    updateGroups(data);
+    updateCategories(data);
+  };
+
+  const loadData = async () => {
     if (localStorage && localStorage.savedUserData) {
-      storage = localStorage.getItem("savedUserData"); // Checks if we have local storage and gets it if we do
-      if (storage && JSON.parse(storage)) {
-        state = JSON.parse(storage);
-        console.log(this.state)
-        this.setState({tasks: state.tasks, darkMode: state.darkMode})
-        this.setGroups(state.tasks);
-        this.setCategories(state.tasks);
+      const storage = localStorage.getItem("savedUserData");
+      if (storage) {
+        const state = JSON.parse(storage);
+        setTasks(state.tasks);
+        setDarkMode(state.darkMode);
+        updateGroups(state.tasks);
+        updateCategories(state.tasks);
         if (state.darkMode) document.body.classList.add("dark-mode");
-        console.log(this.state)
       }
-      if (this.state.darkMode) document.body.classList.add("dark-mode");
     }
-    if (storage) parsedStorage = JSON.parse(storage).tasks; // Getting the saved data from local storage
-    // This is a ternary statement that maps over storage and creates a new task or calls this.seed if there is no local data stored
-    parsedStorage ? this.setState({ tasks: parsedStorage }) : await this.seed();
+    const parsedStorage = JSON.parse(
+      localStorage.getItem("savedUserData")
+    ).tasks;
+    parsedStorage ? setTasks(parsedStorage) : await seed();
   };
-  saveData = () => {
-    alert('saved data')
-    localStorage.setItem("savedUserData", JSON.stringify(this.state)); // Storing the entire app, including any user settings
-    console.log(this.state)
+
+  const saveData = () => {
+    alert("saved data");
+    localStorage.setItem("savedUserData", JSON.stringify({ tasks, darkMode }));
   };
-  componentDidMount() {
-    this.loadData();
-  }
-  render() {
-    return (
-      <div className="container">
-        <Aside groups={this.state.groups} />
-        <NavBar toggleDarkMode={this.toggleDarkMode} saveApp={this.saveData} />
-        <Content tasks={this.state.tasks} />
-        <Footer />
-        <AddTaskButton />
-      </div>
-    );
-  }
-}
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  return (
+    <div className="container">
+      <Aside groups={groups} categories={categories} />
+      <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
+      <Content tasks={tasks} />
+      <Footer />
+      <AddTaskButton />
+    </div>
+  );
+};
 
 export default App;
