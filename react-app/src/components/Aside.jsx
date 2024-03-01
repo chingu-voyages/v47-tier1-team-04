@@ -23,7 +23,7 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
   });
   return (
     <>
-      <aside id="aside-el" className="aside">
+      <aside className="aside">
         <div className="avatar-area">
           <div className="avatar">
             <img
@@ -36,18 +36,15 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
             <img
               src={settingsicon}
               alt="gear icon"
-              id="settings-icon"
               onClick={gearIconClickHandler}
             />
           </div>
         </div>
         <h2>{title}</h2>
-        <div id="daily-checklist">
-          {
-                    groups.map(group => (
-                        <AsideGroup group = {group} tasks = {tasks}/>
-                    ))
-                }
+        <div>
+          {groups.map((group) => (
+            <AsideGroup group={group} tasks={tasks} />
+          ))}
         </div>
       </aside>
       {showModal && (
@@ -63,33 +60,29 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
   );
 }
 
-
-const AsideGroup = ({group, tasks}) => {
-    const tasksWithSameGroup = 
-        tasks.filter(task => ( 
-            (task.group === group)
-        ))
-    const cateogryList = new Set(tasksWithSameGroup.map(task => task.category))
-return (
+const AsideGroup = ({ group, tasks }) => {
+  const tasksWithSameGroup = tasks.filter((task) => task.group === group);
+  const cateogryList = new Set(tasksWithSameGroup.map((task) => task.category));
+  return (
     <div>
-            <h3>
-                <a href="#"> {group} </a>
-                <i className="fa-solid fa-circle-chevron-down"></i>
-            </h3>
-            <AsideCategory categoryList={Array.from(cateogryList)}/>
-        </div>
-)
-}
+      <h3>
+        <a href="#"> {group} </a>
+        <i className="fa-solid fa-circle-chevron-down"></i>
+      </h3>
+      <AsideCategory categoryList={Array.from(cateogryList)} />
+    </div>
+  );
+};
 
-const AsideCategory = ({categoryList}) => {
-    return (
-        <ul id="sidebar_grop">
-        {
-            categoryList.map(category => (
-                <li id="view_16"><a href="#category_cat">{category}</a></li>    
-            ))
-        }
-        </ul>
-    )
-}
+const AsideCategory = ({ categoryList }) => {
+  return (
+    <ul id="sidebar_grop">
+      {categoryList.map((category) => (
+        <li id="view_16">
+          <a href={`category_${category}`}>{category}</a>
+        </li>
+      ))}
+    </ul>
+  );
+};
 export default Aside;
