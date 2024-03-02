@@ -15,9 +15,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-* {
   transition: all 0.25s;
   scroll-behavior: smooth;
 }
@@ -440,6 +437,11 @@ footer {
   align-items: center;
 }
 
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
 #searchInput {
   padding: 8px;
   border: 1px solid var(border-color-lite);
@@ -458,11 +460,6 @@ footer {
 
 #searchButton:hover {
   background-color: #45a049;
-}
-
-.search-container {
-  position: relative;
-  display: inline-block;
 }
 
 #searchInput {
