@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import formatString from "../utils/formatString";
-import defaultAvatar from "../images/Friendly Ones Avatar and Backdrop.png";
-import settingsicon from "../images/solar_settings-linear.svg";
-import Settings from "./SettingsModal";
+import formatString from "../../utils/formatString";
+import defaultAvatar from "../../images/Friendly Ones Avatar and Backdrop.png";
+import settingsicon from "../../images/solar_settings-linear.svg";
+import Settings from "../Modals/SettingsModal/SettingsModal";
 import "./Aside.styles.css";
 
 function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {

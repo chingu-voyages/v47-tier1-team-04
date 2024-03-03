@@ -1,5 +1,5 @@
 import GitHubButton from "react-github-btn";
-import chinguLogo from "../images/chingo-logo.png";
+import chinguLogo from "../../images/chingo-logo.png";
 
 function Footer() {
   return (
