@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import defaultAvatar from "../images/Friendly Ones Avatar and Backdrop.png";
 import settingsicon from "../images/solar_settings-linear.svg";
 import Settings from "./SettingsModal";
+import "./Aside.styles.css";
 
 function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
   const [showModal, setShowModal] = useState(false);
@@ -61,24 +62,31 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
 }
 
 const AsideGroup = ({ group, tasks }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   const tasksWithSameGroup = tasks.filter((task) => task.group === group);
-  const cateogryList = new Set(tasksWithSameGroup.map((task) => task.category));
+  const categoryList = Array.from(new Set(tasksWithSameGroup.map((task) => task.category)));
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <div>
-      <h3>
+      <h3 onClick={toggleCollapse}>
         <a href="#"> {group} </a>
-        <i className="fa-solid fa-circle-chevron-down"></i>
+        <i className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
       </h3>
-      <AsideCategory categoryList={Array.from(cateogryList)} />
+      <AsideCategory categoryList={categoryList} isCollapsed={isCollapsed} />
     </div>
   );
 };
 
-const AsideCategory = ({ categoryList }) => {
+const AsideCategory = ({ categoryList, isCollapsed }) => {
   return (
-    <ul id="sidebar_grop">
+    <ul className={isCollapsed ? 'collapsed' : null}>
       {categoryList.map((category) => (
-        <li id="view_16">
+        <li>
           <a href={`category_${category}`}>{category}</a>
         </li>
       ))}
