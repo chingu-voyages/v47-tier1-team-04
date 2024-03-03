@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import formatString from "../utils/formatString";
 import defaultAvatar from "../images/Friendly Ones Avatar and Backdrop.png";
 import settingsicon from "../images/solar_settings-linear.svg";
 import Settings from "./SettingsModal";
@@ -73,9 +74,9 @@ const AsideGroup = ({ group, tasks }) => {
 
   return (
     <div>
-      <h3 onClick={toggleCollapse}>
-        <a href="#"> {group} </a>
-        <i className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
+      <h3 >
+        <a href={`#group_${formatString(group)}`}> {group} </a>
+        <i onClick={toggleCollapse} className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
       </h3>
       <AsideCategory categoryList={categoryList} isCollapsed={isCollapsed} />
     </div>
@@ -87,7 +88,7 @@ const AsideCategory = ({ categoryList, isCollapsed }) => {
     <ul className={isCollapsed ? 'collapsed' : null}>
       {categoryList.map((category) => (
         <li>
-          <a href={`category_${category}`}>{category}</a>
+          <a href={`#category_${formatString(category)}`}>{category}</a>
         </li>
       ))}
     </ul>
