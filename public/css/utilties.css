@@ -1,0 +1,61 @@
+/* utilities */
+.mr-l-10 {
+    margin-left: 10px;
+  }
+  
+  i {
+    cursor: pointer;
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .item-center {
+    margin: 0 auto;
+  }
+  
+  .darken {
+    opacity: 0.5;
+  }
+  
+  .complete {
+    color: red;
+    text-decoration: line-through;
+  }
+  
+  .hidden {
+    display: none;
+    display: absolute;
+    top: 0;
+    left: 1000;
+  }
+  
+  li {
+    list-style: none;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--text-color-light)
+  }
+  .dark-mode a {
+    color: var(--text-color-dark);
+  }
+  
+  a:hover {
+      text-decoration: underline;
+  }
+  
+  
+  h2 {
+    margin-top: 10px;
+  }
+  
+  .right {
+    align-self: right;
+  }
