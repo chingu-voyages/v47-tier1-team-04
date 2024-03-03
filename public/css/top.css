@@ -15,9 +15,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-* {
   transition: all 0.25s;
   scroll-behavior: smooth;
 }
@@ -440,6 +437,11 @@ footer {
   align-items: center;
 }
 
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
 #searchInput {
   padding: 8px;
   border: 1px solid var(border-color-lite);
@@ -460,11 +462,6 @@ footer {
   background-color: #45a049;
 }
 
-.search-container {
-  position: relative;
-  display: inline-block;
-}
-
 #searchInput {
   padding-right: 30px;
 }
@@ -478,68 +475,6 @@ footer {
   border: none;
   cursor: pointer;
   color: black;
-}
-
-/* utilities */
-.mr-l-10 {
-  margin-left: 10px;
-}
-
-i {
-  cursor: pointer;
-}
-.block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.item-center {
-  margin: 0 auto;
-}
-
-.darken {
-  opacity: 0.5;
-}
-
-.complete {
-  color: red;
-  text-decoration: line-through;
-}
-
-.hidden {
-  display: none;
-  display: absolute;
-  top: 0;
-  left: 1000;
-}
-
-li {
-  list-style: none;
-  font-size: 20px;
-  font-weight: 400;
-  padding: 10px;
-}
-
-a {
-  text-decoration: none;
-  color: var(--text-color-light)
-}
-.dark-mode a {
-  color: var(--text-color-dark);
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-
-h2 {
-  margin-top: 10px;
-}
-
-.right {
-  align-self: right;
 }
 
 /* buttons */
@@ -945,25 +880,4 @@ h2 {
 
 .chingu-logo {
   height: 40px;
-}
-
-/* mobile styles */
-@media only screen and (min-width: 767px) {
-  .darken {
-    pointer-events: none;
-  }  
-}
-
-@media(max-width: 468px) {
-  .footer {
-    right: 0;
-    width: 100%;
-    border-radius: 10px;
-    margin-left: 0;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-  }
-
 }

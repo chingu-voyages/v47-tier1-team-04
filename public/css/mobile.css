@@ -1,0 +1,258 @@
+/* *************************************************************** */
+/* Tablet Styles - From 469px to 768px */
+/* *************************************************************** */
+@media (max-width: 768px) {
+    .darken {
+        pointer-events: none;
+    } 
+    .task-details-content {
+        height: 100vh;
+        overflow: scroll;
+    }
+    .dark-mode aside {
+          display: none;
+    }
+    .ellipse {
+      display: none;
+    }  
+    .aside {
+      display: none;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      height: auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1000;
+      transform: translate(0, 0);
+    }  
+    .dark-mode .aside {
+      background: linear-gradient(90deg, #2c153b, #312c30f2, #00000000);
+    }  
+    .menu-btn {
+      display: inline-block;
+      position: fixed;
+      top: 10px;
+      left: 25px;
+      z-index: 2000;
+    }  
+    .nav,
+    .content,
+    .footer {
+      border-radius: 0;
+    }  
+    .container {
+      grid-template-areas:
+        "nav nav"
+        "content content"
+        "content content"
+        "footer footer";
+      grid-template-columns: 100%;
+      grid-template-rows: auto;
+      gap: 0;
+      margin: 0 auto;
+    }  
+    .date {
+      font-size: 18px;
+      font-weight: 500;
+    }  
+    .navbtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }  
+    .btn-day,
+    .btn-month,
+    .btn-year {
+      font-weight: 400;
+      width: 120px;
+      height: 30px;
+      padding-top: 5px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }  
+    .navbar-top {
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }  
+    .date {
+      font-size: 25px;
+      margin-left: 5px;
+    }  
+    .btn-save,
+    .btn-mode-switch {
+      width: 55px;
+      height: 30px;
+      padding: 2px;
+      font-size: 18px;
+    }  
+    .navbtn {
+      gap: 30px;
+    }  
+    .undo {
+      justify-content: center;
+      margin-right: 5px;
+    }
+    .category-name, .group-name {
+      margin-left: 30px;
+    }
+}
+  
+  /* *************************************************************** */
+  /* Mobile Styles -from 0 to 468px*/
+  /* *************************************************************** */
+@media (max-width: 468px) and (max-height: 914px),
+    (max-width: 914px) and (max-height: 468px) {
+    .container {
+      grid-template-areas:
+        "nav"
+        "content"
+        "content"
+        "footer";
+      grid-template-columns: 100%;
+      grid-template-rows: auto;
+      gap: 0;
+      margin: 0 auto;
+    }
+
+    /* Popup mobile */
+    .task-details-popup {
+        max-width: 400px;
+        flex-direction: column;
+        overflow: auto;
+        height: 100%;
+    }  
+    .content-search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }  
+    .search input {
+      width: 200px;
+      height: 2.1rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      padding: 5px;
+    }  
+    .content-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px;
+      height: auto;
+      border: rgba(0, 0, 0, 0.54);
+      border-radius: 1px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.54);
+      margin-left: 10px;
+      margin-right: 10px;
+    }  
+    .content-task {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      font-size: 1rem;
+    }  
+    .content-task h3 {
+      margin-top: 5px;
+      /* margin-right auto pushes the "+" icon all the way to the right */
+      margin-right: auto;
+    }  
+    .content-description {
+      margin-top: 5px;
+    }  
+    .task-name {
+      font-size: 1rem;
+    }  
+    .btn-lite {
+      width: 60px;
+      height: 2rem;
+      font-size: 1rem;
+    }  
+    .aside {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 10px;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1000;
+      overflow-y: auto;
+      transform: translate(0, 0);
+    }  
+    .menu-btn {
+      display: fixed;
+      top: 15px;
+      left: 25px;
+      z-index: 2000;
+    }  
+    .show-aside {
+      display: block;
+    }  
+    nav,
+    aside,
+    content,
+    footer {
+      border: none;
+      border-radius: 0;
+    }  
+    .btn-day,
+    .btn-month,
+    .btn-year {
+      font-weight: 400;
+      width: 120px;
+      height: 30px;
+      padding-top: 5px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }  
+    .navbar-top {
+      justify-content: space-between;
+      margin-left: 80px;
+    }  
+    .date {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 5px;
+    }  
+    .btn-save,
+    .btn-mode-switch {
+      width: 55px;
+      height: 30px;
+      font-size: 18px;
+    }  
+    .navbtn {
+      gap: 30px;
+    }  
+    .undo {
+      justify-content: center;
+      margin-right: 5px;
+    }  
+    .category-name, .group-name {
+      margin-left: 10px;
+      margin-top: 30px;
+    }  
+    .task-details-content {
+      font-size: 1rem;
+      margin-top: 60px;
+    }  
+    .day-checkboxes {
+      flex-wrap: wrap;
+    }  
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+    .footer {
+        right: 0;
+        width: 100%;
+        border-radius: 10px;
+        margin-left: 0;
+    }    
+    .footer-bottom {
+        flex-direction: column;
+    }
+}

@@ -28,6 +28,7 @@ const renderTaskDetailsPopup = (oldTask) => {
     scheduledTime,
   } = task;
   app.view.appViewController.removePopup();
+
   const detailsPopup = app.view.createElement(
     "div",
     `<form class="task-details-popup" id="edit_details">
@@ -140,6 +141,7 @@ const renderTaskDetailsPopup = (oldTask) => {
     "edit-task-details-popup",
     "task-details-popup"
   ).container;
+
   const updateDetailsButton = document.getElementById("save-task-details");
   updateDetailsButton.onclick = () => {
     const formInputs = Array.from(
