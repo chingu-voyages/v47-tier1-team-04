@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import Aside from "./components/Aside";
 import NavBar from "./components/NavBar";
 import Content from "./components/Content/Content";
@@ -7,7 +8,7 @@ import AddTaskButton from "./components/AddTaskButton";
 
 const App = () => {
   const [title, setTitle] = useState("Daily Checklist");
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState("");
   const [tasks, setTasks] = useState([{ group: "", category: "", name: "" }]);
   const [groups, setGroups] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
@@ -66,8 +67,35 @@ const App = () => {
 
   return (
     <div className="container">
-
-      <Aside groups={groups} tasks={tasks} title={title} setTitle={setTitle} avatar={avatar} setAvatar={setAvatar} />
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="description" content="V47 Chingu Voyage" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="keywords"
+          content="HTML, CSS, JavaScript, chingu, git, github, calendar, to-do app, task tracker"
+        />
+        <meta
+          name="author"
+          content="V47 Chingu Voyage Team 4 - Amanda Libbey, Emmett Pennington, Jayanti Neu, Mikey Nichols, Stacy Riley, Tasneem Wakil"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+        <title>{title}</title>
+      </Helmet>
+      <Aside
+        groups={groups}
+        tasks={tasks}
+        title={title}
+        setTitle={setTitle}
+        avatar={avatar}
+        setAvatar={setAvatar}
+      />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />
