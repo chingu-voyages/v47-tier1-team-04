@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import Aside from "./components/Aside";
-import NavBar from "./components/NavBar";
+import Aside from "./components/Aside/Aside";
+import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/Content/Content";
-import Footer from "./components/Footer";
-import AddTaskButton from "./components/AddTaskButton";
+import Footer from "./components/Footer/Footer";
+import AddTaskButton from "./components/Buttons/AddTaskButton";
 
 const App = () => {
   const [title, setTitle] = useState("Daily Checklist");

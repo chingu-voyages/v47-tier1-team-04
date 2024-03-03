@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import AddEditModal from "./AddEditTaskModal";
+import AddEditModal from "../AddTaskModal/AddEditTaskModal";
 
 function AddTaskButton() {
   const [showModal, setShowModal] = useState(false);
