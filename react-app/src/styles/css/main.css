@@ -349,7 +349,6 @@ i#close-settings-popup,
   }
 
   .aside {
-    display: none;
     position: fixed;
     top: 10px;
     left: 10px;
@@ -363,7 +362,7 @@ i#close-settings-popup,
     background: linear-gradient(90deg, #2c153b, #312c30f2, #00000000);
   }
 
-  .menu-btn {
+  i.menu-btn {
     display: inline-block;
     position: fixed;
     top: 10px;
@@ -528,7 +527,7 @@ i#close-settings-popup,
     transform: translate(0, 0);
   }
 
-  .menu-btn {
+  i.menu-btn {
     display: fixed;
     top: 15px;
     left: 25px;
@@ -627,11 +626,6 @@ i#close-settings-popup,
 .dark-mode div.content-inner {
   background: #9746c93b;
   color: #eee;
-}
-@media screen and (max-width: 768px) {
-  .dark-mode aside {
-    display: none;
-  }
 }
 
 .dark-mode .date {
