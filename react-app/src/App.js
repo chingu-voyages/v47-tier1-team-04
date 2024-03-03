@@ -77,7 +77,7 @@ const App = () => {
         />
         <meta
           name="author"
-          content="Amanda Libbey, Jayanti Neu, Stacy Riley, Tasneem Wakil, Mikey Nichols, Emmett Pennington"
+          content="Amanda Libbey, Emmett Pennington, Jayanti Neu, Mikey Nichols, Stacy Riley, Tasneem Wakil, V47 Chingu Voyage Team 4"
         />
         <meta name="robots" content="index, follow" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
