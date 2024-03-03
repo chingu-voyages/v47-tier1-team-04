@@ -1,10 +1,11 @@
 import ContentTask from "./ContentTask";
 import ellipse from "../../images/Ellipse8.svg";
+import formatString from "../../utils/formatString";
 
 function ContentCategory({ categoryTasks }) {
   const categoryTask = categoryTasks[0];
   return (
-    <div className="content-main" id={`category_${categoryTask.category}`}>
+    <div className="content-main" id={`category_${formatString(categoryTask.category)}`}>
       <img
         src={ellipse}
         alt="ellipse checkbox"
