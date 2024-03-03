@@ -74,9 +74,9 @@ const AsideGroup = ({ group, tasks }) => {
 
   return (
     <div>
-      <h3 onClick={toggleCollapse}>
-        <a href="#"> {group} </a>
-        <i className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
+      <h3 >
+        <a href={`#group_${formatString(group)}`}> {group} </a>
+        <i onClick={toggleCollapse} className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
       </h3>
       <AsideCategory categoryList={categoryList} isCollapsed={isCollapsed} />
     </div>
