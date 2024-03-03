@@ -1,9 +1,13 @@
-function NavBar({ toggleDarkMode, saveApp }) {
+function NavBar({ toggleDarkMode, saveApp}) {
+  const toggleAside = () => {
+    document.querySelector('aside').classList.toggle('collapsed');
+  }
+    
   return (
     <nav id="element-el" className="navbar">
       <div className="navbar">
         <div className="navbar-top">
-        <i class="fa-solid fa-bars menu-btn fa-2x" />
+        <i class="fa-solid fa-bars menu-btn fa-2x" onClick={() => toggleAside()}/>
           <div id="date" className="date">
             Today: {new Date().toDateString()}
           </div>
