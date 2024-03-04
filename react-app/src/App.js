@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import Task from './utils/task';
 import Aside from "./components/Aside/Aside";
 import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/Content/Content";
@@ -30,7 +31,8 @@ const App = () => {
   const seed = async () => {
     const response = await fetch("./assets/data/data.model.json");
     const data = await response.json();
-    setTasks(data);
+    const tasks = data.map((task) => new Task(task));
+    setTasks(tasks);
     updateGroups(data);
   };
 
@@ -40,7 +42,8 @@ const App = () => {
       if (JSON.parse(storage)) {
         const state = JSON.parse(storage);
         if (state.tasks) {
-          setTasks(state.tasks);
+          const tasks = state.tasks.map((task) => new Task(task));
+          setTasks(tasks);
           setTitle(state.title);
           setAvatar(state.avatar);
           updateGroups(state.tasks);
@@ -63,7 +66,7 @@ const App = () => {
   };
 
   const addTask = (task) => {
-    const updatedTasks = [...tasks, task];
+    const updatedTasks = [...tasks, new Task(task)];
     setTasks(updatedTasks);
     updateGroups(updatedTasks);
   };
@@ -74,6 +77,8 @@ const App = () => {
     setArchive([...archive, task]);
     updateGroups(updatedTasks);
   };
+
+  const updateTask = (oldTask, newTask) => oldTask.update(newTask);
 
   useEffect(() => {
     loadData();
@@ -116,7 +121,7 @@ const App = () => {
         setAvatar={setAvatar}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
-      <Content tasks={tasks} archiveTask={archiveTask} />
+      <Content tasks={tasks} archiveTask={archiveTask} updateTask={updateTask}/>
       <Footer />
       <AddTaskButton tasks={tasks} addTask={addTask} />
     </div>
