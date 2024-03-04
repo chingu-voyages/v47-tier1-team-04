@@ -1,4 +1,3 @@
-
 // Object constructor to create new tasks:
 export default class Task {
   constructor({
@@ -23,7 +22,6 @@ export default class Task {
     this.scheduledTime = scheduledTime;
     this.priority = priority || "3"; // 1=high, 2=medium, 3=low
     this.complete = complete; // Brings in any completed data from localStorage or seed data
-    app.tasks.push(this); // This line pushes our task to our task array, model keeps track of these tasks
   }
 
   // Function to update existing tasks:
@@ -52,31 +50,19 @@ export default class Task {
     return this;
   }
 
-  // Archive the task:
-  archive() {
-    app.tasks = app.tasks.filter((task) => task !== this);
-    app.archive.push(this);
-    // to disable auto-save after archive (delete) comment next line
-    app.controller.saveData(false);
-  }
-
   // Toggle the complete status of the task:
   toggleComplete() {
     this.complete = !this.complete;
-    // to disable auto-save after toggle complete comment next line
-    app.controller.saveData(false);
   }
 
   // Set the task as complete:
   setComplete() {
     this.complete = true;
-    app.controller.saveData(false);
   }
 
   // Set the task as incomplete:
   setIncomplete() {
     this.complete = false;
-    app.controller.saveData(false);
   }
 
   // Cycle through the priority levels of the task:
