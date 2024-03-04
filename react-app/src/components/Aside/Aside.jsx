@@ -85,7 +85,7 @@ const AsideGroup = ({ group, tasks }) => {
 
 const AsideCategory = ({ categoryList, isCollapsed }) => {
   return (
-    <ul className={isCollapsed ? 'collapsed' : null}>
+    <ul className={isCollapsed ? 'hide' : null}>
       {categoryList.map((category) => (
         <li>
           <a href={`#category_${formatString(category)}`}>{category}</a>
