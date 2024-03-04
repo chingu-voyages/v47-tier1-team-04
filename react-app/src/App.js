@@ -10,6 +10,7 @@ const App = () => {
   const [title, setTitle] = useState("Daily Checklist");
   const [avatar, setAvatar] = useState("");
   const [tasks, setTasks] = useState([{ group: "", category: "", name: "" }]);
+  const [archive, setArchive] = useState([]);
   const [groups, setGroups] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const state = { title, avatar, tasks, darkMode };
@@ -67,6 +68,13 @@ const App = () => {
     updateGroups(updatedTasks);
   };
 
+  const archiveTask = (task) => {
+    const updatedTasks = tasks.filter((t) => t.name !== task.name);
+    setTasks(updatedTasks);
+    setArchive([...archive, task]);
+    updateGroups(updatedTasks);
+  };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -103,7 +111,7 @@ const App = () => {
         setAvatar={setAvatar}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
-      <Content tasks={tasks} />
+      <Content tasks={tasks} archiveTask={archiveTask}/>
       <Footer />
       <AddTaskButton tasks={tasks} addTask={addTask} />
     </div>
