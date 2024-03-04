@@ -9,7 +9,7 @@ import AddTaskButton from "./components/Buttons/AddTaskButton";
 const App = () => {
   const [title, setTitle] = useState("Daily Checklist");
   const [avatar, setAvatar] = useState("");
-  const [tasks, setTasks] = useState([{ group: "", category: "", name: "" }]);
+  const [tasks, setTasks] = useState([]);
   const [archive, setArchive] = useState([]);
   const [groups, setGroups] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
@@ -59,7 +59,7 @@ const App = () => {
   };
 
   const saveData = () => {
-    localStorage.setItem("savedUserData", JSON.stringify(state));
+   localStorage.setItem("savedUserData", JSON.stringify(state));
   };
 
   const addTask = (task) => {
@@ -78,6 +78,11 @@ const App = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  // auto-save tasks to local storage
+  useEffect(() => {
+    tasks.length > 0 && saveData();
+  }, [tasks]);
 
   return (
     <div className="container">
@@ -111,7 +116,7 @@ const App = () => {
         setAvatar={setAvatar}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
-      <Content tasks={tasks} archiveTask={archiveTask}/>
+      <Content tasks={tasks} archiveTask={archiveTask} />
       <Footer />
       <AddTaskButton tasks={tasks} addTask={addTask} />
     </div>
