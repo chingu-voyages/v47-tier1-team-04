@@ -78,7 +78,7 @@ const App = () => {
     updateGroups(updatedTasks);
   };
 
-  const updateTask = (oldTask, newTask) => oldTask.update(newTask);
+  const updateTask = (oldTask, newTask) => oldTask.update(new Task(newTask));
 
   useEffect(() => {
     loadData();
