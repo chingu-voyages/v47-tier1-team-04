@@ -2,7 +2,7 @@ import ContentTask from "./ContentTask";
 import ellipse from "../../images/Ellipse8.svg";
 import formatString from "../../utils/formatString";
 
-function ContentCategory({ categoryTasks, archiveTask }) {
+function ContentCategory({ categoryTasks, archiveTask, updateTask, tasks }) {
   const categoryTask = categoryTasks[0];
   return (
     <div className="content-main" id={`category_${formatString(categoryTask.category)}`}>
@@ -19,7 +19,7 @@ function ContentCategory({ categoryTasks, archiveTask }) {
 
         </div>
         {categoryTasks.map((task, index) => (
-          <ContentTask key={index} task={task} archiveTask={archiveTask} />
+          <ContentTask key={index} task={task} archiveTask={archiveTask} updateTask={updateTask} tasks={tasks} />
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import formatString from "../../utils/formatString";
 import ContentCategory from "./ContentCategory";
-function ContentGroup({ groupTasks, archiveTask }) {
+function ContentGroup({ groupTasks, archiveTask, tasks, updateTask }) {
   const categories = [...new Set(groupTasks.map((task) => task.category))];
   const groupTask = groupTasks[0].group;
   return (
@@ -10,7 +10,7 @@ function ContentGroup({ groupTasks, archiveTask }) {
         const categoryTasks = groupTasks.filter(
           (task) => task.category === category
         );
-        return <ContentCategory key={index} categoryTasks={categoryTasks} archiveTask={archiveTask} />;
+        return <ContentCategory key={index} categoryTasks={categoryTasks} archiveTask={archiveTask} updateTask={updateTask} tasks={tasks} />;
       })}
     </div>
   );

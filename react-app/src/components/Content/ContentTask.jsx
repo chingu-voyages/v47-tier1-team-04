@@ -1,9 +1,17 @@
+import {useState} from "react";
+import EditModal from "../Modals/EditTaskModal/EditTaskModal";
 import pencil from "../../images/mynaui_pencil.svg";
 import trash from "../../images/ph_trash.svg";
 
-function ContentTask({ task, archiveTask }) {
+function ContentTask({ task, archiveTask, updateTask }) {
+  const [showModal, setShowModal] = useState(false);
+  const renderEditModal= () => {
+    setShowModal(true);
+  };
+  const closeModal = () => setShowModal(false);
   return (
-    <div className="content-description">
+<>
+<div className="content-description">
       <p className={`task-name ${task.complete ? "complete" : ""}`}>
         <i
           className={`fa-regular checkbox ${
@@ -18,10 +26,13 @@ function ContentTask({ task, archiveTask }) {
           aria-hidden="true"
         />
         <i className="fa-solid fa-circle-info fa-2x detail" />
-        <img src={pencil} alt="edit pencil" className="icon-update" />
+        <img src={pencil} alt="edit pencil" className="icon-update" onClick={() => renderEditModal()} />
         <img src={trash} alt="delete trash can" className="icon-edit" onClick={() => archiveTask(task)}/>
       </div>
     </div>
+
+    {showModal && <EditModal closeModal={closeModal} updateTask={updateTask} oldTask={task} />}
+</>
   );
 }
 
