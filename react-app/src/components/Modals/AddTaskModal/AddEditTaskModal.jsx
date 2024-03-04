@@ -1,7 +1,25 @@
-function AddEditModal({ closeModal }) {
+import { useState, useId } from "react";
+function AddEditModal({ closeModal, addTask, tasks }) {
+  const [task, setTask] = useState({});
+  const onFormChange = (e) => {
+    setTask({ ...task, [e.target.name]: e.target.value });
+  };
+  const saveTask = () => {
+    if (!task.group) task.group = "Ungrouped";
+    if (!task.category) task.category = "Uncategorized";
+    if (!task.name) return; // check if required fields are filled
+    if (!task.priority) task.priority = 3; // set default priority
+    if (task.name && tasks.filter((t) => t.name === task.name).length > 0) return; // check if task already exists
+    addTask(task);
+    closeModal();
+  };
   return (
     <div id="edit-task-details-popup" className="task-details-popup">
-      <form className="task-details-popup" id="edit_details">
+      <form
+        className="task-details-popup"
+        id="edit_details"
+        onBlur={(e) => onFormChange(e)}
+      >
         <div className="task-details-content">
           <i
             onClick={() => closeModal()}
@@ -16,7 +34,6 @@ function AddEditModal({ closeModal }) {
                 id="group"
                 type="text"
                 placeholder="Ungrouped"
-                value=""
                 name="group"
                 required
               />
@@ -27,7 +44,6 @@ function AddEditModal({ closeModal }) {
                 id="category"
                 type="text"
                 placeholder="Uncategorized"
-                value=""
                 name="category"
                 required
               />
@@ -39,7 +55,6 @@ function AddEditModal({ closeModal }) {
               <input
                 id="name"
                 type="text"
-                value=""
                 name="name"
                 placeholder="Enter a task name"
                 required
@@ -51,7 +66,6 @@ function AddEditModal({ closeModal }) {
               <input
                 id="description"
                 type="text"
-                value=""
                 name="description"
                 size="50"
               />
@@ -137,20 +151,14 @@ function AddEditModal({ closeModal }) {
           <div className="task-details-group task-details-due">
             <div className="task-details">
               <label htmlFor="frequency">Frequency:</label>
-              <input
-                id="frequency"
-                type="text"
-                value=""
-                name="frequency"
-                size="50"
-              />
+              <input id="frequency" type="text" name="frequency" size="50" />
             </div>
             <div className="task-details-days">
               <label style={{ textAlign: "left" }} htmlFor="priority-select">
                 Priority:
               </label>
-              <select id="priority-select" name="priority">
-                <option value="3" selected>
+              <select id={useId()} name="priority" >
+                <option value="3">
                   Low
                 </option>
                 <option value="2">Medium</option>
@@ -161,19 +169,15 @@ function AddEditModal({ closeModal }) {
           <div className="task-details-group" id="calander">
             <div className="task-details">
               <label htmlFor="modal-date">Due Date:</label>
-              <input type="date" id="modal-date" name="date" value="" />
+              <input type="date" id="modal-date" name="date" />
             </div>
             <div className="task-details">
               <label htmlFor="modal-time">Time:</label>
-              <input
-                type="time"
-                id="modal-time"
-                name="scheduledTime"
-                value=""
-              />
+              <input type="time" id="modal-time" name="scheduledTime" />
             </div>
           </div>
           <a
+            onClick={() => saveTask()}
             className="btn btn-save btn-detail item-center"
             id="save-task-details"
           >

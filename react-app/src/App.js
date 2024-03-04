@@ -61,6 +61,12 @@ const App = () => {
     localStorage.setItem("savedUserData", JSON.stringify(state));
   };
 
+  const addTask = (task) => {
+    const updatedTasks = [...tasks, task];
+    setTasks(updatedTasks);
+    updateGroups(updatedTasks);
+  };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -99,7 +105,7 @@ const App = () => {
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content tasks={tasks} />
       <Footer />
-      <AddTaskButton />
+      <AddTaskButton tasks={tasks} addTask={addTask} />
     </div>
   );
 };
