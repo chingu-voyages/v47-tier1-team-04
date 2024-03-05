@@ -44,8 +44,8 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
         </div>
         <h2>{title}</h2>
         <div>
-          {groups.map((group) => (
-            <AsideGroup group={group} tasks={tasks} />
+          {groups.map((group, index) => (
+            <AsideGroup key={index} group={group} tasks={tasks} />
           ))}
         </div>
       </aside>
@@ -86,8 +86,8 @@ const AsideGroup = ({ group, tasks }) => {
 const AsideCategory = ({ categoryList, isCollapsed }) => {
   return (
     <ul className={isCollapsed ? 'hide' : null}>
-      {categoryList.map((category) => (
-        <li>
+      {categoryList.map((category, index) => (
+        <li key={index}>
           <a href={`#category_${formatString(category)}`}>{category}</a>
         </li>
       ))}
