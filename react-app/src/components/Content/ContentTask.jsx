@@ -1,9 +1,10 @@
 import {useState} from "react";
-import EditModal from "../Modals/EditTaskModal/EditTaskModal";
+import AddEditModal from "../Modals/AddEditTaskModal/AddEditTaskModal";
 import pencil from "../../images/mynaui_pencil.svg";
 import trash from "../../images/ph_trash.svg";
 
-function ContentTask({ task, archiveTask, updateTask }) {
+function ContentTask({ updateGroups, saveData, task, archiveTask, updateTask }) {
+  const [contentTask, setContentTask] = useState(task);
   const [showModal, setShowModal] = useState(false);
   const renderEditModal= () => {
     setShowModal(true);
@@ -31,7 +32,7 @@ function ContentTask({ task, archiveTask, updateTask }) {
       </div>
     </div>
 
-    {showModal && <EditModal closeModal={closeModal} updateTask={updateTask} oldTask={task} />}
+    {showModal && <AddEditModal updateGroups={updateGroups} saveData={saveData} closeModal={closeModal} updateTask={updateTask} oldTask={task} />}
 </>
   );
 }
