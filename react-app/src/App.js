@@ -46,7 +46,7 @@ const App = () => {
           setTasks(tasks);
           setTitle(state.title);
           setAvatar(state.avatar);
-          updateGroups(state.tasks);
+          updateGroups(tasks);
         }
         setDarkMode(state.darkMode);
 
@@ -58,7 +58,7 @@ const App = () => {
       ? JSON.parse(localStorage.getItem("savedUserData")).tasks
       : null;
 
-    parsedStorage ? setTasks(parsedStorage) : await seed();
+    parsedStorage ? setTasks(parsedStorage.map(newTask => new Task(newTask))) : await seed();
   };
 
   const saveData = () => {
@@ -78,7 +78,7 @@ const App = () => {
     updateGroups(updatedTasks);
   };
 
-  const updateTask = (oldTask, newTask) => oldTask.update(new Task(newTask));
+  const updateTask = (oldTask, newTask) => oldTask.update(newTask);
 
   useEffect(() => {
     loadData();
@@ -88,7 +88,6 @@ const App = () => {
   useEffect(() => {
     tasks.length > 0 && saveData();
   }, [tasks]);
-
   return (
     <div className="container">
       <Helmet>
@@ -121,7 +120,7 @@ const App = () => {
         setAvatar={setAvatar}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
-      <Content tasks={tasks} archiveTask={archiveTask} updateTask={updateTask}/>
+      <Content tasks={tasks} archiveTask={archiveTask} updateTask={updateTask} />
       <Footer />
       <AddTaskButton tasks={tasks} addTask={addTask} />
     </div>
