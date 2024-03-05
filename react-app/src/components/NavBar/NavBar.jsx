@@ -7,7 +7,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
     <nav id="element-el" className="navbar">
       <div className="navbar">
         <div className="navbar-top">
-        <i class="fa-solid fa-bars menu-btn fa-2x" onClick={() => toggleAside()}/>
+        <i className="fa-solid fa-bars menu-btn fa-2x" onClick={() => toggleAside()}/>
           <div id="date" className="date">
             Today: {new Date().toDateString()}
           </div>
@@ -18,7 +18,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
               className="btn btn-mode-switch"
               onClick={() => toggleDarkMode()}
             >
-              <i class="fa-solid fa-circle-half-stroke" />
+              <i className="fa-solid fa-circle-half-stroke" />
             </a>
             <a
               id="save-all"
@@ -85,7 +85,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
                 id="search"
                 className="btn"
               />
-              <i class="fa-solid fa-magnifying-glass fa-lg search-icon" />
+              <i className="fa-solid fa-magnifying-glass fa-lg search-icon" />
             </div>
           </div>
         </div>
