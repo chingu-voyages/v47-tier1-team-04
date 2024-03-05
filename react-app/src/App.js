@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import Task from './utils/task';
+import Task from "./utils/task";
 import Aside from "./components/Aside/Aside";
 import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/Content/Content";
@@ -24,7 +24,7 @@ const App = () => {
     setDarkMode(!darkMode);
   };
 
-  const updateGroups = (tasks) => {
+  const updateGroups = () => {
     setGroups([...new Set(tasks.map((task) => task.group))]);
   };
 
@@ -33,7 +33,7 @@ const App = () => {
     const data = await response.json();
     const tasks = data.map((task) => new Task(task));
     setTasks(tasks);
-    updateGroups(data);
+    updateGroups();
   };
 
   const loadData = async () => {
@@ -58,11 +58,14 @@ const App = () => {
       ? JSON.parse(localStorage.getItem("savedUserData")).tasks
       : null;
 
-    parsedStorage ? setTasks(parsedStorage.map(newTask => new Task(newTask))) : await seed();
+    parsedStorage
+      ? setTasks(parsedStorage.map((newTask) => new Task(newTask)))
+      : await seed();
   };
 
   const saveData = () => {
-   localStorage.setItem("savedUserData", JSON.stringify(state));
+    if (state !== null && state !== undefined && state.tasks.length > 0)
+    localStorage.setItem("savedUserData", JSON.stringify(state));
   };
 
   const addTask = (task) => {
@@ -84,10 +87,12 @@ const App = () => {
     loadData();
   }, []);
 
-  // auto-save tasks to local storage
   useEffect(() => {
-    tasks.length > 0 && saveData();
+    
+    updateGroups();
   }, [tasks]);
+
+  useEffect(() => saveData(), [groups]);
   return (
     <div className="container">
       <Helmet>
@@ -118,11 +123,24 @@ const App = () => {
         setTitle={setTitle}
         avatar={avatar}
         setAvatar={setAvatar}
+        saveData={saveData}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
-      <Content tasks={tasks} archiveTask={archiveTask} updateTask={updateTask} />
-      <Footer />
-      <AddTaskButton tasks={tasks} addTask={addTask} />
+      <Content
+        saveData={saveData}
+        tasks={tasks}
+        groups={groups}
+        archiveTask={archiveTask}
+        updateTask={updateTask}
+        updateGroups={updateGroups}
+      />
+      <Footer darkMode={darkMode} />
+      <AddTaskButton
+        updateGroups={updateGroups}
+        tasks={tasks}
+        addTask={addTask}
+        saveData={saveData}
+      />
     </div>
   );
 };
