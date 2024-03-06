@@ -91,9 +91,17 @@ const App = () => {
     setArchive([...archive, task]);
     updateGroups();
   };
-
   const updateTask = (oldTask, newTask) => oldTask.update(newTask);
-
+  const toggleCompleteTask = (task) => {
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        t.toggleComplete();
+      }
+      return t;
+    });
+    setTasks(updatedTasks);
+    updateGroups();
+  };
   useEffect(() => {
     loadData();
   }, []);
@@ -144,6 +152,7 @@ const App = () => {
         archiveTask={archiveTask}
         updateTask={updateTask}
         updateGroups={updateGroups}
+        toggleCompleteTask={toggleCompleteTask}
       />
       <Footer darkMode={darkMode} />
       <AddTaskButton
