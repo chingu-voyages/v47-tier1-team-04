@@ -71,7 +71,7 @@ const App = () => {
   const addTask = (task) => {
     const updatedTasks = [...tasks, new Task(task)];
     setTasks(updatedTasks);
-    updateGroups(updatedTasks);
+    updateGroups();
   };
   const cyclePriority = (task) => {
     console.log("cyclePriority", task);
@@ -153,6 +153,7 @@ const App = () => {
         updateTask={updateTask}
         updateGroups={updateGroups}
         toggleCompleteTask={toggleCompleteTask}
+        addTask={addTask}
       />
       <Footer darkMode={darkMode} />
       <AddTaskButton
