@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ContentGroup from "./ContentGroup";
-function Content({ tasks, archiveTask, updateTask, saveData, cyclePriority }) {
+function Content({ tasks, archiveTask, updateTask, saveData, cyclePriority, toggleCompleteTask }) {
   const [groups, setGroups] = useState([...new Set(tasks.map((task) => task.group))]);
   useEffect(() => setGroups([...new Set(tasks.map((task) => task.group))]), [tasks]);
   return (
@@ -15,6 +15,7 @@ function Content({ tasks, archiveTask, updateTask, saveData, cyclePriority }) {
             archiveTask={archiveTask}
             saveData={saveData}
             cyclePriority={cyclePriority}
+            toggleCompleteTask={toggleCompleteTask}
           />
         );
       })}

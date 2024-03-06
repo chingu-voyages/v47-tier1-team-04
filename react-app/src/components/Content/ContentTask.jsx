@@ -11,6 +11,7 @@ function ContentTask({
   archiveTask,
   updateTask,
   cyclePriority,
+  toggleCompleteTask
 }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
@@ -22,7 +23,7 @@ function ContentTask({
   return (
     <>
       <div className="content-description">
-        <p className={`task-name ${task.complete ? "complete" : ""}`}>
+        <p className={`task-name ${task.complete ? "complete" : ""}`} onClick={() => toggleCompleteTask(task)}>
           <i
             className={`fa-regular checkbox ${
               task.complete ? "fa-square-check" : "fa-square"

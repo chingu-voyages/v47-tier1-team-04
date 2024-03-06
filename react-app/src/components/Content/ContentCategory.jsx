@@ -12,6 +12,7 @@ function ContentCategory({
   updateTask,
   tasks,
   cyclePriority,
+  toggleCompleteTask
 }) {
   const [categoryTasks, setCategoryTasks] = useState(
     tasks.filter((task) => task.group === group && task.category === category)
@@ -40,6 +41,7 @@ function ContentCategory({
             tasks={tasks}
             updateGroups={updateGroups}
             cyclePriority={cyclePriority}
+            toggleCompleteTask={toggleCompleteTask}
           />;
         })}
       </div>

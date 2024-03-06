@@ -9,6 +9,7 @@ function ContentGroup({
   updateTask,
   updateGroups,
   cyclePriority,
+  toggleCompleteTask,
 }) {
   const [groupTasks, setGroupTasks] = useState(
     tasks.filter((task) => task.group === group)
@@ -43,6 +44,7 @@ function ContentGroup({
               updateTask={updateTask}
               cyclePriority={cyclePriority}
               tasks={tasks}
+              toggleCompleteTask={toggleCompleteTask}
             />
           );
         })}
