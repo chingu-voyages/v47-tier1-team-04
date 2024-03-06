@@ -10,8 +10,6 @@ function ViewTaskModal({ closeViewModal, task }) {
     scheduledTime,
     priority,
   } = task;
-  const [priorityColor, setPriorityColor] = useState("blue");
-  const [priorityText, setPriorityText] = useState("Low");
 
   // Define a mapping from priority numbers to labels
   const priorities = {
