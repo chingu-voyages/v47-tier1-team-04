@@ -8,14 +8,14 @@ function AddTaskButton({tasks, addTask, updateGroups, saveData}) {
     setShowModal(true);
   };
 
-  const closeModal = () => setShowModal(false);
+  const closeEditModal = () => setShowModal(false);
 
   return (
     <>
       <div className="add-icon" onClick={renderAddEditModal}>
         <FaPlus />
       </div>
-      {showModal && <AddEditModal updateGroups={updateGroups} saveData={saveData} closeModal={closeModal} tasks={tasks} addTask={addTask} />}
+      {showModal && <AddEditModal updateGroups={updateGroups} saveData={saveData} closeEditModal={closeEditModal} tasks={tasks} addTask={addTask} />}
     </>
   );
 }
