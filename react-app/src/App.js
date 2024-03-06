@@ -75,10 +75,11 @@ const App = () => {
   };
 
   const archiveTask = (task) => {
-    const updatedTasks = tasks.filter((t) => t.name !== task.name);
+    const updatedTasks = tasks.filter((t) => t.id !== task.id);
+    task.archive();
     setTasks(updatedTasks);
     setArchive([...archive, task]);
-    updateGroups(updatedTasks);
+    updateGroups();
   };
 
   const updateTask = (oldTask, newTask) => oldTask.update(newTask);
