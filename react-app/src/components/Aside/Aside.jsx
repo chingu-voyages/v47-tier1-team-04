@@ -5,7 +5,10 @@ import settingsicon from "../../images/solar_settings-linear.svg";
 import Settings from "../Modals/SettingsModal/SettingsModal";
 import "./Aside.styles.css";
 
-function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
+function Aside({ title, setTitle, avatar, setAvatar, tasks }) {
+  const [groups, setGroups] = useState([
+    ...new Set(tasks.map((task) => task.group)),
+  ]);
   const [showModal, setShowModal] = useState(false);
   const gearIconClickHandler = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -23,6 +26,7 @@ function Aside({ title, setTitle, avatar, setAvatar, groups, tasks }) {
   useEffect(() => {
     getAvatarUrl();
   });
+  useEffect(() => {setGroups([...new Set(tasks.map(task => task.group))])}, [tasks])
   return (
     <>
       <aside className="aside">
@@ -66,7 +70,9 @@ const AsideGroup = ({ group, tasks }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const tasksWithSameGroup = tasks.filter((task) => task.group === group);
-  const categoryList = Array.from(new Set(tasksWithSameGroup.map((task) => task.category)));
+  const categoryList = Array.from(
+    new Set(tasksWithSameGroup.map((task) => task.category))
+  );
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -74,9 +80,14 @@ const AsideGroup = ({ group, tasks }) => {
 
   return (
     <div>
-      <h3 >
+      <h3>
         <a href={`#group_${formatString(group)}`}> {group} </a>
-        <i onClick={toggleCollapse} className={`fa-solid fa-circle-${isCollapsed ? 'chevron-right' : 'chevron-down'}`}></i>
+        <i
+          onClick={toggleCollapse}
+          className={`fa-solid fa-circle-${
+            isCollapsed ? "chevron-right" : "chevron-down"
+          }`}
+        ></i>
       </h3>
       <AsideCategory categoryList={categoryList} isCollapsed={isCollapsed} />
     </div>
@@ -85,7 +96,7 @@ const AsideGroup = ({ group, tasks }) => {
 
 const AsideCategory = ({ categoryList, isCollapsed }) => {
   return (
-    <ul className={isCollapsed ? 'hide' : null}>
+    <ul className={isCollapsed ? "hide" : null}>
       {categoryList.map((category, index) => (
         <li key={index}>
           <a href={`#category_${formatString(category)}`}>{category}</a>
