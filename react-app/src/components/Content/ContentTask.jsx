@@ -10,6 +10,7 @@ function ContentTask({
   task,
   archiveTask,
   updateTask,
+  cyclePriority,
 }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
@@ -32,6 +33,7 @@ function ContentTask({
         <div className="task-icons">
           <i
             className={`fa fa-circle task-priority-${task.priority}`}
+            onClick={() => cyclePriority(task)}
             aria-hidden="true"
           />
           <i

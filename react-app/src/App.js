@@ -65,7 +65,7 @@ const App = () => {
 
   const saveData = () => {
     if (state !== null && state !== undefined && state.tasks.length > 0)
-    localStorage.setItem("savedUserData", JSON.stringify(state));
+      localStorage.setItem("savedUserData", JSON.stringify(state));
   };
 
   const addTask = (task) => {
@@ -73,7 +73,17 @@ const App = () => {
     setTasks(updatedTasks);
     updateGroups(updatedTasks);
   };
-
+  const cyclePriority = (task) => {
+    console.log("cyclePriority", task);
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        t.cyclePriority();
+      }
+      return t;
+    });
+    setTasks(updatedTasks);
+    updateGroups();
+  };
   const archiveTask = (task) => {
     const updatedTasks = tasks.filter((t) => t.id !== task.id);
     task.archive();
@@ -89,7 +99,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    
     updateGroups();
   }, [tasks]);
 
@@ -128,6 +137,7 @@ const App = () => {
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content
+        cyclePriority={cyclePriority}
         saveData={saveData}
         tasks={tasks}
         groups={groups}
