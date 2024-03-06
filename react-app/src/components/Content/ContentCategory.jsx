@@ -11,6 +11,7 @@ function ContentCategory({
   archiveTask,
   updateTask,
   tasks,
+  cyclePriority,
 }) {
   const [categoryTasks, setCategoryTasks] = useState(
     tasks.filter((task) => task.group === group && task.category === category)
@@ -38,6 +39,7 @@ function ContentCategory({
             updateTask={updateTask}
             tasks={tasks}
             updateGroups={updateGroups}
+            cyclePriority={cyclePriority}
           />;
         })}
       </div>
