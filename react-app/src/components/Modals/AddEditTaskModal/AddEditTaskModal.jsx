@@ -1,7 +1,7 @@
 import { useRef, useId, useState } from "react";
 
 function AddEditTaskModal({
-  closeModal,
+  closeEditModal,
   saveData,
   addTask,
   updateTask,
@@ -51,10 +51,10 @@ function AddEditTaskModal({
     if (oldTask) {
       saveData();
       updateTask(oldTask, newTask);
-      closeModal();
+      closeEditModal();
     } else {
       addTask(newTask);
-      closeModal();
+      closeEditModal();
     }
   };
 
@@ -67,7 +67,7 @@ function AddEditTaskModal({
       >
         <div className="task-details-content">
           <i
-            onClick={() => closeModal()}
+            onClick={() => closeEditModal()}
             className="fa-solid fa-xmark fa-2x close-details-popup"
             id="close-details-popup"
           ></i>
