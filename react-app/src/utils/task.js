@@ -62,6 +62,10 @@ export default class Task {
     return this;
   }
 
+  archive() {
+    this.archived = true;
+  }
+
   // Toggle the complete status of the task:
   toggleComplete() {
     this.complete = !this.complete;
