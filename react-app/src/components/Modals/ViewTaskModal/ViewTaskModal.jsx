@@ -39,7 +39,7 @@ function ViewTaskModal({ closeViewModal, task }) {
       <div className="task-details-popup">
         <div className="task-details-content">
           <i
-            class="fa-solid fa-xmark fa-2x close-details-popup"
+            className="fa-solid fa-xmark fa-2x close-details-popup"
             onClick={() => closeViewModal()}
           />
           <label style={{ textAlign: "left" }}>Priority:</label>
