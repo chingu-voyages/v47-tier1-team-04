@@ -1,11 +1,21 @@
+import { useState, useEffect } from "react";
 import ContentGroup from "./ContentGroup";
-function Content({ tasks, archiveTask, updateTask}) {
-  const groups = [...new Set(tasks.map((task) => task.group))]
+function Content({ tasks, archiveTask, updateTask, saveData }) {
+  const [groups, setGroups] = useState([...new Set(tasks.map((task) => task.group))]);
+  useEffect(() => setGroups([...new Set(tasks.map((task) => task.group))]), [tasks]);
   return (
     <div id="contentAnchor" className="content">
       {groups.map((group, index) => {
-        const groupTasks = tasks.filter((task) => task.group === group);
-        return <ContentGroup key={index} groupTasks={groupTasks} archiveTask={archiveTask} tasks={tasks} updateTask={updateTask} />;
+        return (
+          <ContentGroup
+            key={index}
+            group={group}
+            tasks={tasks}
+            updateTask={updateTask}
+            archiveTask={archiveTask}
+            saveData={saveData}
+          />
+        );
       })}
     </div>
   );

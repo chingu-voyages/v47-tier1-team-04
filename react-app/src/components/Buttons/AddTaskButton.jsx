@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import AddEditModal from "../Modals/AddTaskModal/AddTaskModal";
+import AddEditModal from "../Modals/AddEditTaskModal/AddEditTaskModal";
 
-function AddTaskButton({tasks, addTask}) {
+function AddTaskButton({tasks, addTask, updateGroups, saveData}) {
   const [showModal, setShowModal] = useState(false);
-
   const renderAddEditModal = () => {
     setShowModal(true);
   };
@@ -16,7 +15,7 @@ function AddTaskButton({tasks, addTask}) {
       <div className="add-icon" onClick={renderAddEditModal}>
         <FaPlus />
       </div>
-      {showModal && <AddEditModal closeModal={closeModal} tasks={tasks} addTask={addTask} />}
+      {showModal && <AddEditModal updateGroups={updateGroups} saveData={saveData} closeModal={closeModal} tasks={tasks} addTask={addTask} />}
     </>
   );
 }

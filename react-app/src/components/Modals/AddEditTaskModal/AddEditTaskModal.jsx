@@ -1,24 +1,69 @@
-import { useState, useId } from "react";
-function AddEditModal({ closeModal, addTask, tasks }) {
-  const [task, setTask] = useState({});
-  const onFormChange = (e) => {
-    setTask({ ...task, [e.target.name]: e.target.value });
+import { useRef, useId, useState } from "react";
+
+function AddEditTaskModal({
+  closeModal,
+  saveData,
+  addTask,
+  updateTask,
+  oldTask,
+}) {
+  const [task, setTask] = useState(oldTask ? oldTask : {});
+  const groupRef = useRef(),
+    categoryRef = useRef(),
+    nameRef = useRef(),
+    descriptionRef = useRef(),
+    frequencyRef = useRef(),
+    priorityRef = useRef(),
+    dateRef = useRef(),
+    scheduledTimeRef = useRef();
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+    if (!nameRef.current.value) errors.name = "Name is required";
+    setErrors(errors);
+    return errors;
   };
-  const saveTask = () => {
-    if (!task.group) task.group = "Ungrouped";
-    if (!task.category) task.category = "Uncategorized";
-    if (!task.name) return; // check if required fields are filled
-    if (!task.priority) task.priority = 3; // set default priority
-    if (task.name && tasks.filter((t) => t.name === task.name).length > 0) return; // check if task already exists
-    addTask(task);
-    closeModal();
+  const onFormSubmit = (e) => {
+    // e.preventDefault();
+    setErrors({});
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length) {
+      setErrors(validationErrors);
+      return;
+    }
+    const newTask = {
+      group: groupRef.current.value,
+      category: categoryRef.current.value,
+      name: nameRef.current.value,
+      description: descriptionRef.current.value,
+      days: Array.from(document.querySelectorAll(".days"))
+        .filter((day) => day.checked)
+        .map((day) => day.value),
+      frequency: frequencyRef.current.value,
+      priority: priorityRef.current.value,
+      date: dateRef.current.value,
+      scheduledTime: scheduledTimeRef.current.value,
+    };
+
+    if (errors.length) return console.error("Form has errors", errors);
+    if (oldTask) {
+      saveData();
+      updateTask(oldTask, newTask);
+      closeModal();
+    } else {
+      addTask(newTask);
+      closeModal();
+    }
   };
+
   return (
     <div id="edit-task-details-popup" className="task-details-popup">
       <form
         className="task-details-popup"
         id="edit_details"
-        onBlur={(e) => onFormChange(e)}
+        onSubmit={(e) => onFormSubmit(e)}
       >
         <div className="task-details-content">
           <i
@@ -26,14 +71,16 @@ function AddEditModal({ closeModal, addTask, tasks }) {
             className="fa-solid fa-xmark fa-2x close-details-popup"
             id="close-details-popup"
           ></i>
-          <h2>Add Task</h2>
+          <h2>{oldTask ? "Edit" : "Add"} Task</h2>
           <div className="task-details-group">
             <div className="task-details">
               <label htmlFor="group">Group:</label>
               <input
+                defaultValue={task.group}
+                ref={groupRef}
                 id="group"
                 type="text"
-                placeholder="Ungrouped"
+                placeholder={task.group ? task.group : "Ungrouped"}
                 name="group"
                 required
               />
@@ -41,9 +88,11 @@ function AddEditModal({ closeModal, addTask, tasks }) {
             <div className="task-details">
               <label htmlFor="category">Category:</label>
               <input
+                defaultValue={task.category}
+                ref={categoryRef}
                 id="category"
                 type="text"
-                placeholder="Uncategorized"
+                placeholder={task.category ? task.category : "Uncategorized"}
                 name="category"
                 required
               />
@@ -53,10 +102,12 @@ function AddEditModal({ closeModal, addTask, tasks }) {
             <div className="task-details">
               <label htmlFor="name">Name:</label>
               <input
+                defaultValue={task.name}
+                ref={nameRef}
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Enter a task name"
+                placeholder={task.name ? task.name : "Enter a task name"}
                 required
                 size="50"
               />
@@ -64,9 +115,14 @@ function AddEditModal({ closeModal, addTask, tasks }) {
             <div className="task-details">
               <label htmlFor="description">Description:</label>
               <input
+                ref={descriptionRef}
+                defaultValue={task.description}
                 id="description"
                 type="text"
                 name="description"
+                placeholder={
+                  task.description ? task.description : "Enter a description"
+                }
                 size="50"
               />
             </div>
@@ -78,6 +134,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
             <div className="day-checkboxes" id="checkboxes">
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Monday")}
                   type="checkbox"
                   id="Monday"
                   name="Monday"
@@ -88,6 +145,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Tuesday")}
                   type="checkbox"
                   id="Tuesday"
                   name="Tuesday"
@@ -98,6 +156,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Wednesday")}
                   type="checkbox"
                   id="Wednesday"
                   name="Wednesday"
@@ -108,6 +167,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Thursday")}
                   type="checkbox"
                   id="Thursday"
                   name="Thursday"
@@ -118,6 +178,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Friday")}
                   type="checkbox"
                   id="Friday"
                   name="Friday"
@@ -128,6 +189,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Saturday")}
                   type="checkbox"
                   id="Saturday"
                   name="Saturday"
@@ -138,6 +200,7 @@ function AddEditModal({ closeModal, addTask, tasks }) {
               </div>
               <div className="checkbox-container">
                 <input
+                  defaultChecked={task.days && task.days.includes("Sunday")}
                   type="checkbox"
                   id="Sunday"
                   name="Sunday"
@@ -151,33 +214,49 @@ function AddEditModal({ closeModal, addTask, tasks }) {
           <div className="task-details-group task-details-due">
             <div className="task-details">
               <label htmlFor="frequency">Frequency:</label>
-              <input id="frequency" type="text" name="frequency" size="50" />
+              <input
+                defaultValue={task.frequency}
+                ref={frequencyRef}
+                id="frequency"
+                type="text"
+                placeholder={task.frequency ? task.frequency : "Once"}
+                name="frequency"
+                size="50"
+              />
             </div>
             <div className="task-details-days">
               <label style={{ textAlign: "left" }} htmlFor="priority-select">
                 Priority:
               </label>
-              <select id={useId()} name="priority" >
-                <option value="3">
-                  Low
-                </option>
-                <option value="2">Medium</option>
-                <option value="1">High</option>
+              <select
+                name="priority"
+                id={useId()}
+                ref={priorityRef}
+                defaultValue={task.priority || 3}
+              >
+                <option value={3}>Low</option>
+                <option value={2}>Medium</option>
+                <option value={1}>High</option>
               </select>
             </div>
           </div>
           <div className="task-details-group" id="calander">
             <div className="task-details">
               <label htmlFor="modal-date">Due Date:</label>
-              <input type="date" id="modal-date" name="date" />
+              <input type="date" id="modal-date" name="date" ref={dateRef} />
             </div>
             <div className="task-details">
               <label htmlFor="modal-time">Time:</label>
-              <input type="time" id="modal-time" name="scheduledTime" />
+              <input
+                type="time"
+                id="modal-time"
+                name="scheduledTime"
+                ref={scheduledTimeRef}
+              />
             </div>
           </div>
           <a
-            onClick={() => saveTask()}
+            onClick={(e) => onFormSubmit(e)}
             className="btn btn-save btn-detail item-center"
             id="save-task-details"
           >
@@ -189,4 +268,4 @@ function AddEditModal({ closeModal, addTask, tasks }) {
   );
 }
 
-export default AddEditModal;
+export default AddEditTaskModal;

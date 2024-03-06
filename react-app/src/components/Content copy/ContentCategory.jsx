@@ -4,20 +4,18 @@ import ellipse from "../../images/Ellipse8.svg";
 import formatString from "../../utils/formatString";
 
 function ContentCategory({
-  group,
-  category,
+  groupTasks,
+  setGroupTasks,
   updateGroups,
   saveData,
+  categoryTasks,
   archiveTask,
   updateTask,
   tasks,
 }) {
-  const [categoryTasks, setCategoryTasks] = useState(
-    tasks.filter((task) => task.group === group && task.category === category)
-  );
   const [categoryTask, setCategoryTask] = useState(categoryTasks[0]);
-
-  if (!categoryTasks.every(task => task.archived)) return (
+  
+  return (
     <div
       className="content-main"
       id={`category_${formatString(categoryTask.category)}`}
@@ -29,8 +27,8 @@ function ContentCategory({
 
           <i className="fa-solid fa-plus add-task" />
         </div>
-        {categoryTasks.map((task, index) => {
-          if (!task.archived) return <ContentTask
+        {categoryTasks.map((task, index) => (
+          <ContentTask
             saveData={saveData}
             key={index}
             task={task}
@@ -38,8 +36,8 @@ function ContentCategory({
             updateTask={updateTask}
             tasks={tasks}
             updateGroups={updateGroups}
-          />;
-        })}
+          />
+        ))}
       </div>
     </div>
   );
