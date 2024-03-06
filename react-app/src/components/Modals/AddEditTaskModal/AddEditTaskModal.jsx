@@ -1,6 +1,12 @@
 import { useRef, useId, useState } from "react";
 
-function AddEditTaskModal({ updateGroups, closeModal, saveData, addTask, updateTask, oldTask }) {
+function AddEditTaskModal({
+  closeModal,
+  saveData,
+  addTask,
+  updateTask,
+  oldTask,
+}) {
   const [task, setTask] = useState(oldTask ? oldTask : {});
   const groupRef = useRef(),
     categoryRef = useRef(),
@@ -12,7 +18,7 @@ function AddEditTaskModal({ updateGroups, closeModal, saveData, addTask, updateT
     scheduledTimeRef = useRef();
 
   const [errors, setErrors] = useState({});
-  
+
   const validateForm = () => {
     const errors = {};
     if (!nameRef.current.value) errors.name = "Name is required";
@@ -20,7 +26,7 @@ function AddEditTaskModal({ updateGroups, closeModal, saveData, addTask, updateT
     return errors;
   };
   const onFormSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setErrors({});
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length) {
@@ -45,12 +51,11 @@ function AddEditTaskModal({ updateGroups, closeModal, saveData, addTask, updateT
     if (oldTask) {
       saveData();
       updateTask(oldTask, newTask);
-      updateGroups();
       closeModal();
     } else {
       addTask(newTask);
       closeModal();
-      }
+    }
   };
 
   return (
