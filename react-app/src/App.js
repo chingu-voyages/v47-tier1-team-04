@@ -91,7 +91,6 @@ const App = () => {
     setArchive([...archive, task]);
     updateGroups();
   };
-
   const updateTask = (oldTask, newTask) => oldTask.update(newTask);
   const toggleCompleteTask = (task) => {
     const updatedTasks = tasks.map((t) => {
@@ -103,7 +102,6 @@ const App = () => {
     setTasks(updatedTasks);
     updateGroups();
   };
-  }
   useEffect(() => {
     loadData();
   }, []);
