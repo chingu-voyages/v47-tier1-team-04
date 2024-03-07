@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import Task from "./utils/task";
 import Aside from "./components/Aside/Aside";
@@ -15,6 +15,12 @@ const App = () => {
   const [groups, setGroups] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const state = { title, avatar, tasks, darkMode };
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
+  useEffect(
+    () => setGroups([...new Set(tasks.map((task) => task.group))]),
+    [tasks]
+  );
   const toggleDarkMode = () => {
     if (!darkMode) {
       document.body.classList.add("dark-mode");
@@ -154,6 +160,7 @@ const App = () => {
         updateGroups={updateGroups}
         toggleCompleteTask={toggleCompleteTask}
         addTask={addTask}
+        forceUpdate={forceUpdate}
       />
       <Footer darkMode={darkMode} />
       <AddTaskButton

@@ -9,12 +9,12 @@ function Content({
   toggleCompleteTask,
   addTask,
   updateGroups,
+  forceUpdate
 }) {
   const [groups, setGroups] = useState([
     ...new Set(tasks.map((task) => task.group)),
   ]);
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
+
   useEffect(
     () => setGroups([...new Set(tasks.map((task) => task.group))]),
     [tasks]
