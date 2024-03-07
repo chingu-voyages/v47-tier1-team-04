@@ -113,8 +113,6 @@ function ContentCategory({
   const categoryRef = useRef(null);
   useEffect(() => {
     const catRef = categoryRef.current;
-
- 
     catRef.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         if (e.target.innerText !== "") {
@@ -123,7 +121,7 @@ function ContentCategory({
             const newTask = { ...task, category: e.target.innerText };
             updateTask(oldTask, newTask);
             e.target.innerText = newTask.category;
-              setEditCategory(false);
+            setEditCategory(false);
             forceUpdate();
             saveData();
           });
@@ -138,7 +136,7 @@ function ContentCategory({
           const newTask = { ...task, category: e.target.innerText };
           updateTask(oldTask, newTask);
           e.target.innerText = newTask.category;
-    
+
           setEditCategory(false);
           forceUpdate();
           saveData();
@@ -164,13 +162,16 @@ function ContentCategory({
               suppressContentEditableWarning={editCategory}
               ref={categoryRef}
               contentEditable={editCategory}
-              focus={editCategory}
+              autofocus
             >
               {categoryTask.category}
             </h3>
             <i
               className="fa fa-solid fa-edit"
-              onClick={() => setEditCategory(true)}
+              onClick={(e) => {
+                setEditCategory(true);
+                categoryRef.current.focus();
+              }}
             />
             <i
               className="fa-solid fa-plus add-task"
