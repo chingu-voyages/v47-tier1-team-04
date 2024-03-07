@@ -21,8 +21,8 @@ function QuickTask({
   const renderEditModal = () => setShowEditModal(true);
   const renderViewModal = () => setShowViewModal(true);
   const [task, setTask] = useState({});
-  console.log(forceUpdate)
   const quickTaskRef = useRef(null);
+
   const handleChange = (e) => {
     setTask({ name: e.target.value });
   };
@@ -49,6 +49,7 @@ function QuickTask({
       }
     });
   }, [quickTaskRef]);
+
   return (
     <div className="content-description">
       <div className="task-name" onClick={() => toggleCompleteTask(task)}>
@@ -106,8 +107,45 @@ function ContentCategory({
   const [categoryTasks, setCategoryTasks] = useState(
     tasks.filter((task) => task.group === group && task.category === category)
   );
+  const [editCategory, setEditCategory] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
+  const categoryRef = useRef(null);
+  useEffect(() => {
+    const catRef = categoryRef.current;
+
+ 
+    catRef.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (e.target.innerText !== "") {
+          categoryTasks.forEach((task) => {
+            const oldTask = task;
+            const newTask = { ...task, category: e.target.innerText };
+            updateTask(oldTask, newTask);
+            e.target.innerText = newTask.category;
+              setEditCategory(false);
+            forceUpdate();
+            saveData();
+          });
+        }
+      }
+    });
+
+    catRef.addEventListener("blur", (e) => {
+      if (e.target.innerText !== "") {
+        categoryTasks.forEach((task) => {
+          const oldTask = task;
+          const newTask = { ...task, category: e.target.innerText };
+          updateTask(oldTask, newTask);
+          e.target.innerText = newTask.category;
+    
+          setEditCategory(false);
+          forceUpdate();
+          saveData();
+        });
+      }
+    });
+  }, [categoryRef]);
   const renderEditModal = () => setShowEditModal(true);
   const renderViewModal = () => setShowViewModal(true);
   const [categoryTask, setCategoryTask] = useState(categoryTasks[0]);
@@ -121,8 +159,19 @@ function ContentCategory({
         <img src={ellipse} alt="ellipse checkbox" className="ellipse" />
         <div className="content-inner">
           <div className="content-task">
-            <h3 className="activity">{categoryTask.category}</h3>
-
+            <h3
+              className="activity"
+              suppressContentEditableWarning={editCategory}
+              ref={categoryRef}
+              contentEditable={editCategory}
+              focus={editCategory}
+            >
+              {categoryTask.category}
+            </h3>
+            <i
+              className="fa fa-solid fa-edit"
+              onClick={() => setEditCategory(true)}
+            />
             <i
               className="fa-solid fa-plus add-task"
               onClick={() => setShowQuickTask(true)}
