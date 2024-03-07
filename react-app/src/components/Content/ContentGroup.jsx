@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import formatString from "../../utils/formatString";
 import ContentCategory from "./ContentCategory";
 function ContentGroup({
@@ -13,6 +13,7 @@ function ContentGroup({
   addTask,
   forceUpdate
 }) {
+  const [editGroup, setEditGroup] = useState(false);  
   const [groupTasks, setGroupTasks] = useState(
     tasks.filter((task) => task.group === group)
   );
@@ -20,14 +21,49 @@ function ContentGroup({
     ...new Set(groupTasks.map((task) => task.category)),
   ]);
   const groupStr = groupTasks[0].group;
-  
+  const groupRef = useRef(null);
+  useEffect(() => {
+    if (!groupRef.current.focus) groupRef.current.focus();
+    groupRef.current.addEventListener("keydown", (e) => {
+
+      if (e.key === "Enter") {
+        if (e.target.innerText !== "") {
+          groupTasks.forEach((task) => {
+            const oldTask = task;
+            const newTask = { ...task, group: e.target.innerText };
+            updateTask(oldTask, newTask);
+            e.target.innerText = newTask.group;
+            setEditGroup(false);
+            forceUpdate();
+            saveData();
+          });
+        }
+      }
+    });
+    groupRef.current.addEventListener("blur", (e) => {
+      if (e.target.innerText !== "") {
+        groupTasks.forEach((task) => {
+          const oldTask = task;
+          const newTask = { ...task, group: e.target.innerText };
+          updateTask(oldTask, newTask);
+          e.target.innerText = newTask.group;
+          setEditGroup(false);
+          forceUpdate();
+          saveData();
+        });
+      }
+    });
+  }, [groupTasks]);
   if (!groupTasks.every((task) => task.archived))
     return (
       <div className="content-activity" id={`group_${formatString(groupStr)}`}>
-        <h2 className="group-name">
-          {groupStr} <i className="fa-solid"></i>{" "}
-          <i className="fa fa-solid fa-edit"></i>
-        </h2>
+        <div className="group-name" style={{marginTop: '1em'}}>
+          <h2 contentEditable={editGroup} suppressContentEditableWarning={editGroup} ref={groupRef} className="group-name inline-block">{groupStr}</h2> <i className="fa-solid inline-block"></i>{" "}
+          <i className="fa fa-solid fa-edit inline-block" onClick={e => {
+            setEditGroup(true);
+            groupRef.current.focus();
+          }}></i>
+        </div>
         {categories.map((category, index) => {
           const categoryTasks = groupTasks.filter(
             (task) => task.category === category
