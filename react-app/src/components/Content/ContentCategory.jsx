@@ -142,7 +142,6 @@ function ContentCategory({
         }
       }
     });
-
     catRef.addEventListener("blur", (e) => {
       if (e.target.innerText !== "") {
         categoryTasks.forEach((task) => {
