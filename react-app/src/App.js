@@ -108,6 +108,28 @@ const App = () => {
     setTasks(updatedTasks);
     updateGroups();
   };
+  const setIncompleteTask = (task) => {
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        t.setIncomplete();
+      }
+      return t;
+    });
+    setTasks(updatedTasks);
+    updateGroups();
+  };
+  const setCompleteTask = (task) => {
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        t.setComplete();
+      }
+      return t;
+    });
+    setTasks(updatedTasks);
+    updateGroups();
+  };
+
+
   useEffect(() => {
     loadData();
   }, []);
@@ -161,6 +183,8 @@ const App = () => {
         toggleCompleteTask={toggleCompleteTask}
         addTask={addTask}
         forceUpdate={forceUpdate}
+        setCompleteTask={setCompleteTask}
+        setIncompleteTask={setIncompleteTask}
       />
       <Footer darkMode={darkMode} />
       <AddTaskButton

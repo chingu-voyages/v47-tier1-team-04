@@ -9,7 +9,9 @@ function Content({
   toggleCompleteTask,
   addTask,
   updateGroups,
-  forceUpdate
+  forceUpdate,
+  setCompleteTask,
+  setIncompleteTask
 }) {
   const [groups, setGroups] = useState([
     ...new Set(tasks.map((task) => task.group)),
@@ -35,6 +37,8 @@ function Content({
             cyclePriority={cyclePriority}
             toggleCompleteTask={toggleCompleteTask}
             forceUpdate={forceUpdate}
+            setCompleteTask={setCompleteTask}
+            setIncompleteTask={setIncompleteTask}
           />
         );
       })}
