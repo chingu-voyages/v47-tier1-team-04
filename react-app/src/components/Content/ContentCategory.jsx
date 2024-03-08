@@ -3,6 +3,7 @@ import ContentTask from "./ContentTask";
 import Task from "../../utils/task";
 
 import ellipse from "../../images/Ellipse8.svg";
+import favIcon from "../../images/favicon.png";
 import formatString from "../../utils/formatString";
 import pencil from "../../images/mynaui_pencil.svg";
 import trash from "../../images/ph_trash.svg";
@@ -100,6 +101,8 @@ function ContentCategory({
   tasks,
   cyclePriority,
   toggleCompleteTask,
+  setCompleteTask,
+  setIncompleteTask,
   addTask,
   forceUpdate,
 }) {
@@ -110,7 +113,16 @@ function ContentCategory({
   const [editCategory, setEditCategory] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
+  const [completeTasks, setCompleteTasks] = useState(false);
   const categoryRef = useRef(null);
+  useEffect(() => {
+    const everyTask = categoryTasks.every(task => task.complete);
+    const notComplete = categoryTasks.some(task => !task.complete);
+    !everyTask && categoryTasks.forEach(task => setCompleteTasks(task));
+    everyTask && categoryTasks.forEach(task => setIncompleteTask(task));
+    //notComplete && notComplete.forEach(task => setIncompleteTask(task));
+    
+  }, [completeTasks]);
   useEffect(() => {
     const catRef = categoryRef.current;
     catRef.addEventListener("keydown", (e) => {
@@ -148,21 +160,22 @@ function ContentCategory({
   const renderViewModal = () => setShowViewModal(true);
   const [categoryTask, setCategoryTask] = useState(categoryTasks[0]);
   const quickTaskRef = useRef(null);
+
   if (!categoryTasks.every((task) => task.archived))
     return (
       <div
         className="content-main"
         id={`category_${formatString(categoryTask.category)}`}
       >
-        <img src={ellipse} alt="ellipse checkbox" className="ellipse" />
-        <div className="content-inner">
+        <img src={categoryTasks.every(task => task.complete) ? favIcon : ellipse} alt="ellipse checkbox" className="ellipse" onClick={() => setCompleteTasks(!completeTasks)}/>
+        <div className={`content-inner ${categoryTasks.every(task => task.complete) ? `darken` : ``}`}>
           <div className="content-task">
             <h3
               className="activity"
               suppressContentEditableWarning={editCategory}
               ref={categoryRef}
               contentEditable={editCategory}
-              autofocus
+              autoFocus
             >
               {categoryTask.category}
             </h3>

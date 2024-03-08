@@ -11,7 +11,9 @@ function ContentGroup({
   cyclePriority,
   toggleCompleteTask,
   addTask,
-  forceUpdate
+  forceUpdate,
+  setCompleteTask,
+  setIncompleteTask
 }) {
   const [editGroup, setEditGroup] = useState(false);  
   const [groupTasks, setGroupTasks] = useState(
@@ -85,6 +87,8 @@ function ContentGroup({
               tasks={tasks}
               toggleCompleteTask={toggleCompleteTask}
               forceUpdate={forceUpdate}
+              setCompleteTask={setCompleteTask}
+              setIncompleteTask={setIncompleteTask}
             />
           );
         })}
