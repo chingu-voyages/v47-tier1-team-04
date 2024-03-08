@@ -116,13 +116,15 @@ function ContentCategory({
   const [completeTasks, setCompleteTasks] = useState(false);
   const categoryRef = useRef(null);
   useEffect(() => {
-    const everyTask = categoryTasks.every(task => task.complete);
-    const notComplete = categoryTasks.some(task => !task.complete);
-    !everyTask && categoryTasks.forEach(task => setCompleteTasks(task));
-    everyTask && categoryTasks.forEach(task => setIncompleteTask(task));
-    //notComplete && notComplete.forEach(task => setIncompleteTask(task));
+    completeTasks && categoryTasks.forEach((task) => setCompleteTask(task));
+    !completeTasks && categoryTasks.forEach((task) => setIncompleteTask(task));
     
   }, [completeTasks]);
+  const iconForTasks = () => {
+    const everyTask = categoryTasks.every(task => task.complete);
+    everyTask && setCompleteTasks(false);
+    !everyTask && setCompleteTasks(true);
+  }
   useEffect(() => {
     const catRef = categoryRef.current;
     catRef.addEventListener("keydown", (e) => {
@@ -167,7 +169,7 @@ function ContentCategory({
         className="content-main"
         id={`category_${formatString(categoryTask.category)}`}
       >
-        <img src={categoryTasks.every(task => task.complete) ? favIcon : ellipse} alt="ellipse checkbox" className="ellipse" onClick={() => setCompleteTasks(!completeTasks)}/>
+        <img src={categoryTasks.every(task => task.complete) ? favIcon : ellipse} alt="ellipse checkbox" className="ellipse" onClick={() => iconForTasks()}/>
         <div className={`content-inner ${categoryTasks.every(task => task.complete) ? `darken` : ``}`}>
           <div className="content-task">
             <h3
