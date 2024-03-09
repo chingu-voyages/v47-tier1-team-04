@@ -118,12 +118,14 @@ function ContentCategory({
   useEffect(() => {
     completeTasks && categoryTasks.forEach((task) => setCompleteTask(task));
     !completeTasks && categoryTasks.forEach((task) => setIncompleteTask(task));
-    
   }, [completeTasks]);
   const iconForTasks = () => {
     const everyTask = categoryTasks.every(task => task.complete);
+    const someTask = categoryTasks.some(task => task.complete);
     everyTask && setCompleteTasks(false);
     !everyTask && setCompleteTasks(true);
+    completeTasks && categoryTasks.forEach((task) => setCompleteTask(task));
+    !completeTasks && categoryTasks.forEach((task) => setIncompleteTask(task));
   }
   useEffect(() => {
     const catRef = categoryRef.current;
@@ -162,7 +164,7 @@ function ContentCategory({
   const [categoryTask, setCategoryTask] = useState(categoryTasks[0]);
   const quickTaskRef = useRef(null);
 
-  if (!categoryTasks.every((task) => task.archived))
+  if (categoryTasks.every((task) => !task.archived))
     return (
       <div
         className="content-main"
