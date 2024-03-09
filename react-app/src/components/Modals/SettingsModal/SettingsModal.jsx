@@ -14,15 +14,12 @@ const Settings = ({
   const [newAvatar, setNewAvatar] = useState(avatar);
   const changeTitle = () => {
     setTitle(newTitle);
-    closeModal();
   };
   const changeAvatar = async () => {
     setAvatar(newAvatar);
-    closeModal();
   };
   const resetLocalStorage = () => {
     localStorage.removeItem("savedUserData");
-    closeModal();
   };
 
   return (
@@ -62,13 +59,14 @@ const Settings = ({
             <div className="settings">
               <div className="settings-changes">
                 <label htmlFor="avatarImg">
-                  Change Avatar (input Github Username):
+                  Change Avatar:
                 </label>
                 <div className="settings-changes-inputs">
                   <input
                     defaultValue={avatar}
                     id="avatar"
                     type="text"
+                    placeholder="Github Username"
                     onChange={(e) => setNewAvatar(e.target.value)}
                   />
                   <input
