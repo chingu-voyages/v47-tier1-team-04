@@ -1,8 +1,16 @@
 import { useState } from "react";
 
-const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks, seedTasks }) => {
+const Settings = ({
+  closeModal,
+  title,
+  setTitle,
+  avatar,
+  setAvatar,
+  resetTasks,
+  seedTasks,
+}) => {
   const [newTitle, setNewTitle] = useState(title);
-  console.log({title, setTitle, avatar, setAvatar})
+  console.log({ title, setTitle, avatar, setAvatar });
   const [newAvatar, setNewAvatar] = useState(avatar);
   const changeTitle = () => {
     setTitle(newTitle);
@@ -10,6 +18,10 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks, 
   };
   const changeAvatar = async () => {
     setAvatar(newAvatar);
+    closeModal();
+  };
+  const resetLocalStorage = () => {
+    localStorage.removeItem("savedUserData");
     closeModal();
   };
 
@@ -21,9 +33,9 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks, 
             <h2>Settings</h2>
             <i
               className="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon"
-              id="close-settings-popup" onClick={() => closeModal()}
+              id="close-settings-popup"
+              onClick={() => closeModal()}
             />
-    
           </div>
           <div className="settings-group">
             <div className="settings">
