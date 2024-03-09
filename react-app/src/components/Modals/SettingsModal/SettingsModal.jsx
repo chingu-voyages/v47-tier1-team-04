@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Settings = ({ closeModal, title, setTitle, avatar, setAvatar }) => {
+const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }) => {
   const [newTitle, setNewTitle] = useState(title);
   console.log({title, setTitle, avatar, setAvatar})
   const [newAvatar, setNewAvatar] = useState(avatar);
@@ -107,6 +107,7 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar }) => {
                 name="remove-tasks"
                 value="Remove Tasks"
                 className="btn btn-settings setting-active"
+                onClick={() => resetTasks()}
               />
             </div>
           </div>

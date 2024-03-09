@@ -128,7 +128,10 @@ const App = () => {
     setTasks(updatedTasks);
     updateGroups();
   };
-
+  const resetTasks = () => {
+    setTasks([]);
+    updateGroups();
+  }
 
   useEffect(() => {
     loadData();
@@ -170,6 +173,7 @@ const App = () => {
         avatar={avatar}
         setAvatar={setAvatar}
         saveData={saveData}
+        resetTasks={resetTasks}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content
