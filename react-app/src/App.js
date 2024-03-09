@@ -174,6 +174,7 @@ const App = () => {
         setAvatar={setAvatar}
         saveData={saveData}
         resetTasks={resetTasks}
+        seedTasks={seed}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content
