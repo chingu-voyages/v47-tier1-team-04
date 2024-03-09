@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }) => {
+const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks, seedTasks }) => {
   const [newTitle, setNewTitle] = useState(title);
   console.log({title, setTitle, avatar, setAvatar})
   const [newAvatar, setNewAvatar] = useState(avatar);
@@ -97,6 +97,7 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
                 name="reseed-data"
                 value="Reseed Data"
                 className="btn btn-settings setting-active"
+                onClick={() => seedTasks()}
               />
             </div>
 
