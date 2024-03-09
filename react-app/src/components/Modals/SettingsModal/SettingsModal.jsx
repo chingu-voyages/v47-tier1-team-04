@@ -89,6 +89,7 @@ const Settings = ({
                 name="reset-storage"
                 value="Reset Local Storage"
                 className="btn btn-settings setting-active"
+                onClick={() => resetLocalStorage()}
               />
             </div>
 
