@@ -1,9 +1,18 @@
+import { useState } from "react";
+import MonthView from "./MonthView";
+
 function NavBar({ toggleDarkMode, saveApp}) {
   const toggleAside = () => {
     document.querySelector('aside').classList.toggle('collapsed');
   }
+  const [showMonth, setShowMonth] = useState(false);
+
+  const monthViewClickHandler = () => {
+    setShowMonth(true);
+  }
     
   return (
+    <>
     <nav id="element-el" className="navbar">
       <div className="navbar">
         <div className="navbar-top">
@@ -35,7 +44,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
           <a id="btn-day" className="btn btn-day">
             Today
           </a>
-          <a id="btn-month" className="btn btn-month">
+          <a id="btn-month" className="btn btn-month" onClick={monthViewClickHandler}>
             Month
           </a>
           <a id="btn-all" className="btn btn-year active">
@@ -91,6 +100,8 @@ function NavBar({ toggleDarkMode, saveApp}) {
         </div>
       </div>
     </nav>
+    {showMonth && <MonthView closeHandler = {setShowMonth}/>}
+    </>
   );
 }
 
