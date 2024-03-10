@@ -25,7 +25,7 @@ function ContentTask({
   const closeViewModal = () => setShowViewModal(false);
   const closeEditModal = () => setShowEditModal(false);
 
-  return (
+if (!task.archived) return (
     <>
       <div className="content-description">
         <p
