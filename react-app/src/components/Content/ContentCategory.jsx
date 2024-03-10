@@ -164,7 +164,6 @@ function ContentCategory({
   const [categoryTask, setCategoryTask] = useState(categoryTasks[0]);
   const quickTaskRef = useRef(null);
 
-  if (categoryTasks.every((task) => !task.archived))
     return (
       <div
         className="content-main"
