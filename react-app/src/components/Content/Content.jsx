@@ -24,13 +24,14 @@ function Content({
   return (
     <div id="contentAnchor" className="content">
       {groups.map((group, index) => {
+        const filteredTasks = tasks.filter((task) => !task.archived);
         return (
           <ContentGroup
             key={index}
             updateGroups={updateGroups}
             addTask={addTask}
             group={group}
-            tasks={tasks}
+            tasks={filteredTasks}
             updateTask={updateTask}
             archiveTask={archiveTask}
             saveData={saveData}
