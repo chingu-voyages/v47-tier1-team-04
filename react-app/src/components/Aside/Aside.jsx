@@ -5,7 +5,7 @@ import settingsicon from "../../images/solar_settings-linear.svg";
 import Settings from "../Modals/SettingsModal/SettingsModal";
 import "./Aside.styles.css";
 
-function Aside({ title, setTitle, avatar, setAvatar, tasks, resetTasks }) {
+function Aside({ title, setTitle, avatar, setAvatar, tasks, resetTasks, seedTasks, restoreArchive }) {
   const [groups, setGroups] = useState([
     ...new Set(tasks.map((task) => task.group)),
   ]);
@@ -61,6 +61,8 @@ function Aside({ title, setTitle, avatar, setAvatar, tasks, resetTasks }) {
           avatar={avatar}
           setAvatar={setAvatar}
           resetTasks={resetTasks}
+          seedTasks={seedTasks}
+          restoreArchive={restoreArchive}
         />
       )}
     </>

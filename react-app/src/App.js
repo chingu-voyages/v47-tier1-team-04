@@ -91,12 +91,20 @@ const App = () => {
     updateGroups();
   };
   const archiveTask = (task) => {
-    const updatedTasks = tasks.filter((t) => t.id !== task.id);
+
     task.archive();
+    forceUpdate();
+    // setTasks(tasks.filter((t) => t.id !== task.id));
+  };
+  const unArchiveTask = (task) => {
+    task.unArchive();
+    const previousTasks = tasks.filter((t) => t.id !== task.id);
+    const updatedTasks = [...previousTasks, task];
     setTasks(updatedTasks);
-    setArchive([...archive, task]);
     updateGroups();
   };
+  const restoreArchive = () => tasks.map((task) => unArchiveTask(task));
+
   const updateTask = (oldTask, newTask) => oldTask.update(newTask);
   const toggleCompleteTask = (task) => {
     const updatedTasks = tasks.map((t) => {
@@ -131,7 +139,7 @@ const App = () => {
   const resetTasks = () => {
     setTasks([]);
     updateGroups();
-  }
+  };
 
   useEffect(() => {
     loadData();
@@ -142,6 +150,7 @@ const App = () => {
   }, [tasks]);
 
   useEffect(() => saveData(), [groups]);
+  const filteredTasks = tasks.filter((task) => !task.archived);
   return (
     <div className="container">
       <Helmet>
@@ -167,19 +176,21 @@ const App = () => {
       </Helmet>
       <Aside
         groups={groups}
-        tasks={tasks}
+        tasks={filteredTasks}
         title={title}
         setTitle={setTitle}
         avatar={avatar}
         setAvatar={setAvatar}
         saveData={saveData}
         resetTasks={resetTasks}
+        seedTasks={seed}
+        restoreArchive={restoreArchive}
       />
       <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
       <Content
         cyclePriority={cyclePriority}
         saveData={saveData}
-        tasks={tasks}
+        tasks={filteredTasks}
         groups={groups}
         archiveTask={archiveTask}
         updateTask={updateTask}

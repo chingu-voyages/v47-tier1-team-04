@@ -56,7 +56,6 @@ function ContentGroup({
       }
     });
   }, [groupTasks]);
-  if (!groupTasks.every((task) => task.archived))
     return (
       <div className="content-activity" id={`group_${formatString(groupStr)}`}>
         <div className="group-name" style={{marginTop: '1em'}}>

@@ -1,16 +1,25 @@
 import { useState } from "react";
 
-const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }) => {
+const Settings = ({
+  closeModal,
+  title,
+  setTitle,
+  avatar,
+  setAvatar,
+  resetTasks,
+  seedTasks,
+  restoreArchive
+}) => {
   const [newTitle, setNewTitle] = useState(title);
-  console.log({title, setTitle, avatar, setAvatar})
   const [newAvatar, setNewAvatar] = useState(avatar);
   const changeTitle = () => {
     setTitle(newTitle);
-    closeModal();
   };
   const changeAvatar = async () => {
     setAvatar(newAvatar);
-    closeModal();
+  };
+  const resetLocalStorage = () => {
+    localStorage.removeItem("savedUserData");
   };
 
   return (
@@ -21,9 +30,9 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
             <h2>Settings</h2>
             <i
               className="fa-solid fa-xmark fa-2x close-settings-popup close-settings-icon"
-              id="close-settings-popup" onClick={() => closeModal()}
+              id="close-settings-popup"
+              onClick={() => closeModal()}
             />
-    
           </div>
           <div className="settings-group">
             <div className="settings">
@@ -50,13 +59,14 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
             <div className="settings">
               <div className="settings-changes">
                 <label htmlFor="avatarImg">
-                  Change Avatar (input Github Username):
+                  Change Avatar:
                 </label>
                 <div className="settings-changes-inputs">
                   <input
                     defaultValue={avatar}
                     id="avatar"
                     type="text"
+                    placeholder="Github Username"
                     onChange={(e) => setNewAvatar(e.target.value)}
                   />
                   <input
@@ -77,6 +87,7 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
                 name="reset-storage"
                 value="Reset Local Storage"
                 className="btn btn-settings setting-active"
+                onClick={() => resetLocalStorage()}
               />
             </div>
 
@@ -87,6 +98,7 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
                 name="restore-archive"
                 value="Restore Archive"
                 className="btn btn-settings setting-active"
+                onClick={() => restoreArchive()}
               />
             </div>
 
@@ -97,6 +109,7 @@ const Settings = ({ closeModal, title, setTitle, avatar, setAvatar, resetTasks }
                 name="reseed-data"
                 value="Reseed Data"
                 className="btn btn-settings setting-active"
+                onClick={() => seedTasks()}
               />
             </div>
 
