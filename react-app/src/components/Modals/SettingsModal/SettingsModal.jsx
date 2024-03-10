@@ -8,9 +8,9 @@ const Settings = ({
   setAvatar,
   resetTasks,
   seedTasks,
+  restoreArchive
 }) => {
   const [newTitle, setNewTitle] = useState(title);
-  console.log({ title, setTitle, avatar, setAvatar });
   const [newAvatar, setNewAvatar] = useState(avatar);
   const changeTitle = () => {
     setTitle(newTitle);
@@ -98,6 +98,7 @@ const Settings = ({
                 name="restore-archive"
                 value="Restore Archive"
                 className="btn btn-settings setting-active"
+                onClick={() => restoreArchive()}
               />
             </div>
 
