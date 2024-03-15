@@ -1,7 +1,13 @@
 import { useState } from "react";
 import MonthView from "./MonthView";
+import toast from '../../utils/toast';
 
 function NavBar({ toggleDarkMode, saveApp}) {
+  const onSaveClick = (message) => {
+    toast(message);
+    saveApp();
+  }
+
   const toggleAside = () => {
     document.querySelector('aside').classList.toggle('collapsed');
   }
@@ -33,7 +39,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
               id="save-all"
               href="#"
               className="btn btn-save"
-              onClick={() => saveApp()}
+              onClick={() => onSaveClick('Your data has been saved!')}
             >
               Save
             </a>
