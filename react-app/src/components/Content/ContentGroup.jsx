@@ -22,6 +22,11 @@ function ContentGroup({
   const [categories, setCategories] = useState([
     ...new Set(groupTasks.map((task) => task.category)),
   ]);
+  const [collapsed, setCollapsed] = useState(false);
+  const collapse = (e) => {
+    setCollapsed(!collapsed);
+    e.target.nextElementSibling.classList.toggle("collapsed");
+  }
   const groupStr = groupTasks[0].group;
   const groupRef = useRef(null);
   useEffect(() => {
@@ -58,7 +63,7 @@ function ContentGroup({
   }, [groupTasks]);
     return (
       <div className="content-activity" id={`group_${formatString(groupStr)}`}>
-        <div className="group-name" style={{marginTop: '1em'}}>
+        <div className="group-name" style={{marginTop: '1em'}} onClick={e => collapse(e)}>
           <h2 contentEditable={editGroup} suppressContentEditableWarning={editGroup} ref={groupRef} className="group-name inline-block">{groupStr}</h2> <i className="fa-solid inline-block"></i>{" "}
           <i className="fa fa-solid fa-edit inline-block" onClick={e => {
             setEditGroup(true);
