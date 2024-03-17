@@ -11,12 +11,21 @@ const App = () => {
   const [title, setTitle] = useState("Daily Checklist");
   const [avatar, setAvatar] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState(tasks.filter((task) => !task.archived)); 
   const [archive, setArchive] = useState([]);
   const [groups, setGroups] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const state = { title, avatar, tasks, darkMode };
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
+  const onSearch = (search) => {
+    const filtered = tasks.filter(task => {
+      return task.name.toLowerCase().includes(search.toLowerCase()) || 
+      task.category.toLowerCase().includes(search.toLowerCase()) || 
+      task.group.toLowerCase().includes(search.toLowerCase());
+    });
+    setFilteredTasks(filtered);
+  };
   useEffect(
     () => setGroups([...new Set(tasks.map((task) => task.group))]),
     [tasks]
@@ -91,10 +100,9 @@ const App = () => {
     updateGroups();
   };
   const archiveTask = (task) => {
-
     task.archive();
     forceUpdate();
-    // setTasks(tasks.filter((t) => t.id !== task.id));
+    setTasks(tasks.filter((t) => t.id !== task.id));
   };
   const unArchiveTask = (task) => {
     task.unArchive();
@@ -150,7 +158,7 @@ const App = () => {
   }, [tasks]);
 
   useEffect(() => saveData(), [groups]);
-  const filteredTasks = tasks.filter((task) => !task.archived);
+ // const filteredTasks = tasks.filter((task) => !task.archived);
   return (
     <div className="container">
       <Helmet>
@@ -176,7 +184,8 @@ const App = () => {
       </Helmet>
       <Aside
         groups={groups}
-        tasks={filteredTasks}
+        tasks={tasks}
+        filteredTasks={filteredTasks}
         title={title}
         setTitle={setTitle}
         avatar={avatar}
@@ -186,11 +195,18 @@ const App = () => {
         seedTasks={seed}
         restoreArchive={restoreArchive}
       />
-      <NavBar toggleDarkMode={toggleDarkMode} saveApp={saveData} />
+      <NavBar
+        toggleDarkMode={toggleDarkMode}
+        saveApp={saveData}
+        tasks={filteredTasks}
+        updateTasks={setTasks}
+        onSearch={onSearch}
+      />
       <Content
         cyclePriority={cyclePriority}
         saveData={saveData}
-        tasks={filteredTasks}
+        tasks={tasks}
+        filteredTasks={filteredTasks}
         groups={groups}
         archiveTask={archiveTask}
         updateTask={updateTask}
