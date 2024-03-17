@@ -52,7 +52,7 @@ function QuickTask({
   }, [quickTaskRef]);
 
   return (
-    <div className="content-description">
+    <div className={`content-description`}>
       <div className="task-name" onClick={() => toggleCompleteTask(task)}>
         <i className="fa-regular checkbox fa-square" />
         <p
@@ -105,6 +105,7 @@ function ContentCategory({
   setIncompleteTask,
   addTask,
   forceUpdate,
+  collapsed
 }) {
   const [showQuickTask, setShowQuickTask] = useState(false);
   const [categoryTasks, setCategoryTasks] = useState(
@@ -166,7 +167,7 @@ function ContentCategory({
 
     return (
       <div
-        className="content-main"
+        className={`content-main ${collapsed && "hide"}`}
         id={`category_${formatString(categoryTask.category)}`}
       >
         <img src={categoryTasks.every(task => task.complete) ? favIcon : ellipse} alt="ellipse checkbox" className="ellipse" onClick={() => iconForTasks()}/>
