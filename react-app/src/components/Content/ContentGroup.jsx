@@ -6,6 +6,7 @@ function ContentGroup({
   group,
   archiveTask,
   tasks,
+  filteredTasks,
   updateTask,
   updateGroups,
   cyclePriority,
@@ -17,8 +18,11 @@ function ContentGroup({
 }) {
   const [editGroup, setEditGroup] = useState(false);
   const [groupTasks, setGroupTasks] = useState(
-    tasks.filter((task) => task.group === group)
+    filteredTasks && filteredTasks.length > 0
+      ? filteredTasks.filter((task) => task.group === group)
+      : tasks.filter((task) => task.group === group && !task.archived)
   );
+  console.log(filteredTasks);
   const [categories, setCategories] = useState([
     ...new Set(groupTasks.map((task) => task.category)),
   ]);
