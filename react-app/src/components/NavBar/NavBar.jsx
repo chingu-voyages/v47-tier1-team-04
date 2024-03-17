@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MonthView from "./MonthView";
+import Search from "./Search";
 import toast from '../../utils/toast';
 
-function NavBar({ toggleDarkMode, saveApp}) {
+function NavBar({ toggleDarkMode, saveApp, tasks, filteredTasks, onSearch}) {
   const onSaveClick = (message) => {
     toast(message);
     saveApp();
@@ -16,7 +17,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
   const monthViewClickHandler = () => {
     setShowMonth(true);
   }
-    
+     
   return (
     <>
     <nav id="element-el" className="navbar">
@@ -93,15 +94,7 @@ function NavBar({ toggleDarkMode, saveApp}) {
               High
             </a>
 
-            <div className="search">
-              <input
-                type="text"
-                placeholder="Search by task name, category, group, etc..."
-                id="search"
-                className="btn"
-              />
-              <i className="fa-solid fa-magnifying-glass fa-lg search-icon" />
-            </div>
+         <Search onSearch={onSearch} />
           </div>
         </div>
       </div>

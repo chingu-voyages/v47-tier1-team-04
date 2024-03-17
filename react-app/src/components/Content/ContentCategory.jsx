@@ -99,6 +99,7 @@ function ContentCategory({
   archiveTask,
   updateTask,
   tasks,
+  filteredTasks,
   cyclePriority,
   toggleCompleteTask,
   setCompleteTask,
@@ -111,6 +112,7 @@ function ContentCategory({
   const [categoryTasks, setCategoryTasks] = useState(
     tasks.filter((task) => task.group === group && task.category === category)
   );
+console.log(filteredTasks)
   const [editCategory, setEditCategory] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import ContentGroup from "./ContentGroup";
 function Content({
   tasks,
+  filteredTasks,
   archiveTask,
   updateTask,
   saveData,
@@ -13,13 +14,14 @@ function Content({
   setCompleteTask,
   setIncompleteTask
 }) {
+  filteredTasks.length > 0 && console.log(filteredTasks);
   const [groups, setGroups] = useState([
-    ...new Set(tasks.map((task) => task.group)),
+    ...new Set(filteredTasks.map((task) => task.group)),
   ]);
-
+  console.log(groups)
   useEffect(
-    () => setGroups([...new Set(tasks.map((task) => task.group))]),
-    [tasks]
+    () => setGroups([...new Set(filteredTasks.map((task) => task.group))]),
+    [filteredTasks]
   );
   return (
     <div id="contentAnchor" className="content">
