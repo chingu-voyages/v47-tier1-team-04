@@ -14,11 +14,9 @@ function Content({
   setCompleteTask,
   setIncompleteTask
 }) {
-  filteredTasks.length > 0 && console.log(filteredTasks);
   const [groups, setGroups] = useState([
     ...new Set(filteredTasks.map((task) => task.group)),
   ]);
-  console.log(groups)
   useEffect(
     () => setGroups([...new Set(filteredTasks.map((task) => task.group))]),
     [filteredTasks]
@@ -26,14 +24,14 @@ function Content({
   return (
     <div id="contentAnchor" className="content">
       {groups.map((group, index) => {
-        const filteredTasks = tasks.filter((task) => !task.archived);
         return (
           <ContentGroup
             key={index}
             updateGroups={updateGroups}
             addTask={addTask}
             group={group}
-            tasks={filteredTasks}
+            tasks={tasks}
+            filteredTasks={filteredTasks}
             updateTask={updateTask}
             archiveTask={archiveTask}
             saveData={saveData}

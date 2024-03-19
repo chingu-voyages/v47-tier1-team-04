@@ -110,9 +110,8 @@ function ContentCategory({
 }) {
   const [showQuickTask, setShowQuickTask] = useState(false);
   const [categoryTasks, setCategoryTasks] = useState(
-    tasks.filter((task) => task.group === group && task.category === category)
+    filteredTasks.filter((task) => task.group === group && task.category === category)
   );
-console.log(filteredTasks)
   const [editCategory, setEditCategory] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);

@@ -89,7 +89,6 @@ const App = () => {
     updateGroups();
   };
   const cyclePriority = (task) => {
-    console.log("cyclePriority", task);
     const updatedTasks = tasks.map((t) => {
       if (t.id === task.id) {
         t.cyclePriority();
@@ -111,7 +110,10 @@ const App = () => {
     setTasks(updatedTasks);
     updateGroups();
   };
-  const restoreArchive = () => tasks.map((task) => unArchiveTask(task));
+  const restoreArchive = () => {
+    tasks.map((task) => unArchiveTask(task));
+    filteredTasks.map((task) => unArchiveTask(task));
+  }
 
   const updateTask = (oldTask, newTask) => oldTask.update(newTask);
   const toggleCompleteTask = (task) => {
@@ -198,7 +200,8 @@ const App = () => {
       <NavBar
         toggleDarkMode={toggleDarkMode}
         saveApp={saveData}
-        tasks={filteredTasks}
+        tasks={tasks}
+        filteredTasks={filteredTasks}
         updateTasks={setTasks}
         onSearch={onSearch}
       />
